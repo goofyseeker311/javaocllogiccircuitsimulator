@@ -17,6 +17,8 @@ XOR: bitwise xor
 NAND: bitwise nand
 NOR: bitwise nor
 XNOR: bitwise xnor
+SHL: bitwise shift left
+SHR: bitwise shift right
 
 NEG: negate arg1
 SUM: arg1 sum arg2
