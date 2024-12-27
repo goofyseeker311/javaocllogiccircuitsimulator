@@ -9,7 +9,7 @@ Run format: new-old value store-update each gate once per clock cycle.
 
 Operation list:
 ```
-0=BUF: delay buffer
+0=BUF: delay buffer arg1
 1=NOT: invert arg1
 2=AND: bitwise and
 3=OR: bitwise or
@@ -40,4 +40,7 @@ Operation list:
 25=ZERO: zero value
 26=ITOF: convert arg1 to fp32 value
 27=FTOI: convert arg1 to int32 value
+28=MGET: get arg1 pointer value
+29=MSTO: store arg1 value to arg2 pointer
+30=IFBUF: delay buffer arg1 if arg2 is 1
 ```
