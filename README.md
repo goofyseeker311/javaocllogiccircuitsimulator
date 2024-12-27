@@ -32,5 +32,5 @@ LOG: log arg1
 EXP: exp arg1
 POW: arg1 power to arg2
 
-ZERO: store zero
+ZERO: zero value
 ```
