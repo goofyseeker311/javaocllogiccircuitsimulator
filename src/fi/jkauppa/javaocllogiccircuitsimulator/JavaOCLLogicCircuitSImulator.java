@@ -1,35 +1,29 @@
 package fi.jkauppa.javaocllogiccircuitsimulator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import fi.jkauppa.javaocllogiccircuitsimulator.ComputeLib.Device;
 
 public class JavaOCLLogicCircuitSImulator {
 	private ComputeLib computelib = new ComputeLib();
 	private int de;
-	private int nc;
-	private int re;
 
-	public JavaOCLLogicCircuitSImulator(int vde, int vnc, int vre) {
+	public JavaOCLLogicCircuitSImulator(int vde) {
 		this.de = vde;
-		this.nc = vnc;
-		this.re = vre;
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.1");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.2");
 		int de = 0;
-		int nc = 100000000;
-		int re = 1000;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
-		try {nc = Integer.parseInt(args[1]);} catch(Exception ex) {}
-		try {re = Integer.parseInt(args[2]);} catch(Exception ex) {}
-		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de,nc,re);
+		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
 		app.run();
 		System.out.println("exit.");
 	}
 	
 	public void run() {
 		System.out.println("init.");
-		System.out.println("Element count: "+this.nc+", Repeat count: "+this.re);
 
 		long device = computelib.devicelist[this.de];
 		Device devicedata = computelib.devicemap.get(device);
@@ -39,16 +33,39 @@ public class JavaOCLLogicCircuitSImulator {
 		
 		String clSource = ComputeLib.loadProgram("res/clprograms/simulator.cl", true);
 		long program = computelib.compileProgram(device, clSource);
+
+		String circuit = ComputeLib.loadProgram("res/circuits/circuit.lc", true);
+		int[] circuitints = parseCircuit(circuit);
+
+		int gc = circuitints.length;
+		long circuitptr = computelib.createBuffer(device, gc);
+		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
-		/*
-		if (true) {
-			long[] cbuf = {computelib.createBuffer(device, nc)};
-			float ctimedif = computelib.runProgram(device, queue, program, "loopsmmult", cbuf, new int[]{0}, new int[]{nc}, re, true)/re;
-			float tflops = (nc*3.0f*128.0f*72.0f*(1000.0f/ctimedif))/1000000000000.0f;
-			System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t"+String.format("%.3f",tflops).replace(",", ".")+"tflops\t device: "+devicename);
-		}
-		*/
+		int vc = 57;
+		int[] newvalues = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] oldvalues = new int[vc];
+		Arrays.fill(oldvalues, 0);
+		long newvaluesptr = computelib.createBuffer(device, vc);
+		long oldvaluesptr = computelib.createBuffer(device, vc);
+		computelib.writeBufferi(device, queue, newvaluesptr, newvalues);
+		computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
+		
+		long[] buffers = {circuitptr,oldvaluesptr,newvaluesptr};
+		float ctimedif = computelib.runProgram(device, queue, program, "processgates", buffers, new int[]{0}, new int[]{gc/4}, 0, true);
+		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 		
 		System.out.println("done.");
+	}
+	
+	private int[] parseCircuit(String circuit) {
+		ArrayList<Integer> circuitarray = new ArrayList<Integer>();
+		circuitarray.add(0); circuitarray.add(0); circuitarray.add(-1); circuitarray.add(1);
+		circuitarray.add(2); circuitarray.add(1); circuitarray.add(-1); circuitarray.add(3);
+		
+		int[] circuitints = new int[circuitarray.size()];
+		for (int i=0;i<circuitints.length;i++) {
+			circuitints[i] = circuitarray.get(i);
+		}
+		return circuitints;
 	}
 }
