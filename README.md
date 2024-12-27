@@ -34,6 +34,8 @@ Operation list:
 20=LOG: log arg1
 21=EXP: exp arg1
 22=POW: arg1 power to arg2
+23=SQRT: sqrt arg1
+24=NROOT: nth-root arg1
 
-23=ZERO: zero value
+25=ZERO: zero value
 ```
