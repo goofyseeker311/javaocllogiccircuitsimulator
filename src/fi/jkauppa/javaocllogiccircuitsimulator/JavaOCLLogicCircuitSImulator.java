@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.4");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.5");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -42,7 +42,7 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
 		int vc = 57;
-		int[] newvalues = {5,0,~255,0,255,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] newvalues = {5,0,~255,0,255,128,0,0,0,0,0,0,0,-2,-2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
@@ -51,7 +51,9 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
 		
 		float ctimedif = 0.0f;
+		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
+		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 

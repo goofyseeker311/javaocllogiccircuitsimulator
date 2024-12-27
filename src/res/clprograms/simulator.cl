@@ -49,6 +49,8 @@ kernel void processgates(global int *circuit, global int *oldvalues, global int 
 		newvalues[sto3] = ~oldvalues[arg1];
 	} else if (oper==cAND) {
 		newvalues[sto3] = oldvalues[arg1] & oldvalues[arg2];
+	} else if (oper==cNAND) {
+		newvalues[sto3] = ~(oldvalues[arg1] & oldvalues[arg2]);
 	}
 	printf("gid[%i]: %i %i %i %i, %i %i => %i\n",gid,arg1,oper,arg2,sto3,oldvalues[arg1],oldvalues[arg2],newvalues[sto3]);
 }
