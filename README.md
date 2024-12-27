@@ -4,6 +4,7 @@ Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined
 ```
 Code format: 4-int32 blocks of [ARGUMENT-PTR1 OPERATION ARGUMENT-PTR2: STORE-PTR3].
 Value format: 32-bit integer (int32), two values make 32+32 floating point value.
+Run format: pre-calculated last tree leaves first or new-old value store-update.
 ```
 
 Operation list:
