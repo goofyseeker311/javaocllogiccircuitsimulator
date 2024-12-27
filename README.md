@@ -6,7 +6,7 @@ Code format: 4-int32 blocks of [ARGUMENT-PTR1 OPERATION ARGUMENT-PTR2: STORE-PTR
 Value format: 32-bit integer (int32), two values make 32+32 floating point value.
 ```
 
-OPERATION list:
+Operation list:
 ```
 BUF: delay buffer
 NOT: invert arg1
