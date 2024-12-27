@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.2");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.3");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -59,8 +59,85 @@ public class JavaOCLLogicCircuitSImulator {
 	
 	private int[] parseCircuit(String circuit) {
 		ArrayList<Integer> circuitarray = new ArrayList<Integer>();
-		circuitarray.add(0); circuitarray.add(0); circuitarray.add(-1); circuitarray.add(1);
-		circuitarray.add(2); circuitarray.add(1); circuitarray.add(-1); circuitarray.add(3);
+		String[] circuitlines = circuit.split("\n");
+		for (int i=0;i<circuitlines.length;i++) {
+			int arg1 = -1;
+			int oper = -1;
+			int arg2 = -1;
+			int sto3 = -1;
+
+			String circuitline = circuitlines[i].trim();
+			
+			
+			if (circuitline.length()>0) {
+				String[] circuitlineparts = circuitline.split(":");
+				String circuitlineop = circuitlineparts[0].trim();
+				String circuitlinestore = circuitlineparts[1].trim();
+				String[] circuitlineopparts = circuitlineop.split(" ");
+				
+				arg1 = Integer.parseInt(circuitlineopparts[0].trim());
+				String operString = circuitlineopparts[1].trim();
+				if (circuitlineopparts.length>2) {
+					arg2 = Integer.parseInt(circuitlineopparts[2].trim());
+				}
+				sto3 = Integer.parseInt(circuitlinestore);
+				if (operString.equals("BUF")) {
+					oper = 0;
+				} if (operString.equals("NOT")) {
+					oper = 1;
+				} if (operString.equals("AND")) {
+					oper = 2;
+				} if (operString.equals("OR")) {
+					oper = 3;
+				} if (operString.equals("XOR")) {
+					oper = 4;
+				} if (operString.equals("NAND")) {
+					oper = 5;
+				} if (operString.equals("NOR")) {
+					oper = 6;
+				} if (operString.equals("XNOR")) {
+					oper = 7;
+				} if (operString.equals("SHL")) {
+					oper = 8;
+				} if (operString.equals("SHR")) {
+					oper = 9;
+				} if (operString.equals("NEG")) {
+					oper = 10;
+				} if (operString.equals("SUM")) {
+					oper = 11;
+				} if (operString.equals("MUL")) {
+					oper = 12;
+				} if (operString.equals("DIV")) {
+					oper = 13;
+				} if (operString.equals("COS")) {
+					oper = 14;
+				} if (operString.equals("SIN")) {
+					oper = 15;
+				} if (operString.equals("TAN")) {
+					oper = 16;
+				} if (operString.equals("ACOS")) {
+					oper = 17;
+				} if (operString.equals("ASIN")) {
+					oper = 18;
+				} if (operString.equals("ATAN")) {
+					oper = 19;
+				} if (operString.equals("LOG")) {
+					oper = 20;
+				} if (operString.equals("EXP")) {
+					oper = 21;
+				} if (operString.equals("POW")) {
+					oper = 22;
+				} if (operString.equals("SQRT")) {
+					oper = 23;
+				} if (operString.equals("NROOT")) {
+					oper = 24;
+				} if (operString.equals("ZERO")) {
+					oper = 25;
+				}
+				
+				circuitarray.add(arg1); circuitarray.add(oper); circuitarray.add(arg2); circuitarray.add(sto3);
+			}
+		}
 		
 		int[] circuitints = new int[circuitarray.size()];
 		for (int i=0;i<circuitints.length;i++) {
