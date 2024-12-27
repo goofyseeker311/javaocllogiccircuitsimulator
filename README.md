@@ -18,9 +18,9 @@ NOR: bitwise nor
 XNOR: bitwise xnor
 
 NEG: negate arg1
-SUM: argument sum
-MUL: argument multiply
-DIV: argument division
+SUM: arg1 sum arg2
+MUL: arg1 multiply arg2
+DIV: arg1 division by arg2
 
 COS: cos arg1
 SIN: sin arg1
