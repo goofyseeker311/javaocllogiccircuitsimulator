@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.3");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.4");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -42,7 +42,7 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
 		int vc = 57;
-		int[] newvalues = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] newvalues = {5,0,~255,0,255,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
@@ -50,9 +50,13 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.writeBufferi(device, queue, newvaluesptr, newvalues);
 		computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
 		
-		long[] buffers = {circuitptr,oldvaluesptr,newvaluesptr};
-		float ctimedif = computelib.runProgram(device, queue, program, "processgates", buffers, new int[]{0}, new int[]{gc/4}, 0, true);
+		float ctimedif = 0.0f;
+		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
+
+		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
+		computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
 		
 		System.out.println("done.");
 	}
@@ -133,6 +137,16 @@ public class JavaOCLLogicCircuitSImulator {
 					oper = 24;
 				} if (operString.equals("ZERO")) {
 					oper = 25;
+				} if (operString.equals("ITOF")) {
+					oper = 26;
+				} if (operString.equals("FTOI")) {
+					oper = 27;
+				} if (operString.equals("MGET")) {
+					oper = 28;
+				} if (operString.equals("MSTO")) {
+					oper = 29;
+				} if (operString.equals("IFBUF")) {
+					oper = 30;
 				}
 				
 				circuitarray.add(arg1); circuitarray.add(oper); circuitarray.add(arg2); circuitarray.add(sto3);
