@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.5");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.6");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -42,7 +42,7 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
 		int vc = 57;
-		int[] newvalues = {5,0,~255,0,255,128,0,0,0,0,0,0,0,-2,-2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
