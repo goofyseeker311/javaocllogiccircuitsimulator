@@ -38,4 +38,6 @@ Operation list:
 24=NROOT: nth-root arg1
 
 25=ZERO: zero value
+26=ITOF: convert int32 to fp32 value
+27=FTOI: convert fp32 to int32 value
 ```
