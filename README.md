@@ -20,11 +20,11 @@ Operation list:
 8=SHL: shift left
 9=SHR: shift right
 
-10=NEGi: negate arg1 (int)
-11=SUMi: arg1 sum arg2 (int)
-12=SUBi: arg1 minus arg2 (int)
-13=MULi: arg1 multiply arg2 (int)
-14=DIVi: arg1 division by arg2 (int)
+10=NEGi: negate arg1
+11=SUMi: arg1 sum arg2
+12=SUBi: arg1 minus arg2
+13=MULi: arg1 multiply arg2
+14=DIVi: arg1 division by arg2
 
 15=COS: cos arg1 (float)
 16=SIN: sin arg1 (float)
@@ -38,7 +38,7 @@ Operation list:
 24=SQRT: sqrt arg1 (float)
 25=NROOT: nth-root arg1 (float)
 
-26=ZERO: zero value (int)
+26=ZERO: zero value
 27=ITOF: convert arg1 to fp32 value
 28=FTOI: convert arg1 to int32 value
 29=MGET: get arg1 pointer value
