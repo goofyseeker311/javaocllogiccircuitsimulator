@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.7");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.8");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -41,8 +41,11 @@ public class JavaOCLLogicCircuitSImulator {
 		long circuitptr = computelib.createBuffer(device, gc);
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
-		int vc = 60;
-		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int vc = 74;
+		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
+				Float.floatToIntBits((float)(Math.PI)),0,Float.floatToIntBits((float)(Math.PI/2.0f)),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(-1.0f),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(1.557408f),0,
+				Float.floatToIntBits(100.0f),0,Float.floatToIntBits(4.6051702f),0,1,0,Float.floatToIntBits(-2.0f),0,Float.floatToIntBits(4.5f),Float.floatToIntBits(7.2f),0,Float.floatToIntBits(3.1f),Float.floatToIntBits(1.2f),0,
+				Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
@@ -54,11 +57,19 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
 		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "processintgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 
 		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
 		computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
+		float[] newvaluesf = new float[vc];
+		float[] oldvaluesf = new float[vc];
+		computelib.readBufferf(device, queue, newvaluesptr, newvaluesf);
+		computelib.readBufferf(device, queue, oldvaluesptr, oldvaluesf);
+		
+		for (int i=0;i<vc;i++) {
+			System.out.println("values["+i+"]: "+oldvalues[i]+"("+oldvaluesf[i]+") => "+newvalues[i]+"("+newvaluesf[i]+")");
+		}
 		
 		System.out.println("done.");
 	}
@@ -107,15 +118,15 @@ public class JavaOCLLogicCircuitSImulator {
 					oper = 8;
 				} if (operString.equals("SHR")) {
 					oper = 9;
-				} if (operString.equals("NEG")) {
+				} if (operString.equals("NEGi")) {
 					oper = 10;
-				} if (operString.equals("SUM")) {
+				} if (operString.equals("SUMi")) {
 					oper = 11;
-				} if (operString.equals("SUB")) {
+				} if (operString.equals("SUBi")) {
 					oper = 12;
-				} if (operString.equals("MUL")) {
+				} if (operString.equals("MULi")) {
 					oper = 13;
-				} if (operString.equals("DIV")) {
+				} if (operString.equals("DIVi")) {
 					oper = 14;
 				} if (operString.equals("COS")) {
 					oper = 15;
@@ -151,6 +162,16 @@ public class JavaOCLLogicCircuitSImulator {
 					oper = 30;
 				} if (operString.equals("IFBUF")) {
 					oper = 31;
+				} if (operString.equals("NEG")) {
+					oper = 32;
+				} if (operString.equals("SUM")) {
+					oper = 33;
+				} if (operString.equals("SUB")) {
+					oper = 34;
+				} if (operString.equals("MUL")) {
+					oper = 35;
+				} if (operString.equals("DIV")) {
+					oper = 36;
 				}
 				
 				circuitarray.add(arg1); circuitarray.add(oper); circuitarray.add(arg2); circuitarray.add(sto3);
