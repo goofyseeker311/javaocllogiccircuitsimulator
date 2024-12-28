@@ -22,7 +22,7 @@ Operation list:
 
 10=NEG: negate arg1
 11=SUM: arg1 sum arg2
-12=SUM: arg1 minus arg2
+12=SUB: arg1 minus arg2
 13=MUL: arg1 multiply arg2
 14=DIV: arg1 division by arg2
 
