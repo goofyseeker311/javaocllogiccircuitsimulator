@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.6");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.0.7");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -41,8 +41,8 @@ public class JavaOCLLogicCircuitSImulator {
 		long circuitptr = computelib.createBuffer(device, gc);
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
-		int vc = 57;
-		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int vc = 60;
+		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
@@ -54,7 +54,7 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
 		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "processintgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 
 		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
@@ -111,44 +111,46 @@ public class JavaOCLLogicCircuitSImulator {
 					oper = 10;
 				} if (operString.equals("SUM")) {
 					oper = 11;
-				} if (operString.equals("MUL")) {
+				} if (operString.equals("SUB")) {
 					oper = 12;
-				} if (operString.equals("DIV")) {
+				} if (operString.equals("MUL")) {
 					oper = 13;
-				} if (operString.equals("COS")) {
+				} if (operString.equals("DIV")) {
 					oper = 14;
-				} if (operString.equals("SIN")) {
+				} if (operString.equals("COS")) {
 					oper = 15;
-				} if (operString.equals("TAN")) {
+				} if (operString.equals("SIN")) {
 					oper = 16;
-				} if (operString.equals("ACOS")) {
+				} if (operString.equals("TAN")) {
 					oper = 17;
-				} if (operString.equals("ASIN")) {
+				} if (operString.equals("ACOS")) {
 					oper = 18;
-				} if (operString.equals("ATAN")) {
+				} if (operString.equals("ASIN")) {
 					oper = 19;
-				} if (operString.equals("LOG")) {
+				} if (operString.equals("ATAN")) {
 					oper = 20;
-				} if (operString.equals("EXP")) {
+				} if (operString.equals("LOG")) {
 					oper = 21;
-				} if (operString.equals("POW")) {
+				} if (operString.equals("EXP")) {
 					oper = 22;
-				} if (operString.equals("SQRT")) {
+				} if (operString.equals("POW")) {
 					oper = 23;
-				} if (operString.equals("NROOT")) {
+				} if (operString.equals("SQRT")) {
 					oper = 24;
-				} if (operString.equals("ZERO")) {
+				} if (operString.equals("NROOT")) {
 					oper = 25;
-				} if (operString.equals("ITOF")) {
+				} if (operString.equals("ZERO")) {
 					oper = 26;
-				} if (operString.equals("FTOI")) {
+				} if (operString.equals("ITOF")) {
 					oper = 27;
-				} if (operString.equals("MGET")) {
+				} if (operString.equals("FTOI")) {
 					oper = 28;
-				} if (operString.equals("MSTO")) {
+				} if (operString.equals("MGET")) {
 					oper = 29;
-				} if (operString.equals("IFBUF")) {
+				} if (operString.equals("MSTO")) {
 					oper = 30;
+				} if (operString.equals("IFBUF")) {
+					oper = 31;
 				}
 				
 				circuitarray.add(arg1); circuitarray.add(oper); circuitarray.add(arg2); circuitarray.add(sto3);

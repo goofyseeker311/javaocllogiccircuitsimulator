@@ -11,32 +11,33 @@
 #define cSHR 9
 #define cNEG 10
 #define cSUM 11
-#define cMUL 12
-#define cDIV 13
-#define cCOS 14
-#define cSIN 15
-#define cTAN 16
-#define cACOS 17
-#define cASIN 18
-#define cATAN 19
-#define cLOG 20
-#define cEXP 21
-#define cPOW 22
-#define cSQRT 23
-#define cNROOT 24
-#define cZERO 25
-#define cITOF 26
-#define cFTOI 27
-#define cMGET 28
-#define cMSTO 29
-#define cIFBUF 30
+#define cSUB 12
+#define cMUL 13
+#define cDIV 14
+#define cCOS 15
+#define cSIN 16
+#define cTAN 17
+#define cACOS 18
+#define cASIN 19
+#define cATAN 20
+#define cLOG 21
+#define cEXP 22
+#define cPOW 23
+#define cSQRT 24
+#define cNROOT 25
+#define cZERO 26
+#define cITOF 27
+#define cFTOI 28
+#define cMGET 29
+#define cMSTO 30
+#define cIFBUF 31
 
 kernel void updatevalues(global int *oldvalues, global int *newvalues) {
 	unsigned int vid = get_global_id(0);
 	oldvalues[vid] = newvalues[vid];
 }
 
-kernel void processgates(global int *circuit, global int *oldvalues, global int *newvalues) {
+kernel void processintgates(global int *circuit, global int *oldvalues, global int *newvalues) {
 	unsigned int gid = get_global_id(0);
 	int arg1 = circuit[gid*cs+0];
 	int oper = circuit[gid*cs+1];
@@ -63,6 +64,80 @@ kernel void processgates(global int *circuit, global int *oldvalues, global int 
 		newvalues[sto3] = oldvalues[arg1] << oldvalues[arg2];
 	} else if (oper==cSHR) {
 		newvalues[sto3] = oldvalues[arg1] >> oldvalues[arg2];
+	} else if (oper==cNEG) {
+		newvalues[sto3] = -oldvalues[arg1];
+	} else if (oper==cSUM) {
+		newvalues[sto3] = oldvalues[arg1] + oldvalues[arg2];
+	} else if (oper==cSUB) {
+		newvalues[sto3] = oldvalues[arg1] - oldvalues[arg2];
+	} else if (oper==cMUL) {
+		newvalues[sto3] = oldvalues[arg1] * oldvalues[arg2];
+	} else if (oper==cDIV) {
+		newvalues[sto3] = oldvalues[arg1] / oldvalues[arg2];
+	} else if (oper==cZERO) {
+		newvalues[sto3] = 0;
+	} else if (oper==cITOF) {
+		newvalues[sto3] = as_int((float)oldvalues[arg1]);
+	} else if (oper==cMGET) {
+		newvalues[sto3] = oldvalues[oldvalues[arg1]];
+	} else if (oper==cMSTO) {
+		newvalues[sto3] = oldvalues[arg1];
+		oldvalues[oldvalues[arg2]] = oldvalues[arg1];
+	}
+	printf("gid[%i]: %i %i %i %i, %i %i => %i\n",gid,arg1,oper,arg2,sto3,oldvalues[arg1],oldvalues[arg2],newvalues[sto3]);
+}
+
+kernel void processfloatgates(global int *circuit, global float *oldvalues, global float *newvalues) {
+	unsigned int gid = get_global_id(0);
+	int arg1 = circuit[gid*cs+0];
+	int oper = circuit[gid*cs+1];
+	int arg2 = circuit[gid*cs+2];
+	int sto3 = circuit[gid*cs+3];
+
+	if (oper==cNEG) {
+		newvalues[sto3] = -oldvalues[arg1];
+	} else if (oper==cSUM) {
+		newvalues[sto3] = oldvalues[arg1] + oldvalues[arg2];
+	} else if (oper==cSUB) {
+		newvalues[sto3] = oldvalues[arg1] - oldvalues[arg2];
+	} else if (oper==cMUL) {
+		newvalues[sto3] = oldvalues[arg1] * oldvalues[arg2];
+	} else if (oper==cDIV) {
+		newvalues[sto3] = oldvalues[arg1] / oldvalues[arg2];
+
+	} else if (oper==cCOS) {
+		newvalues[sto3] = cos(oldvalues[arg1]);
+	} else if (oper==cSIN) {
+		newvalues[sto3] = sin(oldvalues[arg1]);
+	} else if (oper==cTAN) {
+		newvalues[sto3] = tan(oldvalues[arg1]);
+	} else if (oper==cACOS) {
+		newvalues[sto3] = acos(oldvalues[arg1]);
+	} else if (oper==cASIN) {
+		newvalues[sto3] = asin(oldvalues[arg1]);
+	} else if (oper==cATAN) {
+		newvalues[sto3] = atan(oldvalues[arg1]);
+	} else if (oper==cLOG) {
+		newvalues[sto3] = log(oldvalues[arg1]);
+	} else if (oper==cEXP) {
+		newvalues[sto3] = exp(oldvalues[arg1]);
+	} else if (oper==cPOW) {
+		newvalues[sto3] = pow(oldvalues[arg1], oldvalues[arg2]);
+	} else if (oper==cSQRT) {
+		newvalues[sto3] = sqrt(oldvalues[arg1]);
+	} else if (oper==cNROOT) {
+		newvalues[sto3] = rootn(oldvalues[arg1], oldvalues[arg2]);
+
+	} else if (oper==cZERO) {
+		newvalues[sto3] = 0.0f;
+	} else if (oper==cFTOI) {
+		newvalues[sto3] = as_float((int)oldvalues[arg1]);
+	} else if (oper==cMGET) {
+		newvalues[sto3] = 0.0f;
+	} else if (oper==cMSTO) {
+		newvalues[sto3] = 0.0f;
+	} else if (oper==cIFBUF) {
+		newvalues[sto3] = oldvalues[arg1];
 	}
 	printf("gid[%i]: %i %i %i %i, %i %i => %i\n",gid,arg1,oper,arg2,sto3,oldvalues[arg1],oldvalues[arg2],newvalues[sto3]);
 }
