@@ -22,25 +22,26 @@ Operation list:
 
 10=NEG: negate arg1
 11=SUM: arg1 sum arg2
-12=MUL: arg1 multiply arg2
-13=DIV: arg1 division by arg2
+12=SUM: arg1 minus arg2
+13=MUL: arg1 multiply arg2
+14=DIV: arg1 division by arg2
 
-14=COS: cos arg1
-15=SIN: sin arg1
-16=TAN: tan arg1
-17=ACOS: acos arg1
-18=ASIN: asin arg1
-19=ATAN: atan arg1
-20=LOG: log arg1
-21=EXP: exp arg1
-22=POW: arg1 power to arg2
-23=SQRT: sqrt arg1
-24=NROOT: nth-root arg1
+15=COS: cos arg1
+16=SIN: sin arg1
+17=TAN: tan arg1
+18=ACOS: acos arg1
+19=ASIN: asin arg1
+20=ATAN: atan arg1
+21=LOG: log arg1
+22=EXP: exp arg1
+23=POW: arg1 power to arg2
+24=SQRT: sqrt arg1
+25=NROOT: nth-root arg1
 
-25=ZERO: zero value
-26=ITOF: convert arg1 to fp32 value
-27=FTOI: convert arg1 to int32 value
-28=MGET: get arg1 pointer value
-29=MSTO: store arg1 value to arg2 pointer
-30=IFBUF: delay buffer arg1 if arg2 is 1
+26=ZERO: zero value
+27=ITOF: convert arg1 to fp32 value
+28=FTOI: convert arg1 to int32 value
+29=MGET: get arg1 pointer value
+30=MSTO: store arg1 value to arg2 pointer
+31=IFBUF: delay buffer arg1 if arg2 is 1
 ```
