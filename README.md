@@ -1,4 +1,7 @@
 # Java OpenCL Logic Circuit Simulator
+
+Logic Circuit Assembler (LCA) / Logic Gate Assembler (LGA)
+
 Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined binary gate logic.
 
 ```
