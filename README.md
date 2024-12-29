@@ -5,7 +5,7 @@ Logic Circuit Assembler (LCA) / Logic Gate Assembler (LGA)
 Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined binary gate logic.
 
 ```
-Code format: 4-int32 blocks of [ARGUMENT-PTR1 OPERATION ARGUMENT-PTR2: STORE-PTR3].
+Code format: 4-int32 blocks of [OPERATION ARGUMENT-PTR1 ARGUMENT-PTR2: STORE-PTR3].
 Value format: 32-bit shared integer and floating point values (int32 and fp32).
 Run format: new-old value store-update each gate once per clock cycle.
 ```
