@@ -8,13 +8,14 @@ import fi.jkauppa.javaocllogiccircuitsimulator.ComputeLib.Device;
 public class JavaOCLLogicCircuitSImulator {
 	private ComputeLib computelib = new ComputeLib();
 	private int de;
+	private final int cs = 4;
 
 	public JavaOCLLogicCircuitSImulator(int vde) {
 		this.de = vde;
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.1.1");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.1.2");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -58,7 +59,7 @@ public class JavaOCLLogicCircuitSImulator {
 		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
 		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/4}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/cs}, 0, true);
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 
 		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
@@ -74,6 +75,11 @@ public class JavaOCLLogicCircuitSImulator {
 	private class CodeBlock {
 		String code = null;
 		int[] circuit = null;
+		String name = null;
+		int arg1 = -1;
+		int arg2 = -1;
+		int sto3 = -1;
+		int max = -1;
 	}
 
 	private class CodeBlocks {
@@ -85,6 +91,7 @@ public class JavaOCLLogicCircuitSImulator {
 		CodeBlocks codeblocks = new CodeBlocks();
 		codeblocks.maincode = new CodeBlock();
 		codeblocks.maincode.code = "";
+		codeblocks.maincode.name = "MAIN";
 		ArrayList<CodeBlock> codearray = new ArrayList<CodeBlock>();
 		boolean maincodeblock = true;
 		
@@ -94,10 +101,37 @@ public class JavaOCLLogicCircuitSImulator {
 			if (codeline.length()>0) {
 				if (codeline.startsWith("//")) {
 				} else if (codeline.startsWith("#")) {
-					maincodeblock = !maincodeblock;
-					if (!maincodeblock) {
+					int arg1 = -1;
+					int arg2 = -1;
+					int sto3 = -1;
+					String[] codelineparts = codeline.split(":");
+					String[] codenameparts = codelineparts[0].split(" ");
+					String codename = codenameparts[0].substring(1).trim();
+					if (codenameparts.length>2) {
+						arg2 = Integer.parseInt(codenameparts[2].trim());
+					}
+					if (codenameparts.length>1) {
+						arg1 = Integer.parseInt(codenameparts[1].trim());
+					}
+					if (codelineparts.length>1) {
+						sto3 = Integer.parseInt(codelineparts[1].trim());
+					}
+					
+					if (codename.equals("MAIN")) {
+						maincodeblock = true;
+						codeblocks.maincode.arg1 = arg1;
+						codeblocks.maincode.arg2 = arg2;
+						codeblocks.maincode.sto3 = sto3;
+					} else if(codename.startsWith("##"))  {
+						maincodeblock = true;
+					} else {
+						maincodeblock = false;
 						CodeBlock newblock = new CodeBlock();
 						newblock.code = "";
+						newblock.name = codename;
+						newblock.arg1 = arg1;
+						newblock.arg2 = arg2;
+						newblock.sto3 = sto3;
 						codearray.add(newblock);
 					}
 				} else {
@@ -111,8 +145,20 @@ public class JavaOCLLogicCircuitSImulator {
 		}
 		codeblocks.userblocks = codearray.toArray(new CodeBlock[codearray.size()]);
 		codeblocks.maincode.circuit = parseCircuit(codeblocks.maincode.code);
+		int me = codeblocks.maincode.circuit.length/cs;
+		for (int e=0;e<me;e++) {
+			if (codeblocks.maincode.circuit[e*cs+1]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+1];}
+			if (codeblocks.maincode.circuit[e*cs+2]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+2];}
+			if (codeblocks.maincode.circuit[e*cs+3]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+3];}
+		}
 		for (int i=0;i<codeblocks.userblocks.length;i++) {
 			codeblocks.userblocks[i].circuit = parseCircuit(codeblocks.userblocks[i].code);
+			int ce = codeblocks.userblocks[i].circuit.length/cs;
+			for (int e=0;e<ce;e++) {
+				if (codeblocks.userblocks[i].circuit[e*cs+1]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+1];}
+				if (codeblocks.userblocks[i].circuit[e*cs+2]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+2];}
+				if (codeblocks.userblocks[i].circuit[e*cs+3]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+3];}
+			}
 		}
 		return codeblocks;
 	}

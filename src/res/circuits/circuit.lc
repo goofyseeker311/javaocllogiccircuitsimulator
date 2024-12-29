@@ -1,5 +1,5 @@
 // pre-defined operations
-
+#MAIN:
 BUF 0: 1
 NOT 2: 3
 AND 4 5: 6
@@ -33,6 +33,7 @@ SUM 61 62: 63
 SUB 64 65: 66
 MUL 67 68: 69
 DIV 70 71: 72
+###
 
 // user-defined operations
 
