@@ -54,3 +54,15 @@ Operation list:
 35=MUL: arg1 multiply arg2 (float)
 36=DIV: arg1 division by arg2 (float)
 ```
+
+User defined operations block:
+```
+#<NAME> <ARG1-ptr-in> <ARG2-ptr-in>: <STO3-ptr-out>
+<code blocks>
+###
+```
+
+Comments:
+```
+//comment
+```
