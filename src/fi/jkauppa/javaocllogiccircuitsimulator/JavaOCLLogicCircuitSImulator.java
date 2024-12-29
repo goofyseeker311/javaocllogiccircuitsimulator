@@ -14,7 +14,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.0.9");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.1.0");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -83,97 +83,104 @@ public class JavaOCLLogicCircuitSImulator {
 			
 			
 			if (circuitline.length()>0) {
-				String[] circuitlineparts = circuitline.split(":");
-				String circuitlineop = circuitlineparts[0].trim();
-				String circuitlinestore = circuitlineparts[1].trim();
-				String[] circuitlineopparts = circuitlineop.split(" ");
-				
-				String operString = circuitlineopparts[0].trim();
-				if (circuitlineopparts.length>2) {
-					arg2 = Integer.parseInt(circuitlineopparts[2].trim());
+				if (circuitline.startsWith("//")) {
+				} else if (circuitline.startsWith("#")) {
+					System.out.println("udef: "+circuitline);
+					
+				} else {
+
+					String[] circuitlineparts = circuitline.split(":");
+					String circuitlineop = circuitlineparts[0].trim();
+					String circuitlinestore = circuitlineparts[1].trim();
+					String[] circuitlineopparts = circuitlineop.split(" ");
+					
+					String operString = circuitlineopparts[0].trim();
+					if (circuitlineopparts.length>2) {
+						arg2 = Integer.parseInt(circuitlineopparts[2].trim());
+					}
+					if (circuitlineopparts.length>1) {
+						arg1 = Integer.parseInt(circuitlineopparts[1].trim());
+					}
+					sto3 = Integer.parseInt(circuitlinestore);
+					
+					if (operString.equals("BUF")) {
+						oper = 0;
+					} if (operString.equals("NOT")) {
+						oper = 1;
+					} if (operString.equals("AND")) {
+						oper = 2;
+					} if (operString.equals("OR")) {
+						oper = 3;
+					} if (operString.equals("XOR")) {
+						oper = 4;
+					} if (operString.equals("NAND")) {
+						oper = 5;
+					} if (operString.equals("NOR")) {
+						oper = 6;
+					} if (operString.equals("XNOR")) {
+						oper = 7;
+					} if (operString.equals("SHL")) {
+						oper = 8;
+					} if (operString.equals("SHR")) {
+						oper = 9;
+					} if (operString.equals("NEGi")) {
+						oper = 10;
+					} if (operString.equals("SUMi")) {
+						oper = 11;
+					} if (operString.equals("SUBi")) {
+						oper = 12;
+					} if (operString.equals("MULi")) {
+						oper = 13;
+					} if (operString.equals("DIVi")) {
+						oper = 14;
+					} if (operString.equals("COS")) {
+						oper = 15;
+					} if (operString.equals("SIN")) {
+						oper = 16;
+					} if (operString.equals("TAN")) {
+						oper = 17;
+					} if (operString.equals("ACOS")) {
+						oper = 18;
+					} if (operString.equals("ASIN")) {
+						oper = 19;
+					} if (operString.equals("ATAN")) {
+						oper = 20;
+					} if (operString.equals("LOG")) {
+						oper = 21;
+					} if (operString.equals("EXP")) {
+						oper = 22;
+					} if (operString.equals("POW")) {
+						oper = 23;
+					} if (operString.equals("SQRT")) {
+						oper = 24;
+					} if (operString.equals("NROOT")) {
+						oper = 25;
+					} if (operString.equals("ZERO")) {
+						oper = 26;
+					} if (operString.equals("ITOF")) {
+						oper = 27;
+					} if (operString.equals("FTOI")) {
+						oper = 28;
+					} if (operString.equals("MGET")) {
+						oper = 29;
+					} if (operString.equals("MSTO")) {
+						oper = 30;
+					} if (operString.equals("IFBUF")) {
+						oper = 31;
+					} if (operString.equals("NEG")) {
+						oper = 32;
+					} if (operString.equals("SUM")) {
+						oper = 33;
+					} if (operString.equals("SUB")) {
+						oper = 34;
+					} if (operString.equals("MUL")) {
+						oper = 35;
+					} if (operString.equals("DIV")) {
+						oper = 36;
+					}
+					
+					circuitarray.add(oper); circuitarray.add(arg1); circuitarray.add(arg2); circuitarray.add(sto3);
 				}
-				if (circuitlineopparts.length>1) {
-					arg1 = Integer.parseInt(circuitlineopparts[1].trim());
-				}
-				sto3 = Integer.parseInt(circuitlinestore);
-				
-				if (operString.equals("BUF")) {
-					oper = 0;
-				} if (operString.equals("NOT")) {
-					oper = 1;
-				} if (operString.equals("AND")) {
-					oper = 2;
-				} if (operString.equals("OR")) {
-					oper = 3;
-				} if (operString.equals("XOR")) {
-					oper = 4;
-				} if (operString.equals("NAND")) {
-					oper = 5;
-				} if (operString.equals("NOR")) {
-					oper = 6;
-				} if (operString.equals("XNOR")) {
-					oper = 7;
-				} if (operString.equals("SHL")) {
-					oper = 8;
-				} if (operString.equals("SHR")) {
-					oper = 9;
-				} if (operString.equals("NEGi")) {
-					oper = 10;
-				} if (operString.equals("SUMi")) {
-					oper = 11;
-				} if (operString.equals("SUBi")) {
-					oper = 12;
-				} if (operString.equals("MULi")) {
-					oper = 13;
-				} if (operString.equals("DIVi")) {
-					oper = 14;
-				} if (operString.equals("COS")) {
-					oper = 15;
-				} if (operString.equals("SIN")) {
-					oper = 16;
-				} if (operString.equals("TAN")) {
-					oper = 17;
-				} if (operString.equals("ACOS")) {
-					oper = 18;
-				} if (operString.equals("ASIN")) {
-					oper = 19;
-				} if (operString.equals("ATAN")) {
-					oper = 20;
-				} if (operString.equals("LOG")) {
-					oper = 21;
-				} if (operString.equals("EXP")) {
-					oper = 22;
-				} if (operString.equals("POW")) {
-					oper = 23;
-				} if (operString.equals("SQRT")) {
-					oper = 24;
-				} if (operString.equals("NROOT")) {
-					oper = 25;
-				} if (operString.equals("ZERO")) {
-					oper = 26;
-				} if (operString.equals("ITOF")) {
-					oper = 27;
-				} if (operString.equals("FTOI")) {
-					oper = 28;
-				} if (operString.equals("MGET")) {
-					oper = 29;
-				} if (operString.equals("MSTO")) {
-					oper = 30;
-				} if (operString.equals("IFBUF")) {
-					oper = 31;
-				} if (operString.equals("NEG")) {
-					oper = 32;
-				} if (operString.equals("SUM")) {
-					oper = 33;
-				} if (operString.equals("SUB")) {
-					oper = 34;
-				} if (operString.equals("MUL")) {
-					oper = 35;
-				} if (operString.equals("DIV")) {
-					oper = 36;
-				}
-				
-				circuitarray.add(oper); circuitarray.add(arg1); circuitarray.add(arg2); circuitarray.add(sto3);
 			}
 		}
 		
