@@ -37,9 +37,9 @@ DIV 70 71: 72
 // user-defined operations
 
 #POW2i 0: 1
-#MULi 0 0: 1
+MULi 0 0: 1
 ###
 
 #POW2 0: 1
-#MUL 0 0: 1
+MUL 0 0: 1
 ###
