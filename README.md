@@ -9,6 +9,7 @@ Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined
 * Any external communication to the logic gate system is through SRAM direct read/write, from such as PCIe, USB, SD-card, HBM or DDR5 memory bridge controllers.
 * Each FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 
+![logiccircuitgateassembler](https://github.com/user-attachments/assets/3cabd10e-9149-4db2-826c-0222975ba36d)
 ---
 
 Language text/binary syntax:
