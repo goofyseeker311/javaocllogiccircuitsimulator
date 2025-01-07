@@ -23,15 +23,15 @@ Run format: new-old value store-update each gate once per clock cycle.
 Operation list:
 ```
 0=BUF: delay buffer arg1
-1=NOT: invert arg1
-2=AND: bitwise and
-3=OR: bitwise or
-4=XOR: bitwise xor
-5=NAND: bitwise nand
-6=NOR: bitwise nor
-7=XNOR: bitwise xnor
-8=SHL: shift left
-9=SHR: shift right
+1=NOT: bitwise invert arg1
+2=AND: bitwise arg1 and arg2
+3=OR: bitwise arg1 or arg2
+4=XOR: bitwise arg1 xor arg2
+5=NAND: bitwise arg1 nand arg2
+6=NOR: bitwise arg1 nor arg2
+7=XNOR: bitwise arg1 xnor arg2
+8=SHL: bitwise arg1 shift left by arg2
+9=SHR: bitwise arg1 shift right by arg2
 
 10=NEGi: negate arg1
 11=SUMi: arg1 sum arg2
