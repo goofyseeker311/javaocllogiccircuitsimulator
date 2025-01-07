@@ -54,7 +54,7 @@ Operation list:
 28=FTOI: convert arg1 to int32 value
 29=MGET: get arg1 pointer value
 30=MSTO: store arg1 value to arg2 pointer
-31=IFBUF: delay buffer arg1 if arg2 is 1
+31=IFBUF: delay buffer arg1 if arg2 is 1, otherwise NULL (0)
 
 32=NEG: negate arg1 (float)
 33=SUM: arg1 sum arg2 (float)
