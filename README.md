@@ -10,7 +10,8 @@ Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined
 * Each separately programmable/assignable micro-FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 * Programmer/IDE is responsible of assigning correct output pointer values for each gate considering multiple OR-multiplexed value store collision.
 
-![logiccircuitgateassembler](https://github.com/user-attachments/assets/2d11061e-248f-42a5-bff2-20139361c7d7)
+![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
+
 ---
 
 
