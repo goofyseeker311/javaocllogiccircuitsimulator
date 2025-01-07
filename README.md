@@ -7,7 +7,7 @@ Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined
 * Not designed to be sequential operation execution similar to assembly code, but rather be a continuous execution circuit definition language with core-width x pipeline-depth input work item dimensions.
 * System architecture is based on 1-cycle latency FPGA gates and large SRAM block with three full-length sram block mimo OR-multiplexers to read/write int32 argument and store pointer values directly for each gate.
 * Any external communication to the logic gate system is through SRAM direct read/write, from such as PCIe, USB, SD-card, HBM or DDR5 memory bridge controllers.
-* Each FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
+* Each separately programmable/assignable micro-FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 * Programmer/IDE is responsible of assigning correct output pointer values for each gate considering multiple OR-multiplexed value store collision.
 
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2d11061e-248f-42a5-bff2-20139361c7d7)
