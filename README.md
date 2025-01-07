@@ -5,8 +5,9 @@ Logic Circuit Assembler (LCA) / Logic Gate Assembler (LGA)
 Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined binary gate logic.
 
 * Not designed to be sequential operation execution similar to assembly code, but rather be a continuous execution circuit definition language with core-width x pipeline-depth input work item dimensions.
-* System architecture is based on 1-cycle latency fpga gates and large SRAM block with three full-length sram block mimo multiplexers to read/write int32 argument and store pointer values directly for each gate.
+* System architecture is based on 1-cycle latency FPGA gates and large SRAM block with three full-length sram block mimo multiplexers to read/write int32 argument and store pointer values directly for each gate.
 * Any external communication to the logic gate system is through SRAM direct read/write, from such as HBM or DDR5 memory bridge controllers.
+* Each FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 
 ---
 
