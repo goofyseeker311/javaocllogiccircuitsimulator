@@ -67,7 +67,7 @@ Operation list:
 36=DIV: arg1 division by arg2 (float)
 ```
 
-User defined operations block:
+User defined function blocks:
 ```
 #<NAME> <ARG1-ptr-in> <ARG2-ptr-in>: <STO3-ptr-out>
 <code blocks>
