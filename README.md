@@ -53,7 +53,7 @@ Operation list:
 24=SQRT: sqrt arg1 (float)
 25=NROOT: nth-root arg1 (float)
 
-26=ZERO: zero value
+26=NULL: NULL value (0)
 27=ITOF: convert arg1 to fp32 value
 28=FTOI: convert arg1 to int32 value
 29=MGET: get arg1 pointer value
