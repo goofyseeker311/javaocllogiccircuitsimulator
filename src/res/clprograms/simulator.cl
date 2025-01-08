@@ -25,7 +25,7 @@
 #define cPOW 23
 #define cSQRT 24
 #define cNROOT 25
-#define cZERO 26
+#define cNULL 26
 #define cITOF 27
 #define cFTOI 28
 #define cMGET 29
@@ -101,8 +101,8 @@ kernel void processgates(global int *circuit, global int *oldvalues, global int 
 		newvalues[sto3] = as_int(sqrt(as_float(oldvalues[arg1])));
 	} else if (oper==cNROOT) {
 		newvalues[sto3] = as_int(rootn(as_float(oldvalues[arg1]), as_float(oldvalues[arg2])));
-	} else if (oper==cZERO) {
-		newvalues[sto3] = 0;
+	} else if (oper==cNULL) {
+		newvalues[sto3] = NULL;
 	} else if (oper==cITOF) {
 		newvalues[sto3] = as_int((float)oldvalues[arg1]);
 	} else if (oper==cFTOI) {
@@ -113,7 +113,11 @@ kernel void processgates(global int *circuit, global int *oldvalues, global int 
 		newvalues[sto3] = oldvalues[arg1];
 		oldvalues[oldvalues[arg2]] = oldvalues[arg1];
 	} else if (oper==cIFBUF) {
-		newvalues[sto3] = oldvalues[arg1];
+		if (oldvalues[arg2]==1) {
+			newvalues[sto3] = oldvalues[arg1];
+		} else {
+			newvalues[sto3] = NULL;
+		}
 	} else if (oper==cNEG) {
 		newvalues[sto3] = as_int(-as_float(oldvalues[arg1]));
 	} else if (oper==cSUM) {

@@ -15,7 +15,7 @@ public class JavaOCLLogicCircuitSImulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.1.2");
+		System.out.println("JavaOCLLogicCircuitSImulator v0.1.3");
 		int de = 0;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
@@ -43,11 +43,11 @@ public class JavaOCLLogicCircuitSImulator {
 		long circuitptr = computelib.createBuffer(device, gc);
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
-		int vc = 73;
-		int[] newvalues = {5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
+		int vc = 77;
+		int[] newvalues = {-1,5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
 				Float.floatToIntBits((float)(Math.PI)),0,Float.floatToIntBits((float)(Math.PI/2.0f)),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(-1.0f),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(1.557408f),0,
 				Float.floatToIntBits(100.0f),0,Float.floatToIntBits(4.6051702f),0,3,Float.floatToIntBits(-2.0f),0,Float.floatToIntBits(4.5f),Float.floatToIntBits(7.2f),0,Float.floatToIntBits(3.1f),Float.floatToIntBits(1.2f),0,
-				Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0};
+				Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0,50,1,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
 		long newvaluesptr = computelib.createBuffer(device, vc);
@@ -79,7 +79,8 @@ public class JavaOCLLogicCircuitSImulator {
 		int arg1 = -1;
 		int arg2 = -1;
 		int sto3 = -1;
-		int max = -1;
+		int height = -1;
+		int depth = -1;
 	}
 
 	private class CodeBlocks {
@@ -147,17 +148,17 @@ public class JavaOCLLogicCircuitSImulator {
 		codeblocks.maincode.circuit = parseCircuit(codeblocks.maincode.code);
 		int me = codeblocks.maincode.circuit.length/cs;
 		for (int e=0;e<me;e++) {
-			if (codeblocks.maincode.circuit[e*cs+1]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+1];}
-			if (codeblocks.maincode.circuit[e*cs+2]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+2];}
-			if (codeblocks.maincode.circuit[e*cs+3]>codeblocks.maincode.max) {codeblocks.maincode.max=codeblocks.maincode.circuit[e*cs+3];}
+			if (codeblocks.maincode.circuit[e*cs+1]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+1];}
+			if (codeblocks.maincode.circuit[e*cs+2]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+2];}
+			if (codeblocks.maincode.circuit[e*cs+3]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+3];}
 		}
 		for (int i=0;i<codeblocks.userblocks.length;i++) {
 			codeblocks.userblocks[i].circuit = parseCircuit(codeblocks.userblocks[i].code);
 			int ce = codeblocks.userblocks[i].circuit.length/cs;
 			for (int e=0;e<ce;e++) {
-				if (codeblocks.userblocks[i].circuit[e*cs+1]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+1];}
-				if (codeblocks.userblocks[i].circuit[e*cs+2]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+2];}
-				if (codeblocks.userblocks[i].circuit[e*cs+3]>codeblocks.userblocks[i].max) {codeblocks.userblocks[i].max=codeblocks.userblocks[i].circuit[e*cs+3];}
+				if (codeblocks.userblocks[i].circuit[e*cs+1]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+1];}
+				if (codeblocks.userblocks[i].circuit[e*cs+2]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+2];}
+				if (codeblocks.userblocks[i].circuit[e*cs+3]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+3];}
 			}
 		}
 		return codeblocks;
@@ -241,7 +242,7 @@ public class JavaOCLLogicCircuitSImulator {
 					oper = 24;
 				} if (operString.equals("NROOT")) {
 					oper = 25;
-				} if (operString.equals("ZERO")) {
+				} if (operString.equals("NULL")) {
 					oper = 26;
 				} if (operString.equals("ITOF")) {
 					oper = 27;
