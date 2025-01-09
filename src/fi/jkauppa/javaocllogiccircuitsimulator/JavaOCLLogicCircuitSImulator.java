@@ -17,9 +17,9 @@ public class JavaOCLLogicCircuitSimulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSimulator v0.1.4");
+		System.out.println("JavaOCLLogicCircuitSimulator v0.1.5");
 		int de = 0;
-		int re = 1000000;
+		int re = 1000;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
 		try {re = Integer.parseInt(args[1]);} catch(Exception ex) {}
 		JavaOCLLogicCircuitSimulator app = new JavaOCLLogicCircuitSimulator(de,re);
@@ -42,7 +42,16 @@ public class JavaOCLLogicCircuitSimulator {
 
 		String circuitcode = ComputeLib.loadProgram("res/circuits/circuit.lc", true);
 		CodeBlocks codeblocks = parseCode(circuitcode);
-		int[] circuitints = codeblocks.maincode.circuit;
+		int[] circuitintsdef = codeblocks.maincode.circuit;
+		
+		int cmult = 4000000;
+		int[] circuitints = new int[cmult*circuitintsdef.length];
+		
+		for (int j=0;j<cmult;j++) {
+			for (int i=0;i<circuitintsdef.length;i++) {
+				circuitints[j*circuitintsdef.length+i] = circuitintsdef[i];
+			}
+		}
 
 		int gc = circuitints.length;
 		long circuitptr = computelib.createBuffer(device, gc);
@@ -65,7 +74,8 @@ public class JavaOCLLogicCircuitSimulator {
 		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, false);
 		computelib.insertBarrier(queue);
 		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/cs}, re, true)/(float)re;
-		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
+		float tflops = (gc/cs) * (1000.0f/ctimedif) / 1000000000000.0f;
+		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t "+String.format("%.4f",tflops).replace(",", ".")+"tflops\t device: "+devicename);
 
 		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
 		computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
