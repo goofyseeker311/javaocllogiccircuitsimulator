@@ -1,4 +1,5 @@
 #define cs 4
+
 #define cBUF 0
 #define cNOT 1
 #define cAND 2
@@ -49,84 +50,124 @@ kernel void processgates(global int *circuit, global int *oldvalues, global int 
 	int arg2 = circuit[gid*cs+2];
 	int sto3 = circuit[gid*cs+3];
 
-	if (oper==cBUF) {
-		newvalues[sto3] = oldvalues[arg1];
-	} else if (oper==cNOT) {
-		newvalues[sto3] = ~oldvalues[arg1];
-	} else if (oper==cAND) {
-		newvalues[sto3] = oldvalues[arg1] & oldvalues[arg2];
-	} else if (oper==cOR) {
-		newvalues[sto3] = oldvalues[arg1] | oldvalues[arg2];
-	} else if (oper==cXOR) {
-		newvalues[sto3] = oldvalues[arg1] ^ oldvalues[arg2];
-	} else if (oper==cNAND) {
-		newvalues[sto3] = ~(oldvalues[arg1] & oldvalues[arg2]);
-	} else if (oper==cNOR) {
-		newvalues[sto3] = ~(oldvalues[arg1] | oldvalues[arg2]);
-	} else if (oper==cXNOR) {
-		newvalues[sto3] = ~(oldvalues[arg1] ^ oldvalues[arg2]);
-	} else if (oper==cSHL) {
-		newvalues[sto3] = oldvalues[arg1] << oldvalues[arg2];
-	} else if (oper==cSHR) {
-		newvalues[sto3] = oldvalues[arg1] >> oldvalues[arg2];
-	} else if (oper==cNEGi) {
-		newvalues[sto3] = -oldvalues[arg1];
-	} else if (oper==cSUMi) {
-		newvalues[sto3] = oldvalues[arg1] + oldvalues[arg2];
-	} else if (oper==cSUBi) {
-		newvalues[sto3] = oldvalues[arg1] - oldvalues[arg2];
-	} else if (oper==cMULi) {
-		newvalues[sto3] = oldvalues[arg1] * oldvalues[arg2];
-	} else if (oper==cDIVi) {
-		newvalues[sto3] = oldvalues[arg1] / oldvalues[arg2];
-	} else if (oper==cCOS) {
-		newvalues[sto3] = as_int(cos(as_float(oldvalues[arg1])));
-	} else if (oper==cSIN) {
-		newvalues[sto3] = as_int(sin(as_float(oldvalues[arg1])));
-	} else if (oper==cTAN) {
-		newvalues[sto3] = as_int(tan(as_float(oldvalues[arg1])));
-	} else if (oper==cACOS) {
-		newvalues[sto3] = as_int(acos(as_float(oldvalues[arg1])));
-	} else if (oper==cASIN) {
-		newvalues[sto3] = as_int(asin(as_float(oldvalues[arg1])));
-	} else if (oper==cATAN) {
-		newvalues[sto3] = as_int(atan(as_float(oldvalues[arg1])));
-	} else if (oper==cLOG) {
-		newvalues[sto3] = as_int(log(as_float(oldvalues[arg1])));
-	} else if (oper==cEXP) {
-		newvalues[sto3] = as_int(exp(as_float(oldvalues[arg1])));
-	} else if (oper==cPOW) {
-		newvalues[sto3] = as_int(pow(as_float(oldvalues[arg1]), as_float(oldvalues[arg2])));
-	} else if (oper==cSQRT) {
-		newvalues[sto3] = as_int(sqrt(as_float(oldvalues[arg1])));
-	} else if (oper==cNROOT) {
-		newvalues[sto3] = as_int(rootn(as_float(oldvalues[arg1]), as_float(oldvalues[arg2])));
-	} else if (oper==cNULL) {
-		newvalues[sto3] = NULL;
-	} else if (oper==cITOF) {
-		newvalues[sto3] = as_int((float)oldvalues[arg1]);
-	} else if (oper==cFTOI) {
-		newvalues[sto3] = (int)as_float(oldvalues[arg1]);
-	} else if (oper==cMGET) {
-		newvalues[sto3] = oldvalues[oldvalues[arg1]];
-	} else if (oper==cMSTO) {
-		newvalues[sto3] = oldvalues[arg1];
-		oldvalues[oldvalues[arg2]] = oldvalues[arg1];
-	} else if (oper==cIFBUF) {
-		if (oldvalues[arg2]==1) {
+	switch(oper) {
+		case cBUF:
 			newvalues[sto3] = oldvalues[arg1];
-		} else {
+		break;
+		case cNOT:
+			newvalues[sto3] = ~oldvalues[arg1];
+		break;
+		case cAND:
+			newvalues[sto3] = oldvalues[arg1] & oldvalues[arg2];
+		break;
+		case cOR:
+			newvalues[sto3] = oldvalues[arg1] | oldvalues[arg2];
+		break;
+		case cXOR:
+			newvalues[sto3] = oldvalues[arg1] ^ oldvalues[arg2];
+		break;
+		case cNAND:
+			newvalues[sto3] = ~(oldvalues[arg1] & oldvalues[arg2]);
+		break;
+		case cNOR:
+			newvalues[sto3] = ~(oldvalues[arg1] | oldvalues[arg2]);
+		break;
+		case cXNOR:
+			newvalues[sto3] = ~(oldvalues[arg1] ^ oldvalues[arg2]);
+		break;
+		case cSHL:
+			newvalues[sto3] = oldvalues[arg1] << oldvalues[arg2];
+		break;
+		case cSHR:
+			newvalues[sto3] = oldvalues[arg1] >> oldvalues[arg2];
+		break;
+		case cNEGi:
+			newvalues[sto3] = -oldvalues[arg1];
+		break;
+		case cSUMi:
+			newvalues[sto3] = oldvalues[arg1] + oldvalues[arg2];
+		break;
+		case cSUBi:
+			newvalues[sto3] = oldvalues[arg1] - oldvalues[arg2];
+		break;
+		case cMULi:
+			newvalues[sto3] = oldvalues[arg1] * oldvalues[arg2];
+		break;
+		case cDIVi:
+			newvalues[sto3] = oldvalues[arg1] / oldvalues[arg2];
+		break;
+		case cCOS:
+			newvalues[sto3] = as_int(cos(as_float(oldvalues[arg1])));
+		break;
+		case cSIN:
+			newvalues[sto3] = as_int(sin(as_float(oldvalues[arg1])));
+		break;
+		case cTAN:
+			newvalues[sto3] = as_int(tan(as_float(oldvalues[arg1])));
+		break;
+		case cACOS:
+			newvalues[sto3] = as_int(acos(as_float(oldvalues[arg1])));
+		break;
+		case cASIN:
+			newvalues[sto3] = as_int(asin(as_float(oldvalues[arg1])));
+		break;
+		case cATAN:
+			newvalues[sto3] = as_int(atan(as_float(oldvalues[arg1])));
+		break;
+		case cLOG:
+			newvalues[sto3] = as_int(log(as_float(oldvalues[arg1])));
+		break;
+		case cEXP:
+			newvalues[sto3] = as_int(exp(as_float(oldvalues[arg1])));
+		break;
+		case cPOW:
+			newvalues[sto3] = as_int(pow(as_float(oldvalues[arg1]), as_float(oldvalues[arg2])));
+		break;
+		case cSQRT:
+			newvalues[sto3] = as_int(sqrt(as_float(oldvalues[arg1])));
+		break;
+		case cNROOT:
+			newvalues[sto3] = as_int(rootn(as_float(oldvalues[arg1]), as_float(oldvalues[arg2])));
+		break;
+		case cNULL:
 			newvalues[sto3] = NULL;
-		}
-	} else if (oper==cNEG) {
-		newvalues[sto3] = as_int(-as_float(oldvalues[arg1]));
-	} else if (oper==cSUM) {
-		newvalues[sto3] = as_int(as_float(oldvalues[arg1]) + as_float(oldvalues[arg2]));
-	} else if (oper==cSUB) {
-		newvalues[sto3] = as_int(as_float(oldvalues[arg1]) - as_float(oldvalues[arg2]));
-	} else if (oper==cMUL) {
-		newvalues[sto3] = as_int(as_float(oldvalues[arg1]) * as_float(oldvalues[arg2]));
-	} else if (oper==cDIV) {
-		newvalues[sto3] = as_int(as_float(oldvalues[arg1]) / as_float(oldvalues[arg2]));
+		break;
+		case cITOF:
+			newvalues[sto3] = as_int((float)oldvalues[arg1]);
+		break;
+		case cFTOI:
+			newvalues[sto3] = (int)as_float(oldvalues[arg1]);
+		break;
+		case cMGET:
+			newvalues[sto3] = oldvalues[oldvalues[arg1]];
+		break;
+		case cMSTO:
+			newvalues[sto3] = oldvalues[arg1];
+			oldvalues[oldvalues[arg2]] = oldvalues[arg1];
+		break;
+		case cIFBUF:
+			if (oldvalues[arg2]==1) {
+				newvalues[sto3] = oldvalues[arg1];
+			} else {
+				newvalues[sto3] = NULL;
+			}
+		break;
+		case cNEG:
+			newvalues[sto3] = as_int(-as_float(oldvalues[arg1]));
+		break;
+		case cSUM:
+			newvalues[sto3] = as_int(as_float(oldvalues[arg1]) + as_float(oldvalues[arg2]));
+		break;
+		case cSUB:
+			newvalues[sto3] = as_int(as_float(oldvalues[arg1]) - as_float(oldvalues[arg2]));
+		break;
+		case cMUL:
+			newvalues[sto3] = as_int(as_float(oldvalues[arg1]) * as_float(oldvalues[arg2]));
+		break;
+		case cDIV:
+			newvalues[sto3] = as_int(as_float(oldvalues[arg1]) / as_float(oldvalues[arg2]));
+		break;
+		default:
+		break;
 	}
 }

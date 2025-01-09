@@ -5,26 +5,31 @@ import java.util.Arrays;
 
 import fi.jkauppa.javaocllogiccircuitsimulator.ComputeLib.Device;
 
-public class JavaOCLLogicCircuitSImulator {
+public class JavaOCLLogicCircuitSimulator {
 	private ComputeLib computelib = new ComputeLib();
 	private int de;
+	private int re;
 	private final int cs = 4;
 
-	public JavaOCLLogicCircuitSImulator(int vde) {
+	public JavaOCLLogicCircuitSimulator(int vde, int vre) {
 		this.de = vde;
+		this.re = vre;
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSImulator v0.1.3");
+		System.out.println("JavaOCLLogicCircuitSimulator v0.1.4");
 		int de = 0;
+		int re = 1000000;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
-		JavaOCLLogicCircuitSImulator app = new JavaOCLLogicCircuitSImulator(de);
+		try {re = Integer.parseInt(args[1]);} catch(Exception ex) {}
+		JavaOCLLogicCircuitSimulator app = new JavaOCLLogicCircuitSimulator(de,re);
 		app.run();
 		System.out.println("exit.");
 	}
 	
 	public void run() {
 		System.out.println("init.");
+		System.out.println("Repeat count: "+this.re);
 
 		long device = computelib.devicelist[this.de];
 		Device devicedata = computelib.devicemap.get(device);
@@ -57,16 +62,16 @@ public class JavaOCLLogicCircuitSImulator {
 		
 		float ctimedif = 0.0f;
 		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, false);
 		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/cs}, 0, true);
+		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/cs}, re, true)/(float)re;
 		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t device: "+devicename);
 
 		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
 		computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
 		
 		for (int i=0;i<vc;i++) {
-			System.out.println("values["+i+"]: "+oldvalues[i]+"("+Float.intBitsToFloat(oldvalues[i])+") => "+newvalues[i]+"("+Float.intBitsToFloat(newvalues[i])+")");
+			System.out.println("values["+i+"]: "+oldvalues[i]+"("+Float.intBitsToFloat(oldvalues[i])+"f) => "+newvalues[i]+"("+Float.intBitsToFloat(newvalues[i])+"f)");
 		}
 		
 		System.out.println("done.");
