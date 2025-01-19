@@ -70,7 +70,7 @@ Operation list:
 
 User defined function blocks:
 ```
-#<NAME> <ARG1-ptr-in> <ARG2-ptr-in> ... <ARGNptr-in>: <STO1-ptr-out> ... <STONptr-out>
+#<NAME> <ARG1-ptr-in> <ARG2-ptr-in> ... <ARGN-ptr-in>: <STO1-ptr-out> ... <STON-ptr-out>
 <code blocks>
 ###
 ```
