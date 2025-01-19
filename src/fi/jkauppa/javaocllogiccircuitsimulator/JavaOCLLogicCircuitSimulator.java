@@ -17,7 +17,7 @@ public class JavaOCLLogicCircuitSimulator {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSimulator v0.1.5");
+		System.out.println("JavaOCLLogicCircuitSimulator v0.1.6");
 		int de = 0;
 		int re = 1000;
 		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}

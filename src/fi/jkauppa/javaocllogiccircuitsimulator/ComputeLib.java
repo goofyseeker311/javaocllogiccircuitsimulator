@@ -141,7 +141,7 @@ public class ComputeLib {
 		long context = devicedata.context;
 		IntBuffer errcode_ret = clStack.callocInt(1);
 		program = CL30.clCreateProgramWithSource(context, source, errcode_ret);
-		if (CL30.clBuildProgram(program, device, "", null, MemoryUtil.NULL)!=CL30.CL_SUCCESS) {
+		if (CL30.clBuildProgram(program, device, "-cl-std=CL2.0 -Werror", null, MemoryUtil.NULL)!=CL30.CL_SUCCESS) {
 			String buildinfo = getClProgramBuildInfo(program, device, CL30.CL_PROGRAM_BUILD_LOG);
 			System.out.println("compileProgram build failed:");
 			System.out.println(buildinfo);
@@ -189,7 +189,43 @@ public class ComputeLib {
 					runtime = (ctimeend[0]-ctimestart[0])/1000000.0f;
 				}
 			} else {
-				System.out.println("runProgram kernel enqueue failed: "+kernel_error_int);
+				System.out.print("runProgram kernel enqueue failed: "+kernel_error_int+" ");
+				if (kernel_error_int==CL30.CL_INVALID_PROGRAM_EXECUTABLE) {
+					System.out.print("INVALID_PROGRAM_EXECUTABLE");
+				} else if (kernel_error_int==CL30.CL_INVALID_COMMAND_QUEUE) {
+					System.out.print("INVALID_COMMAND_QUEUE");
+				} else if (kernel_error_int==CL30.CL_INVALID_CONTEXT) {
+					System.out.print("INVALID_CONTEX");
+				} else if (kernel_error_int==CL30.CL_INVALID_KERNEL_ARGS) {
+					System.out.print("INVALID_KERNEL_ARGS");
+				} else if (kernel_error_int==CL30.CL_INVALID_WORK_DIMENSION) {
+					System.out.print("INVALID_WORK_DIMENSION");
+				} else if (kernel_error_int==CL30.CL_INVALID_GLOBAL_WORK_SIZE) {
+					System.out.print("INVALID_GLOBAL_WORK_SIZE");
+				} else if (kernel_error_int==CL30.CL_INVALID_GLOBAL_OFFSET) {
+					System.out.print("INVALID_GLOBAL_OFFSET");
+				} else if (kernel_error_int==CL30.CL_INVALID_WORK_GROUP_SIZE) {
+					System.out.print("INVALID_WORK_GROUP_SIZE");
+				} else if (kernel_error_int==CL30.CL_INVALID_WORK_ITEM_SIZE) {
+					System.out.print("INVALID_WORK_ITEM_SIZE");
+				} else if (kernel_error_int==CL30.CL_MISALIGNED_SUB_BUFFER_OFFSET) {
+					System.out.print("MISALIGNED_SUB_BUFFER_OFFSET");
+				} else if (kernel_error_int==CL30.CL_INVALID_IMAGE_SIZE) {
+					System.out.print("INVALID_IMAGE_SIZE");
+				} else if (kernel_error_int==CL30.CL_IMAGE_FORMAT_NOT_SUPPORTED) {
+					System.out.print("IMAGE_FORMAT_NOT_SUPPORTED");
+				} else if (kernel_error_int==CL30.CL_OUT_OF_RESOURCES) {
+					System.out.print("OUT_OF_RESOURCES");
+				} else if (kernel_error_int==CL30.CL_MEM_OBJECT_ALLOCATION_FAILURE) {
+					System.out.print("MEM_OBJECT_ALLOCATION_FAILURE");
+				} else if (kernel_error_int==CL30.CL_INVALID_EVENT_WAIT_LIST) {
+					System.out.print("INVALID_EVENT_WAIT_LIST");
+				} else if (kernel_error_int==CL30.CL_OUT_OF_HOST_MEMORY) {
+					System.out.print("OUT_OF_HOST_MEMORY");
+				} else {
+					System.out.print("unknown error.");
+				}
+				System.out.println();
 			}
 		}
 		MemoryStack.stackPop();
