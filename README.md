@@ -68,9 +68,9 @@ Operation list:
 36=DIV: arg1 division by arg2 (float)
 ```
 
-User defined function blocks:
+User defined function blocks (height x depth):
 ```
-#<NAME> <ARG1-ptr-in> <ARG2-ptr-in> ... <ARGN-ptr-in>: <STO1-ptr-out> ... <STON-ptr-out>
+#<NAME> <ARG1-ptr-in> <ARG2-ptr-in> ... <ARGn-ptr-in>: <STO1-ptr-out> ... <STOn-ptr-out>
 <code blocks>
 ###
 ```
