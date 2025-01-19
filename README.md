@@ -18,7 +18,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 
 Language text/binary syntax:
 ```
-Code format: 4-int32 blocks of [(#)OPERATION ARGUMENT-PTR1 ARGUMENT-PTR2: STORE-PTR3].
+Code format: 4-int32 blocks of [(#)OPERATION ARGUMENT-PTR1 ARGUMENT-PTR2: STORE-PTR1].
 Value format: 32-bit shared integer and floating point values (int32 and fp32).
 Run format: new-old value store-update each gate once per clock cycle.
 ```
@@ -70,7 +70,7 @@ Operation list:
 
 User defined function blocks:
 ```
-#<NAME> <ARG1-ptr-in> <ARG2-ptr-in>: <STO3-ptr-out>
+#<NAME> <ARG1-ptr-in> <ARG2-ptr-in> ... <ARGNptr-in>: <STO1-ptr-out> ... <STONptr-in>
 <code blocks>
 ###
 ```
