@@ -1,44 +1,81 @@
 package fi.jkauppa.javaocllogiccircuitsimulator;
 
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+
+import static org.lwjgl.system.MemoryUtil.NULL;
+
 import fi.jkauppa.javaocllogiccircuitsimulator.ComputeLib.Device;
 
-public class JavaOCLLogicCircuitSimulator {
+public class JavaOCLLogicCircuitSimulator extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	private static String programTitle = "JavaOCLLogicCircuitSimulator v0.1.7";
+	private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	private GraphicsDevice gd = ge.getDefaultScreenDevice();
+	@SuppressWarnings("unused")
+	private GraphicsConfiguration gc = gd.getDefaultConfiguration();
 	private ComputeLib computelib = new ComputeLib();
+	private long device = NULL;
+	private Device devicedata = null;
+	private long queue = NULL;
+	private String devicename = null;
+	private long program = NULL;
+	private int gatecount = 0;
+	private long circuitptr = NULL;
+	private long newvaluesptr = NULL;
+	private long oldvaluesptr = NULL;
+	private int vc = 0;
 	private int de;
 	private int re;
 	private final int cs = 4;
+	private int width = 1280, height = 720;
+	private JPanel mainview = new JPanel(new GridBagLayout());
+	private Dimension mainviewdim = new Dimension(width,height);
+	private JButton startbutton = new JButton("Start");
+	private Dimension startbuttondim = new Dimension(100,40);
 
 	public JavaOCLLogicCircuitSimulator(int vde, int vre) {
 		this.de = vde;
 		this.re = vre;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("JavaOCLLogicCircuitSimulator v0.1.6");
-		int de = 0;
-		int re = 1000;
-		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
-		try {re = Integer.parseInt(args[1]);} catch(Exception ex) {}
-		JavaOCLLogicCircuitSimulator app = new JavaOCLLogicCircuitSimulator(de,re);
-		app.run();
-		System.out.println("exit.");
-	}
-	
-	public void run() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception e) {e.printStackTrace();}
+		this.setTitle(programTitle);
+		this.setSize(width, height);
+		this.setLocationByPlatform(true);
+		mainview.setSize(mainviewdim);
+		mainview.setPreferredSize(mainviewdim);
+		startbutton.setSize(startbuttondim);
+		startbutton.setPreferredSize(startbuttondim);
+		startbutton.setActionCommand("start");
+		startbutton.addActionListener(this);
+		this.mainview.add(startbutton);
+		this.setContentPane(mainview);
+		this.pack();
+		this.setVisible(true);
+		
 		System.out.println("init.");
 		System.out.println("Repeat count: "+this.re);
 
-		long device = computelib.devicelist[this.de];
-		Device devicedata = computelib.devicemap.get(device);
-		long queue = devicedata.queue;
-		String devicename = devicedata.devicename;
+		device = computelib.devicelist[this.de];
+		devicedata = computelib.devicemap.get(device);
+		queue = devicedata.queue;
+		devicename = devicedata.devicename;
 		System.out.println("Using device["+de+"]: "+devicename);
-		
+
 		String clSource = ComputeLib.loadProgram("res/clprograms/simulator.cl", true);
-		long program = computelib.compileProgram(device, clSource);
+		program = computelib.compileProgram(device, clSource);
 
 		String circuitcode = ComputeLib.loadProgram("res/circuits/circuit.lc", true);
 		CodeBlocks codeblocks = parseCode(circuitcode);
@@ -53,38 +90,56 @@ public class JavaOCLLogicCircuitSimulator {
 			}
 		}
 
-		int gc = circuitints.length;
-		long circuitptr = computelib.createBuffer(device, gc);
+		gatecount = circuitints.length;
+		circuitptr = computelib.createBuffer(device, gatecount);
 		computelib.writeBufferi(device, queue, circuitptr, circuitints);
 		
-		int vc = 77;
+		vc = 77;
 		int[] newvalues = {-1,5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
 				Float.floatToIntBits((float)(Math.PI)),0,Float.floatToIntBits((float)(Math.PI/2.0f)),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(-1.0f),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(1.557408f),0,
 				Float.floatToIntBits(100.0f),0,Float.floatToIntBits(4.6051702f),0,3,Float.floatToIntBits(-2.0f),0,Float.floatToIntBits(4.5f),Float.floatToIntBits(7.2f),0,Float.floatToIntBits(3.1f),Float.floatToIntBits(1.2f),0,
 				Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0,50,1,0};
 		int[] oldvalues = new int[vc];
 		Arrays.fill(oldvalues, 0);
-		long newvaluesptr = computelib.createBuffer(device, vc);
-		long oldvaluesptr = computelib.createBuffer(device, vc);
+		newvaluesptr = computelib.createBuffer(device, vc);
+		oldvaluesptr = computelib.createBuffer(device, vc);
 		computelib.writeBufferi(device, queue, newvaluesptr, newvalues);
 		computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
-		
-		float ctimedif = 0.0f;
-		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, false);
-		computelib.insertBarrier(queue);
-		ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gc/cs}, re, true)/(float)re;
-		float tflops = (gc/cs) * (1000.0f/ctimedif) / 1000000000000.0f;
-		System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t "+String.format("%.4f",tflops).replace(",", ".")+"tflops\t device: "+devicename);
+	}
 
-		computelib.readBufferi(device, queue, newvaluesptr, newvalues);
-		computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
-		
-		for (int i=0;i<vc;i++) {
-			System.out.println("values["+i+"]: "+oldvalues[i]+"("+Float.intBitsToFloat(oldvalues[i])+"f) => "+newvalues[i]+"("+Float.intBitsToFloat(newvalues[i])+"f)");
+	@Override public void actionPerformed(ActionEvent e) {
+		(new RunThread()).start();
+	}
+	
+	private class RunThread extends Thread {
+		public void run() {
+			System.out.println("running.");
+			float ctimedif = 0.0f;
+			computelib.insertBarrier(queue);
+			ctimedif = computelib.runProgram(device, queue, program, "updatevalues", new long[]{oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{vc}, 0, false);
+			computelib.insertBarrier(queue);
+			ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gatecount/cs}, re, true)/(float)re;
+			float tflops = (gatecount/cs) * (1000.0f/ctimedif) / 1000000000000.0f;
+			System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t "+String.format("%.4f",tflops).replace(",", ".")+"tflops\t device: "+devicename);
+			/*
+			computelib.readBufferi(device, queue, newvaluesptr, newvalues);
+			computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
+			for (int i=0;i<vc;i++) {
+				System.out.println("values["+i+"]: "+oldvalues[i]+"("+Float.intBitsToFloat(oldvalues[i])+"f) => "+newvalues[i]+"("+Float.intBitsToFloat(newvalues[i])+"f)");
+			}
+			*/
+			System.out.println("done.");
 		}
-		
-		System.out.println("done.");
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(programTitle);
+		int de = 0;
+		int re = 1000;
+		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
+		try {re = Integer.parseInt(args[1]);} catch(Exception ex) {}
+		@SuppressWarnings("unused")
+		JavaOCLLogicCircuitSimulator app = new JavaOCLLogicCircuitSimulator(de,re);
 	}
 	
 	private class CodeBlock {
