@@ -18,6 +18,11 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 ![pipelinecompute5](https://github.com/user-attachments/assets/f07942fc-684a-40d7-a5ae-d8d3ae73f03c)
 ![pipelinecompute6](https://github.com/user-attachments/assets/b4f56685-ec47-4cdc-a3cb-dd6d8f71105a)
 ![pipelinecompute7](https://github.com/user-attachments/assets/1dc75ca7-f5ac-471e-bbd4-05b9c8273b61)
+<img width="1920" height="1032" alt="pipelinecompute8" src="https://github.com/user-attachments/assets/9bea771a-d4fe-40a1-9a3b-778bc877143b" />
+<img width="1920" height="1032" alt="pipelinecompute8a" src="https://github.com/user-attachments/assets/7563b7c4-ad19-4124-bd12-29d0415c841f" />
+<img width="1920" height="1032" alt="pipelinecompute8b" src="https://github.com/user-attachments/assets/8dd2d642-01bf-4a40-a8cb-17c5adb4f68e" />
+<img width="1920" height="1032" alt="pipelinecompute8c" src="https://github.com/user-attachments/assets/3b339fa5-a4d9-4fed-9613-3566afb3ffc2" />
+<img width="1920" height="1032" alt="pipelinecompute8d" src="https://github.com/user-attachments/assets/b8d46d50-c398-46d1-8d8e-894820bb1d93" />
 
 ---
 
