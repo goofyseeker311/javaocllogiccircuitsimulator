@@ -64,7 +64,7 @@ Operation list:
 22=EXP: exp arg1 (float)
 23=POW: arg1 power to arg2 (float)
 24=SQRT: sqrt arg1 (float)
-25=NROOT: nth-root arg1 (float)
+25=NROOT: arg1 nth-root to arg2 (float)
 
 26=NULL: NULL value (0)
 27=ITOF: convert arg1 to fp32 value
