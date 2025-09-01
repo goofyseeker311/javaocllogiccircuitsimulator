@@ -82,7 +82,7 @@ Operation list:
 
 User defined function blocks (memory-height x pipeline-depth):
 ```
-#<NAME> ($)<ARG1-ptr-in> ($)<ARG2-ptr-in> ... ($)<ARGn-ptr-in>: ($)<STO1-ptr-out> ... ($)<STOn-ptr-out>
+#<NAME> ($)<ARG1-ptr-in> ... ($)<ARGn-ptr-in>: ($)<STO1-ptr-out> ... ($)<STOn-ptr-out>
 <code blocks>
 ###
 ```
