@@ -13,6 +13,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
+<img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 ![pipelinecompute2](https://github.com/user-attachments/assets/711ca5f6-267b-4656-bb58-df8052794a41)
 ![pipelinecompute4](https://github.com/user-attachments/assets/e94e1bc3-ab0e-4e6e-a0f9-fd549dc77487)
 ![pipelinecompute5](https://github.com/user-attachments/assets/f07942fc-684a-40d7-a5ae-d8d3ae73f03c)
