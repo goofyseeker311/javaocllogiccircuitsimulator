@@ -23,7 +23,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 <img width="3840" height="2112" alt="pipelinecompute10" src="https://github.com/user-attachments/assets/ec9ee70d-a540-42f1-a603-ca8e85d8be30" />
 ![pipelinecompute10](https://github.com/user-attachments/assets/4d7a14cf-d732-4e68-89e1-a25baaa1b15a)
 <img width="3840" height="2112" alt="gatesaddition2" src="https://github.com/user-attachments/assets/473ed918-4cc0-4c3c-bac3-7fac545eeb7b" />
-<img width="1920" height="1056" alt="microfpgamuxalu2" src="https://github.com/user-attachments/assets/9bdd9c80-2710-46fd-ba7e-f871a2e6bc3f" />
+<img width="3840" height="2112" alt="microfpgamuxalu3" src="https://github.com/user-attachments/assets/ca99ac72-fee4-4ee9-873b-07be60f0db7f" />
 
 ---
 
