@@ -25,6 +25,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 <img width="3840" height="2112" alt="gatesaddition2" src="https://github.com/user-attachments/assets/473ed918-4cc0-4c3c-bac3-7fac545eeb7b" />
 <img width="3840" height="2112" alt="microfpgamuxalu3" src="https://github.com/user-attachments/assets/ca99ac72-fee4-4ee9-873b-07be60f0db7f" />
 <img width="3840" height="2112" alt="microfpgamuxalu4" src="https://github.com/user-attachments/assets/e7a44aea-0082-4f75-a16f-186271c248b9" />
+<img width="3840" height="2112" alt="microfpgamuxalu5" src="https://github.com/user-attachments/assets/ba01543c-ee40-4258-9c01-a67175a1a7fe" />
 
 ---
 
