@@ -11,6 +11,8 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 * Each separately programmable/assignable micro-FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 * Programmer/IDE is responsible of assigning correct output pointer values for each gate considering multiple OR-multiplexed value store collision.
 
+Logisim evolution 4.0.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
+
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
@@ -32,6 +34,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 <img width="3840" height="2112" alt="microfpgamuxcircuit3" src="https://github.com/user-attachments/assets/e317097c-ef3a-4abd-9836-8d999775f385" />
 <img width="3840" height="2112" alt="microfpgamuxalu9" src="https://github.com/user-attachments/assets/4342a21b-6db6-4501-bcd7-e6e8ae4681dc" />
 <img width="3840" height="2112" alt="microfpgamuxalu10" src="https://github.com/user-attachments/assets/fbc1c3b1-22b3-40a6-870b-1be4a2393f0a" />
+<img width="3840" height="2112" alt="microfpgamuxselector" src="https://github.com/user-attachments/assets/2207e833-0716-481d-b6df-8bb7229fdbc2" />
 
 ---
 
