@@ -35,6 +35,7 @@ Logisim evolution 4.0.0 used for circuit illustrations and functional models: ht
 <img width="3840" height="2112" alt="microfpgamuxalu9" src="https://github.com/user-attachments/assets/4342a21b-6db6-4501-bcd7-e6e8ae4681dc" />
 <img width="3840" height="2112" alt="microfpgamuxalu10" src="https://github.com/user-attachments/assets/fbc1c3b1-22b3-40a6-870b-1be4a2393f0a" />
 <img width="3840" height="2112" alt="microfpgamuxselector2" src="https://github.com/user-attachments/assets/24278ca3-eb9c-47e0-9c7b-59ad251a2880" />
+<img width="3840" height="2112" alt="microfpgamuxcircuit4" src="https://github.com/user-attachments/assets/4bfdfee3-5225-43b8-b221-ba5d956be99d" />
 
 ---
 
