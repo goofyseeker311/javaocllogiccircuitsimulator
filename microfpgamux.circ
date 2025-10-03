@@ -112,7 +112,9 @@
       <a name="value" val="0x0"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(1710,1760)" name="Constant"/>
+    <comp lib="0" loc="(1710,1770)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(1810,1630)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
@@ -371,11 +373,12 @@
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
       <a name="enables" val="line"/>
-      <a name="trigger" val="high"/>
+      <a name="trigger" val="falling"/>
     </comp>
     <comp lib="4" loc="(1810,1580)" name="Random">
       <a name="appearance" val="logisim_evolution"/>
       <a name="seed" val="69420"/>
+      <a name="trigger" val="falling"/>
       <a name="width" val="64"/>
     </comp>
     <wire from="(1000,120)" to="(1000,760)"/>
@@ -455,13 +458,13 @@
     <wire from="(1630,1770)" to="(1640,1770)"/>
     <wire from="(1640,1750)" to="(1640,1770)"/>
     <wire from="(1650,1740)" to="(1720,1740)"/>
-    <wire from="(1660,1770)" to="(1660,1790)"/>
-    <wire from="(1660,1770)" to="(1720,1770)"/>
+    <wire from="(1660,1760)" to="(1660,1790)"/>
+    <wire from="(1660,1760)" to="(1720,1760)"/>
     <wire from="(170,120)" to="(170,400)"/>
     <wire from="(170,400)" to="(1840,400)"/>
     <wire from="(1700,1790)" to="(1700,1820)"/>
     <wire from="(1700,1790)" to="(1720,1790)"/>
-    <wire from="(1710,1760)" to="(1720,1760)"/>
+    <wire from="(1710,1770)" to="(1720,1770)"/>
     <wire from="(1770,1340)" to="(1780,1340)"/>
     <wire from="(1770,1410)" to="(1780,1410)"/>
     <wire from="(1770,1460)" to="(1780,1460)"/>
