@@ -34097,7 +34097,7 @@
     <comp lib="0" loc="(610,170)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
-    <comp lib="0" loc="(710,210)" name="Probe">
+    <comp lib="0" loc="(710,250)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
