@@ -16,10 +16,10 @@ Logisim evolution 4.0.0 used for circuit illustrations and functional models: ht
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
-<img width="3840" height="2112" alt="microfpgacircuittest5" src="https://github.com/user-attachments/assets/58312f3e-3bca-4481-b16c-1a062058841c" />
-<img width="3840" height="2112" alt="microfpgamuxcircuit19" src="https://github.com/user-attachments/assets/8106beef-1379-4f96-b9cc-e76c6a458412" />
-<img width="3840" height="2112" alt="microfpgamuxselector18" src="https://github.com/user-attachments/assets/7074bb2d-633d-47bf-8df0-309065e92080" />
-<img width="3840" height="2112" alt="microfpgamuxalu22" src="https://github.com/user-attachments/assets/ab065c94-4e6f-461a-baa3-904bc0126549" />
+<img width="3840" height="2112" alt="microfpgacircuittest6" src="https://github.com/user-attachments/assets/12e59455-ad73-4997-a359-7ab0618dee04" />
+<img width="3840" height="2112" alt="microfpgamuxcircuit20" src="https://github.com/user-attachments/assets/483da595-4a27-4a36-8e4f-45b850f21357" />
+<img width="3840" height="2112" alt="microfpgamuxselector19" src="https://github.com/user-attachments/assets/983f8056-7696-4ce4-9068-7abbe6f7a4e8" />
+<img width="3840" height="2112" alt="microfpgamuxalu23" src="https://github.com/user-attachments/assets/f2de6fdc-cc3e-42ee-9475-5894de225281" />
 
 ---
 
