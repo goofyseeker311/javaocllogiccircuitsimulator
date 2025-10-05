@@ -16,10 +16,14 @@ Logisim evolution 4.0.0 used for circuit illustrations and functional models: ht
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
-<img width="3840" height="2112" alt="microfpgacircuittest10" src="https://github.com/user-attachments/assets/86801126-94db-46a4-aa8a-df49cfb70d2b" />
-<img width="3840" height="2112" alt="microfpgamuxcircuit24" src="https://github.com/user-attachments/assets/b5dc2202-6848-4013-bdbf-00d6b55cfeef" />
-<img width="3840" height="2112" alt="microfpgamuxselector23" src="https://github.com/user-attachments/assets/b1fc9f6a-82aa-4599-a85b-0d9c225afe02" />
-<img width="3840" height="2112" alt="microfpgamuxalu27" src="https://github.com/user-attachments/assets/b39f1bc4-01e5-4fd8-9b64-95c43d7c30b8" />
+<img width="3840" height="2112" alt="microfpgacircuittest11" src="https://github.com/user-attachments/assets/d6ed1a66-dc4e-4565-bc02-3e0513009ae9" />
+<img width="3840" height="2112" alt="microfpgamuxcircuit25" src="https://github.com/user-attachments/assets/73a941fb-2835-4ea3-b69f-eb4cfca9213e" />
+<img width="3840" height="2112" alt="microfpgamuxselector24" src="https://github.com/user-attachments/assets/99c921d9-32ef-42c1-9549-7428d10c6c9d" />
+<img width="3840" height="2112" alt="microfpgamuxalu28" src="https://github.com/user-attachments/assets/0a334147-23c7-4557-a319-072173bdeae2" />
+<img width="3840" height="2112" alt="microfpgamuxfmod2" src="https://github.com/user-attachments/assets/96d6183a-ae81-46b4-872e-1e7c75be251a" />
+<img width="3840" height="2112" alt="microfpgamuxsine4" src="https://github.com/user-attachments/assets/c34bb4b1-9bea-475c-ae7a-ff21d6ccdccc" />
+<img width="3840" height="2112" alt="microfpgamuxcosine" src="https://github.com/user-attachments/assets/c4a8340d-0c7a-412d-b623-b7a155e12e76" />
+<img width="3840" height="2112" alt="microfpgamuxtangent" src="https://github.com/user-attachments/assets/aca5fa4f-dd70-471d-9ca5-ef88ff262910" />
 
 ---
 
