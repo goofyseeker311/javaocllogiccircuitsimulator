@@ -16,14 +16,14 @@ Logisim evolution 4.0.0 used for circuit illustrations and functional models: ht
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
-<img width="3840" height="2112" alt="microfpgacircuittest11" src="https://github.com/user-attachments/assets/d6ed1a66-dc4e-4565-bc02-3e0513009ae9" />
-<img width="3840" height="2112" alt="microfpgamuxcircuit25" src="https://github.com/user-attachments/assets/73a941fb-2835-4ea3-b69f-eb4cfca9213e" />
-<img width="3840" height="2112" alt="microfpgamuxselector24" src="https://github.com/user-attachments/assets/99c921d9-32ef-42c1-9549-7428d10c6c9d" />
-<img width="3840" height="2112" alt="microfpgamuxalu28" src="https://github.com/user-attachments/assets/0a334147-23c7-4557-a319-072173bdeae2" />
-<img width="3840" height="2112" alt="microfpgamuxfmod2" src="https://github.com/user-attachments/assets/96d6183a-ae81-46b4-872e-1e7c75be251a" />
-<img width="3840" height="2112" alt="microfpgamuxsine4" src="https://github.com/user-attachments/assets/c34bb4b1-9bea-475c-ae7a-ff21d6ccdccc" />
-<img width="3840" height="2112" alt="microfpgamuxcosine" src="https://github.com/user-attachments/assets/c4a8340d-0c7a-412d-b623-b7a155e12e76" />
-<img width="3840" height="2112" alt="microfpgamuxtangent" src="https://github.com/user-attachments/assets/aca5fa4f-dd70-471d-9ca5-ef88ff262910" />
+<img width="3840" height="2112" alt="microfpgacircuittest12" src="https://github.com/user-attachments/assets/d446bb6f-7ca2-4c30-8c5e-15fbf8e922c2" />
+<img width="3840" height="2112" alt="microfpgamuxcircuit26" src="https://github.com/user-attachments/assets/7487cdde-defb-4d0c-9c43-6545db846570" />
+<img width="3840" height="2112" alt="microfpgamuxselector25" src="https://github.com/user-attachments/assets/9c43b6f5-1f38-42a8-b741-e0bd5866eae0" />
+<img width="3840" height="2112" alt="microfpgamuxalu29" src="https://github.com/user-attachments/assets/1bebc192-9090-4a1b-b043-4c29b1efe6f6" />
+<img width="3840" height="2112" alt="microfpgamuxfmod3" src="https://github.com/user-attachments/assets/e51ce300-a9ae-4340-b71b-ec778f8ff73c" />
+<img width="3840" height="2112" alt="microfpgamuxsine5" src="https://github.com/user-attachments/assets/f6606aec-2540-4bbc-9373-60f330a011cc" />
+<img width="3840" height="2112" alt="microfpgamuxcosine2" src="https://github.com/user-attachments/assets/5febf2dc-6527-4e30-9320-c3d0a696a9c5" />
+<img width="3840" height="2112" alt="microfpgamuxtangent2" src="https://github.com/user-attachments/assets/34a5698b-464e-4afe-87cb-ee70da9174c5" />
 
 ---
 
