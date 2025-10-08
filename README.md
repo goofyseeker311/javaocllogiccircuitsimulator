@@ -26,7 +26,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxsine7" src="https://github.com/user-attachments/assets/8e38e587-1619-490c-9b04-2502b639f691" />
 <img width="3840" height="2112" alt="microfpgamuxcosine4" src="https://github.com/user-attachments/assets/26747d83-2178-4161-963c-d0aaaa21622f" />
 <img width="3840" height="2112" alt="microfpgamuxtangent4" src="https://github.com/user-attachments/assets/c0dcd30d-eb45-48db-a675-cf87ad7c5466" />
-<img width="3840" height="2112" alt="microfpgamuxarcsine" src="https://github.com/user-attachments/assets/ba49d714-1453-446d-b7ab-2a29688df578" />
+<img width="3840" height="2112" alt="microfpgamuxarcsine2" src="https://github.com/user-attachments/assets/4bfe1b68-6258-44c3-bf63-d59145e70b7f" />
 <img width="3840" height="2112" alt="microfpgamuxarccosine" src="https://github.com/user-attachments/assets/5ff2f643-e955-4739-9aa2-7961b98e6d98" />
 <img width="3840" height="2112" alt="microfpgamuxarctangent" src="https://github.com/user-attachments/assets/177b1cb1-b9f9-4e40-a37f-ca9777f4079c" />
 <img width="3840" height="2112" alt="microfpgamuxexp3" src="https://github.com/user-attachments/assets/f84be8ac-d7ab-47e9-a06c-0eccbcfc71d1" />
