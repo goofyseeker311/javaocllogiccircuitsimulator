@@ -1,4 +1,4 @@
-<img width="3840" height="2112" alt="microfpgamuxexp3" src="https://github.com/user-attachments/assets/b99ac87a-d5ba-4a3f-bb51-14d2def8f6d7" /># Java OpenCL Logic Circuit Simulator
+# Java OpenCL Logic Circuit Simulator
 
 Logic Circuit Assembler (LCA) / Logic Gate Assembler (LGA)
 
@@ -18,20 +18,17 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
-<img width="3840" height="2112" alt="microfpgacircuittest14" src="https://github.com/user-attachments/assets/7b611062-62d1-4d2c-9c83-90c439514bf0" />
-<img width="3840" height="2112" alt="microfpgamuxcircuit28" src="https://github.com/user-attachments/assets/31f04935-9ac9-4a7f-8d38-807c3e7f146a" />
-<img width="3840" height="2112" alt="microfpgamuxselector27" src="https://github.com/user-attachments/assets/bffd51a5-1548-46d6-8b62-1c6937615e2a" />
-<img width="3840" height="2112" alt="microfpgamuxalu31" src="https://github.com/user-attachments/assets/34c02b9a-98bc-42c0-adf8-76a48b098150" />
-<img width="3840" height="2112" alt="microfpgamuxfmod5" src="https://github.com/user-attachments/assets/72dc29df-4bd5-4417-afcd-7dfbe70e1a2e" />
-<img width="3840" height="2112" alt="microfpgamuxsine7" src="https://github.com/user-attachments/assets/8e38e587-1619-490c-9b04-2502b639f691" />
-<img width="3840" height="2112" alt="microfpgamuxcosine4" src="https://github.com/user-attachments/assets/26747d83-2178-4161-963c-d0aaaa21622f" />
-<img width="3840" height="2112" alt="microfpgamuxtangent4" src="https://github.com/user-attachments/assets/c0dcd30d-eb45-48db-a675-cf87ad7c5466" />
-<img width="3840" height="2112" alt="microfpgamuxarcsine" src="https://github.com/user-attachments/assets/ba49d714-1453-446d-b7ab-2a29688df578" />
-<img width="3840" height="2112" alt="microfpgamuxarccosine" src="https://github.com/user-attachments/assets/5ff2f643-e955-4739-9aa2-7961b98e6d98" />
-<img width="3840" height="2112" alt="microfpgamuxarctangent" src="https://github.com/user-attachments/assets/177b1cb1-b9f9-4e40-a37f-ca9777f4079c" />
-<img width="3840" height="2112" alt="microfpgamuxexp3" src="https://github.com/user-attachments/assets/f84be8ac-d7ab-47e9-a06c-0eccbcfc71d1" />
-<img width="3840" height="2112" alt="microfpgamuxlogln5" src="https://github.com/user-attachments/assets/d9e21c49-ada4-4b20-9a1a-156f5eb623e6" />
-<img width="3840" height="2112" alt="microfpgamuxpower6" src="https://github.com/user-attachments/assets/2b9922d5-8752-430a-a6cb-08e3059201e4" />
+<img width="3840" height="2112" alt="microfpgacircuittest13" src="https://github.com/user-attachments/assets/b764072b-af20-471d-b2e9-a72cb4801107" />
+<img width="3840" height="2112" alt="microfpgamuxcircuit27" src="https://github.com/user-attachments/assets/d9461cb6-6a66-4dd5-a225-2ad9f54599e5" />
+<img width="3840" height="2112" alt="microfpgamuxselector26" src="https://github.com/user-attachments/assets/792274b5-8b44-48a9-91f0-bb0a68ba73c8" />
+<img width="3840" height="2112" alt="microfpgamuxalu30" src="https://github.com/user-attachments/assets/e11bdb26-2844-4b51-98ce-e234508c33d3" />
+<img width="3840" height="2112" alt="microfpgamuxfmod4" src="https://github.com/user-attachments/assets/439bdd78-4dba-414b-b33b-4a801484a269" />
+<img width="3840" height="2112" alt="microfpgamuxsine6" src="https://github.com/user-attachments/assets/af358c01-4f4c-45f5-9ada-c43883df2b81" />
+<img width="3840" height="2112" alt="microfpgamuxcosine3" src="https://github.com/user-attachments/assets/7b49584f-7204-4c99-b8fa-95be049996e4" />
+<img width="3840" height="2112" alt="microfpgamuxtangent3" src="https://github.com/user-attachments/assets/281b3365-fb50-45d2-8e80-1209b7097b57" />
+<img width="3840" height="2112" alt="microfpgamuxexp2" src="https://github.com/user-attachments/assets/63f314a2-ed8a-4684-a78d-970bcd3ddb84" />
+<img width="3840" height="2112" alt="microfpgamuxlogln4" src="https://github.com/user-attachments/assets/3fc92388-5a1a-4fa4-a8d9-821f9501982e" />
+<img width="3840" height="2112" alt="microfpgamuxpower5" src="https://github.com/user-attachments/assets/4ffc1ae9-d377-4033-bd39-cfd42d9f1460" />
 
 ---
 
