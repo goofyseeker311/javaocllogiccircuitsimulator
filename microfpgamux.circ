@@ -42863,4 +42863,37 @@
     <wire from="(940,450)" to="(950,450)"/>
     <wire from="(990,440)" to="(1140,440)"/>
   </circuit>
+  <circuit name="muxarccosine">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="muxarccosine"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(350,190)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0x3ff0000000000000"/>
+      <a name="label" val="arg1"/>
+      <a name="radix" val="float"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(620,170)" name="Constant">
+      <a name="value" val="0x3ff921fb54442d18"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(750,180)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="radix" val="float"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="3" loc="(700,180)" name="FPSubtractor">
+      <a name="fpwidth" val="64"/>
+    </comp>
+    <comp loc="(630,190)" name="muxarcsine"/>
+    <wire from="(350,190)" to="(410,190)"/>
+    <wire from="(620,170)" to="(660,170)"/>
+    <wire from="(630,190)" to="(660,190)"/>
+    <wire from="(700,180)" to="(750,180)"/>
+  </circuit>
 </project>
