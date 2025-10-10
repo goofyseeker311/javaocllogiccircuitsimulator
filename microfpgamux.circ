@@ -494,6 +494,10 @@
     <comp loc="(1920,2700)" name="muxlogln"/>
     <comp loc="(1920,2750)" name="muxpower"/>
     <comp loc="(1920,2820)" name="muxabs"/>
+    <comp loc="(1920,2870)" name="muxfmin"/>
+    <comp loc="(1920,2940)" name="muxfmax"/>
+    <comp loc="(1920,3010)" name="muxmin"/>
+    <comp loc="(1920,3080)" name="muxmax"/>
     <comp loc="(1920,380)" name="muxfmod"/>
     <wire from="(100,160)" to="(100,330)"/>
     <wire from="(100,330)" to="(1790,330)"/>
@@ -562,8 +566,16 @@
     <wire from="(1260,2770)" to="(1700,2770)"/>
     <wire from="(1270,160)" to="(1270,2830)"/>
     <wire from="(1270,2830)" to="(1700,2830)"/>
+    <wire from="(1280,160)" to="(1280,2890)"/>
+    <wire from="(1280,2890)" to="(1700,2890)"/>
+    <wire from="(1290,160)" to="(1290,2960)"/>
+    <wire from="(1290,2960)" to="(1700,2960)"/>
     <wire from="(130,160)" to="(130,510)"/>
     <wire from="(130,510)" to="(1790,510)"/>
+    <wire from="(1300,160)" to="(1300,3030)"/>
+    <wire from="(1300,3030)" to="(1700,3030)"/>
+    <wire from="(1310,160)" to="(1310,3100)"/>
+    <wire from="(1310,3100)" to="(1700,3100)"/>
     <wire from="(1320,2110)" to="(1360,2110)"/>
     <wire from="(1340,2070)" to="(1340,2100)"/>
     <wire from="(1340,2070)" to="(1390,2070)"/>
@@ -733,6 +745,10 @@
     <wire from="(1920,2700)" to="(2810,2700)"/>
     <wire from="(1920,2750)" to="(2820,2750)"/>
     <wire from="(1920,2820)" to="(2830,2820)"/>
+    <wire from="(1920,2870)" to="(2840,2870)"/>
+    <wire from="(1920,2940)" to="(2850,2940)"/>
+    <wire from="(1920,3010)" to="(2860,3010)"/>
+    <wire from="(1920,3080)" to="(2870,3080)"/>
     <wire from="(1920,380)" to="(2410,380)"/>
     <wire from="(1930,2290)" to="(1930,2320)"/>
     <wire from="(1940,2270)" to="(2730,2270)"/>
@@ -847,6 +863,14 @@
     <wire from="(2820,640)" to="(2970,640)"/>
     <wire from="(2830,650)" to="(2830,2820)"/>
     <wire from="(2830,650)" to="(2970,650)"/>
+    <wire from="(2840,660)" to="(2840,2870)"/>
+    <wire from="(2840,660)" to="(2970,660)"/>
+    <wire from="(2850,670)" to="(2850,2940)"/>
+    <wire from="(2850,670)" to="(2970,670)"/>
+    <wire from="(2860,680)" to="(2860,3010)"/>
+    <wire from="(2860,680)" to="(2970,680)"/>
+    <wire from="(2870,690)" to="(2870,3080)"/>
+    <wire from="(2870,690)" to="(2970,690)"/>
     <wire from="(290,1250)" to="(1800,1250)"/>
     <wire from="(290,160)" to="(290,1250)"/>
     <wire from="(2990,110)" to="(2990,130)"/>
@@ -907,6 +931,14 @@
     <wire from="(520,2750)" to="(1700,2750)"/>
     <wire from="(530,160)" to="(530,2820)"/>
     <wire from="(530,2820)" to="(1700,2820)"/>
+    <wire from="(540,160)" to="(540,2870)"/>
+    <wire from="(540,2870)" to="(1700,2870)"/>
+    <wire from="(550,160)" to="(550,2940)"/>
+    <wire from="(550,2940)" to="(1700,2940)"/>
+    <wire from="(560,160)" to="(560,3010)"/>
+    <wire from="(560,3010)" to="(1700,3010)"/>
+    <wire from="(570,160)" to="(570,3080)"/>
+    <wire from="(570,3080)" to="(1700,3080)"/>
     <wire from="(660,100)" to="(1100,100)"/>
     <wire from="(660,80)" to="(660,100)"/>
     <wire from="(70,160)" to="(70,180)"/>
@@ -47094,5 +47126,185 @@
     <wire from="(460,220)" to="(540,220)"/>
     <wire from="(540,200)" to="(540,220)"/>
     <wire from="(560,180)" to="(720,180)"/>
+  </circuit>
+  <circuit name="muxfmin">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="muxfmin"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(280,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0x3ff0000000000000"/>
+      <a name="label" val="arg1"/>
+      <a name="radix" val="float"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(280,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0xbff0000000000000"/>
+      <a name="label" val="arg2"/>
+      <a name="radix" val="float"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(640,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="radix" val="float"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="2" loc="(500,120)" name="Multiplexer">
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="3" loc="(470,210)" name="FPComparator">
+      <a name="fpwidth" val="64"/>
+    </comp>
+    <wire from="(280,110)" to="(420,110)"/>
+    <wire from="(280,130)" to="(410,130)"/>
+    <wire from="(410,130)" to="(410,220)"/>
+    <wire from="(410,130)" to="(470,130)"/>
+    <wire from="(410,220)" to="(430,220)"/>
+    <wire from="(420,110)" to="(420,200)"/>
+    <wire from="(420,110)" to="(470,110)"/>
+    <wire from="(420,200)" to="(430,200)"/>
+    <wire from="(470,200)" to="(480,200)"/>
+    <wire from="(480,140)" to="(480,200)"/>
+    <wire from="(500,120)" to="(640,120)"/>
+  </circuit>
+  <circuit name="muxfmax">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="muxfmax"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(280,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0x3ff0000000000000"/>
+      <a name="label" val="arg1"/>
+      <a name="radix" val="float"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(280,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0xbff0000000000000"/>
+      <a name="label" val="arg2"/>
+      <a name="radix" val="float"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(640,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="radix" val="float"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="2" loc="(500,120)" name="Multiplexer">
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="3" loc="(470,210)" name="FPComparator">
+      <a name="fpwidth" val="64"/>
+    </comp>
+    <wire from="(280,110)" to="(420,110)"/>
+    <wire from="(280,130)" to="(410,130)"/>
+    <wire from="(410,130)" to="(410,220)"/>
+    <wire from="(410,130)" to="(470,130)"/>
+    <wire from="(410,220)" to="(430,220)"/>
+    <wire from="(420,110)" to="(420,200)"/>
+    <wire from="(420,110)" to="(470,110)"/>
+    <wire from="(420,200)" to="(430,200)"/>
+    <wire from="(470,220)" to="(480,220)"/>
+    <wire from="(480,140)" to="(480,220)"/>
+    <wire from="(500,120)" to="(640,120)"/>
+  </circuit>
+  <circuit name="muxmin">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="muxmin"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(280,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0x1"/>
+      <a name="label" val="arg1"/>
+      <a name="radix" val="10signed"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(280,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0xffffffffffffffff"/>
+      <a name="label" val="arg2"/>
+      <a name="radix" val="10signed"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(640,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="radix" val="10signed"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="2" loc="(500,120)" name="Multiplexer">
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="3" loc="(470,210)" name="Comparator">
+      <a name="width" val="64"/>
+    </comp>
+    <wire from="(280,110)" to="(420,110)"/>
+    <wire from="(280,130)" to="(410,130)"/>
+    <wire from="(410,130)" to="(410,220)"/>
+    <wire from="(410,130)" to="(470,130)"/>
+    <wire from="(410,220)" to="(430,220)"/>
+    <wire from="(420,110)" to="(420,200)"/>
+    <wire from="(420,110)" to="(470,110)"/>
+    <wire from="(420,200)" to="(430,200)"/>
+    <wire from="(470,200)" to="(480,200)"/>
+    <wire from="(480,140)" to="(480,200)"/>
+    <wire from="(500,120)" to="(640,120)"/>
+  </circuit>
+  <circuit name="muxmax">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="muxmax"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(280,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0x1"/>
+      <a name="label" val="arg1"/>
+      <a name="radix" val="10signed"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(280,130)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="initial" val="0xffffffffffffffff"/>
+      <a name="label" val="arg2"/>
+      <a name="radix" val="10signed"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(640,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="radix" val="10signed"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="2" loc="(500,120)" name="Multiplexer">
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="3" loc="(470,210)" name="Comparator">
+      <a name="width" val="64"/>
+    </comp>
+    <wire from="(280,110)" to="(420,110)"/>
+    <wire from="(280,130)" to="(410,130)"/>
+    <wire from="(410,130)" to="(410,220)"/>
+    <wire from="(410,130)" to="(470,130)"/>
+    <wire from="(410,220)" to="(430,220)"/>
+    <wire from="(420,110)" to="(420,200)"/>
+    <wire from="(420,110)" to="(470,110)"/>
+    <wire from="(420,200)" to="(430,200)"/>
+    <wire from="(470,220)" to="(480,220)"/>
+    <wire from="(480,140)" to="(480,220)"/>
+    <wire from="(500,120)" to="(640,120)"/>
   </circuit>
 </project>
