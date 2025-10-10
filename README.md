@@ -21,7 +21,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgacircuittest14" src="https://github.com/user-attachments/assets/7b611062-62d1-4d2c-9c83-90c439514bf0" />
 <img width="3840" height="2112" alt="microfpgamuxcircuit28" src="https://github.com/user-attachments/assets/31f04935-9ac9-4a7f-8d38-807c3e7f146a" />
 <img width="3840" height="2112" alt="microfpgamuxselector27" src="https://github.com/user-attachments/assets/bffd51a5-1548-46d6-8b62-1c6937615e2a" />
-<img width="3840" height="2112" alt="microfpgamuxalu32" src="https://github.com/user-attachments/assets/48d2b2a4-3917-423b-a1a4-0c3bb4e8f691" />
+<img width="3840" height="2112" alt="microfpgamuxalu33" src="https://github.com/user-attachments/assets/a9b40178-3a3b-41aa-88fb-0a2f3034e2fd" />
 <img width="3840" height="2112" alt="microfpgamuxfmod5" src="https://github.com/user-attachments/assets/72dc29df-4bd5-4417-afcd-7dfbe70e1a2e" />
 <img width="3840" height="2112" alt="microfpgamuxsine7" src="https://github.com/user-attachments/assets/8e38e587-1619-490c-9b04-2502b639f691" />
 <img width="3840" height="2112" alt="microfpgamuxcosine4" src="https://github.com/user-attachments/assets/26747d83-2178-4161-963c-d0aaaa21622f" />
@@ -32,6 +32,10 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxexp3" src="https://github.com/user-attachments/assets/f84be8ac-d7ab-47e9-a06c-0eccbcfc71d1" />
 <img width="3840" height="2112" alt="microfpgamuxlogln5" src="https://github.com/user-attachments/assets/d9e21c49-ada4-4b20-9a1a-156f5eb623e6" />
 <img width="3840" height="2112" alt="microfpgamuxpower6" src="https://github.com/user-attachments/assets/2b9922d5-8752-430a-a6cb-08e3059201e4" />
+<img width="3840" height="2112" alt="microfpgamuxfmin" src="https://github.com/user-attachments/assets/01c06b6d-b471-48f1-9b07-eb5222dc5960" />
+<img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
+<img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
+<img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
 
 ---
 
