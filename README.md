@@ -18,6 +18,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 ![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
+<img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2112" alt="microfpgacircuittest14" src="https://github.com/user-attachments/assets/7b611062-62d1-4d2c-9c83-90c439514bf0" />
 <img width="3840" height="2112" alt="microfpgamuxcircuit28" src="https://github.com/user-attachments/assets/31f04935-9ac9-4a7f-8d38-807c3e7f146a" />
 <img width="3840" height="2112" alt="microfpgamuxselector27" src="https://github.com/user-attachments/assets/bffd51a5-1548-46d6-8b62-1c6937615e2a" />
