@@ -106,3 +106,8 @@ Comments:
 ```
 //comment
 ```
+
+RISC core-gate instruction set architecture (64-bit variation of RISC-V):
+```
+64x int64/fp64 general purpose registers
+```
