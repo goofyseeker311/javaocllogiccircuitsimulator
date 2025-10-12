@@ -109,5 +109,6 @@ Comments:
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-64x int64/fp64 general purpose registers
+64x 64-bit general purpose registers
+Nx 64-bit direct-io routing registers
 ```
