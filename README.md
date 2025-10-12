@@ -109,6 +109,13 @@ Comments:
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-64x 64-bit general purpose registers
-Nx 64-bit direct-io routing registers
+64x 64-bit general purpose registers (used by all type instructions equally).
+Nx 64-bit direct-io routing registers (one register writeable for current core).
+Every instruction uses/operates on full 64-bit register values always.
+Instruction high bits can contain specific simple variations of instructions.
+
+Instruction   | Name         | Format
+---------------------------------------------------
+ld            | Load Double    | rd, [rs]
+sd            | Store Double   | rs1, [rs2]
 ```
