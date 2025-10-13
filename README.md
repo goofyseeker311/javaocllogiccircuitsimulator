@@ -114,8 +114,12 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
-Instruction   | Name         | Format
----------------------------------------------------
-ld            | Load Double    | rd, [rs]
-sd            | Store Double   | rs1, [rs2]
+Opcode | Instruction   | Name             | Format           | Function Description
+---------------------------------------------------------------------------------------------
+0      | nop           | No Operation     | -                | no operation
+1      | jmp           | Jump Destination | [val]            | jump pc to [val]
+-      | ldi           | Load Double      | rd, [val]        | load register with constant
+-      | ldm           | Load Double      | rd, [rs]         | load register from memory
+-      | sdm           | Store Double     | rs1, [rs2]       | store register into memory
+-      | mvr           | Move Double      | rd, rs           | copy register to register
 ```
