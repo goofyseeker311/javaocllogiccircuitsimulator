@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore8" src="https://github.com/user-attachments/assets/62f8c0d3-9371-422a-ac52-acf5064db666" />
+<img width="3840" height="2112" alt="muxrisccore9" src="https://github.com/user-attachments/assets/d2026d08-78bd-41aa-85f9-5468985650f1" />
 
 ---
 
@@ -115,12 +115,12 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
-Opcode | Instruction   | Name             | Format           | Function Description
+Opcode | Cycles | Instruction   | Name             | Format           | Description
 ---------------------------------------------------------------------------------------------
-0      | nop           | No Operation     | -                | no operation
-1      | jmp           | Jump Destination | [val]            | jump pc to [val]
-2      | ldi           | Load Double      | rd, [val]        | load register with constant
--      | ldm           | Load Double      | rd, [rs]         | load register from memory
-3      | sdm           | Store Double     | rs1, [rs2]       | store register into memory
--      | mvr           | Move Double      | rd, rs           | copy register to register
+0      | 1      | nop           | No Operation     | -                | no operation
+1      | 2      | jmp           | Jump Destination | [val]            | jump pc to [val]
+2      | 2      | ldi           | Load Double      | rd, [val]        | load register with constant
+-      | -      | ldm           | Load Double      | rd, [rs]         | load register from memory
+3      | 3      | sdm           | Store Double     | rs1, [rs2]       | store register into memory
+-      | -      | mvr           | Move Double      | rd, rs           | copy register to register
 ```
