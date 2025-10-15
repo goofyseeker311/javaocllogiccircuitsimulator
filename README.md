@@ -122,4 +122,5 @@ Opcode | Cycles | Instruction   | Name             | Format           | Descript
 2      | 2      | ldiX          | Load Double      | rd, [val]        | load registerX with constant
 3      | 3      | sdmX          | Store Double     | rs1, [rs2]       | store registerX into memory
 4      | 3      | ldmX          | Load Double      | rd, [rs]         | load registerX from memory
+-      | -      | mvrX          | Move Double      | rd, rs           | copy registerX to register
 ```
