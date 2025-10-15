@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore13" src="https://github.com/user-attachments/assets/fa7266b9-bbb7-494f-b68e-8e7de3250d7d" />
+<img width="3840" height="2112" alt="muxrisccore14" src="https://github.com/user-attachments/assets/33c965e0-6cc3-4e1b-b08b-69e96cff4375" />
 
 ---
 
@@ -115,11 +115,12 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
-Opcode | Cycles | Instruction   | Name             | Arguments  | Description
+Opcode | Cycles | Instruction   | Name              | Arguments  | Description
 ---------------------------------------------------------------------------------------------
-0      | 1      | nop           | No Operation     | -          | no operation
-1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
-2      | 2      | ldiX          | Load Double      | value      | load regX with constant
-3      | 3      | sdmX          | Store Double     | memaddr    | store regX into memory
-4      | 3      | ldmX          | Load Double      | memaddr    | load regX from memory
+0      | 1      | nop           | No Operation      | -          | no operation
+1      | 1      | jmpXY         | Jump Destination  | -          | jump to regX if regYb0
+2      | 2      | ldiX          | Load Double       | value      | load regX with constant
+3      | 3      | sdmX          | Store Double      | memaddr    | store regX into memory
+4      | 3      | ldmX          | Load Double       | memaddr    | load regX from memory
+5      | 1      | ifzXY         | Jump Flag If Zero | -          | set regXb0 if regY zero
 ```
