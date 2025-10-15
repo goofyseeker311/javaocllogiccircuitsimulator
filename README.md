@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore12" src="https://github.com/user-attachments/assets/68f67919-d362-44cb-afbb-f25cfb73b05a" />
+<img width="3840" height="2112" alt="muxrisccore13" src="https://github.com/user-attachments/assets/fa7266b9-bbb7-494f-b68e-8e7de3250d7d" />
 
 ---
 
@@ -118,9 +118,8 @@ Instruction high bits can contain specific simple variations of instructions.
 Opcode | Cycles | Instruction   | Name             | Format           | Description
 ---------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -                | no operation
-1      | 1      | jmpX          | Jump Destination | -                | jump pc to registerX
-2      | 2      | ldiX          | Load Double      | rd, [val]        | load registerX with constant
-3      | 3      | sdmX          | Store Double     | rs1, [rs2]       | store registerX into memory
-4      | 3      | ldmX          | Load Double      | rd, [rs]         | load registerX from memory
--      | -      | mvrX          | Move Double      | rd, rs           | copy registerX to register
+1      | 1      | jmpXY         | Jump Destination | -                | jump to regX if regYb0
+2      | 2      | ldiX          | Load Double      | rd, [val]        | load regX with constant
+3      | 3      | sdmX          | Store Double     | rs1, [rs2]       | store regX into memory
+4      | 3      | ldmX          | Load Double      | rd, [rs]         | load regX from memory
 ```
