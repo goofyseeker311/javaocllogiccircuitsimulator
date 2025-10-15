@@ -118,7 +118,7 @@ Instruction high bits can contain specific simple variations of instructions.
 Opcode | Cycles | Instruction   | Name             | Format           | Description
 ---------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -                | no operation
-1      | 1      | jmpX          | Jump Destination | -                | jump program counter to registerX
+1      | 1      | jmpX          | Jump Destination | -                | jump pc to registerX
 2      | 2      | ldiX          | Load Double      | rd, [val]        | load registerX with constant
 3      | 3      | sdmX          | Store Double     | rs1, [rs2]       | store registerX into memory
 4      | 3      | ldmX          | Load Double      | rd, [rs]         | load registerX from memory
