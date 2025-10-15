@@ -115,11 +115,11 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
-Opcode | Cycles | Instruction   | Name             | Format           | Description
+Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 ---------------------------------------------------------------------------------------------
-0      | 1      | nop           | No Operation     | -                | no operation
-1      | 1      | jmpXY         | Jump Destination | -                | jump to regX if regYb0
-2      | 2      | ldiX          | Load Double      | rd, [val]        | load regX with constant
-3      | 3      | sdmX          | Store Double     | rs1, [rs2]       | store regX into memory
-4      | 3      | ldmX          | Load Double      | rd, [rs]         | load regX from memory
+0      | 1      | nop           | No Operation     | -          | no operation
+1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
+2      | 2      | ldiX          | Load Double      | value      | load regX with constant
+3      | 3      | sdmX          | Store Double     | memaddr    | store regX into memory
+4      | 3      | ldmX          | Load Double      | memaddr    | load regX from memory
 ```
