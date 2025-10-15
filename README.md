@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore9" src="https://github.com/user-attachments/assets/d2026d08-78bd-41aa-85f9-5468985650f1" />
+<img width="3840" height="2112" alt="muxrisccore10" src="https://github.com/user-attachments/assets/e6d8b36f-fd4d-4428-8363-c59d46dfca01" />
 
 ---
 
@@ -120,7 +120,7 @@ Opcode | Cycles | Instruction   | Name             | Format           | Descript
 0      | 1      | nop           | No Operation     | -                | no operation
 1      | 2      | jmp           | Jump Destination | [val]            | jump pc to [val]
 2      | 2      | ldi           | Load Double      | rd, [val]        | load register with constant
--      | -      | ldm           | Load Double      | rd, [rs]         | load register from memory
 3      | 3      | sdm           | Store Double     | rs1, [rs2]       | store register into memory
+4      | 3      | ldm           | Load Double      | rd, [rs]         | load register from memory
 -      | -      | mvr           | Move Double      | rd, rs           | copy register to register
 ```
