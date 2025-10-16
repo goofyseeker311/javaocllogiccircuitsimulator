@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore23" src="https://github.com/user-attachments/assets/435b2045-7eac-4ab2-b74c-ffac624392fd" />
+<img width="3840" height="2112" alt="muxrisccore24" src="https://github.com/user-attachments/assets/3843b991-a73d-4681-8a26-e16fd572e4e4" />
 
 ---
 
@@ -123,4 +123,15 @@ Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 2      | 1      | ldiX          | Load Uint        | -          | load regX with value [regY insV]
 3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
 4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb0 if regY comp zero
+```
+
+Example looping test assembly code source and binary:
+```
+listing             | binary           | explanation
+--------------------------------------------------------------------------------------------------
+nop                 | 0000000000000000 | no operation
+ldi0000 0x12345678  | 0000123456780002 | load 16-bit value 0x12345678 to register 0
+cmpef00010002       | 0001000200020004 | if register 2 float value is zero, set register 1 bit 0
+mem00000002         | 0000000200000003 | read memory at register 2 position to register 0
+jmp00020001         | 0002000100000001 | jump to register 2 if register 1 bit 0 is set
 ```
