@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore21" src="https://github.com/user-attachments/assets/2c1afb2b-b8ec-4d6a-80e5-467c3732fe51" />
+<img width="3840" height="2112" alt="muxrisccore22" src="https://github.com/user-attachments/assets/bf3d61e5-1acc-4239-82f1-ce4eea66c406" />
 
 ---
 
@@ -120,7 +120,7 @@ Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 ------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
-2      | 1      | ldiX          | Load Ushort      | -          | load regX with insV constant
+2      | 1      | ldiX          | Load Uint        | -          | load regX with value [regY insV]
 3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
 4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb0 if regY comp zero
 ```
