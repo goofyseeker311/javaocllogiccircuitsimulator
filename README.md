@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore16" src="https://github.com/user-attachments/assets/1564222d-5851-4bba-890d-be27704cc70d" />
+<img width="3840" height="2112" alt="muxrisccore17" src="https://github.com/user-attachments/assets/02d1d1e6-a89c-4405-8911-c75f730246ed" />
 
 ---
 
@@ -122,6 +122,5 @@ Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 2      | 2      | ldiX          | Load Double      | value      | load regX with constant
 3      | 3      | sdmX          | Store Double     | memaddr    | store regX into memory
 4      | 3      | ldmX          | Load Double      | memaddr    | load regX from memory
-5      | 1      | compXY        | Compare Zero Int | -          | set regXb0 if regY comp zero int
-6      | 1      | compfXY       | Compare Zero Fp  | -          | set regXb0 if regY comp zero fp
+5      | 1      | compXY        | Compare to Zero  | -          | set regXb0 if regY comp zero
 ```
