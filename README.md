@@ -116,7 +116,7 @@ Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
 Opcode | Cycles | Instruction   | Name             | Arguments  | Description
---------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
 2      | 2      | ldiX          | Load Double      | value      | load regX with constant
