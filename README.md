@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore22" src="https://github.com/user-attachments/assets/bf3d61e5-1acc-4239-82f1-ce4eea66c406" />
+<img width="3840" height="2112" alt="muxrisccore23" src="https://github.com/user-attachments/assets/435b2045-7eac-4ab2-b74c-ffac624392fd" />
 
 ---
 
@@ -117,7 +117,7 @@ Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY insV insT] parameters.
 
 Opcode | Cycles | Instruction   | Name             | Arguments  | Description
-------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
 2      | 1      | ldiX          | Load Uint        | -          | load regX with value [regY insV]
