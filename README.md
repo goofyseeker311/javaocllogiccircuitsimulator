@@ -120,7 +120,7 @@ Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 --------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
-2      | 1      | ldiX          | Load Uint        | -          | load regX with value [regY insV]
+2      | 1      | ldiX          | Load 32-bit Uint | -          | load regX with value [regY insV]
 3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
 4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb0 if regY comp zero
 ```
@@ -130,7 +130,7 @@ Example looping test assembly code source and binary:
 listing             | binary           | explanation
 --------------------------------------------------------------------------------------------------
 nop                 | 0000000000000000 | no operation
-ldi0000 0x12345678  | 0000123456780002 | load 16-bit value 0x12345678 to register 0
+ldi0000 0x12345678  | 0000123456780002 | load 32-bit value 0x12345678 to register 0
 cmpef00010002       | 0001000200020004 | if register 2 float value is zero, set register 1 bit 0
 mem00000002         | 0000000200000003 | read memory at register 2 position to register 0
 jmp00020001         | 0002000100000001 | jump to register 2 if register 1 bit 0 is set
