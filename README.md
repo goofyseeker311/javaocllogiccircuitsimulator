@@ -37,7 +37,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore24" src="https://github.com/user-attachments/assets/3843b991-a73d-4681-8a26-e16fd572e4e4" />
+<img width="3840" height="2112" alt="muxrisccore25" src="https://github.com/user-attachments/assets/4d43937f-0396-4e01-82ef-27afa30919be" />
 
 ---
 
@@ -131,7 +131,7 @@ listing             | binary           | explanation
 --------------------------------------------------------------------------------------------------
 nop                 | 0000000000000000 | no operation
 ldi0000 0x12345678  | 0000123456780002 | load 32-bit value 0x12345678 to register 0
-cmpef00010002       | 0001000200020004 | if register 2 float value is zero, set register 1 bit 0
+cmp20ef00010002     | 0001000202200004 | if register 2 float value is zero, set register 1 bit 32
 mem00000002         | 0000000200000003 | read memory at register 2 position to register 0
-jmp00020001         | 0002000100000001 | jump to register 2 if register 1 bit 0 is set
+jmp20b00020001      | 0002000100200001 | jump to register 2 if register 1 bit 32 is set
 ```
