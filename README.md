@@ -120,6 +120,6 @@ Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
 2      | 2      | ldiX          | Load Double      | value      | load regX with constant
-3      | 2      | memXY         | Memory Double    | -          | store/load regX into/from regY memory
+3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
 4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb0 if regY comp zero
 ```
