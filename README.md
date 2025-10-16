@@ -116,12 +116,12 @@ Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 
 Opcode | Cycles | Instruction   | Name             | Arguments  | Description
----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
 1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
 2      | 2      | ldiX          | Load Double      | value      | load regX with constant
 3      | 3      | sdmX          | Store Double     | memaddr    | store regX into memory
 4      | 3      | ldmX          | Load Double      | memaddr    | load regX from memory
-5      | 1      | compXY        | Compare Integer  | -          | set regXb0 if regY int comp
-6      | 1      | compfXY       | Compare Float    | -          | set regXb0 if regY fp comp
+5      | 1      | compXY        | Compare Zero Int | -          | set regXb0 if regY comp zero int
+6      | 1      | compfXY       | Compare Zero Fp  | -          | set regXb0 if regY comp zero fp
 ```
