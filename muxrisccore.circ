@@ -92,8 +92,8 @@
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(340,540)" name="Constant">
-      <a name="value" val="0x1a"/>
-      <a name="width" val="5"/>
+      <a name="value" val="0xd"/>
+      <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(390,960)" name="Constant">
       <a name="value" val="0x0"/>
@@ -133,6 +133,9 @@
     <comp lib="0" loc="(440,970)" name="Constant">
       <a name="value" val="0x3"/>
       <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(470,1400)" name="Constant">
+      <a name="value" val="0x0"/>
     </comp>
     <comp lib="0" loc="(480,520)" name="Constant">
       <a name="value" val="0xf"/>
@@ -256,7 +259,7 @@
       <a name="width" val="16"/>
     </comp>
     <comp lib="2" loc="(360,510)" name="BitSelector">
-      <a name="group" val="2"/>
+      <a name="group" val="4"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="2" loc="(410,930)" name="BitSelector">
@@ -266,6 +269,10 @@
     <comp lib="2" loc="(440,510)" name="BitSelector">
       <a name="group" val="4"/>
       <a name="width" val="64"/>
+    </comp>
+    <comp lib="2" loc="(490,1380)" name="BitSelector">
+      <a name="group" val="2"/>
+      <a name="width" val="4"/>
     </comp>
     <comp lib="2" loc="(500,490)" name="BitSelector">
       <a name="group" val="4"/>
@@ -547,9 +554,9 @@
     <wire from="(350,260)" to="(520,260)"/>
     <wire from="(350,520)" to="(350,540)"/>
     <wire from="(360,510)" to="(370,510)"/>
-    <wire from="(370,1390)" to="(370,1510)"/>
-    <wire from="(370,1390)" to="(510,1390)"/>
-    <wire from="(370,510)" to="(370,1390)"/>
+    <wire from="(370,1380)" to="(370,1510)"/>
+    <wire from="(370,1380)" to="(460,1380)"/>
+    <wire from="(370,510)" to="(370,1380)"/>
     <wire from="(390,960)" to="(400,960)"/>
     <wire from="(400,490)" to="(400,510)"/>
     <wire from="(400,490)" to="(470,490)"/>
@@ -587,11 +594,13 @@
     <wire from="(450,510)" to="(450,540)"/>
     <wire from="(450,540)" to="(1230,540)"/>
     <wire from="(460,190)" to="(500,190)"/>
+    <wire from="(470,1400)" to="(480,1400)"/>
     <wire from="(470,210)" to="(470,280)"/>
     <wire from="(470,210)" to="(570,210)"/>
     <wire from="(470,280)" to="(560,280)"/>
     <wire from="(480,1150)" to="(490,1150)"/>
     <wire from="(480,1330)" to="(500,1330)"/>
+    <wire from="(480,1390)" to="(480,1400)"/>
     <wire from="(480,520)" to="(490,520)"/>
     <wire from="(480,720)" to="(550,720)"/>
     <wire from="(480,800)" to="(490,800)"/>
@@ -601,6 +610,7 @@
     <wire from="(490,1150)" to="(490,1190)"/>
     <wire from="(490,1190)" to="(500,1190)"/>
     <wire from="(490,1230)" to="(520,1230)"/>
+    <wire from="(490,1380)" to="(500,1380)"/>
     <wire from="(490,1430)" to="(510,1430)"/>
     <wire from="(490,1440)" to="(520,1440)"/>
     <wire from="(490,1480)" to="(530,1480)"/>
@@ -619,6 +629,8 @@
     <wire from="(500,1320)" to="(500,1330)"/>
     <wire from="(500,1320)" to="(690,1320)"/>
     <wire from="(500,1330)" to="(580,1330)"/>
+    <wire from="(500,1380)" to="(500,1390)"/>
+    <wire from="(500,1390)" to="(510,1390)"/>
     <wire from="(500,490)" to="(520,490)"/>
     <wire from="(500,840)" to="(510,840)"/>
     <wire from="(500,860)" to="(530,860)"/>
