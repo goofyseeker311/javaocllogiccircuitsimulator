@@ -119,10 +119,10 @@ Each 64-bit instruction is formed from 16-bit [regX regY insV insT] parameters.
 Opcode | Cycles | Instruction   | Name             | Arguments  | Description
 --------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
-1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb0
+1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb[insV]
 2      | 1      | ldiX          | Load 32-bit Uint | -          | load regX with value [regY insV]
 3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
-4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb0 if regY comp zero
+4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb[insV] if regY comp zero
 ```
 
 Example looping test assembly code source and binary:
