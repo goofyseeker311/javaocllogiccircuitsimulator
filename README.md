@@ -37,8 +37,8 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore27" src="https://github.com/user-attachments/assets/04b7cf3d-a252-4045-894d-c5e699b4fd54" />
-<img width="3840" height="2112" alt="muxrisccore27a" src="https://github.com/user-attachments/assets/b3bc0a85-e02f-48e4-9b5e-b979dcf293fd" />
+<img width="3840" height="2112" alt="muxrisccore30" src="https://github.com/user-attachments/assets/b617ccc6-e1ed-4603-9041-c402ae48dd81" />
+<img width="3840" height="2112" alt="muxrisccore30a" src="https://github.com/user-attachments/assets/24e9e822-a596-442f-aefe-72f9460db50c" />
 
 ---
 
@@ -115,24 +115,24 @@ RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
-Each 64-bit instruction is formed from 16-bit [regX regY insV insT] parameters.
+Each 64-bit instruction is formed from 8-bit [regX regY regZ ins4 ins3 ins2 ins1 insT] parameters.
 
 Opcode | Cycles | Instruction   | Name             | Arguments  | Description
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 0      | 1      | nop           | No Operation     | -          | no operation
-1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb[insV]
-2      | 1      | ldiX          | Load 32-bit Uint | -          | load regX with value [regY insV]
-3      | 2      | memXY         | Memory Double    | -          | store/load regX at regY memory
-4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb[insV] if regY comp zero
+1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb[ins2]
+2      | 1      | ldiX          | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regX
+3      | 2      | memXY         | Memory Double    | -          | store/load[ins1=0] regX at [regY]
+4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb[ins2] if regY comp[ins1]
 ```
 
 Example looping test assembly code source and binary:
 ```
 listing             | binary           | explanation
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 nop                 | 0000000000000000 | no operation
-ldi0000 0x12345678  | 0000123456780002 | load 32-bit value 0x12345678 to register 0
-cmp20ef00010002     | 0001000202200004 | if register 2 float value is zero, set register 1 bit 32
-mem00000002         | 0000000200000003 | read memory at register 2 position to register 0
-jmp20b00020001      | 0002000100200001 | jump to register 2 if register 1 bit 32 is set
+ldi0000 0x12345678  | 0000001234567802 | load 32-bit value 0x12345678 to register 0
+cmp20ef00010002     | 0102000000200204 | if register 2 float value is zero, set register 1 bit 32
+mem00000002         | 0002000000000003 | read memory at register 2 position to register 0
+jmp20b00020001      | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
 ```
