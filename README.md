@@ -37,8 +37,8 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore33" src="https://github.com/user-attachments/assets/7a8e1443-ea96-4511-9e3b-45a1eafc2f39" />
-<img width="3840" height="2112" alt="muxrisccore33a" src="https://github.com/user-attachments/assets/66dc8c6c-9719-4c22-8df5-35f55cb234ae" />
+<img width="3840" height="2112" alt="muxrisccore34" src="https://github.com/user-attachments/assets/73fae008-645c-4a8b-b09b-ffa894970f12" />
+<img width="3840" height="2112" alt="muxrisccore34a" src="https://github.com/user-attachments/assets/851912b1-7668-4fa6-9af3-b84ff5a78495" />
 
 ---
 
@@ -131,9 +131,9 @@ Example looping test assembly code source and binary:
 ```
 source listing       | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-nop 0000000000000f00 | 0000000000000f00 | nop operation data value ending with 0x00
+nop 407c8e386b15f800 | 407c8e386b15f800 | nop operation data value float 456.8887739999918
 mem0002              | 0002000000000003 | read memory at register 2 to register 0
-alu*o010000          | 0100000000000305 | store integer multiply overflow reg0 reg0 to register 1
-cmpe20b0201          | 0201000000200004 | if register 1 integer is zero set register 2 bit 32
+alu*f010000          | 0100000000001805 | store float multiply reg0 reg0 to register 1
+cmpe20b0203          | 0203000000200004 | if register 3 integer is zero set register 2 bit 32
 jmp20b0302           | 0302000000200001 | jump to register 3 if register 2 bit 32 is set
 ```
