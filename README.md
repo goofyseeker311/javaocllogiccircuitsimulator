@@ -121,7 +121,7 @@ Opcode | Cycles | Instruction | Name             | Arguments  | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nop         | No Operation     | -          | no operation
 1      | 1      | jmpXY       | Jump Destination | -          | jump to regX if regYb[ins2]
-2      | 1      | ldiX        | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regX
+2      | 1      | ldiX        | Load 32-bit Uint | -          | load regX with constant [ins4321]
 3      | 2      | memXY       | Memory Double    | -          | store/load[ins1=1/0] regX at [regY]
 4      | 1      | cmpXY       | Compare to Zero  | -          | set regXb[ins2] if regY comp[ins1]
 ```
