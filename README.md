@@ -120,10 +120,10 @@ Each 64-bit instruction is formed from 8-bit [regX regY regZ ins4 ins3 ins2 ins1
 Opcode | Cycles | Instruction | Name             | Arguments  | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nop         | No Operation     | -          | no operation
-1      | 1      | jmpXXYY     | Jump Destination | -          | jump to regXX if regYYb[ins2]
-2      | 1      | ldiXX       | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regXX
-3      | 2      | memXXYY     | Memory Double    | -          | store/load[ins1] regXX at [regYY]
-4      | 1      | cmpXXYY     | Compare to Zero  | -          | set regXXb[ins2] if regYY comp[ins1]
+1      | 1      | jmpXY       | Jump Destination | -          | jump to regX if regYb[ins2]
+2      | 1      | ldiX        | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regX
+3      | 2      | memXY       | Memory Double    | -          | store/load[ins1=0/1] regX at [regY]
+4      | 1      | cmpXY       | Compare to Zero  | -          | set regXb[ins2] if regY comp[ins1]
 ```
 
 Example looping test assembly code source and binary:
