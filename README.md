@@ -117,22 +117,22 @@ Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 8-bit [regX regY regZ ins4 ins3 ins2 ins1 insT] parameters.
 
-Opcode | Cycles | Instruction   | Name             | Arguments  | Description
+Opcode | Cycles | Instruction | Name             | Arguments  | Description
 ----------------------------------------------------------------------------------------------------
-0      | 1      | nop           | No Operation     | -          | no operation
-1      | 1      | jmpXY         | Jump Destination | -          | jump to regX if regYb[ins2]
-2      | 1      | ldiX          | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regX
-3      | 2      | memXY         | Memory Double    | -          | store/load[ins1=0] regX at [regY]
-4      | 1      | cmpXY         | Compare to Zero  | -          | set regXb[ins2] if regY comp[ins1]
+0      | 1      | nop         | No Operation     | -          | no operation
+1      | 1      | jmpXXYY     | Jump Destination | -          | jump to regXX if regYYb[ins2]
+2      | 1      | ldiXX       | Load 32-bit Uint | -          | load [ins4 ins3 ins2 ins1] to regXX
+3      | 2      | memXXYY     | Memory Double    | -          | store/load[ins1] regXX at [regYY]
+4      | 1      | cmpXXYY     | Compare to Zero  | -          | set regXXb[ins2] if regYY comp[ins1]
 ```
 
 Example looping test assembly code source and binary:
 ```
-listing             | binary           | explanation
+listing           | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-nop                 | 0000000000000000 | no operation
-ldi0000 0x12345678  | 0000001234567802 | load 32-bit value 0x12345678 to register 0
-cmp20ef00010002     | 0102000000200204 | if register 2 float value is zero, set register 1 bit 32
-mem00000002         | 0002000000000003 | read memory at register 2 position to register 0
-jmp20b00020001      | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
+nop               | 0000000000000000 | no operation
+ldi00 0x12345678  | 0000001234567802 | load 32-bit value 0x12345678 to register 0
+cmp20bef0102      | 0102000000200204 | if register 2 float value is zero, set register 1 bit 32
+mem0002           | 0002000000000003 | read memory at register 2 position to register 0
+jmp20b0201        | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
 ```
