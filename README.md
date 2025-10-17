@@ -37,8 +37,8 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore32" src="https://github.com/user-attachments/assets/ea55bfb8-d143-401e-8f58-deb7b2b60982" />
-<img width="3840" height="2112" alt="muxrisccore32a" src="https://github.com/user-attachments/assets/fcf93798-e4f7-4197-b6f5-094c4936bf22" />
+<img width="3840" height="2112" alt="muxrisccore33" src="https://github.com/user-attachments/assets/7a8e1443-ea96-4511-9e3b-45a1eafc2f39" />
+<img width="3840" height="2112" alt="muxrisccore33a" src="https://github.com/user-attachments/assets/66dc8c6c-9719-4c22-8df5-35f55cb234ae" />
 
 ---
 
@@ -131,8 +131,9 @@ Example looping test assembly code source and binary:
 ```
 source listing       | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-nop f000000000000000 | f000000000000000 | nop operation data value ending with 0x00
-mem0002              | 0002000000000003 | read memory at register 2 memory address to register 0
-alu+o20b010000       | 0100000000200105 | if integer addition overflow set register 1 bit 32
-jmp20b0201           | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
+nop 0000000000000f00 | 0000000000000f00 | nop operation data value ending with 0x00
+mem0002              | 0002000000000003 | read memory at register 2 to register 0
+alu*o010000          | 0100000000000305 | store integer multiply overflow reg0 reg0 to register 1
+cmpe20b0201          | 0201000000200004 | if register 1 integer is zero set register 2 bit 32
+jmp20b0302           | 0302000000200001 | jump to register 3 if register 2 bit 32 is set
 ```
