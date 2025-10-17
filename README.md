@@ -129,7 +129,7 @@ Opcode | Cycles | Instruction | Name             | Arguments  | Description
 
 Example looping test assembly code source and binary:
 ```
-listing           | binary           | explanation
+source listing    | binary           | explanation
 ----------------------------------------------------------------------------------------------------
 ldi00 0x12345678  | 0000001234567802 | load 32-bit value 0x12345678 to register 0
 cmp20bef0102      | 0102000000200204 | if register 2 float value is zero, set register 1 bit 32
