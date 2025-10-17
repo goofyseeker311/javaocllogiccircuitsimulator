@@ -37,8 +37,8 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore31" src="https://github.com/user-attachments/assets/75ff74cb-1783-4bfb-a089-71e7cb20efac" />
-<img width="3840" height="2112" alt="muxrisccore31a" src="https://github.com/user-attachments/assets/8258e8a1-d4bc-4254-8f6e-5cba72727178" />
+<img width="3840" height="2112" alt="muxrisccore32" src="https://github.com/user-attachments/assets/ea55bfb8-d143-401e-8f58-deb7b2b60982" />
+<img width="3840" height="2112" alt="muxrisccore32a" src="https://github.com/user-attachments/assets/fcf93798-e4f7-4197-b6f5-094c4936bf22" />
 
 ---
 
@@ -129,11 +129,10 @@ Opcode | Cycles | Instruction | Name             | Arguments  | Description
 
 Example looping test assembly code source and binary:
 ```
-source listing    | binary           | explanation
+source listing       | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi00 0x12345678  | 0000001234567802 | load 32-bit value 0x12345678 to register 0
-cmp20bef0102      | 0102000000200204 | if register 2 float value is zero, set register 1 bit 32
-alu+030001        | 0300010000000005 | store integer addition of register 0 and 1 to register 3
-mem0002           | 0002000000000003 | read memory at register 2 position to register 0
-jmp20b0201        | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
+nop f000000000000000 | f000000000000000 | nop operation data value ending with 0x00
+mem0002              | 0002000000000003 | read memory at register 2 memory address to register 0
+alu+o20b010000       | 0100000000200105 | if integer addition overflow set register 1 bit 32
+jmp20b0201           | 0201000000200001 | jump to register 2 if register 1 bit 32 is set
 ```
