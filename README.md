@@ -139,13 +139,13 @@ source listing       | binary           | explanation
 core 1:
   ldi00 0x1          | 0000000000000102 | load register 0 with value 0x1
   nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
+  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
 core 2:
-  ldi00 0x1          | 0000000000001102 | load register 0 with value 0x1
+  ldi00 0x11         | 0000000000001102 | load register 0 with value 0x11
   nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
+  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
 core 3:
-  ldi00 0x1          | 0000000000011102 | load register 0 with value 0x1
+  ldi00 0x111        | 0000000000011102 | load register 0 with value 0x111
   nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
+  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
 ```
