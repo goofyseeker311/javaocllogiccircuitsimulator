@@ -37,8 +37,13 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore37" src="https://github.com/user-attachments/assets/efe812c3-48ce-45da-8c41-61f8873ecbb0" />
-<img width="3840" height="2112" alt="muxrisccore37a" src="https://github.com/user-attachments/assets/5db889b2-59d2-401e-aced-37de20bb586e" />
+<img width="3840" height="2112" alt="muxrisccore38" src="https://github.com/user-attachments/assets/39b478c8-b50a-4ac2-8260-d88d44377eae" />
+<img width="3840" height="2112" alt="muxrisccore38a" src="https://github.com/user-attachments/assets/21cf07ba-0b61-470e-ae1f-eab4e645a842" />
+<img width="3840" height="2112" alt="muxrisccore38a2" src="https://github.com/user-attachments/assets/959723b0-9788-42f5-88b6-bc904b245952" />
+<img width="3840" height="2112" alt="muxrisccore38b" src="https://github.com/user-attachments/assets/bd149e87-b1e7-434d-88c0-25b40aaa32f8" />
+<img width="3840" height="2112" alt="muxrisccore38b2" src="https://github.com/user-attachments/assets/fce15cc2-96b6-4410-a413-6caa23a180b9" />
+<img width="3840" height="2112" alt="muxrisccore38c" src="https://github.com/user-attachments/assets/aaf31436-d548-43da-a17f-374310c9d01c" />
+<img width="3840" height="2112" alt="muxrisccore38c2" src="https://github.com/user-attachments/assets/5c7bb289-7350-41f0-8fc8-a5ed6ebeedaa" />
 
 ---
 
@@ -131,9 +136,16 @@ Example looping test assembly code source and binary:
 ```
 source listing       | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi00 0x1            | 0000000000000102 | load register 0 with value 0x1
-nop                  | 0000000000000000 | nop operation 1 cycle default
-nop 0x1              | 0000000000000100 | nop operation 2 cycles
-nop 0x2              | 0000000000000200 | nop operation 3 cycles
-jmp0100              | 1000000000000001 | jump to register 10 if register 0 bit 0 is set
+core 1:
+  ldi00 0x1          | 0000000000000102 | load register 0 with value 0x1
+  nop 0x2            | 0000000000000200 | nop operation 3 cycles
+  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
+core 2:
+  ldi00 0x1          | 0000000000001102 | load register 0 with value 0x1
+  nop 0x2            | 0000000000000200 | nop operation 3 cycles
+  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
+core 3:
+  ldi00 0x1          | 0000000000011102 | load register 0 with value 0x1
+  nop 0x2            | 0000000000000200 | nop operation 3 cycles
+  jmp0100            | 0100000000000001 | jump to register 10 if register 0 bit 0 is set
 ```
