@@ -37,8 +37,8 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore35" src="https://github.com/user-attachments/assets/59d47c0e-ca6a-4c2e-9c05-150be21a23ae" />
-<img width="3840" height="2112" alt="muxrisccore35a" src="https://github.com/user-attachments/assets/3a99e34a-1cb0-4fa6-a86a-7255a74b7760" />
+<img width="3840" height="2112" alt="muxrisccore36" src="https://github.com/user-attachments/assets/db641fc0-2bdc-4d79-982b-32783b103add" />
+<img width="3840" height="2112" alt="muxrisccore36a" src="https://github.com/user-attachments/assets/b6af477d-2878-4522-bc5d-7973249ecd94" />
 
 ---
 
