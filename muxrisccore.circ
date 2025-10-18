@@ -77,20 +77,39 @@
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
-    <comp lib="0" loc="(1000,650)" name="Constant">
-      <a name="value" val="0xffffffffffffffff"/>
-      <a name="width" val="64"/>
+    <comp loc="(1180,580)" name="core">
+      <a name="label" val="core1"/>
     </comp>
-    <comp lib="0" loc="(1280,670)" name="Constant"/>
-    <comp lib="0" loc="(1280,690)" name="Clock">
-      <a name="appearance" val="NewPins"/>
+    <comp loc="(1690,580)" name="core">
+      <a name="label" val="core2"/>
     </comp>
-    <comp lib="4" loc="(1280,620)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
+    <comp loc="(2220,580)" name="core">
+      <a name="label" val="core3"/>
     </comp>
-    <comp loc="(1220,650)" name="core"/>
-    <wire from="(1220,650)" to="(1280,650)"/>
+    <wire from="(1180,350)" to="(1180,580)"/>
+    <wire from="(1180,350)" to="(1470,350)"/>
+    <wire from="(1460,370)" to="(1460,600)"/>
+    <wire from="(1460,370)" to="(2220,370)"/>
+    <wire from="(1460,600)" to="(1470,600)"/>
+    <wire from="(1470,350)" to="(1470,580)"/>
+    <wire from="(1470,350)" to="(2000,350)"/>
+    <wire from="(1690,360)" to="(1690,580)"/>
+    <wire from="(1690,360)" to="(1990,360)"/>
+    <wire from="(1990,360)" to="(1990,600)"/>
+    <wire from="(1990,360)" to="(2460,360)"/>
+    <wire from="(1990,600)" to="(2000,600)"/>
+    <wire from="(2000,350)" to="(2000,580)"/>
+    <wire from="(2000,350)" to="(2460,350)"/>
+    <wire from="(2220,370)" to="(2220,580)"/>
+    <wire from="(2220,370)" to="(2460,370)"/>
+    <wire from="(830,350)" to="(1180,350)"/>
+    <wire from="(830,360)" to="(960,360)"/>
+    <wire from="(830,370)" to="(950,370)"/>
+    <wire from="(950,370)" to="(1460,370)"/>
+    <wire from="(950,370)" to="(950,600)"/>
+    <wire from="(950,600)" to="(960,600)"/>
+    <wire from="(960,360)" to="(1690,360)"/>
+    <wire from="(960,360)" to="(960,580)"/>
   </circuit>
   <circuit name="registry">
     <a name="appearance" val="logisim_evolution"/>
@@ -673,6 +692,30 @@
       <a name="label" val="v61"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="0" loc="(1380,2230)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1380,2250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u249"/>
+    </comp>
+    <comp lib="0" loc="(1380,2270)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(1380,2350)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1380,2370)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u253"/>
+    </comp>
+    <comp lib="0" loc="(1380,2390)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(1400,1000)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
@@ -864,6 +907,22 @@
     <comp lib="0" loc="(1400,980)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="u62"/>
+    </comp>
+    <comp lib="0" loc="(1450,2230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output249"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1450,2350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output253"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(1460,1060)" name="Tunnel">
       <a name="label" val="v70"/>
@@ -1185,6 +1244,26 @@
       <a name="label" val="v63"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="0" loc="(1680,2260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input249"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1680,2260)" name="Tunnel">
+      <a name="label" val="v249"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1680,2380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input253"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1680,2380)" name="Tunnel">
+      <a name="label" val="v253"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="0" loc="(1700,1000)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
@@ -1459,6 +1538,46 @@
       <a name="radix" val="16"/>
       <a name="width" val="8"/>
     </comp>
+    <comp lib="0" loc="(1810,2230)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1810,2250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u250"/>
+    </comp>
+    <comp lib="0" loc="(1810,2270)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(1810,2350)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1810,2370)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u254"/>
+    </comp>
+    <comp lib="0" loc="(1810,2390)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(1880,2230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output250"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1880,2350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output254"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="0" loc="(1890,1000)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
@@ -1544,18 +1663,6 @@
       <a name="label" val="u241"/>
     </comp>
     <comp lib="0" loc="(1890,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(1890,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(1890,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u249"/>
-    </comp>
-    <comp lib="0" loc="(1890,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(1890,260)" name="Tunnel">
@@ -1695,10 +1802,6 @@
       <a name="label" val="v241"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(1950,1760)" name="Tunnel">
-      <a name="label" val="v249"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="0" loc="(1950,260)" name="Tunnel">
       <a name="label" val="v129"/>
       <a name="width" val="64"/>
@@ -1816,18 +1919,6 @@
       <a name="label" val="u242"/>
     </comp>
     <comp lib="0" loc="(2040,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2040,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2040,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u250"/>
-    </comp>
-    <comp lib="0" loc="(2040,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2040,260)" name="Tunnel">
@@ -1951,10 +2042,6 @@
       <a name="label" val="v242"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(2100,1760)" name="Tunnel">
-      <a name="label" val="v250"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="0" loc="(2100,260)" name="Tunnel">
       <a name="label" val="v130"/>
       <a name="width" val="64"/>
@@ -1985,6 +2072,26 @@
     </comp>
     <comp lib="0" loc="(2100,960)" name="Tunnel">
       <a name="label" val="v186"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2110,2260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input250"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2110,2260)" name="Tunnel">
+      <a name="label" val="v250"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2110,2380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input254"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2110,2380)" name="Tunnel">
+      <a name="label" val="v254"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2190,1000)" name="Clock">
@@ -2072,18 +2179,6 @@
       <a name="label" val="u243"/>
     </comp>
     <comp lib="0" loc="(2190,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2190,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2190,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u251"/>
-    </comp>
-    <comp lib="0" loc="(2190,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2190,260)" name="Tunnel">
@@ -2179,6 +2274,30 @@
       <a name="facing" val="east"/>
       <a name="label" val="u187"/>
     </comp>
+    <comp lib="0" loc="(2230,2230)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2230,2250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u251"/>
+    </comp>
+    <comp lib="0" loc="(2230,2270)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(2230,2350)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2230,2370)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u255"/>
+    </comp>
+    <comp lib="0" loc="(2230,2390)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(2250,1060)" name="Tunnel">
       <a name="label" val="v195"/>
       <a name="width" val="64"/>
@@ -2205,10 +2324,6 @@
     </comp>
     <comp lib="0" loc="(2250,1660)" name="Tunnel">
       <a name="label" val="v243"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2250,1760)" name="Tunnel">
-      <a name="label" val="v251"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2250,260)" name="Tunnel">
@@ -2241,6 +2356,22 @@
     </comp>
     <comp lib="0" loc="(2250,960)" name="Tunnel">
       <a name="label" val="v187"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2300,2230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output251"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2300,2350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output255"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2340,1000)" name="Clock">
@@ -2328,18 +2459,6 @@
       <a name="label" val="u244"/>
     </comp>
     <comp lib="0" loc="(2340,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2340,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2340,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u252"/>
-    </comp>
-    <comp lib="0" loc="(2340,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2340,260)" name="Tunnel">
@@ -2463,10 +2582,6 @@
       <a name="label" val="v244"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(2400,1760)" name="Tunnel">
-      <a name="label" val="v252"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="0" loc="(2400,260)" name="Tunnel">
       <a name="label" val="v132"/>
       <a name="width" val="64"/>
@@ -2586,18 +2701,6 @@
     <comp lib="0" loc="(2490,1700)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
-    <comp lib="0" loc="(2490,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2490,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u253"/>
-    </comp>
-    <comp lib="0" loc="(2490,1800)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
     <comp lib="0" loc="(2490,260)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="value"/>
@@ -2691,6 +2794,26 @@
       <a name="facing" val="east"/>
       <a name="label" val="u189"/>
     </comp>
+    <comp lib="0" loc="(2530,2260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input251"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2530,2260)" name="Tunnel">
+      <a name="label" val="v251"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2530,2380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input255"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2530,2380)" name="Tunnel">
+      <a name="label" val="v255"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="0" loc="(2550,1060)" name="Tunnel">
       <a name="label" val="v197"/>
       <a name="width" val="64"/>
@@ -2717,10 +2840,6 @@
     </comp>
     <comp lib="0" loc="(2550,1660)" name="Tunnel">
       <a name="label" val="v245"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2550,1760)" name="Tunnel">
-      <a name="label" val="v253"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2550,260)" name="Tunnel">
@@ -2754,18 +2873,6 @@
     <comp lib="0" loc="(2550,960)" name="Tunnel">
       <a name="label" val="v189"/>
       <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2620,2010)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2620,2030)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u256"/>
-    </comp>
-    <comp lib="0" loc="(2620,2050)" name="Clock">
-      <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2640,1000)" name="Clock">
       <a name="appearance" val="NewPins"/>
@@ -2852,18 +2959,6 @@
       <a name="label" val="u246"/>
     </comp>
     <comp lib="0" loc="(2640,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2640,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2640,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u254"/>
-    </comp>
-    <comp lib="0" loc="(2640,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2640,260)" name="Tunnel">
@@ -2959,13 +3054,29 @@
       <a name="facing" val="east"/>
       <a name="label" val="u190"/>
     </comp>
-    <comp lib="0" loc="(2690,2010)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="output256"/>
-      <a name="radix" val="16"/>
-      <a name="type" val="output"/>
+    <comp lib="0" loc="(2650,2230)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
       <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2650,2250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u252"/>
+    </comp>
+    <comp lib="0" loc="(2650,2270)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(2650,2350)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="value"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2650,2370)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="u256"/>
+    </comp>
+    <comp lib="0" loc="(2650,2390)" name="Clock">
+      <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2700,1060)" name="Tunnel">
       <a name="label" val="v198"/>
@@ -2993,10 +3104,6 @@
     </comp>
     <comp lib="0" loc="(2700,1660)" name="Tunnel">
       <a name="label" val="v246"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2700,1760)" name="Tunnel">
-      <a name="label" val="v254"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2700,260)" name="Tunnel">
@@ -3029,6 +3136,22 @@
     </comp>
     <comp lib="0" loc="(2700,960)" name="Tunnel">
       <a name="label" val="v190"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2720,2230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output252"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2720,2350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output256"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2790,1000)" name="Clock">
@@ -3116,18 +3239,6 @@
       <a name="label" val="u247"/>
     </comp>
     <comp lib="0" loc="(2790,1700)" name="Clock">
-      <a name="appearance" val="NewPins"/>
-    </comp>
-    <comp lib="0" loc="(2790,1760)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="value"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2790,1780)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="u255"/>
-    </comp>
-    <comp lib="0" loc="(2790,1800)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2790,260)" name="Tunnel">
@@ -3251,10 +3362,6 @@
       <a name="label" val="v247"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(2850,1760)" name="Tunnel">
-      <a name="label" val="v255"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="0" loc="(2850,260)" name="Tunnel">
       <a name="label" val="v135"/>
       <a name="width" val="64"/>
@@ -3291,16 +3398,6 @@
       <a name="facing" val="north"/>
       <a name="label" val="regX"/>
       <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(2920,2040)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="input256"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2920,2040)" name="Tunnel">
-      <a name="label" val="v256"/>
-      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2940,1000)" name="Clock">
       <a name="appearance" val="NewPins"/>
@@ -3481,6 +3578,26 @@
     <comp lib="0" loc="(2940,980)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="u192"/>
+    </comp>
+    <comp lib="0" loc="(2950,2260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input252"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2950,2260)" name="Tunnel">
+      <a name="label" val="v252"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2950,2380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input256"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(2950,2380)" name="Tunnel">
+      <a name="label" val="v256"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(300,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9046,6 +9163,14 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="4" loc="(1380,2200)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="4" loc="(1380,2320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="4" loc="(1400,1030)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9238,6 +9363,14 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="4" loc="(1810,2200)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="4" loc="(1810,2320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="4" loc="(1890,1030)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9263,10 +9396,6 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="4" loc="(1890,1630)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="4" loc="(1890,1730)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
@@ -9330,10 +9459,6 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="4" loc="(2040,1730)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="4" loc="(2040,230)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9394,10 +9519,6 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="4" loc="(2190,1730)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="4" loc="(2190,230)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9430,6 +9551,14 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="4" loc="(2230,2200)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="4" loc="(2230,2320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="4" loc="(2340,1030)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9455,10 +9584,6 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="4" loc="(2340,1630)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="4" loc="(2340,1730)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
@@ -9522,10 +9647,6 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="4" loc="(2490,1730)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="4" loc="(2490,230)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9558,10 +9679,6 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="4" loc="(2620,1980)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
     <comp lib="4" loc="(2640,1030)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9587,10 +9704,6 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="4" loc="(2640,1630)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="4" loc="(2640,1730)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
@@ -9626,6 +9739,14 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
+    <comp lib="4" loc="(2650,2200)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="4" loc="(2650,2320)" name="Register">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="4" loc="(2790,1030)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
@@ -9651,10 +9772,6 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="4" loc="(2790,1630)" name="Register">
-      <a name="appearance" val="logisim_evolution"/>
-      <a name="width" val="64"/>
-    </comp>
-    <comp lib="4" loc="(2790,1730)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
@@ -9942,11 +10059,18 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="width" val="64"/>
     </comp>
+    <wire from="(1440,2230)" to="(1450,2230)"/>
+    <wire from="(1440,2350)" to="(1450,2350)"/>
     <wire from="(180,1780)" to="(190,1780)"/>
     <wire from="(180,1810)" to="(190,1810)"/>
     <wire from="(180,1840)" to="(190,1840)"/>
+    <wire from="(1870,2230)" to="(1880,2230)"/>
+    <wire from="(1870,2350)" to="(1880,2350)"/>
     <wire from="(190,1600)" to="(270,1600)"/>
-    <wire from="(2680,2010)" to="(2690,2010)"/>
+    <wire from="(2290,2230)" to="(2300,2230)"/>
+    <wire from="(2290,2350)" to="(2300,2350)"/>
+    <wire from="(2710,2230)" to="(2720,2230)"/>
+    <wire from="(2710,2350)" to="(2720,2350)"/>
     <wire from="(290,2880)" to="(290,2890)"/>
     <wire from="(310,1000)" to="(320,1000)"/>
     <wire from="(310,1010)" to="(370,1010)"/>
@@ -11037,6 +11161,48 @@
       <a name="value" val="0x2"/>
       <a name="width" val="3"/>
     </comp>
+    <comp lib="0" loc="(1570,300)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input249"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,320)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input250"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,340)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input251"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,360)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input252"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input253"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,400)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input254"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1570,420)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input255"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="64"/>
+    </comp>
     <comp lib="0" loc="(1570,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="input256"/>
@@ -11045,6 +11211,62 @@
     </comp>
     <comp lib="0" loc="(170,1300)" name="Clock">
       <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(1790,260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output249"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,280)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output250"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,300)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output251"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,320)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output252"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,340)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output253"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,360)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output254"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
+    </comp>
+    <comp lib="0" loc="(1790,380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output255"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(1790,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -11610,7 +11832,7 @@
       <a name="trigger" val="falling"/>
       <a name="width" val="32"/>
     </comp>
-    <comp loc="(1790,340)" name="registry"/>
+    <comp loc="(1790,200)" name="registry"/>
     <wire from="(100,1050)" to="(100,1220)"/>
     <wire from="(100,1050)" to="(130,1050)"/>
     <wire from="(100,1220)" to="(240,1220)"/>
@@ -11649,8 +11871,8 @@
     <wire from="(1060,1910)" to="(1060,1980)"/>
     <wire from="(1060,1910)" to="(1070,1910)"/>
     <wire from="(1060,1980)" to="(1170,1980)"/>
-    <wire from="(1070,340)" to="(1070,430)"/>
-    <wire from="(1070,340)" to="(1570,340)"/>
+    <wire from="(1070,200)" to="(1070,430)"/>
+    <wire from="(1070,200)" to="(1570,200)"/>
     <wire from="(1090,1920)" to="(1090,1930)"/>
     <wire from="(1090,1930)" to="(1130,1930)"/>
     <wire from="(1110,1900)" to="(1120,1900)"/>
@@ -11858,9 +12080,9 @@
     <wire from="(1780,1930)" to="(1780,1960)"/>
     <wire from="(1780,1960)" to="(1820,1960)"/>
     <wire from="(1790,1780)" to="(1790,1880)"/>
-    <wire from="(1790,340)" to="(2660,340)"/>
-    <wire from="(1790,360)" to="(2680,360)"/>
-    <wire from="(1790,380)" to="(2700,380)"/>
+    <wire from="(1790,200)" to="(2660,200)"/>
+    <wire from="(1790,220)" to="(2680,220)"/>
+    <wire from="(1790,240)" to="(2700,240)"/>
     <wire from="(1800,1930)" to="(1800,1980)"/>
     <wire from="(1800,1980)" to="(1830,1980)"/>
     <wire from="(1820,1890)" to="(1820,1960)"/>
@@ -11931,13 +12153,13 @@
     <wire from="(2660,1190)" to="(2660,1330)"/>
     <wire from="(2660,1190)" to="(2760,1190)"/>
     <wire from="(2660,1330)" to="(2660,1940)"/>
-    <wire from="(2660,340)" to="(2660,790)"/>
+    <wire from="(2660,200)" to="(2660,790)"/>
     <wire from="(2660,790)" to="(2660,1190)"/>
     <wire from="(2680,1280)" to="(2680,1960)"/>
-    <wire from="(2680,360)" to="(2680,660)"/>
+    <wire from="(2680,220)" to="(2680,660)"/>
     <wire from="(2680,660)" to="(2680,850)"/>
     <wire from="(2680,850)" to="(2680,1280)"/>
-    <wire from="(2700,380)" to="(2700,1980)"/>
+    <wire from="(2700,240)" to="(2700,1980)"/>
     <wire from="(2720,730)" to="(2720,860)"/>
     <wire from="(2720,730)" to="(2750,730)"/>
     <wire from="(2730,760)" to="(2730,890)"/>
@@ -11988,16 +12210,16 @@
     <wire from="(2830,900)" to="(2840,900)"/>
     <wire from="(2830,950)" to="(2830,1240)"/>
     <wire from="(2830,950)" to="(2840,950)"/>
-    <wire from="(290,380)" to="(1570,380)"/>
-    <wire from="(290,380)" to="(290,630)"/>
+    <wire from="(290,240)" to="(1570,240)"/>
+    <wire from="(290,240)" to="(290,630)"/>
     <wire from="(290,630)" to="(290,2080)"/>
-    <wire from="(300,400)" to="(1570,400)"/>
-    <wire from="(300,400)" to="(300,690)"/>
+    <wire from="(300,260)" to="(1570,260)"/>
+    <wire from="(300,260)" to="(300,690)"/>
     <wire from="(300,690)" to="(300,2080)"/>
     <wire from="(3080,950)" to="(3090,950)"/>
     <wire from="(3090,510)" to="(3090,950)"/>
-    <wire from="(310,420)" to="(1570,420)"/>
-    <wire from="(310,420)" to="(310,750)"/>
+    <wire from="(310,280)" to="(1570,280)"/>
+    <wire from="(310,280)" to="(310,750)"/>
     <wire from="(310,750)" to="(310,2080)"/>
     <wire from="(320,520)" to="(320,810)"/>
     <wire from="(320,810)" to="(320,880)"/>
@@ -12216,8 +12438,8 @@
     <wire from="(800,1890)" to="(800,1960)"/>
     <wire from="(800,1890)" to="(820,1890)"/>
     <wire from="(800,1960)" to="(960,1960)"/>
-    <wire from="(800,360)" to="(1570,360)"/>
-    <wire from="(800,360)" to="(800,540)"/>
+    <wire from="(800,220)" to="(1570,220)"/>
+    <wire from="(800,220)" to="(800,540)"/>
     <wire from="(800,570)" to="(800,980)"/>
     <wire from="(810,1910)" to="(810,1980)"/>
     <wire from="(810,1910)" to="(820,1910)"/>
