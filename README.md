@@ -135,7 +135,7 @@ Example looping test assembly code source and binary:
 ```
 source listing           | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi00 0x1                | 0000000000010002 | load register 0 with value 0x1
+ldi0000 0x1              | 0000000000010002 | load register 0 with value 0x1
 nop 0x2                  | 0000000000020000 | nop operation 3 cycles
-jmp0100                  | 0001000000000001 | jump to register 1 if register 0 bit 0 is set
+jmp00010000              | 0001000000000001 | jump to register 1 if register 0 bit 0 is set
 ```
