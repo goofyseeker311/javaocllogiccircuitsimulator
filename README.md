@@ -19,24 +19,6 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="microfpgacircuittest14" src="https://github.com/user-attachments/assets/7b611062-62d1-4d2c-9c83-90c439514bf0" />
-<img width="3840" height="2112" alt="microfpgamuxcircuit28" src="https://github.com/user-attachments/assets/31f04935-9ac9-4a7f-8d38-807c3e7f146a" />
-<img width="3840" height="2112" alt="microfpgamuxselector27" src="https://github.com/user-attachments/assets/bffd51a5-1548-46d6-8b62-1c6937615e2a" />
-<img width="3840" height="2112" alt="microfpgamuxalu33" src="https://github.com/user-attachments/assets/a9b40178-3a3b-41aa-88fb-0a2f3034e2fd" />
-<img width="3840" height="2112" alt="microfpgamuxfmod5" src="https://github.com/user-attachments/assets/72dc29df-4bd5-4417-afcd-7dfbe70e1a2e" />
-<img width="3840" height="2112" alt="microfpgamuxsine7" src="https://github.com/user-attachments/assets/8e38e587-1619-490c-9b04-2502b639f691" />
-<img width="3840" height="2112" alt="microfpgamuxcosine4" src="https://github.com/user-attachments/assets/26747d83-2178-4161-963c-d0aaaa21622f" />
-<img width="3840" height="2112" alt="microfpgamuxtangent4" src="https://github.com/user-attachments/assets/c0dcd30d-eb45-48db-a675-cf87ad7c5466" />
-<img width="3840" height="2112" alt="microfpgamuxarcsine2" src="https://github.com/user-attachments/assets/4bfe1b68-6258-44c3-bf63-d59145e70b7f" />
-<img width="3840" height="2112" alt="microfpgamuxarccosine" src="https://github.com/user-attachments/assets/5ff2f643-e955-4739-9aa2-7961b98e6d98" />
-<img width="3840" height="2112" alt="microfpgamuxarctangent3" src="https://github.com/user-attachments/assets/7bfe8248-4260-4233-a56f-a481757d7fad" />
-<img width="3840" height="2112" alt="microfpgamuxexp3" src="https://github.com/user-attachments/assets/f84be8ac-d7ab-47e9-a06c-0eccbcfc71d1" />
-<img width="3840" height="2112" alt="microfpgamuxlogln5" src="https://github.com/user-attachments/assets/d9e21c49-ada4-4b20-9a1a-156f5eb623e6" />
-<img width="3840" height="2112" alt="microfpgamuxpower6" src="https://github.com/user-attachments/assets/2b9922d5-8752-430a-a6cb-08e3059201e4" />
-<img width="3840" height="2112" alt="microfpgamuxfmin" src="https://github.com/user-attachments/assets/01c06b6d-b471-48f1-9b07-eb5222dc5960" />
-<img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
-<img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
-<img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
 <img width="3840" height="2112" alt="muxrisccore40" src="https://github.com/user-attachments/assets/8a057d78-a776-4e1e-9a5a-221dd2944913" />
 <img width="3840" height="2112" alt="muxrisccore40a" src="https://github.com/user-attachments/assets/d82b4d79-d85c-4488-ab7a-ad4d7f0f92bf" />
 <img width="3840" height="2112" alt="muxrisccore40b" src="https://github.com/user-attachments/assets/8209299e-88e7-4976-ba9c-e52a5e7732f5" />
@@ -45,70 +27,6 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 
 
 
-
-Language text/binary syntax:
-```
-Code format: 4-int32 blocks of [OPERATION ($)ARGUMENT-PTR1 ($)ARGUMENT-PTR2: STORE-PTR1].
-Value format: 32-bit shared integer and floating point values (int32 and fp32).
-Run format: new-old value store-update each gate once per clock cycle.
-```
-
-Operation list:
-```
-0=BUF: delay buffer arg1
-1=NOT: bitwise invert arg1
-2=AND: bitwise arg1 and arg2
-3=OR: bitwise arg1 or arg2
-4=XOR: bitwise arg1 xor arg2
-5=NAND: bitwise arg1 nand arg2
-6=NOR: bitwise arg1 nor arg2
-7=XNOR: bitwise arg1 xnor arg2
-8=SHL: bitwise arg1 shift left by arg2
-9=SHR: bitwise arg1 shift right by arg2
-
-10=NEGi: negate arg1
-11=SUMi: arg1 sum arg2
-12=SUBi: arg1 minus arg2
-13=MULi: arg1 multiply arg2
-14=DIVi: arg1 division by arg2
-
-15=COS: cos arg1 (float)
-16=SIN: sin arg1 (float)
-17=TAN: tan arg1 (float)
-18=ACOS: acos arg1 (float)
-19=ASIN: asin arg1 (float)
-20=ATAN: atan arg1 (float)
-21=LOG: log arg1 (float)
-22=EXP: exp arg1 (float)
-23=POW: arg1 power to arg2 (float)
-24=SQRT: sqrt arg1 (float)
-25=NROOT: arg1 nth-root to arg2 (float)
-
-26=NULL: NULL value (0)
-27=ITOF: convert arg1 to fp32 value
-28=FTOI: convert arg1 to int32 value
-29=MGET: get arg1 pointer value
-30=MSTO: store arg1 value to arg2 pointer
-31=IFBUF: delay buffer arg1 if arg2 is 1, otherwise NULL (0)
-
-32=NEG: negate arg1 (float)
-33=SUM: arg1 sum arg2 (float)
-34=SUB: arg1 minus arg2 (float)
-35=MUL: arg1 multiply arg2 (float)
-36=DIV: arg1 division by arg2 (float)
-```
-
-User defined function blocks (memory-height x pipeline-depth):
-```
-#<NAME> ($)<ARG1-ptr-in> ... ($)<ARGn-ptr-in>: <STO1-ptr-out> ... <STOn-ptr-out>
-<code blocks>
-###
-```
-
-Comments:
-```
-//comment
-```
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
