@@ -19,9 +19,9 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore40" src="https://github.com/user-attachments/assets/8a057d78-a776-4e1e-9a5a-221dd2944913" />
-<img width="3840" height="2112" alt="muxrisccore40a" src="https://github.com/user-attachments/assets/d82b4d79-d85c-4488-ab7a-ad4d7f0f92bf" />
-<img width="3840" height="2112" alt="muxrisccore40b" src="https://github.com/user-attachments/assets/8209299e-88e7-4976-ba9c-e52a5e7732f5" />
+<img width="3840" height="2112" alt="muxrisccore41" src="https://github.com/user-attachments/assets/1ff04bb5-7bf0-4241-b8d8-f5a6c33715e5" />
+<img width="3840" height="2112" alt="muxrisccore41a" src="https://github.com/user-attachments/assets/6df88d1d-33e4-4c64-a8a3-0ed266741280" />
+<img width="3840" height="2112" alt="muxrisccore41b" src="https://github.com/user-attachments/assets/b9fd3c52-aa63-44d4-bb70-8e5e6a49fcf0" />
 
 ---
 
@@ -51,9 +51,40 @@ Opcode | Cycles | Instruction | Name             | Description
 
 Example looping test assembly code source and binary:
 ```
-source listing           | binary           | explanation
+source listing   | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi0000 0x1              | 0000000000010002 | load register 0 with value 0x1
-nop 0x2                  | 0000000000020000 | nop operation 3 cycles
-jmp00010000              | 0001000000000001 | jump to register 1 if register 0 bit 0 is set
+ldi0000 0x1      | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
+ldi0001 0x1      | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
+ldi0002 0x0      | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
+ldi0003 0x0      | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
+ldi0004 0x20     | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
+ldi0005 0x18     | 0005000000180002 | load register 5 with value 0x18, ram store start index
+ldi0006 0x1      | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
+ldi0007 0x8      | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
+binc00020001     | 0002000100000056 | copy register 1 to register 2
+binc00010000     | 0001000000000056 | copy register 0 to register 1
+int+000000010005 | 0000000100020005 | store sum of register 1 and register 2 to register 0
+int+000a00050005 | 000a000500030005 | store sum of register 5 and register 3 to register 10
+mem0000000a      | 0000000a00000013 | store register 1 to register 10 memory location
+int+000300030006 | 0003000300060005 | store sum of register 3 and register 6 to register 3
+int-000800030004 | 0008000300040025 | store difference of register 3 and register 4 to register 8
+cmpl00090008     | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
+jmp00070009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
+jmp000b0006      | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
+```
+
+Example looping test assembly to c-code approximate:
+```
+while(true) {
+  long fib1 = 0x1;
+  long fib2 = 0x1;
+  long fib3 = 0x0;
+  long *mem = 0x18;
+  for (long i=0;i<32;i++) {
+    fib3 = fib2;
+    fib2 = fib1;
+    fib1 = fib2 + fib3;
+    mem[i] = fib1;
+  }
+}
 ```
