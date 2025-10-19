@@ -37,9 +37,9 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="microfpgamuxfmax" src="https://github.com/user-attachments/assets/dc3a8583-f3af-4334-b161-dbb1d0236c8f" />
 <img width="3840" height="2112" alt="microfpgamuxmin" src="https://github.com/user-attachments/assets/e2eeb814-978c-4837-8f86-114b70549d21" />
 <img width="3840" height="2112" alt="microfpgamuxmax" src="https://github.com/user-attachments/assets/2589ba11-5901-4700-bc6c-1ced6154b375" />
-<img width="3840" height="2112" alt="muxrisccore39" src="https://github.com/user-attachments/assets/087ae0ec-6543-44e2-a657-3e1d1ab26fdf" />
-<img width="3840" height="2112" alt="muxrisccore39a" src="https://github.com/user-attachments/assets/05657b37-dddc-4fa1-a212-77ead7bc6fb0" />
-<img width="3840" height="2112" alt="muxrisccore39b" src="https://github.com/user-attachments/assets/b7e88a04-33e0-4dbd-b7fe-030855fb94cc" />
+<img width="3840" height="2112" alt="muxrisccore40" src="https://github.com/user-attachments/assets/8a057d78-a776-4e1e-9a5a-221dd2944913" />
+<img width="3840" height="2112" alt="muxrisccore40a" src="https://github.com/user-attachments/assets/d82b4d79-d85c-4488-ab7a-ad4d7f0f92bf" />
+<img width="3840" height="2112" alt="muxrisccore40b" src="https://github.com/user-attachments/assets/8209299e-88e7-4976-ba9c-e52a5e7732f5" />
 
 ---
 
@@ -116,32 +116,26 @@ RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
-Each 64-bit instruction is formed from 8-bit [regX regY regZ ins4 ins3 ins2 ins1 insT] parameters.
+Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
+insT parameter is formed from 4-bit [bitI bitN insV insO] parameters.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
-0      | 1      | nop         | No Operation     | no operation sleep [ins4321] cycles
-1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[ins2]
-2      | 1      | ldiX        | Load 32-bit Uint | load regX with constant [ins4321]
-3      | 2      | memXY       | Memory Double    | store/load[ins1] regX at [regY]
-4      | 1      | cmpXY       | Compare to Zero  | clear regXb[ins2], set to 1 if regY comp[ins1]
-5      | 1      | aluXYZ      | ALU Operation    | store alu-op[ins1] regY regZ to regX
+0      | 1      | nop         | No Operation     | no operation sleep constant regYZ cycles
+1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN]
+2      | 1      | ldiX        | Load 32-bit Uint | load regX with constant regYZ
+3      | 2      | memXY       | Memory Double    | store/load[insV] regX at [regY]
+4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitIN], set to 1 if regY comp[insV]
+5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
+6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
+7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
 ```
 
 Example looping test assembly code source and binary:
 ```
-source listing       | binary           | explanation
+source listing           | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-core 1:
-  ldi00 0x1          | 0000000000000102 | load register 0 with value 0x1
-  nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
-core 2:
-  ldi00 0x1          | 0000000000000102 | load register 0 with value 0x1
-  nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
-core 3:
-  ldi00 0x1          | 0000000000000102 | load register 0 with value 0x1
-  nop 0x2            | 0000000000000200 | nop operation 3 cycles
-  jmp0100            | 0100000000000001 | jump to register 1 if register 0 bit 0 is set
+ldi00 0x1                | 0000000000010002 | load register 0 with value 0x1
+nop 0x2                  | 0000000000020000 | nop operation 3 cycles
+jmp0100                  | 0001000000000001 | jump to register 1 if register 0 bit 0 is set
 ```
