@@ -58,7 +58,7 @@ Opcode | Cycles | Instruction | Name             | Description
                   int*XYZ                          insV=4 integer multiply
                   int**XYZ                         insV=5 integer multiply overflow
                   int/XYZ                          insV=6 integer divide
-                  int//XYZ                        insV=7 integer divide remainder
+                  int//XYZ                         insV=7 integer divide remainder
                   intnXYZ                          insV=8 integer negate
 6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
                   bin<<XYZ                         insV=0 bitwise shift left regZ bits
@@ -66,14 +66,14 @@ Opcode | Cycles | Instruction | Name             | Description
                   bin>>>XYZ                        insV=2 bitwise shift arithmetic right regZ bits
                   binr<<XYZ                        insV=3 bitwise rotate left regZ bits
                   binr>>XYZ                        insV=4 bitwise rotate right regZ bits
-                  bincXYZ                          insV=5 bitwise copy
+                  binXYZ                           insV=5 bitwise copy
                   bin!XYZ                          insV=6 bitwise not
                   bin|XYZ                          insV=7 bitwise or
                   bin&XYZ                          insV=8 bitwise and
                   bin!&XYZ                         insV=9 bitwise nand
                   bin!|XYZ                         insV=A bitwise nor
-                  bin#XYZ                          insV=B bitwise xor
-                  bin!#XYZ                         insV=C bitwise xnor
+                  bin^XYZ                          insV=B bitwise xor
+                  bin!^XYZ                         insV=C bitwise xnor
 7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
                   flp+XYZ                          insV=0 float plus
                   flp-XYZ                          insV=1 float minus
