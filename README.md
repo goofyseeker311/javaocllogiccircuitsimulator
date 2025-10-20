@@ -35,26 +35,26 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
-insT parameter is formed from 8-4-4-bit [bitIN insV insO] parameters.
+insT parameter is formed from 8-4-4-bit [bitI insV insO] parameters.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nopYZ       | No Operation     | no operation sleep constant regYZ cycles
-1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN] is set
+1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitI] is set
 2      | 1      | ldiXYZ      | Load 32-bit Uint | load regX with constant regYZ
 3      | 2      | memXY       | Memory Double    | store/load[insV] regX at memory[regY]
                   memrXY                           insV=0 load
                   memwXY                           insV=1 store
-4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitIN], set to 1 if regY comp[insV]
-                  cmpe                             insV=0 integer equal to
-                  cmpl                             insV=1 integer less than
-                  cmpef                            insV=2 float equal to
-                  cmplf                            insV=3 float less than
+4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitI], set to 1 if regY comp[insV]
+                  cmpeXY                           insV=0 integer equal to
+                  cmplXY                           insV=1 integer less than
+                  cmpefXY                          insV=2 float equal to
+                  cmplfXY                          insV=3 float less than
 5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
                   int+XYZ                          insV=0 integer plus
-                  int++XYZ                         insV=1 integer plus overflow bit regXb[bitIN]
+                  int++XYZ                         insV=1 integer plus overflow bit regXb[bitI]
                   int-XYZ                          insV=2 integer minus
-                  int--XYZ                         insV=3 integer minus borrow bit regXb[bitIN]
+                  int--XYZ                         insV=3 integer minus borrow bit regXb[bitI]
                   int*XYZ                          insV=4 integer multiply
                   int**XYZ                         insV=5 integer multiply overflow
                   int/XYZ                          insV=6 integer divide
