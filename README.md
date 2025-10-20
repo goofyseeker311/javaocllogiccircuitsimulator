@@ -66,7 +66,7 @@ Opcode | Cycles | Instruction | Name             | Description
                   bin>>>XYZ                        insV=2 bitwise shift arithmetic right regZ bits
                   binr<<XYZ                        insV=3 bitwise rotate left regZ bits
                   binr>>XYZ                        insV=4 bitwise rotate right regZ bits
-                  binXYZ                           insV=5 bitwise copy
+                  bincXYZ                          insV=5 bitwise copy
                   bin!XYZ                          insV=6 bitwise not
                   bin|XYZ                          insV=7 bitwise or
                   bin&XYZ                          insV=8 bitwise and
