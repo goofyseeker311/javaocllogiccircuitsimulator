@@ -43,48 +43,48 @@ Opcode | Cycles | Instruction | Name             | Description
 1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN] is set
 2      | 1      | ldiX        | Load 32-bit Uint | load regX with constant regYZ
 3      | 2      | memXY       | Memory Double    | store/load[insV] regX at memory[regY]
-                                                   insV=0 load
-                                                   insV=1 store
+                  memrXY                           insV=0 load
+                  memwXY                           insV=1 store
 4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitIN], set to 1 if regY comp[insV]
-                                                   insV=0 integer equal to
-                                                   insV=1 integer less than
-                                                   insV=2 float equal to
-                                                   insV=3 float less than
+                  cmpe                             insV=0 integer equal to
+                  cmpl                             insV=1 integer less than
+                  cmpef                            insV=2 float equal to
+                  cmplf                            insV=3 float less than
 5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
-                                                   insV=0 integer plus
-                                                   insV=1 integer plus overflow bit regXb[bitIN]
-                                                   insV=2 integer minus
-                                                   insV=3 integer minus borrow bit regXb[bitIN]
-                                                   insV=4 integer multiply
-                                                   insV=5 integer multiply overflow
-                                                   insV=6 integer divide
-                                                   insV=7 integer divide remainder
-                                                   insV=8 integer negate
+                  int+XYZ                          insV=0 integer plus
+                  int++XYZ                         insV=1 integer plus overflow bit regXb[bitIN]
+                  int-XYZ                          insV=2 integer minus
+                  int--XYZ                         insV=3 integer minus borrow bit regXb[bitIN]
+                  int*XYZ                          insV=4 integer multiply
+                  int**XYZ                         insV=5 integer multiply overflow
+                  int/XYZ                          insV=6 integer divide
+                  int//XYZ                        insV=7 integer divide remainder
+                  intnXYZ                          insV=8 integer negate
 6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
-                                                   insV=0 bitwise shift left regZ bits
-                                                   insV=1 bitwise shift right regZ bits
-                                                   insV=2 bitwise shift arithmetic right regZ bits
-                                                   insV=3 bitwise rotate left regZ bits
-                                                   insV=4 bitwise rotate right regZ bits
-                                                   insV=5 bitwise copy
-                                                   insV=6 bitwise not
-                                                   insV=7 bitwise or
-                                                   insV=8 bitwise and
-                                                   insV=9 bitwise nand
-                                                   insV=A bitwise nor
-                                                   insV=B bitwise xor
-                                                   insV=C bitwise xnor
+                  bin<<XYZ                         insV=0 bitwise shift left regZ bits
+                  bin>>XYZ                         insV=1 bitwise shift right regZ bits
+                  bin>>>XYZ                        insV=2 bitwise shift arithmetic right regZ bits
+                  binr<<XYZ                        insV=3 bitwise rotate left regZ bits
+                  binr>>XYZ                        insV=4 bitwise rotate right regZ bits
+                  bincXYZ                          insV=5 bitwise copy
+                  bin!XYZ                          insV=6 bitwise not
+                  bin|XYZ                          insV=7 bitwise or
+                  bin&XYZ                          insV=8 bitwise and
+                  bin!&XYZ                         insV=9 bitwise nand
+                  bin!|XYZ                         insV=A bitwise nor
+                  bin#XYZ                          insV=B bitwise xor
+                  bin!#XYZ                         insV=C bitwise xnor
 7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
-                                                   insV=0 float plus
-                                                   insV=1 float minus
-                                                   insV=2 float multiply
-                                                   insV=3 float divide
-                                                   insV=4 float negate
-                                                   insV=5 integer to float
-                                                   insV=6 float to integer nearest
-                                                   insV=7 float to integer round down
-                                                   insV=8 float to integer round up
-                                                   insV=9 float to integer truncate
+                  flp+XYZ                          insV=0 float plus
+                  flp-XYZ                          insV=1 float minus
+                  flp*XYZ                          insV=2 float multiply
+                  flp/XYZ                          insV=3 float divide
+                  flpnXYZ                          insV=4 float negate
+                  flpifXYZ                         insV=5 integer to float
+                  flpfinXYZ                        insV=6 float to integer nearest
+                  flpfidXYZ                        insV=7 float to integer round down
+                  flpfiuXYZ                        insV=8 float to integer round up
+                  flpfitXYZ                        insV=9 float to integer truncate
 ```
 
 Example looping test assembly code source and binary:
