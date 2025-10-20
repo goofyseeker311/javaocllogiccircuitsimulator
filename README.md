@@ -35,18 +35,56 @@ Nx 64-bit direct-io routing registers (one register writeable for current core).
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
-insT parameter is formed from 4-bit [bitI bitN insV insO] parameters.
+insT parameter is formed from 8-4-4-bit [bitIN insV insO] parameters.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nop         | No Operation     | no operation sleep constant regYZ cycles
-1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN]
+1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN] is set
 2      | 1      | ldiX        | Load 32-bit Uint | load regX with constant regYZ
-3      | 2      | memXY       | Memory Double    | store/load[insV] regX at [regY]
+3      | 2      | memXY       | Memory Double    | store/load[insV] regX at memory[regY]
+                                                   insV=0 load
+                                                   insV=1 store
 4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitIN], set to 1 if regY comp[insV]
+                                                   insV=0 integer equal to
+                                                   insV=1 integer less than
+                                                   insV=2 float equal to
+                                                   insV=3 float less than
 5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
+                                                   insV=0 integer plus
+                                                   insV=1 integer plus overflow bit regXb[bitIN]
+                                                   insV=2 integer minus
+                                                   insV=3 integer minus borrow bit regXb[bitIN]
+                                                   insV=4 integer multiply
+                                                   insV=5 integer multiply overflow
+                                                   insV=6 integer divide
+                                                   insV=7 integer divide remainder
+                                                   insV=8 integer negate
 6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
+                                                   insV=0 bitwise shift left regZ bits
+                                                   insV=1 bitwise shift right regZ bits
+                                                   insV=2 bitwise shift arithmetic right regZ bits
+                                                   insV=3 bitwise rotate left regZ bits
+                                                   insV=4 bitwise rotate right regZ bits
+                                                   insV=5 bitwise copy
+                                                   insV=6 bitwise not
+                                                   insV=7 bitwise or
+                                                   insV=8 bitwise and
+                                                   insV=9 bitwise nand
+                                                   insV=A bitwise nor
+                                                   insV=B bitwise xor
+                                                   insV=C bitwise xnor
 7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
+                                                   insV=0 float plus
+                                                   insV=1 float minus
+                                                   insV=2 float multiply
+                                                   insV=3 float divide
+                                                   insV=4 float negate
+                                                   insV=5 integer to float
+                                                   insV=6 float to integer nearest
+                                                   insV=7 float to integer round down
+                                                   insV=8 float to integer round up
+                                                   insV=9 float to integer truncate
 ```
 
 Example looping test assembly code source and binary:
