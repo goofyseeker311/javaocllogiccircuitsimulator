@@ -39,9 +39,9 @@ insT parameter is formed from 8-4-4-bit [bitIN insV insO] parameters.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
-0      | 1      | nop         | No Operation     | no operation sleep constant regYZ cycles
+0      | 1      | nopYZ       | No Operation     | no operation sleep constant regYZ cycles
 1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitIN] is set
-2      | 1      | ldiX        | Load 32-bit Uint | load regX with constant regYZ
+2      | 1      | ldiXYZ      | Load 32-bit Uint | load regX with constant regYZ
 3      | 2      | memXY       | Memory Double    | store/load[insV] regX at memory[regY]
                   memrXY                           insV=0 load
                   memwXY                           insV=1 store
