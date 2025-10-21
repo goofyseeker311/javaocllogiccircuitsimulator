@@ -129,6 +129,24 @@
       <a name="value" val="0x0"/>
       <a name="width" val="54"/>
     </comp>
+    <comp lib="0" loc="(1310,140)" name="Constant">
+      <a name="value" val="0x34"/>
+      <a name="width" val="6"/>
+    </comp>
+    <comp lib="0" loc="(1310,190)" name="Constant">
+      <a name="value" val="0x33"/>
+      <a name="width" val="6"/>
+    </comp>
+    <comp lib="0" loc="(1310,90)" name="Constant">
+      <a name="value" val="0x35"/>
+      <a name="width" val="6"/>
+    </comp>
+    <comp lib="0" loc="(1340,290)" name="Constant">
+      <a name="width" val="6"/>
+    </comp>
+    <comp lib="0" loc="(1350,390)" name="Constant">
+      <a name="width" val="11"/>
+    </comp>
     <comp lib="0" loc="(1500,280)" name="Constant">
       <a name="value" val="0x0"/>
     </comp>
@@ -200,91 +218,12 @@
       <a name="fanout" val="3"/>
       <a name="incoming" val="64"/>
     </comp>
-    <comp lib="0" loc="(1950,260)" name="Constant">
-      <a name="value" val="0x77082efac4240"/>
-      <a name="width" val="52"/>
-    </comp>
-    <comp lib="0" loc="(1950,280)" name="Constant">
-      <a name="value" val="0x401"/>
-      <a name="width" val="11"/>
-    </comp>
-    <comp lib="0" loc="(1950,300)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(2160,260)" name="Splitter">
-      <a name="bit1" val="0"/>
-      <a name="bit10" val="0"/>
-      <a name="bit11" val="0"/>
-      <a name="bit12" val="0"/>
-      <a name="bit13" val="0"/>
-      <a name="bit14" val="0"/>
-      <a name="bit15" val="0"/>
-      <a name="bit16" val="0"/>
-      <a name="bit17" val="0"/>
-      <a name="bit18" val="0"/>
-      <a name="bit19" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit20" val="0"/>
-      <a name="bit21" val="0"/>
-      <a name="bit22" val="0"/>
-      <a name="bit23" val="0"/>
-      <a name="bit24" val="0"/>
-      <a name="bit25" val="0"/>
-      <a name="bit26" val="0"/>
-      <a name="bit27" val="0"/>
-      <a name="bit28" val="0"/>
-      <a name="bit29" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit30" val="0"/>
-      <a name="bit31" val="0"/>
-      <a name="bit32" val="0"/>
-      <a name="bit33" val="0"/>
-      <a name="bit34" val="0"/>
-      <a name="bit35" val="0"/>
-      <a name="bit36" val="0"/>
-      <a name="bit37" val="0"/>
-      <a name="bit38" val="0"/>
-      <a name="bit39" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit40" val="0"/>
-      <a name="bit41" val="0"/>
-      <a name="bit42" val="0"/>
-      <a name="bit43" val="0"/>
-      <a name="bit44" val="0"/>
-      <a name="bit45" val="0"/>
-      <a name="bit46" val="0"/>
-      <a name="bit47" val="0"/>
-      <a name="bit48" val="0"/>
-      <a name="bit49" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit50" val="0"/>
-      <a name="bit51" val="0"/>
-      <a name="bit52" val="1"/>
-      <a name="bit53" val="1"/>
-      <a name="bit54" val="1"/>
-      <a name="bit55" val="1"/>
-      <a name="bit56" val="1"/>
-      <a name="bit57" val="1"/>
-      <a name="bit58" val="1"/>
-      <a name="bit59" val="1"/>
-      <a name="bit6" val="0"/>
-      <a name="bit60" val="1"/>
-      <a name="bit61" val="1"/>
-      <a name="bit62" val="1"/>
-      <a name="bit63" val="2"/>
-      <a name="bit7" val="0"/>
-      <a name="bit8" val="0"/>
-      <a name="bit9" val="0"/>
-      <a name="facing" val="west"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="64"/>
-    </comp>
-    <comp lib="0" loc="(2400,190)" name="Probe">
+    <comp lib="0" loc="(1830,220)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="radix" val="float"/>
     </comp>
-    <comp lib="0" loc="(2420,260)" name="Pin">
+    <comp lib="0" loc="(1850,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="output1"/>
@@ -585,10 +524,30 @@
     <comp lib="2" loc="(1260,240)" name="Multiplexer">
       <a name="width" val="54"/>
     </comp>
+    <comp lib="2" loc="(1320,110)" name="BitSelector">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="54"/>
+    </comp>
+    <comp lib="2" loc="(1320,160)" name="BitSelector">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="54"/>
+    </comp>
+    <comp lib="2" loc="(1320,210)" name="BitSelector">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="54"/>
+    </comp>
+    <comp lib="2" loc="(1440,360)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="11"/>
+    </comp>
+    <comp lib="2" loc="(1460,270)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="54"/>
+    </comp>
     <comp lib="2" loc="(1510,300)" name="BitSelector">
       <a name="group" val="52"/>
       <a name="selloc" val="tr"/>
-      <a name="width" val="53"/>
+      <a name="width" val="54"/>
     </comp>
     <comp lib="2" loc="(670,160)" name="BitSelector">
       <a name="facing" val="north"/>
@@ -627,9 +586,15 @@
       <a name="mode" val="unsigned"/>
       <a name="width" val="54"/>
     </comp>
-    <comp lib="3" loc="(1390,430)" name="Shifter">
+    <comp lib="3" loc="(1300,450)" name="Shifter">
+      <a name="width" val="54"/>
+    </comp>
+    <comp lib="3" loc="(1380,280)" name="Shifter">
       <a name="shift" val="lr"/>
       <a name="width" val="54"/>
+    </comp>
+    <comp lib="3" loc="(1390,380)" name="Adder">
+      <a name="width" val="11"/>
     </comp>
     <comp lib="3" loc="(650,230)" name="Subtractor">
       <a name="width" val="11"/>
@@ -669,23 +634,42 @@
     <wire from="(1220,250)" to="(1230,250)"/>
     <wire from="(1240,260)" to="(1240,320)"/>
     <wire from="(1240,320)" to="(1550,320)"/>
-    <wire from="(1260,240)" to="(1310,240)"/>
-    <wire from="(1460,300)" to="(1480,300)"/>
-    <wire from="(1460,340)" to="(1530,340)"/>
+    <wire from="(1260,240)" to="(1280,240)"/>
+    <wire from="(1280,110)" to="(1280,160)"/>
+    <wire from="(1280,110)" to="(1290,110)"/>
+    <wire from="(1280,160)" to="(1280,210)"/>
+    <wire from="(1280,160)" to="(1290,160)"/>
+    <wire from="(1280,210)" to="(1280,240)"/>
+    <wire from="(1280,210)" to="(1290,210)"/>
+    <wire from="(1280,240)" to="(1320,240)"/>
+    <wire from="(1310,140)" to="(1310,150)"/>
+    <wire from="(1310,190)" to="(1310,200)"/>
+    <wire from="(1310,90)" to="(1310,100)"/>
+    <wire from="(1320,110)" to="(1420,110)"/>
+    <wire from="(1320,240)" to="(1320,270)"/>
+    <wire from="(1320,270)" to="(1340,270)"/>
+    <wire from="(1340,350)" to="(1340,370)"/>
+    <wire from="(1340,350)" to="(1410,350)"/>
+    <wire from="(1340,370)" to="(1350,370)"/>
+    <wire from="(1380,280)" to="(1430,280)"/>
+    <wire from="(1390,380)" to="(1400,380)"/>
+    <wire from="(1400,370)" to="(1400,380)"/>
+    <wire from="(1400,370)" to="(1410,370)"/>
+    <wire from="(1420,110)" to="(1420,340)"/>
+    <wire from="(1420,110)" to="(1440,110)"/>
+    <wire from="(1440,110)" to="(1440,250)"/>
+    <wire from="(1440,360)" to="(1530,360)"/>
+    <wire from="(1460,270)" to="(1470,270)"/>
+    <wire from="(1470,270)" to="(1470,300)"/>
+    <wire from="(1470,300)" to="(1480,300)"/>
     <wire from="(1500,280)" to="(1500,290)"/>
     <wire from="(1510,300)" to="(1550,300)"/>
-    <wire from="(1530,310)" to="(1530,340)"/>
+    <wire from="(1530,310)" to="(1530,360)"/>
     <wire from="(1530,310)" to="(1550,310)"/>
-    <wire from="(1570,290)" to="(1590,290)"/>
-    <wire from="(1950,260)" to="(1950,270)"/>
-    <wire from="(1950,270)" to="(2140,270)"/>
-    <wire from="(1950,280)" to="(2140,280)"/>
-    <wire from="(1950,290)" to="(1950,300)"/>
-    <wire from="(1950,290)" to="(2140,290)"/>
-    <wire from="(2160,260)" to="(2370,260)"/>
-    <wire from="(2370,190)" to="(2370,260)"/>
-    <wire from="(2370,190)" to="(2400,190)"/>
-    <wire from="(2370,260)" to="(2420,260)"/>
+    <wire from="(1570,290)" to="(1800,290)"/>
+    <wire from="(1800,220)" to="(1800,290)"/>
+    <wire from="(1800,220)" to="(1830,220)"/>
+    <wire from="(1800,290)" to="(1850,290)"/>
     <wire from="(410,200)" to="(430,200)"/>
     <wire from="(410,260)" to="(430,260)"/>
     <wire from="(410,280)" to="(430,280)"/>
@@ -771,8 +755,8 @@
     <wire from="(870,410)" to="(940,410)"/>
     <wire from="(870,440)" to="(880,440)"/>
     <wire from="(920,160)" to="(930,160)"/>
-    <wire from="(920,270)" to="(920,340)"/>
-    <wire from="(920,340)" to="(1300,340)"/>
+    <wire from="(920,270)" to="(920,350)"/>
+    <wire from="(920,350)" to="(1340,350)"/>
     <wire from="(920,440)" to="(930,440)"/>
     <wire from="(930,150)" to="(930,160)"/>
     <wire from="(930,150)" to="(940,150)"/>
