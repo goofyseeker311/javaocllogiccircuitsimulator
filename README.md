@@ -36,6 +36,9 @@ Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [bitI insV insO] parameters.
+Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
+Estimated ram register transistors per core is 4million and 256 billion total.
+Estimated compute 64-bit teraflops at 5GHz per core is 5gflops and 320tflops total.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
