@@ -39,7 +39,7 @@ Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [bitI insV insO] parameters.
 Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
 Estimated ram transistors per core is 4million 512KB and 256billion total 32GB.
-Estimated compute 64-bit teraflops at 5GHz per core is 5gflops and 320tflops total.
+Estimated compute 64-bit teraops at 5GHz per core is 5gops and 320tops total.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
