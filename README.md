@@ -22,7 +22,6 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 <img width="3840" height="2112" alt="muxrisccore42" src="https://github.com/user-attachments/assets/f6bc5322-eeb8-4632-b7d0-7e2ab2a5ce73" />
 <img width="3840" height="2112" alt="muxrisccore42a" src="https://github.com/user-attachments/assets/0fb596a1-13ae-4e87-ade2-7e3f155bd125" />
 <img width="3840" height="2112" alt="muxrisccore42b" src="https://github.com/user-attachments/assets/17dbe6e9-e918-40f7-9383-d73f07839dd1" />
-<img width="3840" height="2112" alt="muxflpalu5" src="https://github.com/user-attachments/assets/85cdd7b1-a02d-4bcc-9243-a4d65e4137b5" />
 
 ---
 
