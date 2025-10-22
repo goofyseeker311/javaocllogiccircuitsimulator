@@ -105,8 +105,8 @@ ldi0006 0x1      | 0006000000010002 | load register 6 with value 0x1, constant 0
 ldi0007 0x8      | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
 binc00020001     | 0002000100000056 | copy register 1 to register 2
 binc00010000     | 0001000000000056 | copy register 0 to register 1
-int+000000010005 | 0000000100020005 | store sum of register 1 and register 2 to register 0
-int+000a00050005 | 000a000500030005 | store sum of register 5 and register 3 to register 10
+int+000000010002 | 0000000100020005 | store sum of register 1 and register 2 to register 0
+int+000a00050003 | 000a000500030005 | store sum of register 5 and register 3 to register 10
 memw0000000a     | 0000000a00000013 | store register 1 to register 10 memory location
 int+000300030006 | 0003000300060005 | store sum of register 3 and register 6 to register 3
 int-000800030004 | 0008000300040025 | store difference of register 3 and register 4 to register 8
