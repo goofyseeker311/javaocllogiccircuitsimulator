@@ -31,7 +31,7 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-Each core contains 128k core-rail routing lines, 1024 io-lines, and 2048 registers.
+Each core contains 2x 64k core-rail and 1-to-1 routing lines, 1024 io-lines, and 2048 registers.
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
