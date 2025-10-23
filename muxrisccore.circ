@@ -2503,7 +2503,7 @@
     <comp lib="0" loc="(2110,1410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output1"/>
+      <a name="label" val="output1r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2511,7 +2511,7 @@
     <comp lib="0" loc="(2110,1510)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output5"/>
+      <a name="label" val="output5r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2519,7 +2519,7 @@
     <comp lib="0" loc="(2110,1610)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output9"/>
+      <a name="label" val="output9r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2527,7 +2527,7 @@
     <comp lib="0" loc="(2110,1710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output13"/>
+      <a name="label" val="output13r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2743,7 +2743,7 @@
     <comp lib="0" loc="(2520,1410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output2"/>
+      <a name="label" val="output2r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2751,7 +2751,7 @@
     <comp lib="0" loc="(2520,1510)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output6"/>
+      <a name="label" val="output6r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2759,7 +2759,7 @@
     <comp lib="0" loc="(2520,1610)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output10"/>
+      <a name="label" val="output10r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -2767,7 +2767,7 @@
     <comp lib="0" loc="(2520,1710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output14"/>
+      <a name="label" val="output14r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3004,7 +3004,7 @@
     <comp lib="0" loc="(2930,1310)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="outid0"/>
+      <a name="label" val="coreidout0"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3012,7 +3012,7 @@
     <comp lib="0" loc="(2930,1410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output3"/>
+      <a name="label" val="output3r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3020,7 +3020,7 @@
     <comp lib="0" loc="(2930,1510)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output7"/>
+      <a name="label" val="output7r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3028,7 +3028,7 @@
     <comp lib="0" loc="(2930,1610)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output11"/>
+      <a name="label" val="output11r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3036,7 +3036,7 @@
     <comp lib="0" loc="(2930,1710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output15"/>
+      <a name="label" val="output15r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3075,7 +3075,7 @@
     </comp>
     <comp lib="0" loc="(3160,1340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="inid0"/>
+      <a name="label" val="coreidin0"/>
       <a name="radix" val="16"/>
       <a name="width" val="64"/>
     </comp>
@@ -3474,7 +3474,7 @@
     <comp lib="0" loc="(3340,1410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output4"/>
+      <a name="label" val="output4r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3482,7 +3482,7 @@
     <comp lib="0" loc="(3340,1510)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output8"/>
+      <a name="label" val="output8r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3490,7 +3490,7 @@
     <comp lib="0" loc="(3340,1610)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output12"/>
+      <a name="label" val="output12r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
@@ -3498,7 +3498,7 @@
     <comp lib="0" loc="(3340,1710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="output16"/>
+      <a name="label" val="output16r"/>
       <a name="radix" val="16"/>
       <a name="type" val="output"/>
       <a name="width" val="64"/>
