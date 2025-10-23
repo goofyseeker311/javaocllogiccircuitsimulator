@@ -19,10 +19,10 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore43" src="https://github.com/user-attachments/assets/0c91a4b8-9cbd-4a18-aa1b-a72fe00776ec" />
-<img width="3840" height="2112" alt="muxrisccore43a" src="https://github.com/user-attachments/assets/18ecad27-6c78-4970-8832-8eacc07940ec" />
-<img width="3840" height="2112" alt="muxrisccore43b" src="https://github.com/user-attachments/assets/83cb29f6-dadf-463b-a75c-375144d8efb2" />
-<img width="3840" height="2112" alt="muxrisccore43c" src="https://github.com/user-attachments/assets/e29c959e-dfd6-4773-85ec-cf5ab3cd5d01" />
+<img width="3840" height="2112" alt="muxrisccore44" src="https://github.com/user-attachments/assets/2fc97f45-30b7-452c-8add-81c61f8cbe10" />
+<img width="3840" height="2112" alt="muxrisccore44a" src="https://github.com/user-attachments/assets/cec67f9c-90b4-4407-b077-2ba6c7c51004" />
+<img width="3840" height="2112" alt="muxrisccore44b" src="https://github.com/user-attachments/assets/c4a51722-eab2-4eff-9685-c872fb111dbf" />
+<img width="3840" height="2112" alt="muxrisccore44c" src="https://github.com/user-attachments/assets/1bb27abc-f066-4a0c-b40e-272f8656746b" />
 
 ---
 
