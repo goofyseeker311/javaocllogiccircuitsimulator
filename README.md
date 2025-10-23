@@ -31,14 +31,14 @@ GNU Octave 10.3.0 used for generic math and generating circuit constants: https:
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-Each core contains 2x 64k core-rail and 1-to-1 routing lines, 1024 io-lines, and 2048 registers.
+Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers.
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [bitI insV insO] parameters.
-Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
-Estimated ram transistors per core is 4million 512KB and 256billion total 32GB.
-Estimated compute 64-bit teraops at 5GHz per core is 5gops and 320tops total.
+Estimated logic transistors per core is 200k making 32k cores about 6.4 billion.
+Estimated ram transistors per core is 4million 512KB and 128billion total 16GB.
+Estimated compute 64-bit teraops at 5GHz per core is 5gops and 160tops total.
 
 Opcode | Cycles | Instruction | Name             | Description
 ----------------------------------------------------------------------------------------------------
