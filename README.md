@@ -54,40 +54,40 @@ Opcode | Cycles | Instruction | Name             | Description
                   cmpeqfXY                         insV=2 float equal to
                   cmplefXY                         insV=3 float less than
 5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
-                  intaddXYZ                        insV=0 integer add
-                  intaddoXYZ                       insV=1 integer add overflow bit regXb[bitI]
-                  intsubXYZ                        insV=2 integer subtract
-                  intsubbXYZ                       insV=3 integer subtract borrow bit regXb[bitI]
-                  intmulXYZ                        insV=4 integer multiply
-                  intmuloXYZ                       insV=5 integer multiply overflow
-                  intdivXYZ                        insV=6 integer divide
-                  intdivrXYZ                       insV=7 integer divide remainder
-                  intnegXYZ                        insV=8 integer negate
+                  addXYZ                           insV=0 integer add
+                  addoXYZ                          insV=1 integer add overflow bit regXb[bitI]
+                  subXYZ                           insV=2 integer subtract
+                  subbXYZ                          insV=3 integer subtract borrow bit regXb[bitI]
+                  mulXYZ                           insV=4 integer multiply
+                  muloXYZ                          insV=5 integer multiply overflow
+                  divXYZ                           insV=6 integer divide
+                  divrXYZ                          insV=7 integer divide remainder
+                  negXYZ                           insV=8 integer negate
 6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
-                  bitshlXYZ                        insV=0 bitwise shift left regZ bits
-                  bitshrXYZ                        insV=1 bitwise shift right regZ bits
-                  bitsharXYZ                       insV=2 bitwise shift arithmetic right regZ bits
-                  bitrotlXYZ                       insV=3 bitwise rotate left regZ bits
-                  bitrotrXYZ                       insV=4 bitwise rotate right regZ bits
-                  bitcopyXYZ                       insV=5 bitwise copy
-                  bitnotXYZ                        insV=6 bitwise not
-                  bitorXYZ                         insV=7 bitwise or
-                  bitandXYZ                        insV=8 bitwise and
-                  bitnandXYZ                       insV=9 bitwise nand
-                  bitnorXYZ                        insV=A bitwise nor
-                  bitxorXYZ                        insV=B bitwise xor
-                  bitxnorXYZ                       insV=C bitwise xnor
+                  shlXYZ                           insV=0 bitwise shift left regZ bits
+                  shrXYZ                           insV=1 bitwise shift right regZ bits
+                  sharXYZ                          insV=2 bitwise shift arithmetic right regZ bits
+                  rotlXYZ                          insV=3 bitwise rotate left regZ bits
+                  rotrXYZ                          insV=4 bitwise rotate right regZ bits
+                  copyXYZ                          insV=5 bitwise copy
+                  notXYZ                           insV=6 bitwise not
+                  orXYZ                            insV=7 bitwise or
+                  andXYZ                           insV=8 bitwise and
+                  nandXYZ                          insV=9 bitwise nand
+                  norXYZ                           insV=A bitwise nor
+                  xorXYZ                           insV=B bitwise xor
+                  xnorXYZ                          insV=C bitwise xnor
 7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
-                  flpaddXYZ                        insV=0 float add
-                  flpsubXYZ                        insV=1 float subtract
-                  flpmulXYZ                        insV=2 float multiply
-                  flpdivXYZ                        insV=3 float divide
-                  flpnegXYZ                        insV=4 float negate
-                  flpitfXYZ                        insV=5 integer to float
-                  flpftinXYZ                       insV=6 float to integer nearest
-                  flpftidXYZ                       insV=7 float to integer round down
-                  flpftiuXYZ                       insV=8 float to integer round up
-                  flpftitXYZ                       insV=9 float to integer truncate
+                  addfXYZ                          insV=0 float add
+                  subfXYZ                          insV=1 float subtract
+                  mulfXYZ                          insV=2 float multiply
+                  divfXYZ                          insV=3 float divide
+                  negfXYZ                          insV=4 float negate
+                  itfXYZ                           insV=5 integer to float
+                  ftinXYZ                          insV=6 float to integer nearest
+                  ftidXYZ                          insV=7 float to integer round down
+                  ftiuXYZ                          insV=8 float to integer round up
+                  ftitXYZ                          insV=9 float to integer truncate
 ```
 
 Example looping test assembly code source and binary:
@@ -102,13 +102,13 @@ ldi0004 0x20       | 0004000000200002 | load register 4 with value 0x20, for loo
 ldi0005 0x18       | 0005000000180002 | load register 5 with value 0x18, ram store start index
 ldi0006 0x1        | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
 ldi0007 0x8        | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
-bitcopy00020001    | 0002000100000056 | copy register 1 to register 2
-bitcopy00010000    | 0001000000000056 | copy register 0 to register 1
-intadd000000010002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
-intadd000a00050003 | 000a000500030005 | store addition of register 5 and register 3 to register 10
+copy00020001       | 0002000100000056 | copy register 1 to register 2
+copy00010000       | 0001000000000056 | copy register 0 to register 1
+add000000010002    | 0000000100020005 | store addition of register 1 and register 2 to register 0
+add000a00050003    | 000a000500030005 | store addition of register 5 and register 3 to register 10
 memw0000000a       | 0000000a00000013 | store register 0 to register 10 memory location
-intadd000300030006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
-intsub000800030004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
+add000300030006    | 0003000300060005 | store addition of register 3 and register 6 to register 3
+sub000800030004    | 0008000300040025 | store subtract of register 3 and register 4 to register 8
 cmple00090008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
 jmp00070009        | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
 jmp000b0006        | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
