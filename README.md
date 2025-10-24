@@ -109,7 +109,7 @@ intadd000a00050003 | 000a000500030005 | store addition of register 5 and registe
 memw0000000a       | 0000000a00000013 | store register 0 to register 10 memory location
 intadd000300030006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
 intsub000800030004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmple00090008      | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
+cmple00090008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
 jmp00070009        | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
 jmp000b0006        | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
 ```
