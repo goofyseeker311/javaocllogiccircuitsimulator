@@ -49,10 +49,10 @@ Opcode | Cycles | Instruction | Name             | Description
                   memrXY                           insV=0 load
                   memwXY                           insV=1 store
 4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitI], set to 1 if regY comp[insV]
-                  cmpeqXY                          insV=0 integer equal to
-                  cmpleXY                          insV=1 integer less than
-                  cmpeqfXY                         insV=2 float equal to
-                  cmplefXY                         insV=3 float less than
+                  cmpeXY                           insV=0 integer equal to
+                  cmplXY                           insV=1 integer less than
+                  cmpefXY                          insV=2 float equal to
+                  cmplfXY                          insV=3 float less than
 5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
                   addXYZ                           insV=0 integer add
                   addoXYZ                          insV=1 integer add overflow bit regXb[bitI]
@@ -109,7 +109,7 @@ add000a00050003    | 000a000500030005 | store addition of register 5 and registe
 memw0000000a       | 0000000a00000013 | store register 0 to register 10 memory location
 add000300030006    | 0003000300060005 | store addition of register 3 and register 6 to register 3
 sub000800030004    | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmple00090008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
+cmpl00090008       | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
 jmp00070009        | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
 jmp000b0006        | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
 ```
