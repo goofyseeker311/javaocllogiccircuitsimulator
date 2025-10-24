@@ -40,78 +40,78 @@ Estimated logic transistors per core is 200k making 32k cores about 6.4 billion.
 Estimated ram transistors per core is 4million 512KB and 128billion total 16GB.
 Estimated compute 64-bit teraops at 5GHz per core is 5gops and 160tops total.
 
-Opcode | Cycles | Instruction | Name             | Description
+Opcode | Cycles | Instruction | Name              | Description
 ----------------------------------------------------------------------------------------------------
-0      | 1      | nopYZ       | No Operation     | no operation sleep constant regYZ cycles
-1      | 1      | jmpXY       | Jump Destination | jump to regX if regYb[bitI] is set
-2      | 1      | ldiXYZ      | Load 32-bit Uint | load regX with constant regYZ
-3      | 2      | memXY       | Memory Double    | store/load[insV] regX at memory[regY]
-                  memrXY                           insV=0 load
-                  memwXY                           insV=1 store
-4      | 1      | cmpXY       | Compare to Zero  | clear regXb[bitI], set to 1 if regY comp[insV]
-                  cmpeXY                           insV=0 integer equal to
-                  cmplXY                           insV=1 integer less than
-                  cmpefXY                          insV=2 float equal to
-                  cmplfXY                          insV=3 float less than
-5      | 1      | intXYZ      | ALU Operation    | store integer op[insV] regY regZ to regX
-                  addXYZ                           insV=0 integer add
-                  addoXYZ                          insV=1 integer add overflow bit regXb[bitI]
-                  subXYZ                           insV=2 integer subtract
-                  subbXYZ                          insV=3 integer subtract borrow bit regXb[bitI]
-                  mulXYZ                           insV=4 integer multiply
-                  muloXYZ                          insV=5 integer multiply overflow
-                  divXYZ                           insV=6 integer divide
-                  divrXYZ                          insV=7 integer divide remainder
-                  negXYZ                           insV=8 integer negate
-6      | 1      | binXYZ      | ALU Operation    | store binary op[insV] regY regZ to regX
-                  shlXYZ                           insV=0 bitwise shift left regZ bits
-                  shrXYZ                           insV=1 bitwise shift right regZ bits
-                  sharXYZ                          insV=2 bitwise shift arithmetic right regZ bits
-                  rotlXYZ                          insV=3 bitwise rotate left regZ bits
-                  rotrXYZ                          insV=4 bitwise rotate right regZ bits
-                  copyXYZ                          insV=5 bitwise copy
-                  notXYZ                           insV=6 bitwise not
-                  orXYZ                            insV=7 bitwise or
-                  andXYZ                           insV=8 bitwise and
-                  nandXYZ                          insV=9 bitwise nand
-                  norXYZ                           insV=A bitwise nor
-                  xorXYZ                           insV=B bitwise xor
-                  xnorXYZ                          insV=C bitwise xnor
-7      | 1      | flpXYZ      | ALU Operation    | store float op[insV] regY regZ to regX
-                  addfXYZ                          insV=0 float add
-                  subfXYZ                          insV=1 float subtract
-                  mulfXYZ                          insV=2 float multiply
-                  divfXYZ                          insV=3 float divide
-                  negfXYZ                          insV=4 float negate
-                  itfXYZ                           insV=5 integer to float
-                  ftinXYZ                          insV=6 float to integer nearest
-                  ftidXYZ                          insV=7 float to integer round down
-                  ftiuXYZ                          insV=8 float to integer round up
-                  ftitXYZ                          insV=9 float to integer truncate
+0      | 1      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
+1      | 1      | jmpXY       | Jump Destination  | jump to regX if regYb[bitI] is set
+2      | 1      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
+3      | 2      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
+                  memrXY                            insV=0 load
+                  memwXY                            insV=1 store
+4      | 1      | cmpXY       | Compare to Zero   | clear regXb[bitI], set to 1 if regY comp[insV]
+                  cmpeXY                            insV=0 integer equal to
+                  cmplXY                            insV=1 integer less than
+                  cmpefXY                           insV=2 float equal to
+                  cmplfXY                           insV=3 float less than
+5      | 1      | intXYZ      | ALU Int Operation | store integer op[insV] regY regZ to regX
+                  addXYZ                            insV=0 integer add
+                  addoXYZ                           insV=1 integer add overflow bit regXb[bitI]
+                  subXYZ                            insV=2 integer subtract
+                  subbXYZ                           insV=3 integer subtract borrow bit regXb[bitI]
+                  mulXYZ                            insV=4 integer multiply
+                  muloXYZ                           insV=5 integer multiply overflow
+                  divXYZ                            insV=6 integer divide
+                  divrXYZ                           insV=7 integer divide remainder
+                  negXYZ                            insV=8 integer negate
+6      | 1      | binXYZ      | ALU Bit Operation | store bitwise op[insV] regY regZ to regX
+                  shlXYZ                            insV=0 bitwise shift left regZ bits
+                  shrXYZ                            insV=1 bitwise shift right regZ bits
+                  sharXYZ                           insV=2 bitwise shift arithmetic right regZ bits
+                  rotlXYZ                           insV=3 bitwise rotate left regZ bits
+                  rotrXYZ                           insV=4 bitwise rotate right regZ bits
+                  copyXYZ                           insV=5 bitwise copy
+                  notXYZ                            insV=6 bitwise not
+                  orXYZ                             insV=7 bitwise or
+                  andXYZ                            insV=8 bitwise and
+                  nandXYZ                           insV=9 bitwise nand
+                  norXYZ                            insV=A bitwise nor
+                  xorXYZ                            insV=B bitwise xor
+                  xnorXYZ                           insV=C bitwise xnor
+7      | 1      | flpXYZ      | ALU Flp Operation | store float op[insV] regY regZ to regX
+                  addfXYZ                           insV=0 float add
+                  subfXYZ                           insV=1 float subtract
+                  mulfXYZ                           insV=2 float multiply
+                  divfXYZ                           insV=3 float divide
+                  negfXYZ                           insV=4 float negate
+                  itfXYZ                            insV=5 integer to float
+                  ftinXYZ                           insV=6 float to integer nearest
+                  ftidXYZ                           insV=7 float to integer round down
+                  ftiuXYZ                           insV=8 float to integer round up
+                  ftitXYZ                           insV=9 float to integer truncate
 ```
 
 Example looping test assembly code source and binary:
 ```
-source listing     | binary           | explanation
+source listing   | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi0000 0x1        | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
-ldi0001 0x1        | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
-ldi0002 0x0        | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
-ldi0003 0x0        | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
-ldi0004 0x20       | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi0005 0x18       | 0005000000180002 | load register 5 with value 0x18, ram store start index
-ldi0006 0x1        | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi0007 0x8        | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
-copy00020001       | 0002000100000056 | copy register 1 to register 2
-copy00010000       | 0001000000000056 | copy register 0 to register 1
-add000000010002    | 0000000100020005 | store addition of register 1 and register 2 to register 0
-add000a00050003    | 000a000500030005 | store addition of register 5 and register 3 to register 10
-memw0000000a       | 0000000a00000013 | store register 0 to register 10 memory location
-add000300030006    | 0003000300060005 | store addition of register 3 and register 6 to register 3
-sub000800030004    | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl00090008       | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
-jmp00070009        | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
-jmp000b0006        | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
+ldi0000 0x1      | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
+ldi0001 0x1      | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
+ldi0002 0x0      | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
+ldi0003 0x0      | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
+ldi0004 0x20     | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
+ldi0005 0x18     | 0005000000180002 | load register 5 with value 0x18, ram store start index
+ldi0006 0x1      | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
+ldi0007 0x8      | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
+copy00020001     | 0002000100000056 | copy register 1 to register 2
+copy00010000     | 0001000000000056 | copy register 0 to register 1
+add000000010002  | 0000000100020005 | store addition of register 1 and register 2 to register 0
+add000a00050003  | 000a000500030005 | store addition of register 5 and register 3 to register 10
+memw0000000a     | 0000000a00000013 | store register 0 to register 10 memory location
+add000300030006  | 0003000300060005 | store addition of register 3 and register 6 to register 3
+sub000800030004  | 0008000300040025 | store subtract of register 3 and register 4 to register 8
+cmpl00090008     | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
+jmp00070009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
+jmp000b0006      | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
 ```
 
 Example looping test assembly to c-code approximate:
