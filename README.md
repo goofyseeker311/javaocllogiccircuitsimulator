@@ -65,7 +65,7 @@ Opcode | Cycles | Instruction | Name              | Description
                   divXYZ                            insV=6 integer divide
                   divrXYZ                           insV=7 integer divide remainder
                   negXYZ                            insV=8 integer negate
-6      | 1      | binXYZ      | ALU Bit Operation | store bitwise op[insV] regY regZ to regX
+6      | 1      | bitXYZ      | ALU Bit Operation | store bitwise op[insV] regY regZ to regX
                   shlXYZ                            insV=0 bitwise shift left regZ bits
                   shrXYZ                            insV=1 bitwise shift right regZ bits
                   sharXYZ                           insV=2 bitwise shift arithmetic right regZ bits
