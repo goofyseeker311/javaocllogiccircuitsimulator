@@ -1,4 +1,6 @@
-ldi0000 0x1
+      
+// comment testing
+ldi0000 0x1     // comment testing 2
 ldi0001 0x1
 ldi0002 0x0
 ldi0003 0x0

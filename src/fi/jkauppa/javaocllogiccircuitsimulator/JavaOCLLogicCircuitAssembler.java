@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public class JavaOCLLogicCircuitAssembler {
+
 	public static void main(String[] arg) {
 		System.out.println("init.");
 		if (arg.length>1) {
@@ -30,28 +31,41 @@ public class JavaOCLLogicCircuitAssembler {
 			BufferedReader filereader = new BufferedReader(new FileReader(inputfile));
 			BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
 			byte[] outputbytes = new byte[8];
+			ByteBuffer insvalbytes = ByteBuffer.allocate(8);
+			String commentline = null;
+			long insval = 0L;
 			int linenumber = 0;
 			String readline = null;
 			while((readline=filereader.readLine())!=null) {
-				long insval = compileline(readline);
-				ByteBuffer insvalbytes = ByteBuffer.allocate(8);
-				insvalbytes.putLong(insval).rewind();
-				insvalbytes.get(outputbytes, 0, 8);
-				fileoutput.write(outputbytes);
-				System.out.println("readline("+linenumber+"): "+readline+", insval: "+Long.toHexString(insval));
+				String codeline = readline.trim();
+				commentline = "";
+				if (codeline.length()==0) {
+					System.out.println("readline("+linenumber+"): '"+readline+"', output: nothing");
+				} else if (codeline.startsWith("//")) {
+					System.out.println("readline("+linenumber+"): '"+readline+"', output: comment");
+				} else {
+					int commentind = codeline.indexOf("//");
+					if (commentind>-1) {
+						commentline = codeline.substring(commentind).trim();
+						codeline = codeline.substring(0,commentind).trim();
+					}
+					
+					
+					insval = 0L;
+					insvalbytes.clear();
+					insvalbytes.putLong(insval).rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					System.out.println("readline("+linenumber+"): '"+codeline+"', output: "+Long.toHexString(insval)+", comment: '"+commentline+"'");
+				}
 				linenumber++;
 			}
 			filereader.close();
 			fileoutput.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("File not found.");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IO failed.");
 		}
-	}
-	
-	public long compileline(String codeline) {
-		long insvalue = Long.parseUnsignedLong("A123456789ABCDEF", 16);
-		return insvalue;
 	}
 }
