@@ -44,6 +44,8 @@ Opcode | Cycles | Instruction | Name              | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
 1      | 1      | jmpXY       | Jump Destination  | jump to regX if regYb[bitI] is set
+                  jmpcXY                            insV=0 conditional jump to regX if regYb[bitI] is set
+                  jmpuXY                            insV=1 unconditional jump to regX
 2      | 1      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
 3      | 2      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
                   memrXY                            insV=0 load
@@ -110,22 +112,22 @@ memw0000000a     | 0000000a00000013 | store register 0 to register 10 memory loc
 add000300030006  | 0003000300060005 | store addition of register 3 and register 6 to register 3
 sub000800030004  | 0008000300040025 | store subtract of register 3 and register 4 to register 8
 cmpl00090008     | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
-jmp00070009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
-jmp000b0006      | 000b000600000001 | jump to register 11 if register 6 bit 0 is set
+jmpc00070009     | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
+jmpu000b0000     | 000b000000000011 | jump to register 11
 ```
 
 Example looping test assembly to c-code approximate:
 ```
-while(true) {
-  long fib1 = 0x1;
-  long fib2 = 0x1;
-  long fib3 = 0x0;
-  long *mem = 0x18;
-  for (long i=0;i<32;i++) {
-    fib3 = fib2;
-    fib2 = fib1;
-    fib1 = fib2 + fib3;
-    mem[i] = fib1;
-  }
-}
+while(true) {                   // infinite while loop
+  long fib1 = 0x1;              // init fib1 with 64-bit long integer value 1
+  long fib2 = 0x1;              // init fib2 with 64-bit long integer value 1
+  long fib3 = 0x0;              // init fib3 with 64-bit long integer value 0
+  long *mem = 0x18;             // init mem as 64-bit long integer pointer at address 0x18
+  for (long i=0;i<32;i++) {     // for loop 64-bit long integer i index value from 0 to 31
+    fib3 = fib2;                // copy old fib2 value to fib3
+    fib2 = fib1;                // copy old fib1 value to fib2
+    fib1 = fib2 + fib3;         // calculate new fib1 value by adding fib2 and fib3
+    mem[i] = fib1;              // store fib1 value to mem location +i index
+  }                             // for loop close
+}                               // infinite while loop close
 ```
