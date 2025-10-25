@@ -44,7 +44,7 @@ Opcode | Cycles | Instruction | Name              | Description
 ----------------------------------------------------------------------------------------------------
 0      | 1      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
 1      | 1      | jmpXY       | Jump Destination  | jump to regX if regYb[bitI] is set
-                  jmpcXY                            insV=0 conditional jump to regX if regYb[bitI] is set
+                  jmpcXY                            insV=0 jump to regX if regYb[bitI] is set
                   jmpuXY                            insV=1 unconditional jump to regX
 2      | 1      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
 3      | 2      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
