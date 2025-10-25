@@ -113,7 +113,7 @@ add000300030006  | 0003000300060005 | store addition of register 3 and register 
 sub000800030004  | 0008000300040025 | store subtract of register 3 and register 4 to register 8
 cmpl00090008     | 0009000800000014 | clear register 9 bit 0, set if register 8 integer less than 0
 jmpc00070009     | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
-jmpu000b0000     | 000b000000000011 | jump to register 11
+jmpu000b0000     | 000b000000000011 | unconditional jump to register 11
 ```
 
 Example looping test assembly to c-code approximate:
