@@ -103,7 +103,7 @@ source listing      | binary           | explanation
 ----------------------------------------------------------------------------------------------------
 []                  | 0000000000000000 | empty line
 // empty line       | 0000000000000000 | comment line
-nop  00000200       | 0000000000000000 | no operation sleep 512+1 cycles
+nop  00000200       | 0000000002000000 | no operation sleep 512+1 cycles
 ldi  0000 00000001  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
 ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
 ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
