@@ -1,17 +1,37 @@
 package fi.jkauppa.javaocllogiccircuitsimulator;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
+import java.nio.file.Files;
 
 public class JavaOCLLogicCircuitEmulator {
-	private RiscChip riscchip = new RiscChip();
+	public RiscChip riscchip = new RiscChip();
 	
 	public static void main(String[] arg) {
 		System.out.println("init.");
 		if (arg.length>1) {
-			String filenamein = arg[0];
-			String filenameout = arg[1];
+			String filein = arg[0];
+			String fileout = arg[1];
 			JavaOCLLogicCircuitEmulator emulator = new JavaOCLLogicCircuitEmulator();
-			emulator.process();
+			File inputfile = new File(filein);
+			File outputfile = new File(fileout);
+			try {
+				byte[] inputfilebytes = Files.readAllBytes(inputfile.toPath());
+				BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
+				ByteBuffer programbytes = ByteBuffer.wrap(inputfilebytes);
+				long[] program = new long[65536];
+				LongBuffer porgrambuffer = programbytes.asLongBuffer();
+				porgrambuffer.get(program, 0, porgrambuffer.remaining());
+				emulator.riscchip.risccores[0].loadprogram(program);
+				emulator.process();
+				fileoutput.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("exit.");
 	}
@@ -19,12 +39,17 @@ public class JavaOCLLogicCircuitEmulator {
 	public void process() {
 		while(true) {
 			riscchip.processchip();
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public class RiscChip {
 		private int risccoreamount = 1; //32000
-		private RiscCore[] risccores = new RiscCore[risccoreamount];
+		public RiscCore[] risccores = new RiscCore[risccoreamount];
 		public RiscChip() {
 			for (int i=0;i<risccoreamount;i++) {
 				risccores[i] = new RiscCore();
@@ -38,7 +63,6 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 	}
 
-
 	public class RiscCore {
 		private int registeramount = 65536;
 		private long[] newregisters = new long[registeramount];
@@ -47,9 +71,9 @@ public class JavaOCLLogicCircuitEmulator {
 		private long instructionstate = 0L;
 		private int instructionstep = 0;
 		private int programcounter = 0;
+		private ByteBuffer instbytes = ByteBuffer.allocate(8);
 		
-		public RiscCore() {this(null);}
-		public RiscCore(long[] program) {
+		public void loadprogram(long[] program) {
 			if (program!=null) {
 				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
 					memoryram[i] = program[i];
@@ -58,10 +82,10 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 		
 		public void processinstruction() {
-			long instruction = memoryram[programcounter];
-			instruction = Long.parseUnsignedLong("000000002000000", 16);
-			ByteBuffer instbytes = ByteBuffer.allocate(8);
-			instbytes.putLong(instruction).rewind();
+			instructionstate = memoryram[programcounter];
+			System.out.println("instructionstate: "+String.format(String.format("%016x", instructionstate))+", instructionstep: "+instructionstep);
+			instbytes.clear();
+			instbytes.putLong(instructionstate).rewind();
 			int regX = instbytes.getShort();
 			int regY = instbytes.getShort();
 			int regZ = instbytes.getShort();
@@ -69,13 +93,14 @@ public class JavaOCLLogicCircuitEmulator {
 			int insT = instbytes.get();
 			if (insT==0x00) {
 				int sleepsteps = (regY<<16) + regZ;
-				System.out.println("sleepsteps: "+sleepsteps+", instructionstep: "+instructionstep);
 				if (instructionstep<sleepsteps) {
 					instructionstep++;
 				} else {
 					instructionstep = 0;
 					programcounter++;
 				}
+			} else {
+				programcounter++;
 			}
 			
 			if (programcounter>65535) {
