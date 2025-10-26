@@ -104,24 +104,24 @@ source listing      | binary           | explanation
 []                  | 0000000000000000 | empty line
 [     ]             | 0000000000000000 | 5 spaces empty line
 // empty line       | 0000000000000000 | comment line
-ldi  00 00          | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
-ldi  01 00          | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
-ldi  02 00          | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
-ldi  03 00          | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
-ldi  04 20          | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  05 18          | 0005000000180002 | load register 5 with value 0x18, ram store start index
-ldi  06 01          | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  07 0B          | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
-copy 02 01          | 0002000100000056 | copy register 1 to register 2
-copy 01 00          | 0001000000000056 | copy register 0 to register 1
+ldi  0000 00000001  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
+ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
+ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
+ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
+ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
+ldi  0005 00000018  | 0005000000180002 | load register 5 with value 0x18, ram store start index
+ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
+ldi  0007 0000000B  | 0007000000080002 | load register 7 with value 0x8, constant 0x8 jump address
+copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
+copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
 add  00 01 02       | 0000000100020005 | store addition of register 1 and register 2 to register 0
 add  0a 05 03       | 000a000500030005 | store addition of register 5 and register 3 to register 10
-memw 00 0a          | 0000000a00000013 | store register 0 to register 10 memory location
+memw 0000 000a      | 0000000a00000013 | store register 0 to register 10 memory location
 add  03 03 06       | 0003000300060005 | store addition of register 3 and register 6 to register 3
 sub  08 03 04       | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl 09 08          | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
-jmpc 07 09          | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
-jmpu 0b             | 000b000000000011 | unconditional jump to register 11
+cmpl 0009 0008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
+jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
+jmpu 000b           | 000b000000000011 | unconditional jump to register 11
 ## A123456789ABCDEF | a123456789abcdef | custom data segment with any instruction or data
 ```
 
