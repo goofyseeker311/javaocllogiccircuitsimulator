@@ -39,9 +39,36 @@ public class JavaOCLLogicCircuitAssembler {
 				String codeline = readline.trim();
 				commentline = "";
 				if (codeline.length()==0) {
-					System.out.println("readline("+linenumber+"): '"+readline+"', output: nothing");
+					insvalbytes.clear();
+					insvalbytes.putLong(0L);
+					insvalbytes.rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					insvalbytes.rewind();
+					long insval = insvalbytes.getLong();
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', nothing");
 				} else if (codeline.startsWith("//")) {
-					System.out.println("readline("+linenumber+"): '"+readline+"', output: comment");
+					insvalbytes.clear();
+					insvalbytes.putLong(0L);
+					insvalbytes.rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					insvalbytes.rewind();
+					long insval = insvalbytes.getLong();
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', comment");
+				} else if (codeline.startsWith("##")) {
+					codeline = codeline.substring(2).trim();
+					String[] codelineparts = codeline.split(" ");
+					String dataline = codelineparts[0];
+					long dataval = Long.parseUnsignedLong(dataline, 16);
+					insvalbytes.clear();
+					insvalbytes.putLong(dataval);
+					insvalbytes.rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					insvalbytes.rewind();
+					long insval = insvalbytes.getLong();
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', data");
 				} else {
 					int commentind = codeline.indexOf("//");
 					if (commentind>-1) {
@@ -165,7 +192,6 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					String.format(readline, "", 1);
 					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', comment: '"+commentline+"'");
 				}
 				linenumber++;
