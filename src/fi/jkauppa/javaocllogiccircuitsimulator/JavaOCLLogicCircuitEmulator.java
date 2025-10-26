@@ -108,6 +108,9 @@ public class JavaOCLLogicCircuitEmulator {
 				}
 			} else if (insT==0x11) {
 				programcounter = (int)oldregisters[regX];
+			} else if (insT==0x02) {
+				newregisters[regX] = (regY<<16) + regZ;
+				programcounter++;
 			} else {
 				programcounter++;
 			}
