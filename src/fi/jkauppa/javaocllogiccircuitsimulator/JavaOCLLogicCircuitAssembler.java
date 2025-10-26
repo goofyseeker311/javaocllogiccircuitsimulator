@@ -69,6 +69,24 @@ public class JavaOCLLogicCircuitAssembler {
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
 					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', data");
+				} else if (codeline.startsWith("ldi")) {
+					codeline = codeline.substring(3).trim();
+					String[] codelineparts = codeline.split(" |,");
+					String regXline = codelineparts[0];
+					String dataline = codelineparts[1];
+					int regX = Integer.parseInt(regXline, 16);
+					long dataval = Long.parseUnsignedLong(dataline, 16);
+					int insT = 0x02;
+					insvalbytes.clear();
+					insvalbytes.putShort((short)regX);
+					insvalbytes.putInt((int)dataval);
+					insvalbytes.putShort((short)insT);
+					insvalbytes.rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					insvalbytes.rewind();
+					long insval = insvalbytes.getLong();
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+codeline+"', data");
 				} else {
 					int commentind = codeline.indexOf("//");
 					if (commentind>-1) {
@@ -88,8 +106,6 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x01;
 					} else if (codelineparts[0].equals("jmpu")) {
 						insT = 0x11;
-					} else if (codelineparts[0].equals("ldi")) {
-						insT = 0x02;
 					} else if (codelineparts[0].equals("memr")) {
 						insT = 0x03;
 					} else if (codelineparts[0].equals("memw")) {
