@@ -10,5 +10,15 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 		System.out.println("exit.");
 	}
+	
+	public class RiscChip {
+		
+	}
 
+
+	public class RiscCore {
+		private long[] registers = new long[65536];
+		private long[] memoryram = new long[65536];
+		private long state = 0L;
+	}
 }
