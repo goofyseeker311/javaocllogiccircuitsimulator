@@ -44,7 +44,7 @@ Estimated compute 64-bit teraops at 5GHz per core is 5gops and 160tops total.
 
 Opcode | Cycles | Instruction | Name              | Description
 ----------------------------------------------------------------------------------------------------
-any    | 1      | ##          | Any Data          | direct data line 64-bit value
+any    | any    | ##          | Any Raw Data      | direct data line 64-bit value
 0      | 1      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
                   []                                empty line or white space line
                   //                                comment line
