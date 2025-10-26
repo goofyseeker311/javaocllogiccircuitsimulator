@@ -1,5 +1,7 @@
 package fi.jkauppa.javaocllogiccircuitsimulator;
 
+import java.nio.ByteBuffer;
+
 public class JavaOCLLogicCircuitEmulator {
 
 	public static void main(String[] arg) {
@@ -29,6 +31,7 @@ public class JavaOCLLogicCircuitEmulator {
 			for (int i=0;i<risccoreamount;i++) {
 				risccores[i] = new RiscCore();
 			}
+			risccores[0].processinstruction();
 		}
 	}
 
@@ -53,6 +56,22 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			long instruction = memoryram[programcounter];
+			instruction = Long.parseUnsignedLong("0001000200030514", 16);
+			ByteBuffer instbytes = ByteBuffer.allocate(8);
+			instbytes.putLong(instruction).rewind();
+			short regX = instbytes.getShort();
+			short regY = instbytes.getShort();
+			short regZ = instbytes.getShort();
+			byte bitI = instbytes.get();
+			byte insT = instbytes.get();
+			System.out.println("regX: "+regX+", regY: "+regY+", regZ: "+regZ+", bitI: "+bitI+", insT: "+insT);
+			if (insT==0x14) {
+				System.out.println("insT==0x14");
+			}
+		}
+		
+		public void updateregisters() {
+			
 		}
 	}
 }
