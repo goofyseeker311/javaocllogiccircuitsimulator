@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore46" src="https://github.com/user-attachments/assets/f69282aa-0956-4767-a857-261720ca1733" />
-<img width="3840" height="2112" alt="muxrisccore46a" src="https://github.com/user-attachments/assets/dcf56b72-3a60-4264-b7db-f8d109b080ea" />
-<img width="3840" height="2112" alt="muxrisccore46b" src="https://github.com/user-attachments/assets/d035b405-ab4d-4227-a66c-f05f24f42027" />
-<img width="3840" height="2112" alt="muxrisccore46c" src="https://github.com/user-attachments/assets/9620b460-bfdc-4db3-813d-99f78c5191e1" />
+<img width="3840" height="2112" alt="muxrisccore47" src="https://github.com/user-attachments/assets/058d825e-e0ba-4bbd-bcd3-72a1e11b98d9" />
+<img width="3840" height="2112" alt="muxrisccore47a" src="https://github.com/user-attachments/assets/a4863091-844d-4c5d-8e2d-b13a092f878e" />
+<img width="3840" height="2112" alt="muxrisccore47b" src="https://github.com/user-attachments/assets/2630d2ad-0372-410f-adc1-d594dd2e6d64" />
+<img width="3840" height="2112" alt="muxrisccore47c" src="https://github.com/user-attachments/assets/42ed8c97-fc18-41fa-b56d-efccee6fe7ef" />
 
 ---
 
@@ -102,8 +102,8 @@ Example looping test assembly code source and binary:
 source listing      | binary           | explanation
 ----------------------------------------------------------------------------------------------------
 []                  | 0000000000000000 | empty line
-[     ]             | 0000000000000000 | 5 spaces empty line
 // empty line       | 0000000000000000 | comment line
+nop  00000200       | 0000000000000000 | no operation sleep 512+1 cycles
 ldi  0000 00000001  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
 ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
 ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
@@ -114,11 +114,11 @@ ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constan
 ldi  0007 0000000B  | 00070000000B0002 | load register 7 with value 0xB, constant 0xB jump address
 copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
 copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
-add  00 01 02       | 0000000100020005 | store addition of register 1 and register 2 to register 0
-add  0a 05 03       | 000a000500030005 | store addition of register 5 and register 3 to register 10
+add  0000 0001 0002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
+add  000a 0005 0003 | 000a000500030005 | store addition of register 5 and register 3 to register 10
 memw 0000 000a      | 0000000a00000013 | store register 0 to register 10 memory location
-add  03 03 06       | 0003000300060005 | store addition of register 3 and register 6 to register 3
-sub  08 03 04       | 0008000300040025 | store subtract of register 3 and register 4 to register 8
+add  0003 0003 0006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
+sub  0008 0003 0004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
 cmpl 0009 0008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
 jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
 jmpu 000b           | 000b000000000011 | unconditional jump to register 11
