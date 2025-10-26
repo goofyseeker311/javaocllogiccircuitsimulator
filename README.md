@@ -111,7 +111,7 @@ ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loo
 ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
 ldi  0005 00000018  | 0005000000180002 | load register 5 with value 0x18, ram store start index
 ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  0007 0000000B  | 0007000000080002 | load register 7 with value 0xB, constant 0xB jump address
+ldi  0007 0000000B  | 00070000000B0002 | load register 7 with value 0xB, constant 0xB jump address
 copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
 copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
 add  00 01 02       | 0000000100020005 | store addition of register 1 and register 2 to register 0
