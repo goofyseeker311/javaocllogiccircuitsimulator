@@ -3,35 +3,38 @@ package fi.jkauppa.javaocllogiccircuitsimulator;
 import java.nio.ByteBuffer;
 
 public class JavaOCLLogicCircuitEmulator {
-
+	private RiscChip riscchip = new RiscChip();
+	
 	public static void main(String[] arg) {
 		System.out.println("init.");
 		if (arg.length>1) {
 			String filenamein = arg[0];
 			String filenameout = arg[1];
 			JavaOCLLogicCircuitEmulator emulator = new JavaOCLLogicCircuitEmulator();
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			emulator.process();
 		}
 		System.out.println("exit.");
 	}
 	
-	public JavaOCLLogicCircuitEmulator() {
-		RiscChip riscchip = new RiscChip();
+	public void process() {
+		while(true) {
+			riscchip.processchip();
+		}
 	}
 	
 	public class RiscChip {
-		private int risccoreamount = 32000;
+		private int risccoreamount = 1; //32000
 		private RiscCore[] risccores = new RiscCore[risccoreamount];
-		
 		public RiscChip() {
 			for (int i=0;i<risccoreamount;i++) {
 				risccores[i] = new RiscCore();
 			}
-			risccores[0].processinstruction();
+		}
+		public void processchip() {
+			for (int i=0;i<risccoreamount;i++) {
+				risccores[i].updateregisters();
+				risccores[i].processinstruction();
+			}
 		}
 	}
 
@@ -56,22 +59,34 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			long instruction = memoryram[programcounter];
-			instruction = Long.parseUnsignedLong("0001000200030514", 16);
+			instruction = Long.parseUnsignedLong("000000002000000", 16);
 			ByteBuffer instbytes = ByteBuffer.allocate(8);
 			instbytes.putLong(instruction).rewind();
-			short regX = instbytes.getShort();
-			short regY = instbytes.getShort();
-			short regZ = instbytes.getShort();
-			byte bitI = instbytes.get();
-			byte insT = instbytes.get();
-			System.out.println("regX: "+regX+", regY: "+regY+", regZ: "+regZ+", bitI: "+bitI+", insT: "+insT);
-			if (insT==0x14) {
-				System.out.println("insT==0x14");
+			int regX = instbytes.getShort();
+			int regY = instbytes.getShort();
+			int regZ = instbytes.getShort();
+			int bitI = instbytes.get();
+			int insT = instbytes.get();
+			if (insT==0x00) {
+				int sleepsteps = (regY<<16) + regZ;
+				System.out.println("sleepsteps: "+sleepsteps+", instructionstep: "+instructionstep);
+				if (instructionstep<sleepsteps) {
+					instructionstep++;
+				} else {
+					instructionstep = 0;
+					programcounter++;
+				}
+			}
+			
+			if (programcounter>65535) {
+				programcounter = 0;
 			}
 		}
 		
 		public void updateregisters() {
-			
+			for (int i=0;i<registeramount;i++) {
+				oldregisters[i] = newregisters[i];
+			}
 		}
 	}
 }
