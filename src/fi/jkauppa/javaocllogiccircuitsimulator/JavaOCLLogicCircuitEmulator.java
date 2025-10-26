@@ -83,7 +83,7 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			instructionstate = memoryram[programcounter];
-			System.out.println("instructionstate: "+String.format(String.format("%016x", instructionstate))+", instructionstep: "+instructionstep);
+			System.out.println("instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep);
 			instbytes.clear();
 			instbytes.putLong(instructionstate).rewind();
 			int regX = instbytes.getShort();
@@ -99,6 +99,15 @@ public class JavaOCLLogicCircuitEmulator {
 					instructionstep = 0;
 					programcounter++;
 				}
+			} else if (insT==0x01) {
+				long jumpflag = oldregisters[regY]&(0x1<<bitI);
+				if (jumpflag>0) {
+					programcounter = (int)oldregisters[regX];
+				} else {
+					programcounter++;
+				}
+			} else if (insT==0x11) {
+				programcounter = (int)oldregisters[regX];
 			} else {
 				programcounter++;
 			}
