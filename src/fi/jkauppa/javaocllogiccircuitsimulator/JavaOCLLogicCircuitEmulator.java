@@ -7,18 +7,52 @@ public class JavaOCLLogicCircuitEmulator {
 		if (arg.length>1) {
 			String filenamein = arg[0];
 			String filenameout = arg[1];
+			JavaOCLLogicCircuitEmulator compiler = new JavaOCLLogicCircuitEmulator();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("exit.");
 	}
 	
+	public JavaOCLLogicCircuitEmulator() {
+		RiscChip riscchip = new RiscChip();
+	}
+	
 	public class RiscChip {
+		private int risccoreamount = 32000;
+		private RiscCore[] risccores = new RiscCore[risccoreamount];
 		
+		public RiscChip() {
+			for (int i=0;i<risccoreamount;i++) {
+				risccores[i] = new RiscCore();
+			}
+		}
 	}
 
 
 	public class RiscCore {
-		private long[] registers = new long[65536];
-		private long[] memoryram = new long[65536];
+		private int registeramount = 65536;
+		private long[] registers = new long[registeramount];
+		private long[] memoryram = new long[registeramount];
 		private long state = 0L;
+		private long programcounter = 0L;
+		
+		public RiscCore() {
+			this(null);
+		}
+		public RiscCore(long[] program) {
+			if (program!=null) {
+				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
+					memoryram[i] = program[i];
+				}
+			}
+		}
+		
+		public void processinstruction() {
+			
+		}
 	}
 }
