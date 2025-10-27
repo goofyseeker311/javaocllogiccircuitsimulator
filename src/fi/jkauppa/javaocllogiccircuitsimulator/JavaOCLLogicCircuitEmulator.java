@@ -16,6 +16,10 @@ public class JavaOCLLogicCircuitEmulator {
 		if (arg.length>1) {
 			String filein = arg[0];
 			String fileout = arg[1];
+			long cycles = 1024;
+			if (arg.length>2) {
+				cycles = Long.parseUnsignedLong(arg[2], 16);
+			}
 			JavaOCLLogicCircuitEmulator emulator = new JavaOCLLogicCircuitEmulator();
 			File inputfile = new File(filein);
 			File outputfile = new File(fileout);
@@ -27,7 +31,7 @@ public class JavaOCLLogicCircuitEmulator {
 				LongBuffer programbuffer = programbytes.asLongBuffer();
 				programbuffer.get(program, 0, programbuffer.remaining());
 				emulator.riscchip.risccores[0].loadprogram(program);
-				emulator.process(1024);
+				emulator.process(cycles);
 				long[] memoryout = new long[65536];
 				emulator.riscchip.risccores[0].saveprogram(memoryout);
 				byte[] memoryarray = new byte[65536*8];
@@ -39,12 +43,14 @@ public class JavaOCLLogicCircuitEmulator {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			System.out.println("arguments expected: program.bin memory.out [cycles]");
 		}
 		System.out.println("exit.");
 	}
 	
-	public void process(int cycles) {
-		for (int i=0;i<cycles;i++) {
+	public void process(long cycles) {
+		for (long i=0;i<cycles;i++) {
 			riscchip.processchip();
 		}
 	}
@@ -66,6 +72,7 @@ public class JavaOCLLogicCircuitEmulator {
 	}
 
 	public class RiscCore {
+		private int corecyclenum = 0;
 		private int registeramount = 65536;
 		private long[] newregisters = new long[registeramount];
 		private long[] oldregisters = new long[registeramount];
@@ -95,7 +102,7 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			instructionstate = memoryram[programcounter];
-			System.out.println("instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
+			System.out.println("cycle: "+String.format("%016x", corecyclenum)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
 					", r0:"+String.format("%016x", oldregisters[0x0])+", r1:"+String.format("%016x", oldregisters[0x1])+", r2:"+String.format("%016x", oldregisters[0x2])+", r3:"+String.format("%016x", oldregisters[0x3])+
 					", r4:"+String.format("%016x", oldregisters[0x4])+", r5:"+String.format("%016x", oldregisters[0x5])+", r6:"+String.format("%016x", oldregisters[0x6])+", r7:"+String.format("%016x", oldregisters[0x7])+
 					", r8:"+String.format("%016x", oldregisters[0x8])+", r9:"+String.format("%016x", oldregisters[0x9])+", rA:"+String.format("%016x", oldregisters[0xA])+", rB:"+String.format("%016x", oldregisters[0xB])+
@@ -347,6 +354,7 @@ public class JavaOCLLogicCircuitEmulator {
 			if (programcounter>65535) {
 				programcounter = 0;
 			}
+			corecyclenum++;
 		}
 		
 		public void updateregisters() {
