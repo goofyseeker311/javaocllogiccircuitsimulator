@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore48" src="https://github.com/user-attachments/assets/8fc8672a-4b08-4e6a-a59c-6d0ecc204513" />
-<img width="3840" height="2112" alt="muxrisccore48a" src="https://github.com/user-attachments/assets/f4cd7c87-cf5c-4f9d-a264-5f7d33f0c859" />
-<img width="3840" height="2112" alt="muxrisccore48b" src="https://github.com/user-attachments/assets/243fc740-c2f9-4db7-86b9-af2953c5dfbf" />
-<img width="3840" height="2112" alt="muxrisccore48c" src="https://github.com/user-attachments/assets/ad9496c8-0688-47b5-9b49-79ac1b977aa9" />
+<img width="3840" height="2112" alt="muxrisccore49" src="https://github.com/user-attachments/assets/8b11fe3f-ed5d-40e7-a590-c8c6d17d93c7" />
+<img width="3840" height="2112" alt="muxrisccore49a" src="https://github.com/user-attachments/assets/e65042f4-24db-4136-8749-d3156f6ad835" />
+<img width="3840" height="2112" alt="muxrisccore49b" src="https://github.com/user-attachments/assets/4d8700b1-4c5a-4e02-8db8-79da569d33eb" />
+<img width="3840" height="2112" alt="muxrisccore49c" src="https://github.com/user-attachments/assets/e72cc90b-a578-475f-ba53-a21416b7bffd" />
 
 ---
 
