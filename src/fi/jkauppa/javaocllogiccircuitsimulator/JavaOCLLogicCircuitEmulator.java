@@ -24,10 +24,17 @@ public class JavaOCLLogicCircuitEmulator {
 				BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
 				ByteBuffer programbytes = ByteBuffer.wrap(inputfilebytes);
 				long[] program = new long[65536];
-				LongBuffer porgrambuffer = programbytes.asLongBuffer();
-				porgrambuffer.get(program, 0, porgrambuffer.remaining());
+				LongBuffer programbuffer = programbytes.asLongBuffer();
+				programbuffer.get(program, 0, programbuffer.remaining());
 				emulator.riscchip.risccores[0].loadprogram(program);
-				emulator.process();
+				emulator.process(1024);
+				long[] memoryout = new long[65536];
+				emulator.riscchip.risccores[0].saveprogram(memoryout);
+				byte[] memoryarray = new byte[65536*8];
+				ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
+				LongBuffer memorylongs = memorybytes.asLongBuffer();
+				memorylongs.put(memoryout, 0, memoryout.length);
+				fileoutput.write(memoryarray);
 				fileoutput.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -36,14 +43,9 @@ public class JavaOCLLogicCircuitEmulator {
 		System.out.println("exit.");
 	}
 	
-	public void process() {
-		while(true) {
+	public void process(int cycles) {
+		for (int i=0;i<cycles;i++) {
 			riscchip.processchip();
-			try {
-				Thread.sleep(20);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 	
@@ -80,6 +82,13 @@ public class JavaOCLLogicCircuitEmulator {
 			if (program!=null) {
 				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
 					memoryram[i] = program[i];
+				}
+			}
+		}
+		public void saveprogram(long[] program) {
+			if (program!=null) {
+				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
+					program[i] = memoryram[i];
 				}
 			}
 		}
