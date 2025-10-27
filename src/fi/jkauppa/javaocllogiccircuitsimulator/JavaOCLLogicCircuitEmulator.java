@@ -9,70 +9,74 @@ import java.nio.LongBuffer;
 import java.nio.file.Files;
 
 public class JavaOCLLogicCircuitEmulator {
-	public RiscChip riscchip = new RiscChip();
-	
 	public static void main(String[] arg) {
 		System.out.println("init.");
 		if (arg.length>1) {
 			String filein = arg[0];
 			String fileout = arg[1];
+			int cores = 1;
 			long cycles = 1024;
 			if (arg.length>2) {
-				cycles = Long.parseUnsignedLong(arg[2], 16);
+				cores = Integer.parseUnsignedInt(arg[2]);
+			}
+			if (arg.length>3) {
+				cycles = Long.parseUnsignedLong(arg[3]);
 			}
 			JavaOCLLogicCircuitEmulator emulator = new JavaOCLLogicCircuitEmulator();
-			File inputfile = new File(filein);
-			File outputfile = new File(fileout);
-			try {
-				byte[] inputfilebytes = Files.readAllBytes(inputfile.toPath());
-				BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
-				ByteBuffer programbytes = ByteBuffer.wrap(inputfilebytes);
-				long[] program = new long[65536];
-				LongBuffer programbuffer = programbytes.asLongBuffer();
-				programbuffer.get(program, 0, programbuffer.remaining());
-				emulator.riscchip.risccores[0].loadprogram(program);
-				emulator.process(cycles);
-				long[] memoryout = new long[65536];
-				emulator.riscchip.risccores[0].saveprogram(memoryout);
-				byte[] memoryarray = new byte[65536*8];
-				ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
-				LongBuffer memorylongs = memorybytes.asLongBuffer();
-				memorylongs.put(memoryout, 0, memoryout.length);
-				fileoutput.write(memoryarray);
-				fileoutput.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			emulator.run(filein, fileout, cycles, cores);
 		} else {
-			System.out.println("arguments expected: program.bin memory.out [cycles]");
+			System.out.println("arguments expected: program.bin memory.out [cores] [cycles]");
 		}
 		System.out.println("exit.");
 	}
 	
-	public void process(long cycles) {
-		for (long i=0;i<cycles;i++) {
-			riscchip.processchip();
+	public void run(String filein, String fileout, long cycles, int cores) {
+		File inputfile = new File(filein);
+		File outputfile = new File(fileout);
+		try {
+			byte[] inputfilebytes = Files.readAllBytes(inputfile.toPath());
+			BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
+			ByteBuffer programbytes = ByteBuffer.wrap(inputfilebytes);
+			long[] program = new long[65536];
+			LongBuffer programbuffer = programbytes.asLongBuffer();
+			programbuffer.get(program, 0, programbuffer.remaining());
+			RiscChip riscchip = new RiscChip(cores);
+			riscchip.risccores[0].loadprogram(program);
+			riscchip.processchip(cycles);
+			long[] memoryout = new long[65536];
+			riscchip.risccores[0].saveprogram(memoryout);
+			byte[] memoryarray = new byte[65536*8];
+			ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
+			LongBuffer memorylongs = memorybytes.asLongBuffer();
+			memorylongs.put(memoryout, 0, memoryout.length);
+			fileoutput.write(memoryarray);
+			fileoutput.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public class RiscChip {
-		private int risccoreamount = 1; //32000
-		public RiscCore[] risccores = new RiscCore[risccoreamount];
-		public RiscChip() {
+		public RiscCore[] risccores;
+		public RiscChip(int risccoreamount) {
+			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
-				risccores[i] = new RiscCore();
+				risccores[i] = new RiscCore(i);
 			}
 		}
-		public void processchip() {
-			for (int i=0;i<risccoreamount;i++) {
-				risccores[i].updateregisters();
-				risccores[i].processinstruction();
+		public void processchip(long cycles) {
+			for (long j=0;j<cycles;j++) {
+				for (int i=0;i<risccores.length;i++) {
+					risccores[i].updateregisters();
+					risccores[i].processinstruction();
+				}
 			}
 		}
 	}
 
 	public class RiscCore {
-		private int corecyclenum = 0;
+		private int corenum = 0;
+		private int cyclenum = 0;
 		private int registeramount = 65536;
 		private long[] newregisters = new long[registeramount];
 		private long[] oldregisters = new long[registeramount];
@@ -84,6 +88,10 @@ public class JavaOCLLogicCircuitEmulator {
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes2 = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes3 = ByteBuffer.allocate(8);
+		
+		public RiscCore(int corenumi) {
+			corenum = corenumi;
+		}
 		
 		public void loadprogram(long[] program) {
 			if (program!=null) {
@@ -102,7 +110,7 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			instructionstate = memoryram[programcounter];
-			System.out.println("cycle: "+String.format("%016x", corecyclenum)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
+			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
 					", r0:"+String.format("%016x", oldregisters[0x0])+", r1:"+String.format("%016x", oldregisters[0x1])+", r2:"+String.format("%016x", oldregisters[0x2])+", r3:"+String.format("%016x", oldregisters[0x3])+
 					", r4:"+String.format("%016x", oldregisters[0x4])+", r5:"+String.format("%016x", oldregisters[0x5])+", r6:"+String.format("%016x", oldregisters[0x6])+", r7:"+String.format("%016x", oldregisters[0x7])+
 					", r8:"+String.format("%016x", oldregisters[0x8])+", r9:"+String.format("%016x", oldregisters[0x9])+", rA:"+String.format("%016x", oldregisters[0xA])+", rB:"+String.format("%016x", oldregisters[0xB])+
@@ -354,7 +362,7 @@ public class JavaOCLLogicCircuitEmulator {
 			if (programcounter>65535) {
 				programcounter = 0;
 			}
-			corecyclenum++;
+			cyclenum++;
 		}
 		
 		public void updateregisters() {
