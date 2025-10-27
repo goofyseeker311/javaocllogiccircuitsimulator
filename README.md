@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore47" src="https://github.com/user-attachments/assets/058d825e-e0ba-4bbd-bcd3-72a1e11b98d9" />
-<img width="3840" height="2112" alt="muxrisccore47a" src="https://github.com/user-attachments/assets/a4863091-844d-4c5d-8e2d-b13a092f878e" />
-<img width="3840" height="2112" alt="muxrisccore47b" src="https://github.com/user-attachments/assets/2630d2ad-0372-410f-adc1-d594dd2e6d64" />
-<img width="3840" height="2112" alt="muxrisccore47c" src="https://github.com/user-attachments/assets/42ed8c97-fc18-41fa-b56d-efccee6fe7ef" />
+<img width="3840" height="2112" alt="muxrisccore48" src="https://github.com/user-attachments/assets/8fc8672a-4b08-4e6a-a59c-6d0ecc204513" />
+<img width="3840" height="2112" alt="muxrisccore48a" src="https://github.com/user-attachments/assets/f4cd7c87-cf5c-4f9d-a264-5f7d33f0c859" />
+<img width="3840" height="2112" alt="muxrisccore48b" src="https://github.com/user-attachments/assets/243fc740-c2f9-4db7-86b9-af2953c5dfbf" />
+<img width="3840" height="2112" alt="muxrisccore48c" src="https://github.com/user-attachments/assets/ad9496c8-0688-47b5-9b49-79ac1b977aa9" />
 
 ---
 
@@ -97,6 +97,14 @@ any    | any    | ##          | Any Raw Data      | direct data line 64-bit valu
                   ftitXYZ                           insV=9 float to integer truncate
 ```
 
+Example boot loader assembly code source and binary:
+```
+source listing      | binary           | explanation
+----------------------------------------------------------------------------------------------------
+ldi  0000 00020000  | 0000000200000002 | load register 0 with value 0x20000 constant jump address
+jmpu 0000           | 000b000000000011 | unconditional jump to register 0
+```
+
 Example looping test assembly code source and binary:
 ```
 source listing      | binary           | explanation
@@ -109,9 +117,10 @@ ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previou
 ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
 ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
 ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  0005 00000018  | 0005000000180002 | load register 5 with value 0x18, ram store start index
+ldi  0005 00020018  | 0005000200180002 | load register 5 with value 0x20018, ram store start index
 ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  0007 0000000B  | 00070000000B0002 | load register 7 with value 0xB, constant 0xB jump address
+ldi  0007 0002000C  | 00070002000C0002 | load register 7 with value 0x2000C constant jump address
+ldi  000b 00020000  | 000b000200000002 | load register 11 with value 0x20000 constant jump address
 copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
 copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
 add  0000 0001 0002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
