@@ -19,5 +19,5 @@ add 0003 0003 0006
 sub 0008 0003 0004
 cmpl 0009 0008
 jmpc 0007 0009
-jmpu 000b 0000
+jmpu 000b
 ## A123456789ABCDEF some data

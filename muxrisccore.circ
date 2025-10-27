@@ -2405,7 +2405,7 @@
     </comp>
     <comp lib="0" loc="(2040,1330)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="u222"/>
+      <a name="label" val="u221"/>
     </comp>
     <comp lib="0" loc="(2040,1350)" name="Clock">
       <a name="appearance" val="NewPins"/>
@@ -2585,7 +2585,7 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2340,1340)" name="Tunnel">
-      <a name="label" val="v222"/>
+      <a name="label" val="v221"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2340,1440)" name="Pin">
