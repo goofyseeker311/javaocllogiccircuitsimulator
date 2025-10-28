@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore49" src="https://github.com/user-attachments/assets/8b11fe3f-ed5d-40e7-a590-c8c6d17d93c7" />
-<img width="3840" height="2112" alt="muxrisccore49a" src="https://github.com/user-attachments/assets/e65042f4-24db-4136-8749-d3156f6ad835" />
-<img width="3840" height="2112" alt="muxrisccore49b" src="https://github.com/user-attachments/assets/4d8700b1-4c5a-4e02-8db8-79da569d33eb" />
-<img width="3840" height="2112" alt="muxrisccore49c" src="https://github.com/user-attachments/assets/e72cc90b-a578-475f-ba53-a21416b7bffd" />
+<img width="3840" height="2112" alt="muxrisccore50" src="https://github.com/user-attachments/assets/f179682b-2e56-4c9d-abce-88d6c70294d5" />
+<img width="3840" height="2112" alt="muxrisccore50a" src="https://github.com/user-attachments/assets/94aff471-252b-48b5-bf52-f545a078816c" />
+<img width="3840" height="2112" alt="muxrisccore50b" src="https://github.com/user-attachments/assets/dffeb99a-ce11-43bf-bb42-bd4f5e5cc01b" />
+<img width="3840" height="2112" alt="muxrisccore50c" src="https://github.com/user-attachments/assets/f1b58bc1-30cd-461c-a820-e72b09ae172e" />
 
 ---
 
@@ -101,8 +101,21 @@ Example boot loader assembly code source and binary:
 ```
 source listing      | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi  0000 00020000  | 0000000200000002 | load register 0 with value 0x20000 constant jump address
-jmpu 0000           | 000b000000000011 | unconditional jump to register 0
+ldi  0000 00000000  | 0000000000000002 | load register 0 with value 0x00000 rom read addr counter
+ldi  0001 00020000  | 0001000200000002 | load register 0 with value 0x20000 ram write addr counter
+ldi  0002 00000001  | 0002000000010002 | load register 0 with value 0x00001 constant value 0x1
+ldi  0003 00020000  | 0003000200000002 | load register 0 with value 0x20000 constant jump address
+ldi  0004 000000ff  | 0004000000ff0002 | load register 0 with value 0x000ff rom to ram index limit
+ldi  0005 00000005  | 0005000000050002 | load register 0 with value 0x00005 contant jump address
+copy 00df 0000      | 00df000000000056 | copy register 0 rom read addr to output reg223 rom addr
+copy 0006 00df      | 000600df00000056 | copy core input register 223 rom data to register 6
+memw 0006 0001      | 0006000100000013 | store register 6 to register 1 memory location
+add  0000 0000 0002 | 0000000000020005 | store addition of register 0 and register 2 to register 0
+add  0001 0001 0002 | 0001000100020005 | store addition of register 1 and register 2 to register 1
+sub  0007 0000 0004 | 0007000000040025 | store subtract of register 0 and register 4 to register 7
+cmpl 0008 0007      | 0008000700000014 | clear register 8 bit 0, set if register 7 int less than 0
+jmpc 0005 0008      | 0005000800000001 | jump to register 5 if register 8 bit 0 is set
+jmpu 0003           | 0003000000000011 | unconditional jump to register 3
 ```
 
 Example looping test assembly code source and binary:
