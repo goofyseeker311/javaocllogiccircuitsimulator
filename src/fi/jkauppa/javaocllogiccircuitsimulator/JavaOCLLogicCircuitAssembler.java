@@ -18,6 +18,8 @@ public class JavaOCLLogicCircuitAssembler {
 			String filenameout = arg[1];
 			JavaOCLLogicCircuitAssembler compiler = new JavaOCLLogicCircuitAssembler();
 			compiler.parse(filenamein, filenameout);
+		} else {
+			System.out.println("arguments expected: program.asm program.bin");
 		}
 		System.out.println("exit.");
 	}
