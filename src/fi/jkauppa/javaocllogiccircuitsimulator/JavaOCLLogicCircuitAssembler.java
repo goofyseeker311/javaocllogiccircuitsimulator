@@ -34,6 +34,7 @@ public class JavaOCLLogicCircuitAssembler {
 			ByteBuffer insvalbytes = ByteBuffer.allocate(8);
 			String commentline = null;
 			int linenumber = 0;
+			String splitregex = "\\s+|,";
 			String readline = null;
 			while((readline=filereader.readLine())!=null) {
 				String codeline = readline.trim();
@@ -58,7 +59,7 @@ public class JavaOCLLogicCircuitAssembler {
 					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', comment");
 				} else if (codeline.startsWith("##")) {
 					codeline = codeline.substring(2).trim();
-					String[] codelineparts = codeline.split(" ");
+					String[] codelineparts = codeline.split(splitregex);
 					String dataline = codelineparts[0];
 					long dataval = Long.parseUnsignedLong(dataline, 16);
 					insvalbytes.clear();
@@ -71,7 +72,7 @@ public class JavaOCLLogicCircuitAssembler {
 					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', data");
 				} else if (codeline.startsWith("nop")) {
 					codeline = codeline.substring(3).trim();
-					String[] codelineparts = codeline.split(" |,");
+					String[] codelineparts = codeline.split(splitregex);
 					String dataline = codelineparts[0];
 					int regX = 0;
 					long dataval = Long.parseUnsignedLong(dataline, 16);
@@ -88,7 +89,7 @@ public class JavaOCLLogicCircuitAssembler {
 					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', sleep");
 				} else if (codeline.startsWith("ldi")) {
 					codeline = codeline.substring(3).trim();
-					String[] codelineparts = codeline.split(" |,");
+					String[] codelineparts = codeline.split(splitregex);
 					String regXline = codelineparts[0];
 					String dataline = codelineparts[1];
 					int regX = Integer.parseInt(regXline, 16);
@@ -116,7 +117,7 @@ public class JavaOCLLogicCircuitAssembler {
 					int regZ = 0;
 					int bitI = 0;
 					int insT = 0;
-					String[] codelineparts = codeline.split(" |,");
+					String[] codelineparts = codeline.split(splitregex);
 					if (codelineparts[0].equals("jmpc")) {
 						insT = 0x01;
 					} else if (codelineparts[0].equals("jmpu")) {
