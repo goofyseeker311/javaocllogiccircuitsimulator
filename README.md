@@ -111,7 +111,7 @@ ldi  0005 0000001A  | 00050000001A0002 | zero branch jump address
 ldi  0006 00000011  | 0006000000110002 | non-zero branch jump address
 ldi  0007 0000FFFF  | 00070000FFFF0002 | 16-bit core num and filter
 ldi  0008 0000FFFF  | 00080000FFFF0002 | 16-bit core rail and filter
-ldi  0009 00000020  | 0009000000200002 | 6-bit core rail and filter shift bits
+ldi  0009 00000020  | 0009000000200002 | 16-bit core rail and filter shift bits
 [ core id zero check ]
 copy 0010 00dc      | 001000DC00000056 | get current core id
 and  0011 0010 0007 | 0011001000070086 | get core id core index
