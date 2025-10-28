@@ -4,8 +4,8 @@ ldi  0001 00020000   // ram write index 0x20000
 ldi  0002 00000001   // constant 0x1
 ldi  0003 00020000   // jump address 0x20000
 ldi  0004 00000100   // rom to ram copy size
-ldi  0005 0000001D   // zero branch jump address
-ldi  0006 00000017   // non-zero branch jump address
+ldi  0005 0000001C   // zero branch jump address
+ldi  0006 00000016   // non-zero branch jump address
 ldi  0007 0000FFFF   // 16-bit core num and filter
 ldi  0008 0000FFFF   // 16-bit core rail and filter
 ldi  0009 00000020   // 16-bit core rail and filter shift bits
@@ -16,7 +16,6 @@ and  0011 0010 0007  // get core id core index
 shl  0008 0008 0009  // shift rail mask left 32 bits
 and  0012 0010 0008  // get core id rail index
 shr  0012 0012 0009  // shift core id rail index right 32 bits
-shr  0012 0012 
 cmpe 0013 0011       // set 1 if core id is zero
 jmpc 0005 0013       // jump to core zero code
 
