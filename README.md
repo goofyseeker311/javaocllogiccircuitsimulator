@@ -97,25 +97,51 @@ any    | any    | ##          | Any Raw Data      | direct data line 64-bit valu
                   ftitXYZ                           insV=9 float to integer truncate
 ```
 
-Example boot loader assembly code source and binary:
+Example distributed broadcast boot loader assembly code source and binary:
 ```
 source listing      | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-ldi  0000 00000000  | 0000000000000002 | load register 0 with value 0x00000 rom read addr counter
-ldi  0001 00020000  | 0001000200000002 | load register 0 with value 0x20000 ram write addr counter
-ldi  0002 00000001  | 0002000000010002 | load register 0 with value 0x00001 constant value 0x1
-ldi  0003 00020000  | 0003000200000002 | load register 0 with value 0x20000 constant jump address
-ldi  0004 00000100  | 0004000001000002 | load register 0 with value 0x00100 rom to ram index limit
-ldi  0005 00000005  | 0005000000050002 | load register 0 with value 0x00005 contant jump address
-copy 00df 0000      | 00df000000000056 | copy register 0 rom read addr to output reg223 rom addr
-copy 0006 00df      | 000600df00000056 | copy core input register 223 rom data to register 6
-memw 0006 0001      | 0006000100000013 | store register 6 to register 1 memory location
-add  0000 0000 0002 | 0000000000020005 | store addition of register 0 and register 2 to register 0
-add  0001 0001 0002 | 0001000100020005 | store addition of register 1 and register 2 to register 1
-sub  0007 0000 0004 | 0007000000040025 | store subtract of register 0 and register 4 to register 7
-cmpl 0008 0007      | 0008000700000014 | clear register 8 bit 0, set if register 7 int less than 0
-jmpc 0005 0008      | 0005000800000001 | jump to register 5 if register 8 bit 0 is set
-jmpu 0003           | 0003000000000011 | unconditional jump to register 3
+[ init variables ]
+ldi  0000 00000000  | 0000000000000002 | rom read index 0x00000
+ldi  0001 00020000  | 0001000200000002 | ram write index 0x20000
+ldi  0002 00000001  | 0002000000010002 | constant 0x1
+ldi  0003 00020000  | 0003000200000002 | jump address 0x20000
+ldi  0004 00000100  | 0004000001000002 | rom to ram copy size
+ldi  0005 0000001A  | 00050000001A0002 | zero branch jump address
+ldi  0006 00000011  | 0006000000110002 | non-zero branch jump address
+ldi  0007 0000FFFF  | 00070000FFFF0002 | 16-bit core num and filter
+ldi  0008 0000FFFF  | 00080000FFFF0002 | 16-bit core rail and filter
+ldi  0009 00000020  | 0009000000200002 | 6-bit core rail and filter shift bits
+[ core id zero check ]
+copy 0010 00dc      | 001000DC00000056 | get current core id
+and  0011 0010 0007 | 0011001000070086 | get core id core index
+shl  0008 0008 0009 | 0008000800090006 | shift rail mask left 32 bits
+and  0012 0010 0008 | 0012001000080086 | get core id rail index
+shr  0012 0012 0009 | 0012001200090016 | shift core id rail index right 32 bits
+cmpe 0013 0011      | 0013001100000004 | set 1 if core id is zero
+jmpc 0005 0013      | 0005001300000001 | jump to core zero code
+[ core id non-zero branch ]
+nop  00000002       | 0000000000020000 | exact sync wait 3 cycles with zero branch
+copy 0030 00E0      | 003000E000000056 | get external rom data from core rail zero
+memw 0030 0001      | 0030000100000013 | store external rom data to ram
+add  0000 0000 0002 | 0000000000020005 | rom index++
+add  0001 0001 0002 | 0001000100020005 | ram index++
+sub  0031 0000 0004 | 0031000000040025 | rom index minus copy size
+cmpl 0032 0031      | 0032003100000014 | set 1 if rom index < copy size
+jmpc 0006 0032      | 0006003200000001 | if rom index < copy size loop back
+jmpu 0003           | 0003000000000011 | jump to ram start if done
+[ core id zero branch ]
+copy 00df 0000      | 00DF000000000056 | put rom index to output1
+copy 0030 00df      | 003000DF00000056 | get rom data from input1
+copy 00E0 0030      | 00E0003000000056 | store external rom data to core rail zero
+memw 0030 0001      | 0030000100000013 | store external rom data to ram
+nop  0000           | 0000000000000000 | exact sync wait 1 cycles with zero branch
+add  0000 0000 0002 | 0000000000020005 | rom index++
+add  0001 0001 0002 | 0001000100020005 | ram index++
+sub  0031 0000 0004 | 0031000000040025 | rom index minus copy size
+cmpl 0032 0031      | 0032003100000014 | set 1 if rom index < copy size
+jmpc 0005 0032      | 0005003200000001 | if rom index < copy size loop back
+jmpu 0003           | 0003000000000011 | jump to ram start if done
 ```
 
 Example looping test assembly code source and binary:
