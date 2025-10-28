@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore50" src="https://github.com/user-attachments/assets/f179682b-2e56-4c9d-abce-88d6c70294d5" />
-<img width="3840" height="2112" alt="muxrisccore50a" src="https://github.com/user-attachments/assets/94aff471-252b-48b5-bf52-f545a078816c" />
-<img width="3840" height="2112" alt="muxrisccore50b" src="https://github.com/user-attachments/assets/dffeb99a-ce11-43bf-bb42-bd4f5e5cc01b" />
-<img width="3840" height="2112" alt="muxrisccore50c" src="https://github.com/user-attachments/assets/f1b58bc1-30cd-461c-a820-e72b09ae172e" />
+<img width="3840" height="2112" alt="muxrisccore51" src="https://github.com/user-attachments/assets/64eb708a-73c7-4193-9cc5-f09ae46efc5d" />
+<img width="3840" height="2112" alt="muxrisccore51a" src="https://github.com/user-attachments/assets/284cbecb-7f85-42d5-a4c2-9da698fee181" />
+<img width="3840" height="2112" alt="muxrisccore51b" src="https://github.com/user-attachments/assets/bf0e5e32-343f-454c-9e04-ec98e103f54b" />
+<img width="3840" height="2112" alt="muxrisccore51c" src="https://github.com/user-attachments/assets/6c34bead-f431-4ad8-8c27-cb101e153f92" />
 
 ---
 
@@ -105,7 +105,7 @@ ldi  0000 00000000  | 0000000000000002 | load register 0 with value 0x00000 rom 
 ldi  0001 00020000  | 0001000200000002 | load register 0 with value 0x20000 ram write addr counter
 ldi  0002 00000001  | 0002000000010002 | load register 0 with value 0x00001 constant value 0x1
 ldi  0003 00020000  | 0003000200000002 | load register 0 with value 0x20000 constant jump address
-ldi  0004 000000ff  | 0004000000ff0002 | load register 0 with value 0x000ff rom to ram index limit
+ldi  0004 00000100  | 0004000001000002 | load register 0 with value 0x000ff rom to ram index limit
 ldi  0005 00000005  | 0005000000050002 | load register 0 with value 0x00005 contant jump address
 copy 00df 0000      | 00df000000000056 | copy register 0 rom read addr to output reg223 rom addr
 copy 0006 00df      | 000600df00000056 | copy core input register 223 rom data to register 6
