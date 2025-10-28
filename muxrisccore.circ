@@ -92,6 +92,7 @@
       <a name="addrWidth" val="17"/>
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
+      <a name="trigger" val="falling"/>
       <a name="type" val="nonvolatile"/>
     </comp>
     <comp loc="(1680,750)" name="chip"/>
@@ -11700,7 +11701,7 @@
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(2140,1110)" name="Constant">
-      <a name="value" val="0xffff"/>
+      <a name="value" val="0x1ffff"/>
       <a name="width" val="18"/>
     </comp>
     <comp lib="0" loc="(2160,1220)" name="Constant">
