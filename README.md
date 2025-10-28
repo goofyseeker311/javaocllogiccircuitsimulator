@@ -105,7 +105,7 @@ ldi  0000 00000000  | 0000000000000002 | load register 0 with value 0x00000 rom 
 ldi  0001 00020000  | 0001000200000002 | load register 0 with value 0x20000 ram write addr counter
 ldi  0002 00000001  | 0002000000010002 | load register 0 with value 0x00001 constant value 0x1
 ldi  0003 00020000  | 0003000200000002 | load register 0 with value 0x20000 constant jump address
-ldi  0004 00000100  | 0004000001000002 | load register 0 with value 0x000ff rom to ram index limit
+ldi  0004 00000100  | 0004000001000002 | load register 0 with value 0x00100 rom to ram index limit
 ldi  0005 00000005  | 0005000000050002 | load register 0 with value 0x00005 contant jump address
 copy 00df 0000      | 00df000000000056 | copy register 0 rom read addr to output reg223 rom addr
 copy 0006 00df      | 000600df00000056 | copy core input register 223 rom data to register 6
