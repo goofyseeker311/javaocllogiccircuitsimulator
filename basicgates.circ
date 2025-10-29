@@ -61,8 +61,14 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1000.0"/>
     <comp lib="0" loc="(630,690)" name="Constant"/>
-    <comp lib="0" loc="(630,710)" name="Constant"/>
-    <comp lib="0" loc="(630,730)" name="Constant"/>
+    <comp lib="0" loc="(630,710)" name="Constant">
+      <a name="value" val="0x3"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(630,730)" name="Constant">
+      <a name="value" val="0x3"/>
+      <a name="width" val="2"/>
+    </comp>
     <comp lib="0" loc="(850,690)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -70,8 +76,9 @@
     <comp lib="0" loc="(850,710)" name="Probe">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
+      <a name="radix" val="10unsigned"/>
     </comp>
-    <comp loc="(850,690)" name="adder1bit"/>
+    <comp loc="(850,690)" name="adder2bit"/>
   </circuit>
   <circuit name="adder1bit">
     <a name="appearance" val="logisim_evolution"/>
@@ -138,5 +145,67 @@
     <wire from="(920,860)" to="(920,970)"/>
     <wire from="(920,860)" to="(970,860)"/>
     <wire from="(920,970)" to="(960,970)"/>
+  </circuit>
+  <circuit name="adder2bit">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="adder2bit"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1000.0"/>
+    <comp lib="0" loc="(1460,810)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="overflow"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(1460,940)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="type" val="output"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(1460,940)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(540,810)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="inflow"/>
+    </comp>
+    <comp lib="0" loc="(550,950)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input1"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(550,950)" name="Splitter"/>
+    <comp lib="0" loc="(550,990)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input2"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(550,990)" name="Splitter"/>
+    <comp loc="(1250,810)" name="adder1bit"/>
+    <comp loc="(930,810)" name="adder1bit"/>
+    <wire from="(1000,850)" to="(1000,980)"/>
+    <wire from="(1000,850)" to="(1030,850)"/>
+    <wire from="(1250,810)" to="(1460,810)"/>
+    <wire from="(1250,830)" to="(1270,830)"/>
+    <wire from="(1270,830)" to="(1270,930)"/>
+    <wire from="(1270,930)" to="(1440,930)"/>
+    <wire from="(540,810)" to="(710,810)"/>
+    <wire from="(570,930)" to="(620,930)"/>
+    <wire from="(570,940)" to="(980,940)"/>
+    <wire from="(570,970)" to="(640,970)"/>
+    <wire from="(570,980)" to="(1000,980)"/>
+    <wire from="(620,830)" to="(620,930)"/>
+    <wire from="(620,830)" to="(710,830)"/>
+    <wire from="(640,850)" to="(640,970)"/>
+    <wire from="(640,850)" to="(710,850)"/>
+    <wire from="(930,810)" to="(1030,810)"/>
+    <wire from="(930,830)" to="(950,830)"/>
+    <wire from="(950,830)" to="(950,920)"/>
+    <wire from="(950,920)" to="(1440,920)"/>
+    <wire from="(980,830)" to="(1030,830)"/>
+    <wire from="(980,830)" to="(980,940)"/>
   </circuit>
 </project>
