@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
 import java.nio.file.Files;
@@ -194,9 +195,9 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0x15) {
 				try {
+					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
 					Math.addExact(oldregisters[regY], oldregisters[regZ]);
 				} catch (ArithmeticException e) {
-					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
 					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
 				}
 				programcounter++;
@@ -205,9 +206,9 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0x35) {
 				try {
+					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
 					Math.subtractExact(oldregisters[regY], oldregisters[regZ]);
 				} catch (ArithmeticException e) {
-					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
 					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
 				}
 				programcounter++;
@@ -216,9 +217,16 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0x55) {
 				try {
+					newregisters[regX] = 0;
 					Math.multiplyExact(oldregisters[regY], oldregisters[regZ]);
 				} catch (ArithmeticException e) {
-					// todo
+					BigInteger oldregY = BigInteger.valueOf(oldregisters[regY]);
+					BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ]);
+					BigInteger newregX = oldregY.add(oldregZ);
+					ByteBuffer newregXbytes = ByteBuffer.allocate(16);
+					newregXbytes.put(newregX.toByteArray());
+					newregXbytes.position(8);
+					newregisters[regX] = newregXbytes.getLong();
 				}
 				programcounter++;
 			} else if (insT==0x65) {
