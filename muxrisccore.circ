@@ -11714,10 +11714,10 @@
       <a name="value" val="0xc"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(220,1690)" name="Clock">
+    <comp lib="0" loc="(2180,1370)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
-    <comp lib="0" loc="(2290,1370)" name="Clock">
+    <comp lib="0" loc="(220,1690)" name="Clock">
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(290,1370)" name="Constant"/>
@@ -13038,6 +13038,7 @@
     <wire from="(2160,950)" to="(2160,960)"/>
     <wire from="(2170,1200)" to="(2270,1200)"/>
     <wire from="(2170,940)" to="(2200,940)"/>
+    <wire from="(2180,1370)" to="(2290,1370)"/>
     <wire from="(220,1670)" to="(220,1690)"/>
     <wire from="(2200,940)" to="(2200,1420)"/>
     <wire from="(2200,940)" to="(2610,940)"/>
@@ -13053,7 +13054,11 @@
     <wire from="(2270,1130)" to="(2270,1200)"/>
     <wire from="(2270,1130)" to="(2310,1130)"/>
     <wire from="(2270,1200)" to="(2270,1290)"/>
+    <wire from="(2270,1290)" to="(2270,1450)"/>
     <wire from="(2270,1290)" to="(2310,1290)"/>
+    <wire from="(2270,1450)" to="(2270,1610)"/>
+    <wire from="(2270,1450)" to="(2310,1450)"/>
+    <wire from="(2270,1610)" to="(2310,1610)"/>
     <wire from="(2290,1160)" to="(2290,1320)"/>
     <wire from="(2290,1160)" to="(2310,1160)"/>
     <wire from="(2290,1320)" to="(2290,1370)"/>
