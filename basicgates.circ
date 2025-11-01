@@ -106,7 +106,6 @@
     <comp lib="3" loc="(1260,1120)" name="Multiplier">
       <a name="width" val="64"/>
     </comp>
-    <comp loc="(1360,980)" name="multiplier64bit"/>
     <wire from="(1080,1000)" to="(1120,1000)"/>
     <wire from="(1080,1020)" to="(1110,1020)"/>
     <wire from="(1080,980)" to="(1130,980)"/>
@@ -5216,5 +5215,11 @@
     <wire from="(870,1470)" to="(870,1570)"/>
     <wire from="(880,1170)" to="(880,1210)"/>
     <wire from="(890,1470)" to="(890,1720)"/>
+  </circuit>
+  <circuit name="divider1bit">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="divider1bit"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="1000.0"/>
   </circuit>
 </project>
