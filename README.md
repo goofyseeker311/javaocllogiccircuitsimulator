@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore51" src="https://github.com/user-attachments/assets/64eb708a-73c7-4193-9cc5-f09ae46efc5d" />
-<img width="3840" height="2112" alt="muxrisccore51a" src="https://github.com/user-attachments/assets/284cbecb-7f85-42d5-a4c2-9da698fee181" />
-<img width="3840" height="2112" alt="muxrisccore51b" src="https://github.com/user-attachments/assets/bf0e5e32-343f-454c-9e04-ec98e103f54b" />
-<img width="3840" height="2112" alt="muxrisccore51c" src="https://github.com/user-attachments/assets/6c34bead-f431-4ad8-8c27-cb101e153f92" />
+<img width="3840" height="2112" alt="muxrisccore52" src="https://github.com/user-attachments/assets/1e30030a-2b65-4674-a9c2-b6a329561fb9" />
+<img width="3840" height="2112" alt="muxrisccore52a" src="https://github.com/user-attachments/assets/0d29eb2b-46ab-4a9b-a7c8-bc7260a39f35" />
+<img width="3840" height="2112" alt="muxrisccore52b" src="https://github.com/user-attachments/assets/dae65940-c0d3-497b-8310-1371625023bf" />
+<img width="3840" height="2112" alt="muxrisccore52c" src="https://github.com/user-attachments/assets/224e605f-d1a3-41ee-9061-a89358ba907d" />
 
 ---
 
@@ -34,6 +34,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
 Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers.
+Each core contains 1MB chip rom, 1MB chip ram, 1MB display ram, and 16MB nand nvram.
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
@@ -102,10 +103,10 @@ Example distributed broadcast boot loader assembly code source and binary:
 source listing      | binary           | explanation
 ----------------------------------------------------------------------------------------------------
 [ init variables ]
-ldi  0000 00000000  | 0000000000000002 | rom read index 0x00000
-ldi  0001 00020000  | 0001000200000002 | ram write index 0x20000
+ldi  0000 00000000  | 0000000000000002 | rom read index 0x0000000
+ldi  0001 01000000  | 0001010000000002 | ram write index 0x1000000
 ldi  0002 00000001  | 0002000000010002 | constant 0x1
-ldi  0003 00020000  | 0003000200000002 | jump address 0x20000
+ldi  0003 01000000  | 0003010000000002 | jump address 0x1000000
 ldi  0004 00000100  | 0004000001000002 | rom to ram copy size
 ldi  0005 0000001A  | 00050000001A0002 | zero branch jump address
 ldi  0006 00000011  | 0006000000110002 | non-zero branch jump address
@@ -156,10 +157,10 @@ ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previou
 ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
 ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
 ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  0005 00020018  | 0005000200180002 | load register 5 with value 0x20018, ram store start index
+ldi  0005 01000018  | 0005010000180002 | load register 5 with value 0x1000018, ram store start index
 ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  0007 0002000C  | 00070002000C0002 | load register 7 with value 0x2000C constant jump address
-ldi  000b 00020000  | 000b000200000002 | load register 11 with value 0x20000 constant jump address
+ldi  0007 0100000C  | 00070100000C0002 | load register 7 with value 0x100000C constant jump address
+ldi  000b 01000000  | 000b010000000002 | load register 11 with value 0x1000000 constant jump address
 copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
 copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
 add  0000 0001 0002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
