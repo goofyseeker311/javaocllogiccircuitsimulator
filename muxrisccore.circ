@@ -12841,7 +12841,6 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="3" loc="(880,2230)" name="Multiplier">
-      <a name="mode" val="twosComplement"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="3" loc="(940,3160)" name="FPToInt">
