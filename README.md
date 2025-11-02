@@ -21,10 +21,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2112" alt="muxrisccore52" src="https://github.com/user-attachments/assets/1e30030a-2b65-4674-a9c2-b6a329561fb9" />
-<img width="3840" height="2112" alt="muxrisccore52a" src="https://github.com/user-attachments/assets/0d29eb2b-46ab-4a9b-a7c8-bc7260a39f35" />
-<img width="3840" height="2112" alt="muxrisccore52b" src="https://github.com/user-attachments/assets/dae65940-c0d3-497b-8310-1371625023bf" />
-<img width="3840" height="2112" alt="muxrisccore52c" src="https://github.com/user-attachments/assets/224e605f-d1a3-41ee-9061-a89358ba907d" />
+<img width="3840" height="2112" alt="muxrisccore54" src="https://github.com/user-attachments/assets/28303bf8-3cae-4af3-875d-be1a6dae6996" />
+<img width="3840" height="2112" alt="muxrisccore54a" src="https://github.com/user-attachments/assets/feddfb98-9aa1-4c34-a69b-e1407f565365" />
+<img width="3840" height="2112" alt="muxrisccore54b" src="https://github.com/user-attachments/assets/bdb5a06b-483a-4dc7-b2b9-700d641e69d2" />
+<img width="3840" height="2112" alt="muxrisccore54c" src="https://github.com/user-attachments/assets/c5f60a70-162d-4622-a3a7-a394c6018089" />
 
 ---
 
@@ -34,7 +34,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
 Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers.
-Each core contains 26-bit addressed 1MB rom, 1MB ram, 1MB touch-display ram, and 16MB nand nvram.
+Each core contains 26-bit addressed 1MB rom, 1MB ram, 1MB touch-display ram, and 128MB nand nvram.
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
