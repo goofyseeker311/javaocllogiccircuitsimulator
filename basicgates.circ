@@ -5221,5 +5221,114 @@
     <a name="circuit" val="divider1bit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1000.0"/>
+    <comp lib="0" loc="(1000,1120)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1000,1140)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(1000,1170)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1000,1190)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(1000,1250)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1000,1270)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(1000,1300)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1000,1320)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(1400,860)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(1560,860)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="remainder"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(1560,950)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="output1"/>
+      <a name="type" val="output"/>
+    </comp>
+    <comp lib="0" loc="(640,880)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="inupper"/>
+    </comp>
+    <comp lib="0" loc="(640,950)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input1"/>
+    </comp>
+    <comp lib="0" loc="(640,970)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="input2"/>
+    </comp>
+    <comp lib="3" loc="(980,1140)" name="Divider">
+      <a name="mode" val="twosComplement"/>
+      <a name="width" val="1"/>
+    </comp>
+    <comp lib="3" loc="(980,1270)" name="Divider">
+      <a name="width" val="1"/>
+    </comp>
+    <wire from="(1400,860)" to="(1560,860)"/>
+    <wire from="(640,880)" to="(740,880)"/>
+    <wire from="(640,950)" to="(730,950)"/>
+    <wire from="(640,970)" to="(720,970)"/>
+    <wire from="(720,1150)" to="(720,1280)"/>
+    <wire from="(720,1150)" to="(940,1150)"/>
+    <wire from="(720,1280)" to="(940,1280)"/>
+    <wire from="(720,970)" to="(720,1150)"/>
+    <wire from="(720,970)" to="(830,970)"/>
+    <wire from="(730,1130)" to="(730,1260)"/>
+    <wire from="(730,1130)" to="(940,1130)"/>
+    <wire from="(730,1260)" to="(940,1260)"/>
+    <wire from="(730,950)" to="(1560,950)"/>
+    <wire from="(730,950)" to="(730,1130)"/>
+    <wire from="(740,1110)" to="(740,1240)"/>
+    <wire from="(740,1110)" to="(960,1110)"/>
+    <wire from="(740,1240)" to="(960,1240)"/>
+    <wire from="(740,880)" to="(740,1110)"/>
+    <wire from="(740,880)" to="(830,880)"/>
+    <wire from="(960,1110)" to="(960,1120)"/>
+    <wire from="(960,1160)" to="(960,1190)"/>
+    <wire from="(960,1190)" to="(990,1190)"/>
+    <wire from="(960,1240)" to="(960,1250)"/>
+    <wire from="(960,1290)" to="(960,1320)"/>
+    <wire from="(960,1320)" to="(990,1320)"/>
+    <wire from="(980,1140)" to="(990,1140)"/>
+    <wire from="(980,1270)" to="(990,1270)"/>
+    <wire from="(990,1120)" to="(1000,1120)"/>
+    <wire from="(990,1120)" to="(990,1140)"/>
+    <wire from="(990,1140)" to="(1000,1140)"/>
+    <wire from="(990,1170)" to="(1000,1170)"/>
+    <wire from="(990,1170)" to="(990,1190)"/>
+    <wire from="(990,1190)" to="(1000,1190)"/>
+    <wire from="(990,1250)" to="(1000,1250)"/>
+    <wire from="(990,1250)" to="(990,1270)"/>
+    <wire from="(990,1270)" to="(1000,1270)"/>
+    <wire from="(990,1300)" to="(1000,1300)"/>
+    <wire from="(990,1300)" to="(990,1320)"/>
+    <wire from="(990,1320)" to="(1000,1320)"/>
   </circuit>
 </project>
