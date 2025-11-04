@@ -12874,6 +12874,8 @@
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
       <a name="enables" val="line"/>
+      <a name="label" val="rom1"/>
+      <a name="labelvisible" val="true"/>
       <a name="type" val="nonvolatile"/>
     </comp>
     <comp lib="4" loc="(2310,1280)" name="RAM">
@@ -12881,6 +12883,8 @@
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
       <a name="enables" val="line"/>
+      <a name="label" val="ram1"/>
+      <a name="labelvisible" val="true"/>
       <a name="type" val="nonvolatile"/>
     </comp>
     <comp lib="4" loc="(2310,1440)" name="RAM">
@@ -12888,6 +12892,8 @@
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
       <a name="enables" val="line"/>
+      <a name="label" val="disp1"/>
+      <a name="labelvisible" val="true"/>
       <a name="type" val="nonvolatile"/>
     </comp>
     <comp lib="4" loc="(2310,1600)" name="RAM">
@@ -12895,6 +12901,8 @@
       <a name="appearance" val="classic"/>
       <a name="dataWidth" val="64"/>
       <a name="enables" val="line"/>
+      <a name="label" val="nand1"/>
+      <a name="labelvisible" val="true"/>
       <a name="type" val="nonvolatile"/>
     </comp>
     <comp lib="4" loc="(540,1430)" name="Counter">
