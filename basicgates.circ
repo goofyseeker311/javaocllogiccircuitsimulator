@@ -24546,12 +24546,12 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2710,2660)" name="Pin">
+    <comp lib="0" loc="(2810,2620)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0x30"/>
       <a name="label" val="shiftleft1"/>
       <a name="radix" val="16"/>
-      <a name="width" val="8"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2930,2660)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -24561,7 +24561,7 @@
       <a name="type" val="output"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(330,1070)" name="Pin">
+    <comp lib="0" loc="(510,1340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0xcafebabecafebabe"/>
       <a name="label" val="input1"/>
@@ -28034,8 +28034,10 @@
     <wire from="(2500,990)" to="(2500,1010)"/>
     <wire from="(2520,1360)" to="(2520,3940)"/>
     <wire from="(2520,3940)" to="(2710,3940)"/>
-    <wire from="(330,1070)" to="(530,1070)"/>
-    <wire from="(530,1070)" to="(530,1340)"/>
+    <wire from="(2710,2640)" to="(2710,2660)"/>
+    <wire from="(2710,2640)" to="(2810,2640)"/>
+    <wire from="(2810,2620)" to="(2810,2640)"/>
+    <wire from="(510,1340)" to="(530,1340)"/>
     <wire from="(550,1350)" to="(610,1350)"/>
     <wire from="(550,1370)" to="(610,1370)"/>
     <wire from="(550,1390)" to="(610,1390)"/>
@@ -30491,12 +30493,12 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2680,1700)" name="Pin">
+    <comp lib="0" loc="(2770,1660)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0x30"/>
       <a name="label" val="shiftright1"/>
       <a name="radix" val="16"/>
-      <a name="width" val="8"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2900,1700)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -30506,7 +30508,7 @@
       <a name="type" val="output"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(300,170)" name="Pin">
+    <comp lib="0" loc="(470,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0xcafebabecafebabe"/>
       <a name="label" val="input1"/>
@@ -33867,8 +33869,11 @@
     <wire from="(2470,2930)" to="(2470,2950)"/>
     <wire from="(2470,2950)" to="(2470,2970)"/>
     <wire from="(2490,2980)" to="(2680,2980)"/>
-    <wire from="(300,170)" to="(500,170)"/>
-    <wire from="(500,170)" to="(500,440)"/>
+    <wire from="(2680,1680)" to="(2680,1700)"/>
+    <wire from="(2680,1680)" to="(2780,1680)"/>
+    <wire from="(2770,1660)" to="(2780,1660)"/>
+    <wire from="(2780,1660)" to="(2780,1680)"/>
+    <wire from="(470,440)" to="(500,440)"/>
     <wire from="(520,1010)" to="(580,1010)"/>
     <wire from="(520,1030)" to="(580,1030)"/>
     <wire from="(520,1050)" to="(580,1050)"/>
@@ -35192,7 +35197,6 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2470,2970)" name="Constant"/>
     <comp lib="0" loc="(2490,2980)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="facing" val="west"/>
@@ -35200,12 +35204,12 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2680,1700)" name="Pin">
+    <comp lib="0" loc="(2800,1660)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="initial" val="0x30"/>
+      <a name="initial" val="0x10"/>
       <a name="label" val="ashiftright1"/>
       <a name="radix" val="16"/>
-      <a name="width" val="8"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2900,1700)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -35217,7 +35221,7 @@
     </comp>
     <comp lib="0" loc="(300,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="initial" val="0xcafebabecafebabe"/>
+      <a name="initial" val="0x80000000cafebabe"/>
       <a name="label" val="input1"/>
       <a name="radix" val="16"/>
       <a name="width" val="64"/>
@@ -38576,6 +38580,10 @@
     <wire from="(2470,2930)" to="(2470,2950)"/>
     <wire from="(2470,2950)" to="(2470,2970)"/>
     <wire from="(2490,2980)" to="(2680,2980)"/>
+    <wire from="(2680,1680)" to="(2680,1700)"/>
+    <wire from="(2680,1680)" to="(2810,1680)"/>
+    <wire from="(2800,1660)" to="(2810,1660)"/>
+    <wire from="(2810,1660)" to="(2810,1680)"/>
     <wire from="(300,170)" to="(500,170)"/>
     <wire from="(500,170)" to="(500,440)"/>
     <wire from="(520,1010)" to="(580,1010)"/>
@@ -38677,7 +38685,9 @@
     <wire from="(580,1650)" to="(610,1650)"/>
     <wire from="(580,1670)" to="(610,1670)"/>
     <wire from="(580,1690)" to="(610,1690)"/>
+    <wire from="(580,1710)" to="(580,1730)"/>
     <wire from="(580,1710)" to="(610,1710)"/>
+    <wire from="(580,1730)" to="(610,1730)"/>
     <wire from="(580,450)" to="(2500,450)"/>
     <wire from="(580,470)" to="(610,470)"/>
     <wire from="(580,490)" to="(610,490)"/>
@@ -39915,12 +39925,12 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2710,2660)" name="Pin">
+    <comp lib="0" loc="(2830,2620)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0x30"/>
       <a name="label" val="rotateleft1"/>
       <a name="radix" val="16"/>
-      <a name="width" val="8"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2930,2660)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -43343,6 +43353,10 @@
     <wire from="(2490,3920)" to="(2710,3920)"/>
     <wire from="(2520,1360)" to="(2520,3940)"/>
     <wire from="(2520,3940)" to="(2710,3940)"/>
+    <wire from="(2710,2640)" to="(2710,2660)"/>
+    <wire from="(2710,2640)" to="(2840,2640)"/>
+    <wire from="(2830,2620)" to="(2840,2620)"/>
+    <wire from="(2840,2620)" to="(2840,2640)"/>
     <wire from="(330,1070)" to="(390,1070)"/>
     <wire from="(390,1070)" to="(390,1340)"/>
     <wire from="(390,1340)" to="(530,1340)"/>
@@ -44689,12 +44703,12 @@
       <a name="incoming" val="64"/>
       <a name="spacing" val="2"/>
     </comp>
-    <comp lib="0" loc="(2680,1700)" name="Pin">
+    <comp lib="0" loc="(2800,1660)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="initial" val="0x30"/>
       <a name="label" val="rotateright1"/>
       <a name="radix" val="16"/>
-      <a name="width" val="8"/>
+      <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(2900,1700)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -48008,6 +48022,10 @@
     <wire from="(2440,2950)" to="(2470,2950)"/>
     <wire from="(2460,2960)" to="(2680,2960)"/>
     <wire from="(2490,2980)" to="(2680,2980)"/>
+    <wire from="(2680,1680)" to="(2680,1700)"/>
+    <wire from="(2680,1680)" to="(2810,1680)"/>
+    <wire from="(2800,1660)" to="(2810,1660)"/>
+    <wire from="(2810,1660)" to="(2810,1680)"/>
     <wire from="(470,420)" to="(500,420)"/>
     <wire from="(490,1720)" to="(500,1720)"/>
     <wire from="(490,440)" to="(490,1720)"/>
