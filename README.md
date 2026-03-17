@@ -176,16 +176,18 @@ jmpu 000b           | 000b000000000011 | unconditional jump to register 11
 
 Example looping test assembly to c-code approximate:
 ```
-while(true) {                   // infinite while loop
-  long fib1 = 0x1;              // init fib1 with 64-bit long integer value 1
-  long fib2 = 0x1;              // init fib2 with 64-bit long integer value 1
-  long fib3 = 0x0;              // init fib3 with 64-bit long integer value 0
-  long *mem = 0x18;             // init mem as 64-bit long integer pointer at address 0x18
-  for (long i=0;i<32;i++) {     // for loop 64-bit long integer i index value from 0 to 31
-    fib3 = fib2;                // copy old fib2 value to fib3
-    fib2 = fib1;                // copy old fib1 value to fib2
-    fib1 = fib2 + fib3;         // calculate new fib1 value by adding fib2 and fib3
-    mem[i] = fib1;              // store fib1 value to mem location +i index
-  }                             // for loop close
-}                               // infinite while loop close
+while(true) {                        // infinite while loop
+  register<0> long fib1 = 0x1;       // init fib1 with register 0 64-bit long integer value 1
+  register<1> long fib2 = 0x1;       // init fib2 with register 1 64-bit long integer value 1
+  register<2> long fib3 = 0x0;       // init fib3 with register 2 64-bit long integer value 0
+  register<3> long i = 0;            // init loop i with register 3 64-bit long integer value 0
+  register<4> long imax = 32;        // init loop imax with register 4 64-bit long integer value 32
+  register<5> long *mem = 0x1000018; // init mem as 64-bit long integer pointer at address 0x1000018
+  for (;i<imax;i++) {                // for loop 64-bit long integer i index value from 0 to 31
+    fib3 = fib2;                     // copy old fib2 value to fib3
+    fib2 = fib1;                     // copy old fib1 value to fib2
+    fib1 = fib2 + fib3;              // calculate new fib1 value by adding fib2 and fib3
+    mem[i] = fib1;                   // store fib1 value to mem location +i index
+  }                                  // for loop close
+}                                    // infinite while loop close
 ```
