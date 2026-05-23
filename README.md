@@ -11,7 +11,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 * Each separately programmable/assignable micro-FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
 * Programmer/IDE is responsible of assigning correct output pointer values for each gate considering multiple OR-multiplexed value store collision.
 
-Logisim evolution 4.0.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
+Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
 
 GNU Octave 10.3.0 used for generic math and generating circuit constants: https://octave.org
 
