@@ -13,7 +13,7 @@ Includes visual designer that also converts OpenCL C code to binary micro-fpga g
 
 Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
 
-GNU Octave 10.3.0 used for generic math and generating circuit constants: https://octave.org
+GNU Octave 11.1.0 used for generic math and generating circuit constants: https://octave.org
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
