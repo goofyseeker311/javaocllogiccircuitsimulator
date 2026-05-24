@@ -22,10 +22,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore55" src="https://github.com/user-attachments/assets/dfda923e-6bb6-4d77-9b1f-f88e75d98b98" />
-<img width="3840" height="2112" alt="muxrisccore55a" src="https://github.com/user-attachments/assets/1f5e05a2-db46-47bc-b845-fd6fec2041ec" />
-<img width="3840" height="2112" alt="muxrisccore55b" src="https://github.com/user-attachments/assets/924e4645-b95d-4e0d-8a1d-6794cb56f6ec" />
-<img width="3840" height="2112" alt="muxrisccore55c" src="https://github.com/user-attachments/assets/2675dee6-00e9-432a-9937-8f9092ea61d2" />
+<img width="3840" height="2112" alt="muxrisccore57" src="https://github.com/user-attachments/assets/7aae951b-1e20-4484-a562-6328ed696c8e" />
 
 ---
 
@@ -99,53 +96,6 @@ any    | any    | ##          | Any Raw Data      | direct data line 64-bit valu
                   ftitXYZ                           insV=9 float to integer truncate
 ```
 
-Example distributed broadcast boot loader assembly code source and binary:
-```
-source listing      | binary           | explanation
-----------------------------------------------------------------------------------------------------
-[ init variables ]
-ldi  0000 00000000  | 0000000000000002 | rom read index 0x0000000
-ldi  0001 01000000  | 0001010000000002 | ram write index 0x1000000
-ldi  0002 00000001  | 0002000000010002 | constant 0x1
-ldi  0003 01000000  | 0003010000000002 | jump address 0x1000000
-ldi  0004 00000100  | 0004000001000002 | rom to ram copy size
-ldi  0005 0000001A  | 00050000001A0002 | zero branch jump address
-ldi  0006 00000011  | 0006000000110002 | non-zero branch jump address
-ldi  0007 0000FFFF  | 00070000FFFF0002 | 16-bit core num and filter
-ldi  0008 0000FFFF  | 00080000FFFF0002 | 16-bit core rail and filter
-ldi  0009 00000020  | 0009000000200002 | 16-bit core rail and filter shift bits
-[ core id zero check ]
-copy 0010 00dc      | 001000DC00000056 | get current core id
-and  0011 0010 0007 | 0011001000070086 | get core id core index
-shl  0008 0008 0009 | 0008000800090006 | shift rail mask left 32 bits
-and  0012 0010 0008 | 0012001000080086 | get core id rail index
-shr  0012 0012 0009 | 0012001200090016 | shift core id rail index right 32 bits
-cmpe 0013 0011      | 0013001100000004 | set 1 if core id is zero
-jmpc 0005 0013      | 0005001300000001 | jump to core zero code
-[ core id non-zero branch ]
-nop  00000002       | 0000000000020000 | exact sync wait 3 cycles with zero branch
-copy 0030 00E0      | 003000E000000056 | get external rom data from core rail zero
-memw 0030 0001      | 0030000100000013 | store external rom data to ram
-add  0000 0000 0002 | 0000000000020005 | rom index++
-add  0001 0001 0002 | 0001000100020005 | ram index++
-sub  0031 0000 0004 | 0031000000040025 | rom index minus copy size
-cmpl 0032 0031      | 0032003100000014 | set 1 if rom index < copy size
-jmpc 0006 0032      | 0006003200000001 | if rom index < copy size loop back
-jmpu 0003           | 0003000000000011 | jump to ram start if done
-[ core id zero branch ]
-copy 00df 0000      | 00DF000000000056 | put rom index to output1
-copy 0030 00df      | 003000DF00000056 | get rom data from input1
-copy 00E0 0030      | 00E0003000000056 | store external rom data to core rail zero
-memw 0030 0001      | 0030000100000013 | store external rom data to ram
-nop  0000           | 0000000000000000 | exact sync wait 1 cycles with zero branch
-add  0000 0000 0002 | 0000000000020005 | rom index++
-add  0001 0001 0002 | 0001000100020005 | ram index++
-sub  0031 0000 0004 | 0031000000040025 | rom index minus copy size
-cmpl 0032 0031      | 0032003100000014 | set 1 if rom index < copy size
-jmpc 0005 0032      | 0005003200000001 | if rom index < copy size loop back
-jmpu 0003           | 0003000000000011 | jump to ram start if done
-```
-
 Example looping test assembly code source and binary:
 ```
 source listing      | binary           | explanation
@@ -158,10 +108,10 @@ ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previou
 ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
 ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
 ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  0005 01000018  | 0005010000180002 | load register 5 with value 0x1000018, ram store start index
+ldi  0005 00000018  | 0005000000180002 | load register 5 with value 0x18, ram store start index
 ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  0007 0100000C  | 00070100000C0002 | load register 7 with value 0x100000C constant jump address
-ldi  000b 01000000  | 000b010000000002 | load register 11 with value 0x1000000 constant jump address
+ldi  0007 0000000C  | 00070000000C0002 | load register 7 with value 0xC constant jump address
+ldi  000b 00000000  | 000b000000000002 | load register 11 with value 0x0 constant jump address
 copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
 copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
 add  0000 0001 0002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
@@ -183,7 +133,7 @@ while(true) {                        // infinite while loop
   register<2> long fib3 = 0x0;       // init fib3 with register 2 64-bit long integer value 0
   register<3> long i = 0;            // init loop i with register 3 64-bit long integer value 0
   register<4> long imax = 32;        // init loop imax with register 4 64-bit long integer value 32
-  register<5> long *mem = 0x1000018; // init mem as 64-bit long integer pointer at address 0x1000018
+  register<5> long *mem = 0x18;      // init mem as 64-bit long integer pointer at address 0x18
   for (;i<imax;i++) {                // for loop 64-bit long integer i index value from 0 to 31
     fib3 = fib2;                     // copy old fib2 value to fib3
     fib2 = fib1;                     // copy old fib1 value to fib2
