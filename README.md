@@ -31,7 +31,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers (64k reg).
+Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers (64k).
 Each core contains 24-bit addressed 128MB ram, including rom, ram, touch-display ram, and nand nvram.
 Every instruction uses/operates on full 64-bit register values always.
 Instruction high bits can contain specific simple variations of instructions.
