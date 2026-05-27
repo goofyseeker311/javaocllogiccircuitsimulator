@@ -22,7 +22,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore59" src="https://github.com/user-attachments/assets/c49ffb41-4cd7-41b1-8ecb-dbe73365a799" />
+<img width="3840" height="2112" alt="muxrisccore60" src="https://github.com/user-attachments/assets/b92bb2a1-f248-408a-949c-4f99241b8ca3" />
 <img width="3840" height="2112" alt="microfpgamux5" src="https://github.com/user-attachments/assets/2c30ce0b-b31c-417b-ba0c-8d45c8e32a47" />
 <img width="3840" height="2112" alt="microfpgamux5a" src="https://github.com/user-attachments/assets/50293b76-80e4-4fe7-ba77-ab117448946a" />
 
@@ -33,12 +33,12 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-Each core contains 2x 32k core-rail and 1-to-1 routing lines, 512 io-lines, and 1024 registers (64k).
+Each core contains 64k local 64-bit ram registers. load/store instructions are extended to global memory.
 Each core contains 24-bit addressed 128MB ram, including rom, ram, touch-display ram, and nand nvram.
 Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
 Instruction high bits can contain specific simple variations of instructions.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
-insT parameter is formed from 8-4-4-bit [bitI insV insO] parameters.
+insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
 Estimated logic transistors per core is 200k making 32k cores about 6.4 billion.
 Estimated ram transistors per core is 4million 512KB and 128billion total 16GB.
 Estimated compute 64-bit teraops at 5GHz per core is 5gops and 160tops total.
@@ -50,22 +50,22 @@ any    | ##          | Any Raw Data      | direct data line 64-bit value
          []                                empty line or white space line
          //                                comment line
 1      | jmpXY       | Jump Destination  | jump to regX if regYb[bitI] is set
-         jmpcXY                            insV=0 jump to regX if regYb[bitI] is set
+         jmpcXY                            insV=0 jump to regX if regYb is not zero
          jmpuXY                            insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
 3      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
          memrXY                            insV=0 load
          memwXY                            insV=1 store
-4      | cmpXY       | Compare to Zero   | clear regXb[bitI], set to 1 if regY comp[insV]
+4      | cmpXY       | Compare to Zero   | clear regXb to 0, set to 1 if regY comp[insV]
          cmpeXY                            insV=0 integer equal to
          cmplXY                            insV=1 integer less than
          cmpefXY                           insV=2 float equal to
          cmplfXY                           insV=3 float less than
 5      | intXYZ      | ALU Int Operation | store integer op[insV] regY regZ to regX
          addXYZ                            insV=0 integer add
-         addoXYZ                           insV=1 integer add overflow bit regXb[bitI]
+         addoXYZ                           insV=1 integer add overflow bit
          subXYZ                            insV=2 integer subtract
-         subbXYZ                           insV=3 integer subtract borrow bit regXb[bitI]
+         subbXYZ                           insV=3 integer subtract borrow bit
          mulXYZ                            insV=4 integer multiply
          muloXYZ                           insV=5 integer multiply overflow
          divXYZ                            insV=6 integer divide
@@ -121,8 +121,8 @@ add  000a 0005 0003 | 000a000500030005 | store addition of register 5 and regist
 memw 0000 000a      | 0000000a00000013 | store register 0 to register 10 memory location
 add  0003 0003 0006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
 sub  0008 0003 0004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl 0009 0008      | 0009000800000014 | clear register 9 bit 0, set if register 8 int less than 0
-jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 bit 0 is set
+cmpl 0009 0008      | 0009000800000014 | clear register 9 to 0, set to 1 if register 8 int less than 0
+jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 is not zero
 jmpu 000b           | 000b000000000011 | unconditional jump to register 11
 ## A123456789ABCDEF | a123456789abcdef | custom data segment with any instruction or data
 ```
