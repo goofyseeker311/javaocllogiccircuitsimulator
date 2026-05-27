@@ -50,7 +50,7 @@ any    | ##          | Any Raw Data      | direct data line 64-bit value
 0      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
          []                                empty line or white space line
          //                                comment line
-1      | jmpXY       | Jump Destination  | jump to regX if regYb[bitI] is set
+1      | jmpXY       | Jump Destination  | jump to regX if regYb is not zero
          jmpcXY                            insV=0 jump to regX if regYb is not zero
          jmpuXY                            insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
