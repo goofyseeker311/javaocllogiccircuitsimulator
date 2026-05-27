@@ -33,15 +33,16 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
+MISC compute chip contains 64k cores, total of 32GB register nvsram and 8TB memory nvsram.
 Each core contains 64k local 64-bit ram registers. load/store instructions can address global memory.
 Each core contains 24-bit addressed 128MB ram, including rom, ram, touch-display ram, and nand nvram.
 Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
-Instruction high bits can contain specific simple variations of instructions.
+Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
-Estimated logic transistors per core is 200k making 32k cores about 6.4 billion.
-Estimated ram transistors per core is 4million 512KB and 128billion total 16GB.
-Estimated compute 64-bit teraops at 5GHz per core is 5gops and 160tops total.
+Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
+Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
+Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
 Opcode | Instruction | Name              | Description
 ----------------------------------------------------------------------------------------------------
