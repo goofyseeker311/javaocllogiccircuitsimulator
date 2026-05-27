@@ -122,7 +122,8 @@ public class JavaOCLLogicCircuitEmulator {
 			int regX = instbytes.getShort();
 			int regY = instbytes.getShort();
 			int regZ = instbytes.getShort();
-			int bitI = instbytes.get();
+			@SuppressWarnings("unused")
+			int vecN = instbytes.get();
 			int insT = instbytes.get();
 			if (insT==0x00) {
 				int sleepsteps = (regY<<16) + regZ;
@@ -133,8 +134,8 @@ public class JavaOCLLogicCircuitEmulator {
 					programcounter++;
 				}
 			} else if (insT==0x01) {
-				long jumpflag = oldregisters[regY]&(0x1<<bitI);
-				if (jumpflag>0) {
+				long jumpflag = oldregisters[regY];
+				if (jumpflag!=0) {
 					programcounter = (int)oldregisters[regX];
 				} else {
 					programcounter++;
@@ -161,33 +162,33 @@ public class JavaOCLLogicCircuitEmulator {
 					instructionstep = 1;
 				}
 			} else if (insT==0x04) {
-				newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+				newregisters[regX] = 0;
 				if (oldregisters[regY]==0) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x14) {
-				newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+				newregisters[regX] = 0;
 				if (oldregisters[regY]<0) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x24) {
-				newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+				newregisters[regX] = 0;
 				longbytes.clear();
 				longbytes.putLong(oldregisters[regY]).rewind();
 				double longdouble = longbytes.asDoubleBuffer().get();
 				if (longdouble==0.0f) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x34) {
-				newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+				newregisters[regX] = 0;
 				longbytes.clear();
 				longbytes.putLong(oldregisters[regY]).rewind();
 				double longdouble = longbytes.asDoubleBuffer().get();
 				if (longdouble<0.0f) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x05) {
@@ -195,10 +196,10 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0x15) {
 				try {
-					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+					newregisters[regX] = 0;
 					Math.addExact(oldregisters[regY], oldregisters[regZ]);
 				} catch (ArithmeticException e) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x25) {
@@ -206,10 +207,10 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0x35) {
 				try {
-					newregisters[regX] = oldregisters[regX]&(~(0x1<<bitI));
+					newregisters[regX] = 0;
 					Math.subtractExact(oldregisters[regY], oldregisters[regZ]);
 				} catch (ArithmeticException e) {
-					newregisters[regX] = newregisters[regX]|(0x1<<bitI);
+					newregisters[regX] = 1;
 				}
 				programcounter++;
 			} else if (insT==0x45) {

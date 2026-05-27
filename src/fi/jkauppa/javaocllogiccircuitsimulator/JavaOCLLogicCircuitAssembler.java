@@ -117,7 +117,7 @@ public class JavaOCLLogicCircuitAssembler {
 					int regX = 0;
 					int regY = 0;
 					int regZ = 0;
-					int bitI = 0;
+					int vecN = 0;
 					int insT = 0;
 					String[] codelineparts = codeline.split(splitregex);
 					if (codelineparts[0].equals("jmpc")) {
@@ -212,14 +212,14 @@ public class JavaOCLLogicCircuitAssembler {
 						regZ = Short.parseShort(codelineparts[3], 16);
 					}
 					if (codelineparts.length>=5) {
-						bitI = Byte.parseByte(codelineparts[4], 16);
+						vecN = Byte.parseByte(codelineparts[4], 16);
 					}
 					
 					insvalbytes.clear();
 					insvalbytes.putShort((short)regX);
 					insvalbytes.putShort((short)regY);
 					insvalbytes.putShort((short)regZ);
-					insvalbytes.put((byte)bitI);
+					insvalbytes.put((byte)vecN);
 					insvalbytes.put((byte)insT);
 					insvalbytes.rewind();
 					insvalbytes.get(outputbytes, 0, 8);
