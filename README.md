@@ -50,14 +50,14 @@ any    | ##          | Any Raw Data      | direct data line 64-bit value
 0      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
          []                                empty line or white space line
          //                                comment line
-1      | jmpXY       | Jump Destination  | jump to regX if regYb is not zero
-         jmpcXY                            insV=0 jump to regX if regYb is not zero
+1      | jmpXY       | Jump Destination  | jump to regX if regY is not zero
+         jmpcXY                            insV=0 jump to regX if regY is not zero
          jmpuXY                            insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
 3      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
          memrXY                            insV=0 load
          memwXY                            insV=1 store
-4      | cmpXY       | Compare to Zero   | clear regXb to 0, set to 1 if regY comp[insV]
+4      | cmpXY       | Compare to Zero   | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                            insV=0 integer equal to
          cmplXY                            insV=1 integer less than
          cmpefXY                           insV=2 float equal to
