@@ -33,7 +33,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-Each core contains 64k local 64-bit ram registers. load/store instructions are extended to global memory.
+Each core contains 64k local 64-bit ram registers. load/store instructions can address global memory.
 Each core contains 24-bit addressed 128MB ram, including rom, ram, touch-display ram, and nand nvram.
 Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
 Instruction high bits can contain specific simple variations of instructions.
@@ -121,7 +121,7 @@ add  000a 0005 0003 | 000a000500030005 | store addition of register 5 and regist
 memw 0000 000a      | 0000000a00000013 | store register 0 to register 10 memory location
 add  0003 0003 0006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
 sub  0008 0003 0004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl 0009 0008      | 0009000800000014 | clear register 9 to 0, set to 1 if register 8 int less than 0
+cmpl 0009 0008      | 0009000800000014 | clear register 9 to 0, set if register 8 int less than 0
 jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 is not zero
 jmpu 000b           | 000b000000000011 | unconditional jump to register 11
 ## A123456789ABCDEF | a123456789abcdef | custom data segment with any instruction or data
