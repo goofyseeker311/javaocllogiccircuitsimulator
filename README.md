@@ -22,7 +22,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore63" src="https://github.com/user-attachments/assets/d0e48e5e-2194-42e9-af11-865e05bbb608" />
+<img width="3840" height="2112" alt="muxrisccore64" src="https://github.com/user-attachments/assets/4208dc84-16e8-4b90-8056-4cf161abdfd5" />
 
 ---
 
