@@ -42,59 +42,71 @@ Estimated logic transistors per core is 200k making 64k cores about 12.8 billion
 Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
 Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
-Opcode | Instruction | Name              | Description
+Opcode | Instruction | Name               | Description
 ----------------------------------------------------------------------------------------------------
-any    | ##          | Any Raw Data      | direct data line 64-bit value
-0      | nopYZ       | No Operation      | no operation sleep constant regYZ cycles
-         []                                empty line or white space line
-         //                                comment line
-1      | jmpXY       | Jump Destination  | jump to regX if regY is not zero
-         jmpcXY                            insV=0 jump to regX if regY is not zero
-         jmpuXY                            insV=1 unconditional jump to regX
-2      | ldiXYZ      | Load 32-bit Uint  | load regX with constant regYZ
-3      | memXY       | Memory Double     | store/load[insV] regX at memory[regY]
-         memrXY                            insV=0 load
-         memwXY                            insV=1 store
-4      | cmpXY       | Compare to Zero   | clear regX to 0, set to 1 if regY comp[insV]
-         cmpeXY                            insV=0 integer equal to
-         cmplXY                            insV=1 integer less than
-         cmpefXY                           insV=2 float equal to
-         cmplfXY                           insV=3 float less than
-5      | intXYZ      | ALU Int Operation | store integer op[insV] regY regZ to regX
-         addXYZ                            insV=0 integer add
-         addoXYZ                           insV=1 integer add overflow bit
-         subXYZ                            insV=2 integer subtract
-         subbXYZ                           insV=3 integer subtract borrow bit
-         mulXYZ                            insV=4 integer multiply
-         muloXYZ                           insV=5 integer multiply overflow
-         divXYZ                            insV=6 integer divide
-         divrXYZ                           insV=7 integer divide remainder
-         negXYZ                            insV=8 integer negate
-6      | bitXYZ      | ALU Bit Operation | store bitwise op[insV] regY regZ to regX
-         shlXYZ                            insV=0 bitwise shift left regZ bits
-         shrXYZ                            insV=1 bitwise shift right regZ bits
-         sharXYZ                           insV=2 bitwise shift arithmetic right regZ bits
-         rotlXYZ                           insV=3 bitwise rotate left regZ bits
-         rotrXYZ                           insV=4 bitwise rotate right regZ bits
-         copyXYZ                           insV=5 bitwise copy
-         notXYZ                            insV=6 bitwise not
-         orXYZ                             insV=7 bitwise or
-         andXYZ                            insV=8 bitwise and
-         nandXYZ                           insV=9 bitwise nand
-         norXYZ                            insV=A bitwise nor
-         xorXYZ                            insV=B bitwise xor
-         xnorXYZ                           insV=C bitwise xnor
-7      | flpXYZ      | ALU Flp Operation | store float op[insV] regY regZ to regX
-         addfXYZ                           insV=0 float add
-         subfXYZ                           insV=1 float subtract
-         mulfXYZ                           insV=2 float multiply
-         divfXYZ                           insV=3 float divide
-         negfXYZ                           insV=4 float negate
-         itfXYZ                            insV=5 integer to float
-         ftinXYZ                           insV=6 float to integer nearest
-         ftidXYZ                           insV=7 float to integer round down
-         ftiuXYZ                           insV=8 float to integer round up
-         ftitXYZ                           insV=9 float to integer truncate
+any    | ##          | Any Raw Data       | direct data line 64-bit value
+0      | nopYZ       | No Operation       | no operation sleep constant regYZ cycles
+         []                                 empty line or white space line
+         //                                 comment line
+1      | jmpXY       | Jump Destination   | jump to regX if regY is not zero
+         jmpcXY                             insV=0 jump to regX if regY is not zero
+         jmpuXY                             insV=1 unconditional jump to regX
+2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
+3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
+         memrXY                             insV=0 load
+         memwXY                             insV=1 store
+4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
+         cmpeXY                             insV=0 integer equal to
+         cmplXY                             insV=1 integer less than
+         cmpefXY                            insV=2 float equal to
+         cmplfXY                            insV=3 float less than
+5      | intXYZ      | ALU Int Operation  | store integer op[insV] regY regZ to regX
+         addXYZ                             insV=0 integer add
+         addoXYZ                            insV=1 integer add overflow bit
+         subXYZ                             insV=2 integer subtract
+         subbXYZ                            insV=3 integer subtract borrow bit
+         mulXYZ                             insV=4 integer multiply
+         muloXYZ                            insV=5 integer multiply overflow
+         divXYZ                             insV=6 integer divide
+         divrXYZ                            insV=7 integer divide remainder
+         negXYZ                             insV=8 integer negate
+6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
+         shlXYZ                             insV=0 bitwise shift left regZ bits
+         shrXYZ                             insV=1 bitwise shift right regZ bits
+         sharXYZ                            insV=2 bitwise shift arithmetic right regZ bits
+         rotlXYZ                            insV=3 bitwise rotate left regZ bits
+         rotrXYZ                            insV=4 bitwise rotate right regZ bits
+         copyXYZ                            insV=5 bitwise copy
+         notXYZ                             insV=6 bitwise not
+         orXYZ                              insV=7 bitwise or
+         andXYZ                             insV=8 bitwise and
+         nandXYZ                            insV=9 bitwise nand
+         norXYZ                             insV=A bitwise nor
+         xorXYZ                             insV=B bitwise xor
+         xnorXYZ                            insV=C bitwise xnor
+7      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
+         addfXYZ                            insV=0 float add
+         subfXYZ                            insV=1 float subtract
+         mulfXYZ                            insV=2 float multiply
+         divfXYZ                            insV=3 float divide
+         negfXYZ                            insV=4 float negate
+         itfXYZ                             insV=5 integer to float
+         ftinXYZ                            insV=6 float to integer nearest
+         ftidXYZ                            insV=7 float to integer round down
+         ftiuXYZ                            insV=8 float to integer round up
+         ftitXYZ                            insV=9 float to integer truncate
+         finfXYZ                            insV=10 float is infinity
+         fnanXYZ                            insV=11 float is not-a-number
+8      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
+         fsinXYZ                            insV=0 float sine
+         ftanXYZ                            insV=1 float tangent
+         fcosXYZ                            insV=2 float cosine
+         fasinXYZ                           insV=3 float arcsine
+         fatanXYZ                           insV=4 float arctangent
+         facosXYZ                           insV=5 float arccosine
+         flogXYZ                            insV=6 float logarithm
+         fpowXYZ                            insV=7 float power
+         fsqrtXYZ                           insV=8 float square root
 ```
 
 Example looping test assembly code source and binary:
