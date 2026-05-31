@@ -22,7 +22,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore66" src="https://github.com/user-attachments/assets/1c6c7baa-967b-4639-b36d-0b9b2c8fcce1" />
+<img width="3840" height="2112" alt="muxrisccore67" src="https://github.com/user-attachments/assets/57dfcd3d-c5b0-47e5-8a1e-764da8f4d2b5" />
 
 ---
 
@@ -70,6 +70,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          divXYZ                             insV=6 integer divide
          divrXYZ                            insV=7 integer divide remainder
          negXYZ                             insV=8 integer negate
+         clkXYZ                             insV=9 integer clock counter
+         rndXYZ                             insV=10 integer clock random
 6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
