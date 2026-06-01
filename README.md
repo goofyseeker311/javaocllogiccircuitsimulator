@@ -72,7 +72,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          divrXYZ                            insV=7 integer divide remainder
          negXYZ                             insV=8 integer negate
          clkXYZ                             insV=9 integer clock counter
-         rndXYZ                             insV=10 integer clock random
+         rndXYZ                             insV=A integer clock random
 6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
@@ -99,8 +99,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ftidXYZ                            insV=7 float to integer round down
          ftiuXYZ                            insV=8 float to integer round up
          ftitXYZ                            insV=9 float to integer truncate
-         finfXYZ                            insV=10 float is infinity
-         fnanXYZ                            insV=11 float is not-a-number
+         finfXYZ                            insV=A float is infinity
+         fnanXYZ                            insV=B float is not-a-number
 8      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
          fsinXYZ                            insV=0 float sine
          ftanXYZ                            insV=1 float tangent
