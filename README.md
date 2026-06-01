@@ -51,7 +51,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          //                                 comment line
 1      | jmpXY       | Jump Destination   | jump to regX if regY is not zero
          jmpcXY                             insV=0 jump to regX if regY is not zero
-         jmpuXY                             insV=1 unconditional jump to regX
+         jmpXY                              insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
 3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
          memrXY                             insV=0 load
