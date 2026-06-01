@@ -22,7 +22,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore71" src="https://github.com/user-attachments/assets/819da40d-8cc0-4c6f-a327-71ba88119360" />
+<img width="3840" height="2112" alt="muxrisccore72" src="https://github.com/user-attachments/assets/5fdf1f6c-80d7-4ef1-8841-27909be3200a" />
+<img width="3840" height="2112" alt="muxrisccore72a" src="https://github.com/user-attachments/assets/ef1d6a60-5466-4177-b5c4-de8e76bdb454" />
 
 ---
 
@@ -86,6 +87,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          norXYZ                             insV=A bitwise nor
          xorXYZ                             insV=B bitwise xor
          xnorXYZ                            insV=C bitwise xnor
+         copycXYZ                           insV=D bitwise conditional copy if regZ is not zero
 7      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          addfXYZ                            insV=0 float add
          subfXYZ                            insV=1 float subtract
