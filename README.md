@@ -120,27 +120,27 @@ source listing         | binary           | explanation
 []                     | 0000000000000000 | empty line
 // empty line          | 0000000000000000 | comment line
 nop  00000200          | 0000000002000000 | no operation sleep 512+1 cycles
-ldi  0000 00000001 ff  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
-ldi  0008 00000001 ff  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
-ldi  0010 00000000 ff  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
-ldi  0018 00000000     | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
-ldi  0019 00000020     | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  001a 00000018     | 0005000000180002 | load register 5 with value 0x18, ram store start index
-ldi  001b 00000001     | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  001c 00000008     | 0006000000010002 | load register 6 with value 0x8, constant 0x1 add and jump
-ldi  001d 0000000C     | 00070000000C0002 | load register 7 with value 0xC constant jump address
-ldi  0020 00000000     | 000b000000000002 | load register 11 with value 0x0 constant jump address
-copy 0010 0008 001b ff | 0002000100000056 | copy register 1 to register 2
-copy 0008 0000 001b ff | 0001000000000056 | copy register 0 to register 1
-add  0000 0008 0010 ff | 0000000100020005 | store addition of register 1 and register 2 to register 0
-memw 0000 001a 0000 ff | 0000000a00000013 | store register 0 to register 10 memory location
-add  001a 001a 001c    | 000a000500030005 | store addition of register 5 and register 3 to register 10
-add  0018 0018 001b    | 0003000300060005 | store addition of register 3 and register 6 to register 3
-sub  001e 0018 0019    | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl 001f 001e         | 0009000800000014 | clear register 9 to 0, set if register 8 int less than 0
-jmpc 001d 001f         | 0007000900000001 | jump to register 7 if register 9 is not zero
-jmpu 0020              | 000b000000000011 | unconditional jump to register 11
-## A123456789ABCDEF    | a123456789abcdef | custom data segment with any instruction or data
+ldi  0000 00000001 ff  | 000000000001ff02 | load registers 0-7 with 0x1, current fibonacci num
+ldi  0008 00000001 ff  | 000800000001ff02 | load registers 8-15 with 0x1, previous fibonacci num
+ldi  0010 00000000 ff  | 001000000000ff02 | load registers 16-23 with 0x0, previous+ fibonacci num
+ldi  0018 00000000     | 0018000000000002 | load register 24 with value 0x0, for loop index from 0
+ldi  0019 00000020     | 0019000000200002 | load register 25 with value 0x20, for loop less than 32
+ldi  001a 00000018     | 001a000000180002 | load register 26 with value 0x18, ram store start index
+ldi  001b 00000001     | 001b000000010002 | load register 27 with value 0x1, constant 0x1 add
+ldi  001c 00000008     | 001c000000080002 | load register 28 with value 0x8, constant 0x8 add
+ldi  001d 0000000C     | 001d0000000C0002 | load register 29 with value 0xC constant jump address
+ldi  0020 00000000     | 0020000000000002 | load register 32 with value 0x0 constant jump address
+copy 0010 0008 001b ff | 00100008001bff56 | copy registers 8-15 to register 16-23
+copy 0008 0000 001b ff | 00080000001bff56 | copy registers 0-7 to register 8-15
+add  0000 0008 0010 ff | 000000080010ff05 | store add of registers 8-15 and 16-23 to register 0-7
+memw 0000 001a 0000 ff | 0000001a0000ff13 | store registers 0-7 to register 26 memory location 0-7
+add  001a 001a 001c    | 001a001a001c0005 | store add of register 26 and register 28 to register 26
+add  0018 0018 001b    | 00180018001b0005 | store add of register 24 and register 27 to register 24
+sub  001e 0018 0019    | 001e001800190025 | store sub of register 24 and register 25 to register 30
+cmpl 001f 001e         | 001f001e00000014 | clear register 31, set if register 30 int less than 0
+jmpc 001d 001f         | 001d001f00000001 | jump to register 29 if register 31 is not zero
+jmpu 0020              | 0020000000000011 | unconditional jump to register 32
+##   A123456789ABCDEF  | a123456789abcdef | custom data segment with any instruction or data
 ```
 
 Example looping test assembly to c-code approximate:
