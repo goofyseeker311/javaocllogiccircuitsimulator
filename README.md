@@ -130,8 +130,8 @@ ldi  001b 00000001     | 001b000000010002 | load register 27 with value 0x1, con
 ldi  001c 00000008     | 001c000000080002 | load register 28 with value 0x8, constant 0x8 add
 ldi  001d 0000000C     | 001d0000000C0002 | load register 29 with value 0xC constant jump address
 ldi  0020 00000000     | 0020000000000002 | load register 32 with value 0x0 constant jump address
-copy 0010 0008 001b ff | 00100008001bff56 | copy registers 8-15 to register 16-23
-copy 0008 0000 001b ff | 00080000001bff56 | copy registers 0-7 to register 8-15
+copy 0010 0008 0000 ff | 001000080000ff56 | copy registers 8-15 to register 16-23
+copy 0008 0000 0000 ff | 000800000000ff56 | copy registers 0-7 to register 8-15
 add  0000 0008 0010 ff | 000000080010ff05 | store add of registers 8-15 and 16-23 to register 0-7
 memw 0000 001a 0000 ff | 0000001a0000ff13 | store registers 0-7 to register 26 memory location 0-7
 add  001a 001a 001c    | 001a001a001c0005 | store add of register 26 and register 28 to register 26
