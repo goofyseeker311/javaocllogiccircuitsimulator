@@ -59,8 +59,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
-         cmpefXY                            insV=2 float equal to
-         cmplfXY                            insV=3 float less than
+         fcmpeXY                            insV=2 float equal to
+         fcmplXY                            insV=3 float less than
 5      | intXYZ      | ALU Int Operation  | store integer op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
          addoXYZ                            insV=1 integer add overflow bit
@@ -89,12 +89,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          xnorXYZ                            insV=C bitwise xnor
          copycXYZ                           insV=D bitwise conditional copy if regZ is not zero
 7      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
-         addfXYZ                            insV=0 float add
-         subfXYZ                            insV=1 float subtract
-         mulfXYZ                            insV=2 float multiply
-         divfXYZ                            insV=3 float divide
-         negfXYZ                            insV=4 float negate
-         itfXYZ                             insV=5 integer to float
+         faddXYZ                            insV=0 float add
+         fsubXYZ                            insV=1 float subtract
+         fmulXYZ                            insV=2 float multiply
+         fdivXYZ                            insV=3 float divide
+         fnegXYZ                            insV=4 float negate
+         fitfXYZ                            insV=5 integer to float
          ftinXYZ                            insV=6 float to integer nearest
          ftidXYZ                            insV=7 float to integer round down
          ftiuXYZ                            insV=8 float to integer round up
