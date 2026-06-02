@@ -8,6 +8,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
 import java.nio.file.Files;
+import java.util.Random;
 
 public class JavaOCLLogicCircuitEmulator {
 	public static void main(String[] arg) {
@@ -82,6 +83,8 @@ public class JavaOCLLogicCircuitEmulator {
 		private long[] newregisters = new long[registeramount];
 		private long[] oldregisters = new long[registeramount];
 		private long[] memoryram = new long[registeramount];
+		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
+		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private long instructionstate = 0L;
 		private int instructionstep = 0;
 		private int programcounter = 0;
@@ -239,6 +242,18 @@ public class JavaOCLLogicCircuitEmulator {
 			} else if (insT==0x85) {
 				newregisters[regX] = -oldregisters[regY];
 				programcounter++;
+			} else if (insT==0x95) {
+				if (oldregisters[regY]!=0) {
+					this.counters[0] = oldregisters[regZ];
+				}
+				newregisters[regX] = this.counters[0];
+				programcounter++;
+			} else if (insT==0xA5) {
+				if (oldregisters[regY]!=0) {
+					this.randoms[0].setSeed(oldregisters[regZ]);
+				}
+				newregisters[regX] = this.randoms[0].nextLong();
+				programcounter++;
 			} else if (insT==0x06) {
 				newregisters[regX] = oldregisters[regY] << oldregisters[regZ];
 				programcounter++;
@@ -277,6 +292,12 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			} else if (insT==0xC6) {
 				newregisters[regX] = ~(oldregisters[regY] ^ oldregisters[regZ]);
+				programcounter++;
+			} else if (insT==0xD6) {
+				newregisters[regX] = oldregisters[regX];
+				if (oldregisters[regZ]!=0) {
+					newregisters[regX] = oldregisters[regY];
+				}
 				programcounter++;
 			} else if (insT==0x07) {
 				longbytes.clear();
@@ -364,6 +385,111 @@ public class JavaOCLLogicCircuitEmulator {
 				double longdouble = longbytes.asDoubleBuffer().get();
 				newregisters[regX] = (long)longdouble;
 				programcounter++;
+			} else if (insT==0xA7) {
+				newregisters[regX] = 0;
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				if (Double.isInfinite(longdouble)) {
+					newregisters[regX] = 1;
+				}
+				programcounter++;
+			} else if (insT==0xB7) {
+				newregisters[regX] = 0;
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				if (Double.isNaN(longdouble)) {
+					newregisters[regX] = 1;
+				}
+				programcounter++;
+			} else if (insT==0x08) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.sin(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x18) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.tan(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x28) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.cos(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x38) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.asin(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x48) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.atan(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x58) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.acos(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x68) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				longbytes2.clear();
+				longbytes2.putLong(oldregisters[regZ]).rewind();
+				double longdouble2 = longbytes2.asDoubleBuffer().get();
+				double longdouble3 = Math.log(longdouble)/Math.log(longdouble2);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x78) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				longbytes2.clear();
+				longbytes2.putLong(oldregisters[regZ]).rewind();
+				double longdouble2 = longbytes2.asDoubleBuffer().get();
+				double longdouble3 = Math.pow(longdouble, longdouble2);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
+			} else if (insT==0x88) {
+				longbytes.clear();
+				longbytes.putLong(oldregisters[regY]).rewind();
+				double longdouble = longbytes.asDoubleBuffer().get();
+				double longdouble3 = Math.sqrt(longdouble);
+				longbytes3.clear();
+				longbytes3.putDouble(longdouble3).rewind();
+				newregisters[regX] = longbytes3.getLong();
+				programcounter++;
 			} else {
 				programcounter++;
 			}
@@ -372,6 +498,10 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter = 0;
 			}
 			cyclenum++;
+
+			for (int i=0;i<counters.length;i++) {
+				counters[i]++;
+			}
 		}
 		
 		public void updateregisters() {
