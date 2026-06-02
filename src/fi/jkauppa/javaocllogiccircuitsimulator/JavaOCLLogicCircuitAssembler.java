@@ -94,13 +94,19 @@ public class JavaOCLLogicCircuitAssembler {
 					String[] codelineparts = codeline.split(splitregex);
 					String regXline = codelineparts[0];
 					String dataline = codelineparts[1];
-					int regX = Integer.parseInt(regXline, 16);
+					String vecnline = "0";
+					if (codelineparts.length>=3) {
+						vecnline = codelineparts[2];
+					}
+					int regX = Integer.parseUnsignedInt(regXline, 16);
 					long dataval = Long.parseUnsignedLong(dataline, 16);
+					int vecN = Integer.parseUnsignedInt(vecnline, 16);
 					int insT = 0x02;
 					insvalbytes.clear();
 					insvalbytes.putShort((short)regX);
 					insvalbytes.putInt((int)dataval);
-					insvalbytes.putShort((short)insT);
+					insvalbytes.put((byte)vecN);
+					insvalbytes.put((byte)insT);
 					insvalbytes.rewind();
 					insvalbytes.get(outputbytes, 0, 8);
 					fileoutput.write(outputbytes);
@@ -122,7 +128,7 @@ public class JavaOCLLogicCircuitAssembler {
 					String[] codelineparts = codeline.split(splitregex);
 					if (codelineparts[0].equals("jmpc")) {
 						insT = 0x01;
-					} else if (codelineparts[0].equals("jmpu")) {
+					} else if (codelineparts[0].equals("jmp")) {
 						insT = 0x11;
 					} else if (codelineparts[0].equals("memr")) {
 						insT = 0x03;
@@ -154,6 +160,10 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x75;
 					} else if (codelineparts[0].equals("neg")) {
 						insT = 0x85;
+					} else if (codelineparts[0].equals("clk")) {
+						insT = 0x95;
+					} else if (codelineparts[0].equals("rnd")) {
+						insT = 0xA5;
 					} else if (codelineparts[0].equals("shl")) {
 						insT = 0x06;
 					} else if (codelineparts[0].equals("shr")) {
@@ -180,6 +190,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xB6;
 					} else if (codelineparts[0].equals("xnor")) {
 						insT = 0xC6;
+					} else if (codelineparts[0].equals("copyc")) {
+						insT = 0xD6;
 					} else if (codelineparts[0].equals("addf")) {
 						insT = 0x07;
 					} else if (codelineparts[0].equals("subf")) {
@@ -200,19 +212,41 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x87;
 					} else if (codelineparts[0].equals("ftit")) {
 						insT = 0x97;
+					} else if (codelineparts[0].equals("finf")) {
+						insT = 0xA7;
+					} else if (codelineparts[0].equals("fnan")) {
+						insT = 0xB7;
+					} else if (codelineparts[0].equals("fsin")) {
+						insT = 0x08;
+					} else if (codelineparts[0].equals("ftan")) {
+						insT = 0x18;
+					} else if (codelineparts[0].equals("fcos")) {
+						insT = 0x28;
+					} else if (codelineparts[0].equals("fasin")) {
+						insT = 0x38;
+					} else if (codelineparts[0].equals("fatan")) {
+						insT = 0x48;
+					} else if (codelineparts[0].equals("facos")) {
+						insT = 0x58;
+					} else if (codelineparts[0].equals("flog")) {
+						insT = 0x68;
+					} else if (codelineparts[0].equals("fpow")) {
+						insT = 0x78;
+					} else if (codelineparts[0].equals("fsqrt")) {
+						insT = 0x88;
 					}
 					
 					if (codelineparts.length>=2) {
-						regX = Short.parseShort(codelineparts[1], 16);
+						regX = Integer.parseUnsignedInt(codelineparts[1], 16);
 					}
 					if (codelineparts.length>=3) {
-						regY = Short.parseShort(codelineparts[2], 16);
+						regY = Integer.parseUnsignedInt(codelineparts[2], 16);
 					}
 					if (codelineparts.length>=4) {
-						regZ = Short.parseShort(codelineparts[3], 16);
+						regZ = Integer.parseUnsignedInt(codelineparts[3], 16);
 					}
 					if (codelineparts.length>=5) {
-						vecN = Byte.parseByte(codelineparts[4], 16);
+						vecN = Integer.parseUnsignedInt(codelineparts[4], 16);
 					}
 					
 					insvalbytes.clear();
