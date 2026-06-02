@@ -8,6 +8,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.LongBuffer;
 import java.nio.file.Files;
+import java.util.BitSet;
 import java.util.Random;
 
 public class JavaOCLLogicCircuitEmulator {
@@ -80,9 +81,10 @@ public class JavaOCLLogicCircuitEmulator {
 		private int corenum = 0;
 		private int cyclenum = 0;
 		private int registeramount = 65536;
+		private int memoryamount = 65536*256;
 		private long[] newregisters = new long[registeramount];
 		private long[] oldregisters = new long[registeramount];
-		private long[] memoryram = new long[registeramount];
+		private long[] memoryram = new long[memoryamount];
 		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private long instructionstate = 0L;
@@ -125,9 +127,11 @@ public class JavaOCLLogicCircuitEmulator {
 			int regX = instbytes.getShort();
 			int regY = instbytes.getShort();
 			int regZ = instbytes.getShort();
-			@SuppressWarnings("unused")
-			int vecN = instbytes.get();
+			byte vecN = instbytes.get();
 			int insT = instbytes.get();
+			byte[] vecnarray = {vecN};
+			BitSet vecnbits = BitSet.valueOf(vecnarray);
+			vecnbits.set(0);
 			if (insT==0x00) {
 				int sleepsteps = (regY<<16) + regZ;
 				if (instructionstep<sleepsteps) {
@@ -146,355 +150,557 @@ public class JavaOCLLogicCircuitEmulator {
 			} else if (insT==0x11) {
 				programcounter = (int)oldregisters[regX];
 			} else if (insT==0x02) {
-				newregisters[regX] = (regY<<16) + regZ;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = (regY<<16) + regZ;
+					}
+				}
 				programcounter++;
 			} else if (insT==0x03) {
-				if (instructionstep==1) {
-					newregisters[regX] = memoryram[(int)oldregisters[regY]];
-					instructionstep = 0;
-					programcounter++;
-				} else {
-					instructionstep = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = memoryram[((int)oldregisters[regY])+i];
+					}
 				}
+				programcounter++;
 			} else if (insT==0x13) {
-				if (instructionstep==1) {
-					memoryram[(int)oldregisters[regY]] = oldregisters[regX];
-					instructionstep = 0;
-					programcounter++;
-				} else {
-					instructionstep = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
+					}
 				}
+				programcounter++;
 			} else if (insT==0x04) {
-				newregisters[regX] = 0;
-				if (oldregisters[regY]==0) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						if (oldregisters[regY+i]==0) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x14) {
-				newregisters[regX] = 0;
-				if (oldregisters[regY]<0) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						if (oldregisters[regY+i]<0) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x24) {
-				newregisters[regX] = 0;
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				if (longdouble==0.0f) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						if (longdouble==0.0f) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x34) {
-				newregisters[regX] = 0;
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				if (longdouble<0.0f) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						if (longdouble<0.0f) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x05) {
-				newregisters[regX] = oldregisters[regY] + oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] + oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x15) {
-				try {
-					newregisters[regX] = 0;
-					Math.addExact(oldregisters[regY], oldregisters[regZ]);
-				} catch (ArithmeticException e) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						try {
+							newregisters[regX+i] = 0;
+							Math.addExact(oldregisters[regY+i], oldregisters[regZ+i]);
+						} catch (ArithmeticException e) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x25) {
-				newregisters[regX] = oldregisters[regY] - oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] - oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x35) {
-				try {
-					newregisters[regX] = 0;
-					Math.subtractExact(oldregisters[regY], oldregisters[regZ]);
-				} catch (ArithmeticException e) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						try {
+							newregisters[regX+i] = 0;
+							Math.subtractExact(oldregisters[regY+i], oldregisters[regZ+i]);
+						} catch (ArithmeticException e) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x45) {
-				newregisters[regX] = oldregisters[regY] * oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] * oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x55) {
-				try {
-					newregisters[regX] = 0;
-					Math.multiplyExact(oldregisters[regY], oldregisters[regZ]);
-				} catch (ArithmeticException e) {
-					BigInteger oldregY = BigInteger.valueOf(oldregisters[regY]);
-					BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ]);
-					BigInteger newregX = oldregY.add(oldregZ);
-					ByteBuffer newregXbytes = ByteBuffer.allocate(16);
-					newregXbytes.put(newregX.toByteArray());
-					newregXbytes.position(8);
-					newregisters[regX] = newregXbytes.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						try {
+							newregisters[regX+i] = 0;
+							Math.multiplyExact(oldregisters[regY+i], oldregisters[regZ+i]);
+						} catch (ArithmeticException e) {
+							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+							BigInteger newregX = oldregY.add(oldregZ);
+							ByteBuffer newregXbytes = ByteBuffer.allocate(16);
+							newregXbytes.put(newregX.toByteArray());
+							newregXbytes.position(8);
+							newregisters[regX+i] = newregXbytes.getLong();
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x65) {
-				newregisters[regX] = oldregisters[regY] / oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] / oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x75) {
-				newregisters[regX] = oldregisters[regY] % oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] % oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x85) {
-				newregisters[regX] = -oldregisters[regY];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = -oldregisters[regY+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x95) {
-				if (oldregisters[regY]!=0) {
-					this.counters[0] = oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						if (oldregisters[regY+i]!=0) {
+							this.counters[i] = oldregisters[regZ+i];
+						}
+						newregisters[regX+i] = this.counters[i];
+					}
 				}
-				newregisters[regX] = this.counters[0];
 				programcounter++;
 			} else if (insT==0xA5) {
-				if (oldregisters[regY]!=0) {
-					this.randoms[0].setSeed(oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						if (oldregisters[regY+i]!=0) {
+							this.randoms[i].setSeed(oldregisters[regZ+i]);
+						}
+						newregisters[regX+i] = this.randoms[i].nextLong();
+					}
 				}
-				newregisters[regX] = this.randoms[0].nextLong();
 				programcounter++;
 			} else if (insT==0x06) {
-				newregisters[regX] = oldregisters[regY] << oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x16) {
-				newregisters[regX] = oldregisters[regY] >>> oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] >>> oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x26) {
-				newregisters[regX] = oldregisters[regY] >> oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] >> oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x36) {
-				newregisters[regX] = Long.rotateLeft(oldregisters[regY], (int)oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = Long.rotateLeft(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+					}
+				}
 				programcounter++;
 			} else if (insT==0x46) {
-				newregisters[regX] = Long.rotateRight(oldregisters[regY], (int)oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = Long.rotateRight(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+					}
+				}
 				programcounter++;
 			} else if (insT==0x56) {
-				newregisters[regX] = oldregisters[regY];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x66) {
-				newregisters[regX] = ~oldregisters[regY];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = ~oldregisters[regY+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x76) {
-				newregisters[regX] = oldregisters[regY] | oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] | oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x86) {
-				newregisters[regX] = oldregisters[regY] & oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] & oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0x96) {
-				newregisters[regX] = ~(oldregisters[regY] & oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = ~(oldregisters[regY+i] & oldregisters[regZ+i]);
+					}
+				}
 				programcounter++;
 			} else if (insT==0xA6) {
-				newregisters[regX] = ~(oldregisters[regY] | oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = ~(oldregisters[regY+i] | oldregisters[regZ+i]);
+					}
+				}
 				programcounter++;
 			} else if (insT==0xB6) {
-				newregisters[regX] = oldregisters[regY] ^ oldregisters[regZ];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regY+i] ^ oldregisters[regZ+i];
+					}
+				}
 				programcounter++;
 			} else if (insT==0xC6) {
-				newregisters[regX] = ~(oldregisters[regY] ^ oldregisters[regZ]);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
+					}
+				}
 				programcounter++;
 			} else if (insT==0xD6) {
-				newregisters[regX] = oldregisters[regX];
-				if (oldregisters[regZ]!=0) {
-					newregisters[regX] = oldregisters[regY];
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = oldregisters[regX+i];
+						if (oldregisters[regZ+i]!=0) {
+							newregisters[regX+i] = oldregisters[regY+i];
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x07) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = longdouble + longdouble2;
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = longdouble + longdouble2;
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x17) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = longdouble - longdouble2;
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = longdouble - longdouble2;
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x27) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = longdouble * longdouble2;
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = longdouble * longdouble2;
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x37) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = longdouble / longdouble2;
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = longdouble / longdouble2;
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x47) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = -longdouble;
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = -longdouble;
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x57) {
-				longbytes.clear();
-				longbytes.putDouble((double)oldregisters[regY]).rewind();
-				newregisters[regX] = longbytes.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putDouble((double)oldregisters[regY+i]).rewind();
+						newregisters[regX+i] = longbytes.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x67) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				newregisters[regX] = Math.round(longdouble);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						newregisters[regX+i] = Math.round(longdouble);
+					}
+				}
 				programcounter++;
 			} else if (insT==0x77) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				newregisters[regX] = (long)Math.floor(longdouble);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						newregisters[regX+i] = (long)Math.floor(longdouble);
+					}
+				}
 				programcounter++;
 			} else if (insT==0x87) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				newregisters[regX] = (long)Math.ceil(longdouble);
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						newregisters[regX+i] = (long)Math.ceil(longdouble);
+					}
+				}
 				programcounter++;
 			} else if (insT==0x97) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				newregisters[regX] = (long)longdouble;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						newregisters[regX+i] = (long)longdouble;
+					}
+				}
 				programcounter++;
 			} else if (insT==0xA7) {
-				newregisters[regX] = 0;
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				if (Double.isInfinite(longdouble)) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						if (Double.isInfinite(longdouble)) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0xB7) {
-				newregisters[regX] = 0;
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				if (Double.isNaN(longdouble)) {
-					newregisters[regX] = 1;
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						newregisters[regX+i] = 0;
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						if (Double.isNaN(longdouble)) {
+							newregisters[regX+i] = 1;
+						}
+					}
 				}
 				programcounter++;
 			} else if (insT==0x08) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.sin(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.sin(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x18) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.tan(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.tan(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x28) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.cos(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.cos(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x38) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.asin(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.asin(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x48) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.atan(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.atan(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x58) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.acos(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.acos(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x68) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = Math.log(longdouble)/Math.log(longdouble2);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = Math.log(longdouble)/Math.log(longdouble2);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x78) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				longbytes2.clear();
-				longbytes2.putLong(oldregisters[regZ]).rewind();
-				double longdouble2 = longbytes2.asDoubleBuffer().get();
-				double longdouble3 = Math.pow(longdouble, longdouble2);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						longbytes2.clear();
+						longbytes2.putLong(oldregisters[regZ+i]).rewind();
+						double longdouble2 = longbytes2.asDoubleBuffer().get();
+						double longdouble3 = Math.pow(longdouble, longdouble2);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else if (insT==0x88) {
-				longbytes.clear();
-				longbytes.putLong(oldregisters[regY]).rewind();
-				double longdouble = longbytes.asDoubleBuffer().get();
-				double longdouble3 = Math.sqrt(longdouble);
-				longbytes3.clear();
-				longbytes3.putDouble(longdouble3).rewind();
-				newregisters[regX] = longbytes3.getLong();
+				for (int i=0;i<8;i++) {
+					if (vecnbits.get(i)) {
+						longbytes.clear();
+						longbytes.putLong(oldregisters[regY+i]).rewind();
+						double longdouble = longbytes.asDoubleBuffer().get();
+						double longdouble3 = Math.sqrt(longdouble);
+						longbytes3.clear();
+						longbytes3.putDouble(longdouble3).rewind();
+						newregisters[regX+i] = longbytes3.getLong();
+					}
+				}
 				programcounter++;
 			} else {
 				programcounter++;
 			}
 			
-			if (programcounter>65535) {
+			if (programcounter>=memoryamount) {
 				programcounter = 0;
 			}
 			cyclenum++;
