@@ -115,31 +115,32 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
 
 Example looping test assembly code source and binary:
 ```
-source listing      | binary           | explanation
+source listing         | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-[]                  | 0000000000000000 | empty line
-// empty line       | 0000000000000000 | comment line
-nop  00000200       | 0000000002000000 | no operation sleep 512+1 cycles
-ldi  0000 00000001  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
-ldi  0001 00000001  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
-ldi  0002 00000000  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
-ldi  0003 00000000  | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
-ldi  0004 00000020  | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
-ldi  0005 00000018  | 0005000000180002 | load register 5 with value 0x18, ram store start index
-ldi  0006 00000001  | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
-ldi  0007 0000000C  | 00070000000C0002 | load register 7 with value 0xC constant jump address
-ldi  000b 00000000  | 000b000000000002 | load register 11 with value 0x0 constant jump address
-copy 0002 0001      | 0002000100000056 | copy register 1 to register 2
-copy 0001 0000      | 0001000000000056 | copy register 0 to register 1
-add  0000 0001 0002 | 0000000100020005 | store addition of register 1 and register 2 to register 0
-add  000a 0005 0003 | 000a000500030005 | store addition of register 5 and register 3 to register 10
-memw 0000 000a      | 0000000a00000013 | store register 0 to register 10 memory location
-add  0003 0003 0006 | 0003000300060005 | store addition of register 3 and register 6 to register 3
-sub  0008 0003 0004 | 0008000300040025 | store subtract of register 3 and register 4 to register 8
-cmpl 0009 0008      | 0009000800000014 | clear register 9 to 0, set if register 8 int less than 0
-jmpc 0007 0009      | 0007000900000001 | jump to register 7 if register 9 is not zero
-jmpu 000b           | 000b000000000011 | unconditional jump to register 11
-## A123456789ABCDEF | a123456789abcdef | custom data segment with any instruction or data
+[]                     | 0000000000000000 | empty line
+// empty line          | 0000000000000000 | comment line
+nop  00000200          | 0000000002000000 | no operation sleep 512+1 cycles
+ldi  0000 00000001 ff  | 0000000000010002 | load register 0 with value 0x1, current fibonacci number
+ldi  0008 00000001 ff  | 0001000000010002 | load register 1 with value 0x1, previous fibonacci number
+ldi  0010 00000000 ff  | 0002000000000002 | load register 2 with value 0x0, previous+ fibonacci number
+ldi  0018 00000000     | 0003000000000002 | load register 3 with value 0x0, for loop index from 0
+ldi  0019 00000020     | 0004000000200002 | load register 4 with value 0x20, for loop less than 32
+ldi  001a 00000018     | 0005000000180002 | load register 5 with value 0x18, ram store start index
+ldi  001b 00000001     | 0006000000010002 | load register 6 with value 0x1, constant 0x1 add and jump
+ldi  001c 00000008     | 0006000000010002 | load register 6 with value 0x8, constant 0x1 add and jump
+ldi  001d 0000000C     | 00070000000C0002 | load register 7 with value 0xC constant jump address
+ldi  0020 00000000     | 000b000000000002 | load register 11 with value 0x0 constant jump address
+copy 0010 0008 001b ff | 0002000100000056 | copy register 1 to register 2
+copy 0008 0000 001b ff | 0001000000000056 | copy register 0 to register 1
+add  0000 0008 0010 ff | 0000000100020005 | store addition of register 1 and register 2 to register 0
+memw 0000 001a 0000 ff | 0000000a00000013 | store register 0 to register 10 memory location
+add  001a 001a 001c    | 000a000500030005 | store addition of register 5 and register 3 to register 10
+add  0018 0018 001b    | 0003000300060005 | store addition of register 3 and register 6 to register 3
+sub  001e 0018 0019    | 0008000300040025 | store subtract of register 3 and register 4 to register 8
+cmpl 001f 001e         | 0009000800000014 | clear register 9 to 0, set if register 8 int less than 0
+jmpc 001d 001f         | 0007000900000001 | jump to register 7 if register 9 is not zero
+jmpu 0020              | 000b000000000011 | unconditional jump to register 11
+## A123456789ABCDEF    | a123456789abcdef | custom data segment with any instruction or data
 ```
 
 Example looping test assembly to c-code approximate:
