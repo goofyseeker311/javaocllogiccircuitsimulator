@@ -146,17 +146,18 @@ jmpu 0020              | 0020000000000011 | unconditional jump to register 32
 Example looping test assembly to c-code approximate:
 ```
 while(true) {                        // infinite while loop
-  register<0> long fib1 = 0x1;       // init fib1 with register 0 64-bit long integer value 1
-  register<1> long fib2 = 0x1;       // init fib2 with register 1 64-bit long integer value 1
-  register<2> long fib3 = 0x0;       // init fib3 with register 2 64-bit long integer value 0
-  register<3> long i = 0;            // init loop i with register 3 64-bit long integer value 0
-  register<4> long imax = 32;        // init loop imax with register 4 64-bit long integer value 32
-  register<5> long *mem = 0x18;      // init mem as 64-bit long integer pointer at address 0x18
-  for (;i<imax;i++) {                // for loop 64-bit long integer i index value from 0 to 31
-    fib3 = fib2;                     // copy old fib2 value to fib3
-    fib2 = fib1;                     // copy old fib1 value to fib2
-    fib1 = fib2 + fib3;              // calculate new fib1 value by adding fib2 and fib3
-    mem[i] = fib1;                   // store fib1 value to mem location +i index
+  register<0> long fib1[8] = 0x1;    // init fib1 with registers 0-7 to long integer value 1
+  register<8> long fib2[8] = 0x1;    // init fib2 with registers 8-15 to long integer value 1
+  register<16> long fib3[8] = 0x0;   // init fib3 with registers 16-23 to long integer value 0
+  register<24> long i = 0;           // init loop i with register 24 long integer value 0
+  register<25> long imax = 32;       // init loop imax with register 25 long integer value 32
+  register<26> long *mem = 0x18;     // init mem with register 26 long integer pointer at address 0x18
+  for (;i<imax;i++) {                // for loop long integer i index value from 0 to 31
+    fib3[] = fib2[];                 // copy array of old fib2 values to fib3 vectorized
+    fib2[] = fib1[];                 // copy array of old fib1 values to fib2 vectorized
+    fib1[] = fib2[] + fib3[];        // calculate array of new fib1 by adding fib2 and fib3 vectorized
+    mem[] = fib1[];                  // store array of fib1 values to mem location index vectorized
+    mem += 8;                        // move memory pointer 8 indexes forward
   }                                  // for loop close
 }                                    // infinite while loop close
 ```
