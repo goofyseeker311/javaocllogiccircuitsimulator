@@ -138,9 +138,9 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x04;
 					} else if (codelineparts[0].equals("cmpl")) {
 						insT = 0x14;
-					} else if (codelineparts[0].equals("cmpef")) {
+					} else if (codelineparts[0].equals("fcmpe")) {
 						insT = 0x24;
-					} else if (codelineparts[0].equals("cmplf")) {
+					} else if (codelineparts[0].equals("fcmpl")) {
 						insT = 0x34;
 					} else if (codelineparts[0].equals("add")) {
 						insT = 0x05;
@@ -192,17 +192,17 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xC6;
 					} else if (codelineparts[0].equals("copyc")) {
 						insT = 0xD6;
-					} else if (codelineparts[0].equals("addf")) {
+					} else if (codelineparts[0].equals("fadd")) {
 						insT = 0x07;
-					} else if (codelineparts[0].equals("subf")) {
+					} else if (codelineparts[0].equals("fsub")) {
 						insT = 0x17;
-					} else if (codelineparts[0].equals("mulf")) {
+					} else if (codelineparts[0].equals("fmul")) {
 						insT = 0x27;
-					} else if (codelineparts[0].equals("divf")) {
+					} else if (codelineparts[0].equals("fdiv")) {
 						insT = 0x37;
-					} else if (codelineparts[0].equals("negf")) {
+					} else if (codelineparts[0].equals("fneg")) {
 						insT = 0x47;
-					} else if (codelineparts[0].equals("itf")) {
+					} else if (codelineparts[0].equals("fitf")) {
 						insT = 0x57;
 					} else if (codelineparts[0].equals("ftin")) {
 						insT = 0x67;
