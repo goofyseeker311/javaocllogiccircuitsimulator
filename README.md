@@ -147,19 +147,19 @@ jmpu 0020              | 0020000000000011 | unconditional jump to register 32
 
 Example looping test assembly to c-code approximate:
 ```
-while(true) {                        // infinite while loop
-  register<0> long fib1{8} = 0x1;    // init fib1 with registers array 0-7 to long integer value 1
-  register<8> long fib2{8} = 0x1;    // init fib2 with registers array 8-15 to long integer value 1
-  register<16> long fib3{8} = 0x0;   // init fib3 with registers array 16-23 to long integer value 0
-  register<24> long i = 0;           // init loop i with register 24 long integer value 0
-  register<25> long imax = 32;       // init loop imax with register 25 long integer value 32
-  register<26> long *mem = 0x18;     // init mem with register 26 long integer pointer at 0x18
-  for (;i<imax;i++) {                // for loop long integer i index value from 0 to 31
-    fib3{8} = fib2{8};               // copy array of old fib2 values to fib3 vectorized 8x
-    fib2{8} = fib1{8};               // copy array of old fib1 values to fib2 vectorized 8x
-    fib1{8} = fib2{8} + fib3{8};     // calculate array of new fib1 adding fib2 and fib3 vectorized 8x
-    mem{8} = fib1{8};                // store array of fib1 values to mem location index vectorized 8x
-    mem += 8;                        // move memory pointer 8 indexes forward
-  }                                  // for loop close
-}                                    // infinite while loop close
+while(true) {                      // infinite while loop
+  register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to long integer value 1
+  register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to long integer value 1
+  register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to long integer value 0
+  register<24> long i = 0;         // init loop i with register 24 long integer value 0
+  register<25> long imax = 32;     // init loop imax with register 25 long integer value 32
+  register<26> long *mem = 0x18;   // init mem with register 26 long integer pointer at 0x18
+  for (;i<imax;i++) {              // for loop long integer i index value from 0 to 31
+    fib3{8} = fib2{8};             // copy array of old fib2 values to fib3 vectorized 8x
+    fib2{8} = fib1{8};             // copy array of old fib1 values to fib2 vectorized 8x
+    fib1{8} = fib2{8} + fib3{8};   // calculate array of new fib1 adding fib2 and fib3 vectorized 8x
+    mem{8} = fib1{8};              // store array of fib1 values to mem location index vectorized 8x
+    mem += 8;                      // move memory pointer 8 indexes forward
+  }                                // for loop close
+}                                  // infinite while loop close
 ```
