@@ -12,6 +12,7 @@ import java.util.BitSet;
 import java.util.Random;
 
 public class JavaOCLLogicCircuitEmulator {
+	private RiscChip riscchip = null;
 	public static void main(String[] arg) {
 		System.out.println("init.");
 		if (arg.length>1) {
@@ -40,15 +41,15 @@ public class JavaOCLLogicCircuitEmulator {
 			byte[] inputfilebytes = Files.readAllBytes(inputfile.toPath());
 			BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
 			ByteBuffer programbytes = ByteBuffer.wrap(inputfilebytes);
-			long[] program = new long[65536];
+			long[] program = new long[65536*256];
 			LongBuffer programbuffer = programbytes.asLongBuffer();
 			programbuffer.get(program, 0, programbuffer.remaining());
-			RiscChip riscchip = new RiscChip(cores);
+			riscchip = new RiscChip(cores);
 			riscchip.risccores[0].loadprogram(program);
 			riscchip.processchip(cycles);
-			long[] memoryout = new long[65536];
+			long[] memoryout = new long[65536*256];
 			riscchip.risccores[0].saveprogram(memoryout);
-			byte[] memoryarray = new byte[65536*8];
+			byte[] memoryarray = new byte[65536*256*8];
 			ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
 			LongBuffer memorylongs = memorybytes.asLongBuffer();
 			memorylongs.put(memoryout, 0, memoryout.length);
@@ -61,6 +62,8 @@ public class JavaOCLLogicCircuitEmulator {
 	
 	public class RiscChip {
 		public RiscCore[] risccores;
+		public int sharedamount = 65536*256;
+		public long[] sharedram = new long[sharedamount];
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -159,6 +162,10 @@ public class JavaOCLLogicCircuitEmulator {
 							newregisters[regX+i] = memoryram[((int)oldregisters[regY])+i];
 						} else if (insT==0x13) {
 							memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
+						} else if (insT==0x23) {
+							newregisters[regX+i] = riscchip.sharedram[((int)oldregisters[regY])+i];
+						} else if (insT==0x33) {
+							riscchip.sharedram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
 						} else if (insT==0x04) {
 							newregisters[regX+i] = 0;
 							if (oldregisters[regY+i]==0) {
