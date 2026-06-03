@@ -22,8 +22,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore72" src="https://github.com/user-attachments/assets/5fdf1f6c-80d7-4ef1-8841-27909be3200a" />
-<img width="3840" height="2112" alt="muxrisccore72a" src="https://github.com/user-attachments/assets/ef1d6a60-5466-4177-b5c4-de8e76bdb454" />
+<img width="3840" height="2112" alt="muxrisccore73" src="https://github.com/user-attachments/assets/bde29009-ce36-4190-9923-9c82a71c1bfb" />
+<img width="3840" height="2112" alt="muxrisccore73a" src="https://github.com/user-attachments/assets/7c65f111-99c3-4cac-aaec-883bcdb63c9a" />
 
 ---
 
@@ -54,8 +54,10 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          jmpXY                              insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
 3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
-         memrXY                             insV=0 load
-         memwXY                             insV=1 store
+         memrXY                             insV=0 load local
+         memwXY                             insV=1 store local
+         smemrXY                            insV=2 load shared
+         smemwXY                            insV=3 store shared
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
