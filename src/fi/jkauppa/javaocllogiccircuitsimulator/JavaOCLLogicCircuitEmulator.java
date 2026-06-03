@@ -442,6 +442,26 @@ public class JavaOCLLogicCircuitEmulator {
 							longbytes3.clear();
 							longbytes3.putDouble(longdouble3).rewind();
 							newregisters[regX+i] = longbytes3.getLong();
+						} else if (insT==0x09) {
+							long[] regtarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regtarray);
+							newregisters[regX+i] = regybits.previousSetBit(63);
+						} else if (insT==0x19) {
+							long[] regtarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regtarray);
+							newregisters[regX+i] = regybits.nextSetBit(0);
+						} else if (insT==0x29) {
+							long[] regtarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regtarray);
+							newregisters[regX+i] = regybits.previousClearBit(63);
+						} else if (insT==0x39) {
+							long[] regtarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regtarray);
+							newregisters[regX+i] = regybits.nextClearBit(0);
+						} else if (insT==0x49) {
+							long[] regtarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regtarray);
+							newregisters[regX+i] = regybits.cardinality();
 						}
 					}
 				}

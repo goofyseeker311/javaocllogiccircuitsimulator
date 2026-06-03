@@ -238,6 +238,16 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x78;
 					} else if (codelineparts[0].equals("fsqrt")) {
 						insT = 0x88;
+					} else if (codelineparts[0].equals("lone")) {
+						insT = 0x09;
+					} else if (codelineparts[0].equals("hone")) {
+						insT = 0x19;
+					} else if (codelineparts[0].equals("lzero")) {
+						insT = 0x29;
+					} else if (codelineparts[0].equals("hzero")) {
+						insT = 0x39;
+					} else if (codelineparts[0].equals("ones")) {
+						insT = 0x49;
 					}
 					
 					if (codelineparts.length>=2) {
