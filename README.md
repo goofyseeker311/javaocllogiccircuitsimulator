@@ -22,8 +22,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore74" src="https://github.com/user-attachments/assets/5ae81702-1a6b-4c8e-a99e-7ced1fe62615" />
-<img width="3840" height="2112" alt="muxrisccore74a" src="https://github.com/user-attachments/assets/91100b8f-a1a8-41d7-9e49-1e8a3251d311" />
+<img width="3840" height="2112" alt="muxrisccore75" src="https://github.com/user-attachments/assets/d5c49d4b-e57a-4154-8011-7f102af05218" />
+<img width="3840" height="2112" alt="muxrisccore75a" src="https://github.com/user-attachments/assets/6b4066f5-aacf-46ff-9bad-0967ffdbcdf4" />
 
 ---
 
@@ -58,6 +58,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          memwXY                             insV=1 store local
          smemrXY                            insV=2 load shared
          smemwXY                            insV=3 store shared
+         bmemrXY                            insV=4 load bus-io
+         bmemwXY                            insV=5 store bus-io
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
