@@ -77,6 +77,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          negXYZ                             insV=8 integer negate
          clkXYZ                             insV=9 integer clock counter
          rndXYZ                             insV=A integer clock random
+         coreXYZ                            insV=B integer core id
 6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
