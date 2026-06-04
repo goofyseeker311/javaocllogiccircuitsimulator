@@ -63,7 +63,9 @@ public class JavaOCLLogicCircuitEmulator {
 	public class RiscChip {
 		public RiscCore[] risccores;
 		public int sharedamount = 65536*256;
+		public int busioamount = 65536*256;
 		public long[] sharedram = new long[sharedamount];
+		public long[] busioram = new long[busioamount];
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -166,6 +168,10 @@ public class JavaOCLLogicCircuitEmulator {
 							newregisters[regX+i] = riscchip.sharedram[((int)oldregisters[regY])+i];
 						} else if (insT==0x33) {
 							riscchip.sharedram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
+						} else if (insT==0x43) {
+							newregisters[regX+i] = riscchip.busioram[((int)oldregisters[regY])+i];
+						} else if (insT==0x53) {
+							riscchip.busioram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
 						} else if (insT==0x04) {
 							newregisters[regX+i] = 0;
 							if (oldregisters[regY+i]==0) {
@@ -241,6 +247,8 @@ public class JavaOCLLogicCircuitEmulator {
 								this.randoms[i].setSeed(oldregisters[regZ+i]);
 							}
 							newregisters[regX+i] = this.randoms[i].nextLong();
+						} else if (insT==0xB5) {
+							newregisters[regX+i] = corenum;
 						} else if (insT==0x06) {
 							newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
 						} else if (insT==0x16) {

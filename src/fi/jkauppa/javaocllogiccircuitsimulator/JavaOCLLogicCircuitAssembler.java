@@ -138,6 +138,10 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x23;
 					} else if (codelineparts[0].equals("smemw")) {
 						insT = 0x33;
+					} else if (codelineparts[0].equals("bmemr")) {
+						insT = 0x43;
+					} else if (codelineparts[0].equals("bmemw")) {
+						insT = 0x53;
 					} else if (codelineparts[0].equals("cmpe")) {
 						insT = 0x04;
 					} else if (codelineparts[0].equals("cmpl")) {
@@ -168,6 +172,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x95;
 					} else if (codelineparts[0].equals("rnd")) {
 						insT = 0xA5;
+					} else if (codelineparts[0].equals("core")) {
+						insT = 0xB5;
 					} else if (codelineparts[0].equals("shl")) {
 						insT = 0x06;
 					} else if (codelineparts[0].equals("shr")) {
