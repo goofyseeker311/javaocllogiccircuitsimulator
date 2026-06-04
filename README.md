@@ -22,8 +22,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore73" src="https://github.com/user-attachments/assets/bde29009-ce36-4190-9923-9c82a71c1bfb" />
-<img width="3840" height="2112" alt="muxrisccore73a" src="https://github.com/user-attachments/assets/7c65f111-99c3-4cac-aaec-883bcdb63c9a" />
+<img width="3840" height="2112" alt="muxrisccore74" src="https://github.com/user-attachments/assets/5ae81702-1a6b-4c8e-a99e-7ced1fe62615" />
+<img width="3840" height="2112" alt="muxrisccore74a" src="https://github.com/user-attachments/assets/91100b8f-a1a8-41d7-9e49-1e8a3251d311" />
 
 ---
 
@@ -113,6 +113,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          flogXYZ                            insV=6 float logarithm
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
+9      | bitaXYZ     | ALU BitA Operation | store advanced bitwise op[insV] regY regZ to regX
+         loneXYZ                            insV=0 bitwise lowest one bit, -1 if not found
+         honeXYZ                            insV=1 bitwise highest one bit, -1 if not found
+         lzeroXYZ                           insV=2 bitwise lowest zero bit, -1 if not found
+         hzeroXYZ                           insV=3 bitwise highest zero bit, -1 if not found
+         onesXYZ                            insV=4 bitwise count of one bits
 ```
 
 Example looping test assembly code source and binary:
@@ -148,9 +154,9 @@ jmpu 0020              | 0020000000000011 | unconditional jump to register 32
 Example looping test assembly to c-code approximate:
 ```
 while(true) {                      // infinite while loop
-  register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to long integer value 1
-  register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to long integer value 1
-  register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to long integer value 0
+  register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to long 1 vectorized 8x
+  register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to long 1 vectorized 8x
+  register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to long 0 vectorized 8x
   register<24> long i = 0;         // init loop i with register 24 long integer value 0
   register<25> long imax = 32;     // init loop imax with register 25 long integer value 32
   register<26> long *mem = 0x18;   // init mem with register 26 long integer pointer at 0x18
