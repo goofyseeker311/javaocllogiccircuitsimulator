@@ -45,10 +45,10 @@ public class JavaOCLLogicCircuitEmulator {
 			LongBuffer programbuffer = programbytes.asLongBuffer();
 			programbuffer.get(program, 0, programbuffer.remaining());
 			riscchip = new RiscChip(cores);
-			riscchip.risccores[0].loadprogram(program);
+			riscchip.loadprogram(program);
 			riscchip.processchip(cycles);
 			long[] memoryout = new long[65536*256];
-			riscchip.risccores[0].saveprogram(memoryout);
+			riscchip.saveprogram(memoryout);
 			byte[] memoryarray = new byte[65536*256*8];
 			ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
 			LongBuffer memorylongs = memorybytes.asLongBuffer();
@@ -62,10 +62,8 @@ public class JavaOCLLogicCircuitEmulator {
 	
 	public class RiscChip {
 		public RiscCore[] risccores;
-		public int sharedamount = 65536*256;
-		public int busioamount = 65536*256;
-		public long[] sharedram = new long[sharedamount];
-		public long[] busioram = new long[busioamount];
+		public int memoryamount = 65536*256;
+		public long[] memoryram = new long[memoryamount];
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -80,16 +78,28 @@ public class JavaOCLLogicCircuitEmulator {
 				}
 			}
 		}
+		public void loadprogram(long[] program) {
+			if (program!=null) {
+				for (int i=0;(i<program.length)&&(i<riscchip.memoryamount);i++) {
+					riscchip.memoryram[i] = program[i];
+				}
+			}
+		}
+		public void saveprogram(long[] program) {
+			if (program!=null) {
+				for (int i=0;(i<program.length)&&(i<riscchip.memoryamount);i++) {
+					program[i] = riscchip.memoryram[i];
+				}
+			}
+		}
 	}
 
 	public class RiscCore {
 		private int corenum = 0;
 		private int cyclenum = 0;
 		private int registeramount = 65536;
-		private int memoryamount = 65536*256;
 		private long[] newregisters = new long[registeramount];
 		private long[] oldregisters = new long[registeramount];
-		private long[] memoryram = new long[memoryamount];
 		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private long instructionstate = 0L;
@@ -104,23 +114,8 @@ public class JavaOCLLogicCircuitEmulator {
 			corenum = corenumi;
 		}
 		
-		public void loadprogram(long[] program) {
-			if (program!=null) {
-				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
-					memoryram[i] = program[i];
-				}
-			}
-		}
-		public void saveprogram(long[] program) {
-			if (program!=null) {
-				for (int i=0;(i<program.length)&&(i<registeramount);i++) {
-					program[i] = memoryram[i];
-				}
-			}
-		}
-		
 		public void processinstruction() {
-			instructionstate = memoryram[programcounter];
+			instructionstate = riscchip.memoryram[programcounter];
 			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
 					", r0:"+String.format("%016x", oldregisters[0x0])+", r1:"+String.format("%016x", oldregisters[0x1])+", r2:"+String.format("%016x", oldregisters[0x2])+", r3:"+String.format("%016x", oldregisters[0x3])+
 					", r4:"+String.format("%016x", oldregisters[0x4])+", r5:"+String.format("%016x", oldregisters[0x5])+", r6:"+String.format("%016x", oldregisters[0x6])+", r7:"+String.format("%016x", oldregisters[0x7])+
@@ -161,17 +156,9 @@ public class JavaOCLLogicCircuitEmulator {
 						if (insT==0x02) {
 							newregisters[regX+i] = (regY<<16) + regZ;
 						} else if (insT==0x03) {
-							newregisters[regX+i] = memoryram[((int)oldregisters[regY])+i];
+							newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 						} else if (insT==0x13) {
-							memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
-						} else if (insT==0x23) {
-							newregisters[regX+i] = riscchip.sharedram[((int)oldregisters[regY])+i];
-						} else if (insT==0x33) {
-							riscchip.sharedram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
-						} else if (insT==0x43) {
-							newregisters[regX+i] = riscchip.busioram[((int)oldregisters[regY])+i];
-						} else if (insT==0x53) {
-							riscchip.busioram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
+							riscchip.memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
 						} else if (insT==0x04) {
 							newregisters[regX+i] = 0;
 							if (oldregisters[regY+i]==0) {
@@ -476,7 +463,7 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			}
 			
-			if (programcounter>=memoryamount) {
+			if (programcounter>=riscchip.memoryamount) {
 				programcounter = 0;
 			}
 			cyclenum++;

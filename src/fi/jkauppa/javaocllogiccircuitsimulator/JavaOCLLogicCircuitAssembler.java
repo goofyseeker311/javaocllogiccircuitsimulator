@@ -134,14 +134,6 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x03;
 					} else if (codelineparts[0].equals("memw")) {
 						insT = 0x13;
-					} else if (codelineparts[0].equals("smemr")) {
-						insT = 0x23;
-					} else if (codelineparts[0].equals("smemw")) {
-						insT = 0x33;
-					} else if (codelineparts[0].equals("bmemr")) {
-						insT = 0x43;
-					} else if (codelineparts[0].equals("bmemw")) {
-						insT = 0x53;
 					} else if (codelineparts[0].equals("cmpe")) {
 						insT = 0x04;
 					} else if (codelineparts[0].equals("cmpl")) {
