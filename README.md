@@ -57,8 +57,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          jmpXY                              insV=1 unconditional jump to regX
 2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
 3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
-         memrXY                             insV=0 load local
-         memwXY                             insV=1 store local
+         memrXY                             insV=0 load from shared memory
+         memwXY                             insV=1 store to shared memory
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
