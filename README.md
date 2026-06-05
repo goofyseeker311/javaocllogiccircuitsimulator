@@ -24,6 +24,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2112" alt="muxrisccore75" src="https://github.com/user-attachments/assets/d5c49d4b-e57a-4154-8011-7f102af05218" />
 <img width="3840" height="2112" alt="muxrisccore75a" src="https://github.com/user-attachments/assets/6b4066f5-aacf-46ff-9bad-0967ffdbcdf4" />
+<img width="3840" height="2112" alt="microfpgamux5" src="https://github.com/user-attachments/assets/7e2dbf34-69ce-4921-8d07-1053bdc3aaac" />
+<img width="3840" height="2112" alt="microfpgamux5a" src="https://github.com/user-attachments/assets/7e5e3f1c-f7da-4fab-81a0-6cf6c572a02b" />
 
 ---
 
