@@ -1,3 +1,19 @@
+nop  ff rom header boot load size
+nop  01 rom header data
+nop  02 rom header data
+nop  03 rom header data
+nop  04 rom header data
+nop  05 rom header data
+nop  06 rom header data
+nop  07 rom header data
+nop  A0 rom header data
+nop  A1 rom header data
+nop  A2 rom header data
+nop  A3 rom header data
+nop  A4 rom header data
+nop  A5 rom header data
+nop  A6 rom header data
+nop  A7 rom header data
 
 // empty line
 nop  00000200
@@ -6,11 +22,11 @@ ldi  0008 00000001 ff
 ldi  0010 00000000 ff
 ldi  0018 00000000
 ldi  0019 00000020
-ldi  001a 00000018
+ldi  001a 00000028
 ldi  001b 00000001
 ldi  001c 00000008
-ldi  001d 0000000D
-ldi  0020 00000000
+ldi  001d 0000001D
+ldi  0020 00000010
 copy 0010 0008 0000 ff
 copy 0008 0000 0000 ff
 add  0000 0008 0010 ff
