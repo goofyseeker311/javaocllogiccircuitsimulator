@@ -22,8 +22,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2112" alt="muxrisccore75" src="https://github.com/user-attachments/assets/d5c49d4b-e57a-4154-8011-7f102af05218" />
-<img width="3840" height="2112" alt="muxrisccore75a" src="https://github.com/user-attachments/assets/6b4066f5-aacf-46ff-9bad-0967ffdbcdf4" />
+<img width="3840" height="2112" alt="muxrisccore76" src="https://github.com/user-attachments/assets/7cceaa2b-19b3-402f-9238-8848aa3cd67a" />
+<img width="3840" height="2112" alt="muxrisccore76a" src="https://github.com/user-attachments/assets/a873ca0c-1719-470f-8b4b-b40309e0668f" />
 <img width="3840" height="2112" alt="microfpgamux5" src="https://github.com/user-attachments/assets/7e2dbf34-69ce-4921-8d07-1053bdc3aaac" />
 <img width="3840" height="2112" alt="microfpgamux5a" src="https://github.com/user-attachments/assets/7e5e3f1c-f7da-4fab-81a0-6cf6c572a02b" />
 
@@ -58,10 +58,6 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
 3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
          memrXY                             insV=0 load local
          memwXY                             insV=1 store local
-         smemrXY                            insV=2 load shared
-         smemwXY                            insV=3 store shared
-         bmemrXY                            insV=4 load bus-io
-         bmemwXY                            insV=5 store bus-io
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
