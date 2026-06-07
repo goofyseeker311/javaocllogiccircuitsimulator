@@ -20,37 +20,43 @@ public class JavaOCLLogicCircuitEmulator {
 			String filecart = arg[1];
 			String filememout = arg[2];
 			String filecartout = arg[3];
+			String filedispout = arg[4];
+			String fileregout = arg[5];
 			int cores = 1;
 			long cycles = 8192;
-			if (arg.length>4) {
-				cores = Integer.parseUnsignedInt(arg[4]);
+			if (arg.length>6) {
+				cores = Integer.parseUnsignedInt(arg[6]);
 			}
-			if (arg.length>5) {
-				cycles = Long.parseUnsignedLong(arg[5]);
+			if (arg.length>7) {
+				cycles = Long.parseUnsignedLong(arg[7]);
 			}
 			JavaOCLLogicCircuitEmulator emulator = new JavaOCLLogicCircuitEmulator();
-			emulator.run(fileboot, filecart, filememout, filecartout, cycles, cores);
+			emulator.run(fileboot, filecart, filememout, filecartout, filedispout, fileregout, cycles, cores);
 		} else {
-			System.out.println("arguments expected: boot.bin program.bin memory.out cart.out [cores] [cycles]");
+			System.out.println("arguments expected: boot.bin cart.bin mem.out cart.out disp.out reg.out [cores] [cycles]");
 		}
 		System.out.println("exit.");
 	}
 	
-	public void run(String fileboot, String filecart, String filememout, String filecartout, long cycles, int cores) {
+	public void run(String fileboot, String filecart, String filememout, String filecartout, String filedispout, String fileregout, long cycles, int cores) {
 		riscchip = new RiscChip(cores);
 		File bootfile = new File(fileboot);
 		File cartfile = new File(filecart);
 		File outputmemfile = new File(filememout);
 		File outputcartfile = new File(filecartout);
+		File outputdispfile = new File(filedispout);
+		File outputregfile = new File(fileregout);
 		try {
 			byte[] bootfilebytes = Files.readAllBytes(bootfile.toPath());
 			byte[] cartfilebytes = Files.readAllBytes(cartfile.toPath());
 			BufferedOutputStream filememoutput = new BufferedOutputStream(new FileOutputStream(outputmemfile));
 			BufferedOutputStream filecartoutput = new BufferedOutputStream(new FileOutputStream(outputcartfile));
+			BufferedOutputStream filedispoutput = new BufferedOutputStream(new FileOutputStream(outputdispfile));
+			BufferedOutputStream fileregoutput = new BufferedOutputStream(new FileOutputStream(outputregfile));
 			ByteBuffer bootbytes = ByteBuffer.wrap(bootfilebytes);
 			ByteBuffer cartbytes = ByteBuffer.wrap(cartfilebytes);
-			long[] boot = new long[riscchip.memoryamount];
-			long[] cart = new long[riscchip.memoryamount];
+			long[] boot = new long[RiscChip.memoryamount];
+			long[] cart = new long[RiscChip.cartamount];
 			LongBuffer bootbuffer = bootbytes.asLongBuffer();
 			LongBuffer cartbuffer = cartbytes.asLongBuffer();
 			bootbuffer.get(boot, 0, bootbuffer.remaining());
@@ -58,22 +64,38 @@ public class JavaOCLLogicCircuitEmulator {
 			riscchip.loadmemory(boot);
 			riscchip.loadcart(cart);
 			riscchip.processchip(cycles);
-			long[] memoryout = new long[riscchip.memoryamount];
-			long[] cartout = new long[riscchip.memoryamount];
+			long[] memoryout = new long[RiscChip.memoryamount];
+			long[] cartout = new long[RiscChip.cartamount];
+			long[] dispout = new long[RiscChip.displayamount];
+			long[] regout = new long[RiscChip.registeramount*riscchip.risccores.length];
 			riscchip.savememory(memoryout);
 			riscchip.savecart(cartout);
-			byte[] memoryarray = new byte[riscchip.memoryamount*8];
-			byte[] cartoutarray = new byte[riscchip.memoryamount*8];
+			riscchip.savedisplay(dispout);
+			riscchip.saveregistry(regout);
+			byte[] memoryarray = new byte[RiscChip.memoryamount*8];
+			byte[] cartoutarray = new byte[RiscChip.cartamount*8];
+			byte[] dispoutarray = new byte[RiscChip.displayamount*8];
+			byte[] regoutarray = new byte[RiscChip.registeramount*riscchip.risccores.length*8];
 			ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
 			ByteBuffer cartoutbytes = ByteBuffer.wrap(cartoutarray);
+			ByteBuffer dispoutbytes = ByteBuffer.wrap(dispoutarray);
+			ByteBuffer regoutbytes = ByteBuffer.wrap(regoutarray);
 			LongBuffer memorylongs = memorybytes.asLongBuffer();
 			LongBuffer cartoutlongs = cartoutbytes.asLongBuffer();
+			LongBuffer dispoutlongs = dispoutbytes.asLongBuffer();
+			LongBuffer regoutlongs = regoutbytes.asLongBuffer();
 			memorylongs.put(memoryout, 0, memoryout.length);
 			cartoutlongs.put(cartout, 0, cartout.length);
+			dispoutlongs.put(dispout, 0, dispout.length);
+			regoutlongs.put(regout, 0, regout.length);
 			filememoutput.write(memoryarray);
 			filecartoutput.write(cartoutarray);
+			filedispoutput.write(dispoutarray);
+			fileregoutput.write(regoutarray);
 			filememoutput.close();
 			filecartoutput.close();
+			filedispoutput.close();
+			fileregoutput.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -81,9 +103,13 @@ public class JavaOCLLogicCircuitEmulator {
 	
 	public class RiscChip {
 		public RiscCore[] risccores;
-		public int memoryamount = 65536*256;
+		public static final int memoryamount = 65536*256;
+		public static final int cartamount = 65536*256;
+		public static final int displayamount = 512*512;
+		public static final int registeramount = 65536;
 		public long[] memoryram = new long[memoryamount];
-		public long[] cartram = new long[memoryamount];
+		public long[] cartram = new long[cartamount];
+		public long[] displayram = new long[displayamount];
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -98,42 +124,57 @@ public class JavaOCLLogicCircuitEmulator {
 				}
 			}
 		}
-		public void loadmemory(long[] program) {
-			if (program!=null) {
-				for (int i=0;(i<program.length)&&(i<riscchip.memoryram.length);i++) {
-					riscchip.memoryram[i] = program[i];
+		public void loadmemory(long[] memory) {
+			if (memory!=null) {
+				for (int i=0;(i<memory.length)&&(i<memoryamount);i++) {
+					memoryram[i] = memory[i];
 				}
 			}
 		}
-		public void savememory(long[] program) {
-			if (program!=null) {
-				for (int i=0;(i<program.length)&&(i<riscchip.memoryram.length);i++) {
-					program[i] = riscchip.memoryram[i];
+		public void savememory(long[] memory) {
+			if (memory!=null) {
+				for (int i=0;(i<memory.length)&&(i<memoryamount);i++) {
+					memory[i] = memoryram[i];
 				}
 			}
 		}
 		public void loadcart(long[] cart) {
 			if (cart!=null) {
-				for (int i=0;(i<cart.length)&&(i<riscchip.cartram.length);i++) {
-					riscchip.cartram[i] = cart[i];
+				for (int i=0;(i<cart.length)&&(i<cartamount);i++) {
+					cartram[i] = cart[i];
 				}
 			}
 		}
 		public void savecart(long[] cart) {
 			if (cart!=null) {
-				for (int i=0;(i<cart.length)&&(i<riscchip.cartram.length);i++) {
-					cart[i] = riscchip.cartram[i];
+				for (int i=0;(i<cart.length)&&(i<cartamount);i++) {
+					cart[i] = cartram[i];
+				}
+			}
+		}
+		public void savedisplay(long[] display) {
+			if (display!=null) {
+				for (int i=0;(i<display.length)&&(i<displayamount);i++) {
+					display[i] = displayram[i];
+				}
+			}
+		}
+		public void saveregistry(long[] registry) {
+			if (registry!=null) {
+				for (int j=0;j<risccores.length;j++) {
+					for (int i=0;i<registeramount;i++) {
+						registry[j*registeramount+i] = risccores[j].oldregisters[i];
+					}
 				}
 			}
 		}
 	}
 
 	public class RiscCore {
-		private int corenum = 0;
-		private int cyclenum = 0;
-		private int registeramount = 65536;
-		private long[] newregisters = new long[registeramount];
-		private long[] oldregisters = new long[registeramount];
+		public int corenum = 0;
+		public int cyclenum = 0;
+		private long[] newregisters = new long[RiscChip.registeramount];
+		private long[] oldregisters = new long[RiscChip.registeramount];
 		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private long instructionstate = 0L;
@@ -192,28 +233,40 @@ public class JavaOCLLogicCircuitEmulator {
 						} else if (insT==0x03) {
 							long[] regyaddr = {oldregisters[regY]};
 							BitSet regybits = BitSet.valueOf(regyaddr);
-							if (regybits.get(63)) {
-								regybits.clear(60, 64);
-								long[] cartaddr = regybits.toLongArray();
-								long cartaddress = 0;
-								if (cartaddr.length>0) {
-									cartaddress = cartaddr[0];
+							boolean regybit63 = regybits.get(63);
+							boolean regybit62 = regybits.get(62);
+							if (regybit63 || regybit62) {
+								regybits.clear(62, 64);
+								long[] memaddr = regybits.toLongArray();
+								long memaddress = 0;
+								if (memaddr.length>0) {
+									memaddress = memaddr[0];
 								}
-								newregisters[regX+i] = riscchip.cartram[((int)cartaddress)+i];
+								if (regybit63) {
+									newregisters[regX+i] = riscchip.displayram[((int)memaddress)+i];
+								} else {
+									newregisters[regX+i] = riscchip.cartram[((int)memaddress)+i];
+								}
 							} else {
 								newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 							}
 						} else if (insT==0x13) {
 							long[] regyaddr = {oldregisters[regY]};
 							BitSet regybits = BitSet.valueOf(regyaddr);
-							if (regybits.get(63)) {
-								regybits.clear(60, 64);
-								long[] cartaddr = regybits.toLongArray();
-								long cartaddress = 0;
-								if (cartaddr.length>0) {
-									cartaddress = cartaddr[0];
+							boolean regybit63 = regybits.get(63);
+							boolean regybit62 = regybits.get(62);
+							if (regybit63 || regybit62) {
+								regybits.clear(62, 64);
+								long[] memaddr = regybits.toLongArray();
+								long memaddress = 0;
+								if (memaddr.length>0) {
+									memaddress = memaddr[0];
 								}
-								riscchip.cartram[((int)cartaddress)+i] = oldregisters[regX+i];
+								if (regybit63) {
+									riscchip.displayram[((int)memaddress)+i] = oldregisters[regX+i];
+								} else {
+									riscchip.cartram[((int)memaddress)+i] = oldregisters[regX+i];
+								}
 							} else {
 								riscchip.memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
 							}
@@ -521,7 +574,7 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			}
 			
-			if (programcounter>=riscchip.memoryamount) {
+			if (programcounter>=RiscChip.memoryamount) {
 				programcounter = 0;
 			}
 			cyclenum++;
@@ -535,7 +588,7 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 		
 		public void updateregisters() {
-			for (int i=0;i<registeramount;i++) {
+			for (int i=0;i<RiscChip.registeramount;i++) {
 				oldregisters[i] = newregisters[i];
 			}
 		}
