@@ -126,9 +126,9 @@ public class JavaOCLLogicCircuitAssembler {
 					int vecN = 0;
 					int insT = 0;
 					String[] codelineparts = codeline.split(splitregex);
-					if (codelineparts[0].equals("jmpc")) {
+					if (codelineparts[0].equals("jmp")) {
 						insT = 0x01;
-					} else if (codelineparts[0].equals("jmp")) {
+					} else if (codelineparts[0].equals("jmpc")) {
 						insT = 0x11;
 					} else if (codelineparts[0].equals("memr")) {
 						insT = 0x03;
@@ -166,6 +166,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xA5;
 					} else if (codelineparts[0].equals("core")) {
 						insT = 0xB5;
+					} else if (codelineparts[0].equals("freq")) {
+						insT = 0xC5;
 					} else if (codelineparts[0].equals("shl")) {
 						insT = 0x06;
 					} else if (codelineparts[0].equals("shr")) {

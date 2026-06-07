@@ -110,6 +110,7 @@ public class JavaOCLLogicCircuitEmulator {
 		public long[] memoryram = new long[memoryamount];
 		public long[] cartram = new long[cartamount];
 		public long[] displayram = new long[displayamount];
+		public long clockfrequency = 100000000L;
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -216,14 +217,14 @@ public class JavaOCLLogicCircuitEmulator {
 					programcounter++;
 				}
 			} else if (insT==0x01) {
+				programcounter = (int)oldregisters[regX];
+			} else if (insT==0x11) {
 				long jumpflag = oldregisters[regY];
 				if (jumpflag!=0) {
 					programcounter = (int)oldregisters[regX];
 				} else {
 					programcounter++;
 				}
-			} else if (insT==0x11) {
-				programcounter = (int)oldregisters[regX];
 			} else {
 				for (int i=0;i<8;i++) {
 					if (vecnbits.get(i)) {
@@ -336,8 +337,8 @@ public class JavaOCLLogicCircuitEmulator {
 						} else if (insT==0x85) {
 							newregisters[regX+i] = -oldregisters[regY+i];
 						} else if (insT==0x95) {
-							if (oldregisters[regY+i]!=0) {
-								this.counters[i] = oldregisters[regZ+i];
+							if (oldregisters[regZ+i]!=0) {
+								this.counters[i] = oldregisters[regY+i];
 							}
 							newregisters[regX+i] = this.counters[i];
 						} else if (insT==0xA5) {
@@ -347,6 +348,14 @@ public class JavaOCLLogicCircuitEmulator {
 							newregisters[regX+i] = this.randoms[i].nextLong();
 						} else if (insT==0xB5) {
 							newregisters[regX+i] = corenum;
+						} else if (insT==0xC5) {
+							if (oldregisters[regZ+i]!=0) {
+								riscchip.clockfrequency = oldregisters[regY+i];
+							}
+							if (riscchip.clockfrequency==0) {
+								riscchip.clockfrequency = 100000000L;
+							}
+							newregisters[regX+i] = riscchip.clockfrequency;
 						} else if (insT==0x06) {
 							newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
 						} else if (insT==0x16) {
