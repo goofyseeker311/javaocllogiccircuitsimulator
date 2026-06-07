@@ -23,8 +23,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore79" src="https://github.com/user-attachments/assets/85ad7dd5-fdee-4cb7-836a-e13ae817faf6" />
-<img width="3840" height="2112" alt="muxrisccore79a" src="https://github.com/user-attachments/assets/c3657524-949d-4b28-af34-e92750a6f6b5" />
+<img width="3840" height="2112" alt="muxrisccore80" src="https://github.com/user-attachments/assets/507241aa-d464-4fd7-b747-00f0d04c9e3a" />
+<img width="3840" height="2112" alt="muxrisccore80a" src="https://github.com/user-attachments/assets/d80233a9-e79a-4316-b92d-aacfc107613d" />
 <img width="3840" height="2112" alt="microfpgamux7" src="https://github.com/user-attachments/assets/db64f776-b357-4345-8210-67cac6609baa" />
 <img width="3840" height="2112" alt="microfpgamux7a" src="https://github.com/user-attachments/assets/0fc1034b-8c51-47f9-a913-37dbebb3161d" />
 
@@ -53,8 +53,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          []                                 empty line or white space line
          //                                 comment line
 1      | jmpXY       | Jump Destination   | jump to regX if regY is not zero
-         jmpcXY                             insV=0 jump to regX if regY is not zero
-         jmpXY                              insV=1 unconditional jump to regX
+         jmpXY                              insV=0 unconditional jump to regX
+         jmpcXY                             insV=1 jump to regX if regY is not zero
 2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
 3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
          memrXY                             insV=0 load from shared memory
@@ -77,6 +77,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          clkXYZ                             insV=9 integer clock counter
          rndXYZ                             insV=A integer clock random
          coreXYZ                            insV=B integer core id
+         freqXYZ                            insV=C integer clock frequency
 6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
@@ -148,8 +149,8 @@ add  001a 001a 001c    | 001a001a001c0005 | store add of register 26 and registe
 add  0018 0018 001b    | 00180018001b0005 | store add of register 24 and register 27 to register 24
 sub  001e 0018 0019    | 001e001800190025 | store sub of register 24 and register 25 to register 30
 cmpl 001f 001e         | 001f001e00000014 | clear register 31, set if register 30 int less than 0
-jmpc 001d 001f         | 001d001f00000001 | jump to register 29 if register 31 is not zero
-jmpu 0020              | 0020000000000011 | unconditional jump to register 32
+jmpc 001d 001f         | 001d001f00000011 | jump to register 29 if register 31 is not zero
+jmp  0020              | 0020000000000001 | unconditional jump to register 32
 ##   A123456789ABCDEF  | a123456789abcdef | custom data segment with any instruction or data
 ```
 
