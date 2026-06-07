@@ -1625,7 +1625,7 @@
       <a name="value" val="0x0"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(1390,980)" name="Constant">
+    <comp lib="0" loc="(1390,970)" name="Constant">
       <a name="value" val="0xc"/>
       <a name="width" val="4"/>
     </comp>
@@ -1758,7 +1758,7 @@
       <a name="value" val="0x0"/>
       <a name="width" val="64"/>
     </comp>
-    <comp lib="0" loc="(960,980)" name="Constant">
+    <comp lib="0" loc="(960,970)" name="Constant">
       <a name="value" val="0x9"/>
       <a name="width" val="4"/>
     </comp>
