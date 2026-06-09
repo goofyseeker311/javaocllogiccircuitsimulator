@@ -1607,7 +1607,7 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(1260,970)" name="Constant">
-      <a name="value" val="0xc"/>
+      <a name="value" val="0xb"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(1280,2170)" name="Bit Extender">
