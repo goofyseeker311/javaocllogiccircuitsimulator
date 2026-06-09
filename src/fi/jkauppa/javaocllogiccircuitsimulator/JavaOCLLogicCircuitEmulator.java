@@ -347,8 +347,6 @@ public class JavaOCLLogicCircuitEmulator {
 							}
 							newregisters[regX+i] = this.randoms[i].nextLong();
 						} else if (insT==0xB5) {
-							newregisters[regX+i] = corenum;
-						} else if (insT==0xC5) {
 							if (oldregisters[regZ+i]!=0) {
 								riscchip.clockfrequency = oldregisters[regY+i];
 							}
@@ -356,6 +354,12 @@ public class JavaOCLLogicCircuitEmulator {
 								riscchip.clockfrequency = 100000000L;
 							}
 							newregisters[regX+i] = riscchip.clockfrequency;
+						} else if (insT==0xC5) {
+							if (oldregisters[regY+i]==1) {
+								newregisters[regX+i] = riscchip.risccores.length;
+							} else {
+								newregisters[regX+i] = corenum;
+							}
 						} else if (insT==0x06) {
 							newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
 						} else if (insT==0x16) {
