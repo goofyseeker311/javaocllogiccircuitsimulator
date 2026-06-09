@@ -27,8 +27,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore86a" src="https://github.com/user-attachments/assets/ca80292a-0086-47a8-a8cb-9f030fc662a9" />
 <img width="3840" height="2112" alt="muxrisccore85b" src="https://github.com/user-attachments/assets/26700f50-0086-4ee8-8f9f-e827d8f354ba" />
 <img width="3840" height="2112" alt="muxrisccore85c" src="https://github.com/user-attachments/assets/aca92345-50e8-4493-be12-35538ebcc04e" />
-<img width="3840" height="2112" alt="microfpgamux7" src="https://github.com/user-attachments/assets/db64f776-b357-4345-8210-67cac6609baa" />
-<img width="3840" height="2112" alt="microfpgamux7a" src="https://github.com/user-attachments/assets/0fc1034b-8c51-47f9-a913-37dbebb3161d" />
+<img width="3840" height="2112" alt="microfpgamux8" src="https://github.com/user-attachments/assets/3ef63825-3e6e-4a7c-84bf-5e2f8dd5b20b" />
+<img width="3840" height="2112" alt="microfpgamux8a" src="https://github.com/user-attachments/assets/052355ee-0843-4794-8e71-4ce23d94b266" />
+<img width="3840" height="2112" alt="microfpgamux8b" src="https://github.com/user-attachments/assets/31bbcabf-8d52-4988-a25d-e547b13efda9" />
 
 ---
 
