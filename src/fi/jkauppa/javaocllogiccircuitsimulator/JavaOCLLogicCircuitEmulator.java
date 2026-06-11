@@ -230,7 +230,7 @@ public class JavaOCLLogicCircuitEmulator {
 					if (vecnbits.get(i)) {
 
 						if (insT==0x02) {
-							newregisters[regX+i] = (regY<<16) + regZ;
+							newregisters[regX+i] = ((0xFFFF & regY)<<16) | (0xFFFF & regZ);
 						} else if (insT==0x03) {
 							long[] regyaddr = {oldregisters[regY]};
 							BitSet regybits = BitSet.valueOf(regyaddr);
