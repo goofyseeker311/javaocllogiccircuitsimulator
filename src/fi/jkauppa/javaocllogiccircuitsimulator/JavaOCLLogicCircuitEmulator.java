@@ -357,6 +357,18 @@ public class JavaOCLLogicCircuitEmulator {
 						} else if (insT==0xC5) {
 							if (oldregisters[regY+i]==1) {
 								newregisters[regX+i] = riscchip.risccores.length;
+							} else if (oldregisters[regY+i]==2) {
+								newregisters[regX+i] = RiscChip.registeramount;
+							} else if (oldregisters[regY+i]==3) {
+								newregisters[regX+i] = RiscChip.memoryamount;
+							} else if (oldregisters[regY+i]==4) {
+								newregisters[regX+i] = 0;
+							} else if (oldregisters[regY+i]==5) {
+								newregisters[regX+i] = 0;
+							} else if (oldregisters[regY+i]==6) {
+								newregisters[regX+i] = 0;
+							} else if (oldregisters[regY+i]==7) {
+								newregisters[regX+i] = 0;
 							} else {
 								newregisters[regX+i] = corenum;
 							}
