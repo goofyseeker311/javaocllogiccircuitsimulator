@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore87" src="https://github.com/user-attachments/assets/5e2b8830-1cc0-4717-973e-8e2bf0836641" />
-<img width="3840" height="2112" alt="muxrisccore87a" src="https://github.com/user-attachments/assets/5bf50fbb-b2df-458d-9e24-bc8210de1620" />
-<img width="3840" height="2112" alt="muxrisccore87b" src="https://github.com/user-attachments/assets/baa836a4-c6c4-421a-af4d-ff487169886f" />
+<img width="3840" height="2112" alt="muxrisccore88" src="https://github.com/user-attachments/assets/ff3c4ca0-39ff-43b5-bcd7-e75b49631a7f" />
+<img width="3840" height="2112" alt="muxrisccore88a" src="https://github.com/user-attachments/assets/b9a60e8c-2a27-4206-985b-1e6d596e6ac4" />
+<img width="3840" height="2112" alt="muxrisccore88b" src="https://github.com/user-attachments/assets/0007d9e6-4736-4e80-a02a-4f99f17f5cf1" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -80,6 +80,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          rndXYZ                             insV=A integer clock random
          freqXYZ                            insV=B integer clock frequency
          coreXYZ                            insV=C integer core info: id, cores, registers, memory
+         timeXYZ                            insV=D integer global time nanoseconds
 6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
