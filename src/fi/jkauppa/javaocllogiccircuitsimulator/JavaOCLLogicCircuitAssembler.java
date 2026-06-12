@@ -168,6 +168,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xB5;
 					} else if (codelineparts[0].equals("core")) {
 						insT = 0xC5;
+					} else if (codelineparts[0].equals("time")) {
+						insT = 0xD5;
 					} else if (codelineparts[0].equals("shl")) {
 						insT = 0x06;
 					} else if (codelineparts[0].equals("shr")) {

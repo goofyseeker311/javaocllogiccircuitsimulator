@@ -110,7 +110,7 @@ public class JavaOCLLogicCircuitEmulator {
 		public long[] memoryram = new long[memoryamount];
 		public long[] cartram = new long[cartamount];
 		public long[] displayram = new long[displayamount];
-		public long clockfrequency = 100000000L;
+		public long clockfrequency = 5000000000L;
 		public RiscChip(int risccoreamount) {
 			risccores = new RiscCore[risccoreamount];
 			for (int i=0;i<risccoreamount;i++) {
@@ -177,7 +177,9 @@ public class JavaOCLLogicCircuitEmulator {
 		private long[] newregisters = new long[RiscChip.registeramount];
 		private long[] oldregisters = new long[RiscChip.registeramount];
 		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
+		private long[] timers = {0, 0, 0, 0, 0, 0, 0 ,0};
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
+		private int timerstep = 0;
 		private long instructionstate = 0L;
 		private int instructionstep = 0;
 		private int programcounter = 0;
@@ -372,6 +374,11 @@ public class JavaOCLLogicCircuitEmulator {
 							} else {
 								newregisters[regX+i] = corenum;
 							}
+						} else if (insT==0xD5) {
+							if (oldregisters[regZ+i]!=0) {
+								this.timers[i] = oldregisters[regY+i];
+							}
+							newregisters[regX+i] = this.timers[i];
 						} else if (insT==0x06) {
 							newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
 						} else if (insT==0x16) {
@@ -606,6 +613,14 @@ public class JavaOCLLogicCircuitEmulator {
 
 			for (int i=0;i<counters.length;i++) {
 				counters[i]++;
+			}
+			if (timerstep==0) {
+				for (int i=0;i<timers.length;i++) {
+					timers[i]++;
+				}
+			}
+			if (++timerstep>=5) {
+				timerstep = 0;
 			}
 			for (int i=0;i<randoms.length;i++) {
 				randoms[i].nextLong();
