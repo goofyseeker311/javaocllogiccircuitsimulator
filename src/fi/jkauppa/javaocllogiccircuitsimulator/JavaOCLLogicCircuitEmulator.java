@@ -211,7 +211,7 @@ public class JavaOCLLogicCircuitEmulator {
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
 			if (insT==0x00) {
-				int sleepsteps = (regY<<16) + regZ;
+				int sleepsteps = ((0xFFFF & regY)<<16) | (0xFFFF & regZ);
 				if (instructionstep<sleepsteps) {
 					instructionstep++;
 				} else {
