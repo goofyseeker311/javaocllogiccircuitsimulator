@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore88" src="https://github.com/user-attachments/assets/ff3c4ca0-39ff-43b5-bcd7-e75b49631a7f" />
-<img width="3840" height="2112" alt="muxrisccore88a" src="https://github.com/user-attachments/assets/b9a60e8c-2a27-4206-985b-1e6d596e6ac4" />
-<img width="3840" height="2112" alt="muxrisccore88b" src="https://github.com/user-attachments/assets/0007d9e6-4736-4e80-a02a-4f99f17f5cf1" />
+<img width="3840" height="2112" alt="muxrisccore89" src="https://github.com/user-attachments/assets/2379467f-39a6-479c-8157-6cf70bdeb5a1" />
+<img width="3840" height="2112" alt="muxrisccore89a" src="https://github.com/user-attachments/assets/b54c12a9-bde1-41a2-85c7-d3d3128eb7a2" />
+<img width="3840" height="2112" alt="muxrisccore89b" src="https://github.com/user-attachments/assets/890d7d48-15f8-40dd-8df1-e089894ba844" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -44,6 +44,7 @@ Every instruction uses/operates on full 64-bit register values always, and runs 
 Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
+Every integer instruction uses two's complement signed long integer operations.
 Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
 Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
 Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
