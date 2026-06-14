@@ -202,12 +202,12 @@ public class JavaOCLLogicCircuitEmulator {
 					);
 			instbytes.clear();
 			instbytes.putLong(instructionstate).rewind();
-			int regX = instbytes.getShort();
-			int regY = instbytes.getShort();
-			int regZ = instbytes.getShort();
+			int regX = Short.toUnsignedInt(instbytes.getShort());
+			int regY = Short.toUnsignedInt(instbytes.getShort());
+			int regZ = Short.toUnsignedInt(instbytes.getShort());
 			byte vecN = instbytes.get();
-			int insT = instbytes.get();
-			long regYZ = instbytes.getInt(2);
+			int insT = Byte.toUnsignedInt(instbytes.get());
+			long regYZ = Integer.toUnsignedLong(instbytes.getInt(2));
 			byte[] vecnarray = {vecN};
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
