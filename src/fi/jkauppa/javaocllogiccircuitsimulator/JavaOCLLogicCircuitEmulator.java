@@ -181,7 +181,7 @@ public class JavaOCLLogicCircuitEmulator {
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private int timerstep = 0;
 		private long instructionstate = 0L;
-		private int instructionstep = 0;
+		private long instructionstep = 0;
 		private int programcounter = 0;
 		private ByteBuffer instbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
@@ -211,7 +211,7 @@ public class JavaOCLLogicCircuitEmulator {
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
 			if (insT==0x00) {
-				int sleepsteps = ((0xFFFF & regY)<<16) | (0xFFFF & regZ);
+				long sleepsteps = ((0xFFFF & (long)regY)<<16) | (0xFFFF & (long)regZ);
 				if (instructionstep<sleepsteps) {
 					instructionstep++;
 				} else {
@@ -232,7 +232,7 @@ public class JavaOCLLogicCircuitEmulator {
 					if (vecnbits.get(i)) {
 
 						if (insT==0x02) {
-							newregisters[regX+i] = ((0xFFFF & regY)<<16) | (0xFFFF & regZ);
+							newregisters[regX+i] = ((0xFFFF & (long)regY)<<16) | (0xFFFF & (long)regZ);
 						} else if (insT==0x03) {
 							long[] regyaddr = {oldregisters[regY]};
 							BitSet regybits = BitSet.valueOf(regyaddr);
