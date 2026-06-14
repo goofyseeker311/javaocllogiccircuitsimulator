@@ -32,5 +32,9 @@ cmpe 0026 0023
 cmpl 0027 0021
 cmpl 0028 0022
 cmpl 0029 0023
+ldi  002a 00000025
+jmpc 002a 0024
+ldi  002b 01234567
+jmpc 002a 0028
 jmp  0000
 ##   A123456789ABCDEF some data
