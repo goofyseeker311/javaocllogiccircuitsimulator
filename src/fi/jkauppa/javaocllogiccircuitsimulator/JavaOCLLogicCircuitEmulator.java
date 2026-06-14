@@ -207,11 +207,12 @@ public class JavaOCLLogicCircuitEmulator {
 			int regZ = instbytes.getShort();
 			byte vecN = instbytes.get();
 			int insT = instbytes.get();
+			long regYZ = instbytes.getInt(2);
 			byte[] vecnarray = {vecN};
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
 			if (insT==0x00) {
-				long sleepsteps = ((0xFFFF & (long)regY)<<16) | (0xFFFF & (long)regZ);
+				long sleepsteps = regYZ;
 				if (instructionstep<sleepsteps) {
 					instructionstep++;
 				} else {
@@ -232,7 +233,7 @@ public class JavaOCLLogicCircuitEmulator {
 					if (vecnbits.get(i)) {
 
 						if (insT==0x02) {
-							newregisters[regX+i] = ((0xFFFF & (long)regY)<<16) | (0xFFFF & (long)regZ);
+							newregisters[regX+i] = regYZ;
 						} else if (insT==0x03) {
 							long[] regyaddr = {oldregisters[regY]};
 							BitSet regybits = BitSet.valueOf(regyaddr);
