@@ -36,5 +36,7 @@ ldi  002a 00000025
 jmpc 002a 0024
 ldi  002b 01234567
 jmpc 002a 0028
+memr 002c 0000
+memw 0020 0010
 jmp  0000
 ##   A123456789ABCDEF some data
