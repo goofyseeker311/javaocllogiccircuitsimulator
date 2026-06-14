@@ -2048,6 +2048,7 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="3" loc="(750,1220)" name="Multiplier">
+      <a name="mode" val="twosComplement"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="3" loc="(810,1670)" name="Shifter">

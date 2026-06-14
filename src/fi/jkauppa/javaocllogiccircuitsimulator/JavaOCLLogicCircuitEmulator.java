@@ -327,11 +327,10 @@ public class JavaOCLLogicCircuitEmulator {
 							} catch (ArithmeticException e) {
 								BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
 								BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
-								BigInteger newregX = oldregY.add(oldregZ);
-								ByteBuffer newregXbytes = ByteBuffer.allocate(16);
-								newregXbytes.put(newregX.toByteArray());
-								newregXbytes.position(8);
-								newregisters[regX+i] = newregXbytes.getLong();
+								BigInteger newregX = oldregY.multiply(oldregZ);
+								BigInteger newregXover = newregX.shiftRight(64);
+								long newregXlong = newregXover.longValueExact();
+								newregisters[regX+i] = newregXlong;
 							}
 						} else if (insT==0x65) {
 							newregisters[regX+i] = oldregisters[regY+i] / oldregisters[regZ+i];
