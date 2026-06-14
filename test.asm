@@ -57,5 +57,7 @@ rnd  003a 0000 0021
 freq 003b 0000 0021
 core 003c 0010
 time 003d 0000 0021
+shr  003e 002d 002f
+shar 003f 002e 002f
 jmp  0000
 ##   A123456789ABCDEF some data
