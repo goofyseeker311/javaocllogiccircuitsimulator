@@ -71,5 +71,15 @@ xor   0048 002d 002e
 xnor  0049 002d 002e
 copyc 004a 002d 0021
 copyc 004b 002d 0022
+lone  004c 0021
+lone  004d 0022
+hone  004e 0021
+hone  004f 0022
+lzero 0050 0021
+lzero 0051 0022
+hzero 0052 0021
+hzero 0053 0022
+ones  0054 0022
+ones  0055 002e
 jmp  0000
 ##   A123456789ABCDEF some data

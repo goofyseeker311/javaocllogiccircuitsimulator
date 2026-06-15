@@ -581,24 +581,28 @@ public class JavaOCLLogicCircuitEmulator {
 							longbytes3.putDouble(longdouble3).rewind();
 							newregisters[regX+i] = longbytes3.getLong();
 						} else if (insT==0x09) {
-							long[] regtarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regtarray);
-							newregisters[regX+i] = regybits.previousSetBit(63);
+							long[] regyarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regyarray);
+							long regylowone = regybits.previousSetBit(63);
+							newregisters[regX+i] = regylowone;
 						} else if (insT==0x19) {
-							long[] regtarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regtarray);
-							newregisters[regX+i] = regybits.nextSetBit(0);
+							long[] regyarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regyarray);
+							long regyhighone = regybits.nextSetBit(0);
+							newregisters[regX+i] = regyhighone;
 						} else if (insT==0x29) {
-							long[] regtarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regtarray);
-							newregisters[regX+i] = regybits.previousClearBit(63);
+							long[] regyarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regyarray);
+							long regylowzero = regybits.nextClearBit(0);
+							newregisters[regX+i] = regylowzero;
 						} else if (insT==0x39) {
-							long[] regtarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regtarray);
-							newregisters[regX+i] = regybits.nextClearBit(0);
+							long[] regyarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regyarray);
+							long regyhighzero = regybits.previousClearBit(63);
+							newregisters[regX+i] = regyhighzero;
 						} else if (insT==0x49) {
-							long[] regtarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regtarray);
+							long[] regyarray = {oldregisters[regY+i]};
+							BitSet regybits = BitSet.valueOf(regyarray);
 							newregisters[regX+i] = regybits.cardinality();
 						}
 					}
