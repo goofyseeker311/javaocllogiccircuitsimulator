@@ -303,32 +303,34 @@ public class JavaOCLLogicCircuitEmulator {
 						} else if (insT==0x05) {
 							newregisters[regX+i] = oldregisters[regY+i] + oldregisters[regZ+i];
 						} else if (insT==0x15) {
-							try {
-								newregisters[regX+i] = 0;
-								Math.addExact(oldregisters[regY+i], oldregisters[regZ+i]);
-							} catch (ArithmeticException e) {
+							newregisters[regX+i] = 0;
+							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+							BigInteger newregX = oldregY.add(oldregZ);
+							BigInteger newregXover = newregX.shiftRight(64);
+							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
 								newregisters[regX+i] = 1;
 							}
 						} else if (insT==0x25) {
 							newregisters[regX+i] = oldregisters[regY+i] - oldregisters[regZ+i];
 						} else if (insT==0x35) {
-							try {
-								newregisters[regX+i] = 0;
-								Math.subtractExact(oldregisters[regY+i], oldregisters[regZ+i]);
-							} catch (ArithmeticException e) {
+							newregisters[regX+i] = 0;
+							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+							BigInteger newregX = oldregY.subtract(oldregZ);
+							BigInteger newregXover = newregX.shiftRight(64);
+							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
 								newregisters[regX+i] = 1;
 							}
 						} else if (insT==0x45) {
 							newregisters[regX+i] = oldregisters[regY+i] * oldregisters[regZ+i];
 						} else if (insT==0x55) {
-							try {
-								newregisters[regX+i] = 0;
-								Math.multiplyExact(oldregisters[regY+i], oldregisters[regZ+i]);
-							} catch (ArithmeticException e) {
-								BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
-								BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
-								BigInteger newregX = oldregY.multiply(oldregZ);
-								BigInteger newregXover = newregX.shiftRight(64);
+							newregisters[regX+i] = 0;
+							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+							BigInteger newregX = oldregY.multiply(oldregZ);
+							BigInteger newregXover = newregX.shiftRight(64);
+							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
 								long newregXlong = newregXover.longValueExact();
 								newregisters[regX+i] = newregXlong;
 							}
