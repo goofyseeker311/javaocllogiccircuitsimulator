@@ -81,5 +81,22 @@ hzero 0052 0021
 hzero 0053 0022
 ones  0054 0022
 ones  0055 002e
+ldi   0056 BFF00000
+shl   0056 0056 002f
+ldi   0057 407C8000
+shl   0057 0057 002f
+fadd  0058 0056 0057
+fsub  0059 0056 0057
+fmul  005a 0056 0057
+fdiv  005b 0056 0057
+fneg  005c 0056
+fitf  005d 002d
+fadd  005e 005b 0057
+ftin  005f 005e  
+ftid  0060 005e
+ftiu  0061 005e
+ftit  0062 005e
+finf  0063 005e
+fnan  0064 005e
 jmp  0000
 ##   A123456789ABCDEF some data
