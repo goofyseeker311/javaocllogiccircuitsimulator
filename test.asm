@@ -43,14 +43,16 @@ ldi   002e 8fffffff
 ldi   002f 00000020
 shl   002d 002d 002f
 shl   002e 002e 002f
+or    002d 002d 0012
+or    002e 002e 0013
 add   0030 002d 002e
 addo  0031 002d 002e
 sub   0032 002e 002d
 subb  0033 002e 002d
 mul   0034 002d 002e
 mulo  0035 002d 002e
-div   0036 002e 002d
-divr  0037 002e 002d
+div   0036 0017 0014
+divr  0037 0017 0014
 neg   0038 002d
 clk   0039 0000 0021
 rnd   003a 0000 0021
@@ -109,5 +111,7 @@ shl   006b 006b 002f
 flog  006c 0057 006b
 fpow  006d 0057 006b
 fsqrt 006e 0057
+fcmpe 006f 0059
+fcmpl 0070 0059
 jmp  0000
 ##   A123456789ABCDEF some data
