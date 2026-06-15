@@ -98,5 +98,16 @@ ftiu  0061 005e
 ftit  0062 005e
 finf  0063 005e
 fnan  0064 005e
+fsin  0065 0057 
+ftan  0066 0057
+fcos  0067 0057
+fasin 0068 0065 
+fatan 0069 0066
+facos 006a 0067
+ldi   006b 40240000
+shl   006b 006b 002f
+flog  006c 0057 006b
+fpow  006d 0057 006b
+fsqrt 006e 0057
 jmp  0000
 ##   A123456789ABCDEF some data
