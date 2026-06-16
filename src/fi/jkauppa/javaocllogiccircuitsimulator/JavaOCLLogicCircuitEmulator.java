@@ -211,401 +211,468 @@ public class JavaOCLLogicCircuitEmulator {
 			byte[] vecnarray = {vecN};
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
-			if (insT==0x00) {
-				long sleepsteps = regYZ;
-				if (instructionstep<sleepsteps) {
-					instructionstep++;
-				} else {
-					instructionstep = 0;
-					programcounter++;
-				}
-			} else if (insT==0x01) {
-				programcounter = (int)oldregisters[regX];
-			} else if (insT==0x11) {
-				long jumpflag = oldregisters[regY];
-				if (jumpflag!=0) {
+			switch(insT) {
+				case 0x00: if (true) {
+					long sleepsteps = regYZ;
+					if (instructionstep<sleepsteps) {
+						instructionstep++;
+					} else {
+						instructionstep = 0;
+						programcounter++;
+					}
+				} break;
+				case 0x01: if (true) {
 					programcounter = (int)oldregisters[regX];
-				} else {
-					programcounter++;
-				}
-			} else {
-				for (int i=0;i<8;i++) {
-					if (vecnbits.get(i)) {
-
-						if (insT==0x02) {
-							newregisters[regX+i] = regYZ;
-						} else if (insT==0x03) {
-							long[] regyaddr = {oldregisters[regY]};
-							BitSet regybits = BitSet.valueOf(regyaddr);
-							boolean regybit63 = regybits.get(63);
-							boolean regybit62 = regybits.get(62);
-							if (regybit63 || regybit62) {
-								regybits.clear(62, 64);
-								long[] memaddr = regybits.toLongArray();
-								long memaddress = 0;
-								if (memaddr.length>0) {
-									memaddress = memaddr[0];
-								}
-								if (regybit63) {
-									newregisters[regX+i] = riscchip.displayram[((int)memaddress)+i];
-								} else {
-									newregisters[regX+i] = riscchip.cartram[((int)memaddress)+i];
-								}
-							} else {
-								newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
+				} break;
+				case 0x11: if (true) {
+					long jumpflag = oldregisters[regY];
+					if (jumpflag!=0) {
+						programcounter = (int)oldregisters[regX];
+					} else {
+						programcounter++;
+					}
+				} break;
+				default: if (true) {
+					for (int i=0;i<8;i++) {
+						if (vecnbits.get(i)) {
+	
+							switch(insT) {
+								case 0x02: if (true) {
+									newregisters[regX+i] = regYZ;
+								} break;
+								case 0x03: if (true) {
+									long[] regyaddr = {oldregisters[regY]};
+									BitSet regybits = BitSet.valueOf(regyaddr);
+									boolean regybit63 = regybits.get(63);
+									boolean regybit62 = regybits.get(62);
+									if (regybit63 || regybit62) {
+										regybits.clear(62, 64);
+										long[] memaddr = regybits.toLongArray();
+										long memaddress = 0;
+										if (memaddr.length>0) {
+											memaddress = memaddr[0];
+										}
+										if (regybit63) {
+											newregisters[regX+i] = riscchip.displayram[((int)memaddress)+i];
+										} else {
+											newregisters[regX+i] = riscchip.cartram[((int)memaddress)+i];
+										}
+									} else {
+										newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
+									}
+								} break;
+								case 0x13: if (true) {
+									long[] regyaddr = {oldregisters[regY]};
+									BitSet regybits = BitSet.valueOf(regyaddr);
+									boolean regybit63 = regybits.get(63);
+									boolean regybit62 = regybits.get(62);
+									if (regybit63 || regybit62) {
+										regybits.clear(62, 64);
+										long[] memaddr = regybits.toLongArray();
+										long memaddress = 0;
+										if (memaddr.length>0) {
+											memaddress = memaddr[0];
+										}
+										if (regybit63) {
+											riscchip.displayram[((int)memaddress)+i] = oldregisters[regX+i];
+										} else {
+											riscchip.cartram[((int)memaddress)+i] = oldregisters[regX+i];
+										}
+									} else {
+										riscchip.memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
+									}
+								} break;
+								case 0x04: if (true) {
+									newregisters[regX+i] = 0;
+									if (oldregisters[regY+i]==0) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x14: if (true) {
+									newregisters[regX+i] = 0;
+									if (oldregisters[regY+i]<0) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x24: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									if (longdouble==0.0f) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x34: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									if (longdouble<0.0f) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x05: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] + oldregisters[regZ+i];
+								} break;
+								case 0x15: if (true) {
+									newregisters[regX+i] = 0;
+									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+									BigInteger newregX = oldregY.add(oldregZ);
+									BigInteger newregXover = newregX.shiftRight(64);
+									if (newregXover.compareTo(BigInteger.ZERO)!=0) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x25: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] - oldregisters[regZ+i];
+								} break;
+								case 0x35: if (true) {
+									newregisters[regX+i] = 0;
+									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+									BigInteger newregX = oldregY.subtract(oldregZ);
+									BigInteger newregXover = newregX.shiftRight(64);
+									if (newregXover.compareTo(BigInteger.ZERO)!=0) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x45: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] * oldregisters[regZ+i];
+								} break;
+								case 0x55: if (true) {
+									newregisters[regX+i] = 0;
+									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
+									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
+									BigInteger newregX = oldregY.multiply(oldregZ);
+									BigInteger newregXover = newregX.shiftRight(64);
+									if (newregXover.compareTo(BigInteger.ZERO)!=0) {
+										long newregXlong = newregXover.longValueExact();
+										newregisters[regX+i] = newregXlong;
+									}
+								} break;
+								case 0x65: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] / oldregisters[regZ+i];
+								} break;
+								case 0x75: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] % oldregisters[regZ+i];
+								} break;
+								case 0x85: if (true) {
+									newregisters[regX+i] = -oldregisters[regY+i];
+								} break;
+								case 0x95: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										this.counters[i] = oldregisters[regY+i];
+									}
+									newregisters[regX+i] = this.counters[i];
+								} break;
+								case 0xA5: if (true) {
+									if (oldregisters[regY+i]!=0) {
+										this.randoms[i].setSeed(oldregisters[regZ+i]);
+									}
+									newregisters[regX+i] = this.randoms[i].nextLong();
+								} break;
+								case 0xB5: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										riscchip.clockfrequency = oldregisters[regY+i];
+									}
+									if (riscchip.clockfrequency==0) {
+										riscchip.clockfrequency = 100000000L;
+									}
+									newregisters[regX+i] = riscchip.clockfrequency;
+								} break;
+								case 0xC5: if (true) {
+									if (oldregisters[regY+i]==1) {
+										newregisters[regX+i] = riscchip.risccores.length;
+									} else if (oldregisters[regY+i]==2) {
+										newregisters[regX+i] = RiscChip.registeramount;
+									} else if (oldregisters[regY+i]==3) {
+										newregisters[regX+i] = RiscChip.memoryamount;
+									} else if (oldregisters[regY+i]==4) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==5) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==6) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==7) {
+										newregisters[regX+i] = 0;
+									} else {
+										newregisters[regX+i] = corenum;
+									}
+								} break;
+								case 0xD5: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										this.timers[i] = oldregisters[regY+i];
+									}
+									newregisters[regX+i] = this.timers[i];
+								} break;
+								case 0x06: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
+								} break;
+								case 0x16: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] >>> oldregisters[regZ+i];
+								} break;
+								case 0x26: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] >> oldregisters[regZ+i];
+								} break;
+								case 0x36: if (true) {
+									newregisters[regX+i] = Long.rotateLeft(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+								} break;
+								case 0x46: if (true) {
+									newregisters[regX+i] = Long.rotateRight(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+								} break;
+								case 0x56: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i];
+								} break;
+								case 0x66: if (true) {
+									newregisters[regX+i] = ~oldregisters[regY+i];
+								} break;
+								case 0x76: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] | oldregisters[regZ+i];
+								} break;
+								case 0x86: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] & oldregisters[regZ+i];
+								} break;
+								case 0x96: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] & oldregisters[regZ+i]);
+								} break;
+								case 0xA6: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] | oldregisters[regZ+i]);
+								} break;
+								case 0xB6: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] ^ oldregisters[regZ+i];
+								} break;
+								case 0xC6: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
+								} break;
+								case 0xD6: if (true) {
+									newregisters[regX+i] = oldregisters[regX+i];
+									if (oldregisters[regZ+i]!=0) {
+										newregisters[regX+i] = oldregisters[regY+i];
+									}
+								} break;
+								case 0x07: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = longdouble + longdouble2;
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x17: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = longdouble - longdouble2;
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x27: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = longdouble * longdouble2;
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x37: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = longdouble / longdouble2;
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x47: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = -longdouble;
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x57: if (true) {
+									longbytes.clear();
+									longbytes.putDouble((double)oldregisters[regY+i]).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x67: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									newregisters[regX+i] = Math.round(longdouble);
+								} break;
+								case 0x77: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									newregisters[regX+i] = (long)Math.floor(longdouble);
+								} break;
+								case 0x87: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									newregisters[regX+i] = (long)Math.ceil(longdouble);
+								} break;
+								case 0x97: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									newregisters[regX+i] = (long)longdouble;
+								} break;
+								case 0xA7: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									if (Double.isInfinite(longdouble)) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0xB7: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									if (Double.isNaN(longdouble)) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x08: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.sin(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x18: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.tan(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x28: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.cos(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x38: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.asin(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x48: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.atan(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x58: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.acos(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x68: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = Math.log(longdouble)/Math.log(longdouble2);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x78: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									double longdouble3 = Math.pow(longdouble, longdouble2);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x88: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									double longdouble3 = Math.sqrt(longdouble);
+									longbytes3.clear();
+									longbytes3.putDouble(longdouble3).rewind();
+									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x09: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regylowone = regybits.previousSetBit(63);
+									newregisters[regX+i] = regylowone;
+								} break;
+								case 0x19: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regyhighone = regybits.nextSetBit(0);
+									newregisters[regX+i] = regyhighone;
+								} break;
+								case 0x29: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regylowzero = regybits.nextClearBit(0);
+									newregisters[regX+i] = regylowzero;
+								} break;
+								case 0x39: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regyhighzero = regybits.previousClearBit(63);
+									newregisters[regX+i] = regyhighzero;
+								} break;
+								case 0x49: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									newregisters[regX+i] = regybits.cardinality();
+								} break;
 							}
-						} else if (insT==0x13) {
-							long[] regyaddr = {oldregisters[regY]};
-							BitSet regybits = BitSet.valueOf(regyaddr);
-							boolean regybit63 = regybits.get(63);
-							boolean regybit62 = regybits.get(62);
-							if (regybit63 || regybit62) {
-								regybits.clear(62, 64);
-								long[] memaddr = regybits.toLongArray();
-								long memaddress = 0;
-								if (memaddr.length>0) {
-									memaddress = memaddr[0];
-								}
-								if (regybit63) {
-									riscchip.displayram[((int)memaddress)+i] = oldregisters[regX+i];
-								} else {
-									riscchip.cartram[((int)memaddress)+i] = oldregisters[regX+i];
-								}
-							} else {
-								riscchip.memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
-							}
-						} else if (insT==0x04) {
-							newregisters[regX+i] = 0;
-							if (oldregisters[regY+i]==0) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x14) {
-							newregisters[regX+i] = 0;
-							if (oldregisters[regY+i]<0) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x24) {
-							newregisters[regX+i] = 0;
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							if (longdouble==0.0f) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x34) {
-							newregisters[regX+i] = 0;
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							if (longdouble<0.0f) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x05) {
-							newregisters[regX+i] = oldregisters[regY+i] + oldregisters[regZ+i];
-						} else if (insT==0x15) {
-							newregisters[regX+i] = 0;
-							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
-							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
-							BigInteger newregX = oldregY.add(oldregZ);
-							BigInteger newregXover = newregX.shiftRight(64);
-							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x25) {
-							newregisters[regX+i] = oldregisters[regY+i] - oldregisters[regZ+i];
-						} else if (insT==0x35) {
-							newregisters[regX+i] = 0;
-							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
-							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
-							BigInteger newregX = oldregY.subtract(oldregZ);
-							BigInteger newregXover = newregX.shiftRight(64);
-							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x45) {
-							newregisters[regX+i] = oldregisters[regY+i] * oldregisters[regZ+i];
-						} else if (insT==0x55) {
-							newregisters[regX+i] = 0;
-							BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
-							BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
-							BigInteger newregX = oldregY.multiply(oldregZ);
-							BigInteger newregXover = newregX.shiftRight(64);
-							if (newregXover.compareTo(BigInteger.ZERO)!=0) {
-								long newregXlong = newregXover.longValueExact();
-								newregisters[regX+i] = newregXlong;
-							}
-						} else if (insT==0x65) {
-							newregisters[regX+i] = oldregisters[regY+i] / oldregisters[regZ+i];
-						} else if (insT==0x75) {
-							newregisters[regX+i] = oldregisters[regY+i] % oldregisters[regZ+i];
-						} else if (insT==0x85) {
-							newregisters[regX+i] = -oldregisters[regY+i];
-						} else if (insT==0x95) {
-							if (oldregisters[regZ+i]!=0) {
-								this.counters[i] = oldregisters[regY+i];
-							}
-							newregisters[regX+i] = this.counters[i];
-						} else if (insT==0xA5) {
-							if (oldregisters[regY+i]!=0) {
-								this.randoms[i].setSeed(oldregisters[regZ+i]);
-							}
-							newregisters[regX+i] = this.randoms[i].nextLong();
-						} else if (insT==0xB5) {
-							if (oldregisters[regZ+i]!=0) {
-								riscchip.clockfrequency = oldregisters[regY+i];
-							}
-							if (riscchip.clockfrequency==0) {
-								riscchip.clockfrequency = 100000000L;
-							}
-							newregisters[regX+i] = riscchip.clockfrequency;
-						} else if (insT==0xC5) {
-							if (oldregisters[regY+i]==1) {
-								newregisters[regX+i] = riscchip.risccores.length;
-							} else if (oldregisters[regY+i]==2) {
-								newregisters[regX+i] = RiscChip.registeramount;
-							} else if (oldregisters[regY+i]==3) {
-								newregisters[regX+i] = RiscChip.memoryamount;
-							} else if (oldregisters[regY+i]==4) {
-								newregisters[regX+i] = 0;
-							} else if (oldregisters[regY+i]==5) {
-								newregisters[regX+i] = 0;
-							} else if (oldregisters[regY+i]==6) {
-								newregisters[regX+i] = 0;
-							} else if (oldregisters[regY+i]==7) {
-								newregisters[regX+i] = 0;
-							} else {
-								newregisters[regX+i] = corenum;
-							}
-						} else if (insT==0xD5) {
-							if (oldregisters[regZ+i]!=0) {
-								this.timers[i] = oldregisters[regY+i];
-							}
-							newregisters[regX+i] = this.timers[i];
-						} else if (insT==0x06) {
-							newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
-						} else if (insT==0x16) {
-							newregisters[regX+i] = oldregisters[regY+i] >>> oldregisters[regZ+i];
-						} else if (insT==0x26) {
-							newregisters[regX+i] = oldregisters[regY+i] >> oldregisters[regZ+i];
-						} else if (insT==0x36) {
-							newregisters[regX+i] = Long.rotateLeft(oldregisters[regY+i], (int)oldregisters[regZ+i]);
-						} else if (insT==0x46) {
-							newregisters[regX+i] = Long.rotateRight(oldregisters[regY+i], (int)oldregisters[regZ+i]);
-						} else if (insT==0x56) {
-							newregisters[regX+i] = oldregisters[regY+i];
-						} else if (insT==0x66) {
-							newregisters[regX+i] = ~oldregisters[regY+i];
-						} else if (insT==0x76) {
-							newregisters[regX+i] = oldregisters[regY+i] | oldregisters[regZ+i];
-						} else if (insT==0x86) {
-							newregisters[regX+i] = oldregisters[regY+i] & oldregisters[regZ+i];
-						} else if (insT==0x96) {
-							newregisters[regX+i] = ~(oldregisters[regY+i] & oldregisters[regZ+i]);
-						} else if (insT==0xA6) {
-							newregisters[regX+i] = ~(oldregisters[regY+i] | oldregisters[regZ+i]);
-						} else if (insT==0xB6) {
-							newregisters[regX+i] = oldregisters[regY+i] ^ oldregisters[regZ+i];
-						} else if (insT==0xC6) {
-							newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
-						} else if (insT==0xD6) {
-							newregisters[regX+i] = oldregisters[regX+i];
-							if (oldregisters[regZ+i]!=0) {
-								newregisters[regX+i] = oldregisters[regY+i];
-							}
-						} else if (insT==0x07) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = longdouble + longdouble2;
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x17) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = longdouble - longdouble2;
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x27) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = longdouble * longdouble2;
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x37) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = longdouble / longdouble2;
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x47) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = -longdouble;
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x57) {
-							longbytes.clear();
-							longbytes.putDouble((double)oldregisters[regY+i]).rewind();
-							newregisters[regX+i] = longbytes.getLong();
-						} else if (insT==0x67) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							newregisters[regX+i] = Math.round(longdouble);
-						} else if (insT==0x77) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							newregisters[regX+i] = (long)Math.floor(longdouble);
-						} else if (insT==0x87) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							newregisters[regX+i] = (long)Math.ceil(longdouble);
-						} else if (insT==0x97) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							newregisters[regX+i] = (long)longdouble;
-						} else if (insT==0xA7) {
-							newregisters[regX+i] = 0;
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							if (Double.isInfinite(longdouble)) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0xB7) {
-							newregisters[regX+i] = 0;
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							if (Double.isNaN(longdouble)) {
-								newregisters[regX+i] = 1;
-							}
-						} else if (insT==0x08) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.sin(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x18) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.tan(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x28) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.cos(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x38) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.asin(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x48) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.atan(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x58) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.acos(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x68) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = Math.log(longdouble)/Math.log(longdouble2);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x78) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							longbytes2.clear();
-							longbytes2.putLong(oldregisters[regZ+i]).rewind();
-							double longdouble2 = longbytes2.asDoubleBuffer().get();
-							double longdouble3 = Math.pow(longdouble, longdouble2);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x88) {
-							longbytes.clear();
-							longbytes.putLong(oldregisters[regY+i]).rewind();
-							double longdouble = longbytes.asDoubleBuffer().get();
-							double longdouble3 = Math.sqrt(longdouble);
-							longbytes3.clear();
-							longbytes3.putDouble(longdouble3).rewind();
-							newregisters[regX+i] = longbytes3.getLong();
-						} else if (insT==0x09) {
-							long[] regyarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regyarray);
-							long regylowone = regybits.previousSetBit(63);
-							newregisters[regX+i] = regylowone;
-						} else if (insT==0x19) {
-							long[] regyarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regyarray);
-							long regyhighone = regybits.nextSetBit(0);
-							newregisters[regX+i] = regyhighone;
-						} else if (insT==0x29) {
-							long[] regyarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regyarray);
-							long regylowzero = regybits.nextClearBit(0);
-							newregisters[regX+i] = regylowzero;
-						} else if (insT==0x39) {
-							long[] regyarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regyarray);
-							long regyhighzero = regybits.previousClearBit(63);
-							newregisters[regX+i] = regyhighzero;
-						} else if (insT==0x49) {
-							long[] regyarray = {oldregisters[regY+i]};
-							BitSet regybits = BitSet.valueOf(regyarray);
-							newregisters[regX+i] = regybits.cardinality();
 						}
 					}
 				}
