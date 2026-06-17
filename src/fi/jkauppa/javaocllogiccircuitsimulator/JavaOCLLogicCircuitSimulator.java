@@ -1,116 +1,53 @@
 package fi.jkauppa.javaocllogiccircuitsimulator;
 
-import java.awt.Dimension;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
+import java.nio.file.Files;
+import java.util.Random;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import fi.jkauppa.javaocllogiccircuitsimulator.ComputeLib.Device;
 
-public class JavaOCLLogicCircuitSimulator extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 1L;
-	private static String programTitle = "JavaOCLLogicCircuitSimulator v0.1.7";
-	private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	private GraphicsDevice gd = ge.getDefaultScreenDevice();
-	@SuppressWarnings("unused")
-	private GraphicsConfiguration gc = gd.getDefaultConfiguration();
+public class JavaOCLLogicCircuitSimulator {
+	private RiscChip riscchip = null;
 	private ComputeLib computelib = new ComputeLib();
 	private long device = NULL;
 	private Device devicedata = null;
 	private long queue = NULL;
 	private String devicename = null;
-	private long program = NULL;
-	private int gatecount = 0;
-	private long circuitptr = NULL;
-	private long newvaluesptr = NULL;
-	private long oldvaluesptr = NULL;
-	private int vc = 0;
-	private int de;
-	private int re;
-	private final int cs = 4;
-	private int width = 1280, height = 720;
-	private JPanel mainview = new JPanel(new GridBagLayout());
-	private Dimension mainviewdim = new Dimension(width,height);
-	private JButton startbutton = new JButton("Start");
-	private Dimension startbuttondim = new Dimension(100,40);
+	private int devicenum;
 
-	public JavaOCLLogicCircuitSimulator(int vde, int vre) {
-		this.de = vde;
-		this.re = vre;
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception e) {e.printStackTrace();}
-		this.setTitle(programTitle);
-		this.setSize(width, height);
-		this.setLocationByPlatform(true);
-		mainview.setSize(mainviewdim);
-		mainview.setPreferredSize(mainviewdim);
-		startbutton.setSize(startbuttondim);
-		startbutton.setPreferredSize(startbuttondim);
-		startbutton.setActionCommand("start");
-		startbutton.addActionListener(this);
-		this.mainview.add(startbutton);
-		this.setContentPane(mainview);
-		this.pack();
-		this.setVisible(true);
+	public JavaOCLLogicCircuitSimulator(int vdevicenum) {
+		this.devicenum = vdevicenum;
 		
 		System.out.println("init.");
-		System.out.println("Repeat count: "+this.re);
 
-		device = computelib.devicelist[this.de];
+		device = computelib.devicelist[devicenum];
 		devicedata = computelib.devicemap.get(device);
 		queue = devicedata.queue;
 		devicename = devicedata.devicename;
-		System.out.println("Using device["+de+"]: "+devicename);
-
-		String clSource = ComputeLib.loadProgram("res/clprograms/simulator.cl", true);
-		program = computelib.compileProgram(device, clSource);
-
-		String circuitcode = ComputeLib.loadProgram("res/circuits/circuit.lc", true);
-		CodeBlocks codeblocks = parseCode(circuitcode);
-		int[] circuitintsdef = codeblocks.maincode.circuit;
-		
-		int cmult = 4000000;
-		int[] circuitints = new int[cmult*circuitintsdef.length];
-		
-		for (int j=0;j<cmult;j++) {
-			for (int i=0;i<circuitintsdef.length;i++) {
-				circuitints[j*circuitintsdef.length+i] = circuitintsdef[i];
-			}
-		}
-
-		gatecount = circuitints.length;
-		circuitptr = computelib.createBuffer(device, gatecount);
-		computelib.writeBufferi(device, queue, circuitptr, circuitints);
-		
-		vc = 77;
-		int[] newvalues = {-1,5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
-				Float.floatToIntBits((float)(Math.PI)),0,Float.floatToIntBits((float)(Math.PI/2.0f)),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(-1.0f),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(1.557408f),0,
-				Float.floatToIntBits(100.0f),0,Float.floatToIntBits(4.6051702f),0,3,Float.floatToIntBits(-2.0f),0,Float.floatToIntBits(4.5f),Float.floatToIntBits(7.2f),0,Float.floatToIntBits(3.1f),Float.floatToIntBits(1.2f),0,
-				Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0,50,1,0};
-		int[] oldvalues = new int[vc];
-		Arrays.fill(oldvalues, 0);
-		newvaluesptr = computelib.createBuffer(device, vc);
-		oldvaluesptr = computelib.createBuffer(device, vc);
-		computelib.writeBufferi(device, queue, newvaluesptr, newvalues);
-		computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
+		System.out.println("Using device["+devicenum+"]: "+devicename);
 	}
 
-	@Override public void actionPerformed(ActionEvent e) {
-		(new RunThread()).start();
-	}
-	
+	/*
+	vc = 77;
+	int[] newvalues = {-1,5,0,~255,0,255,128,0,1,2,0,2,4,0,-2,-2,0,-4,4,0,2,-1,0,4,1,0,8,1,0,-9,0,7,3,0,5,4,0,2,3,0,8,4,0,
+			Float.floatToIntBits((float)(Math.PI)),0,Float.floatToIntBits((float)(Math.PI/2.0f)),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(-1.0f),0,Float.floatToIntBits(1.0f),0,Float.floatToIntBits(1.557408f),0,
+			Float.floatToIntBits(100.0f),0,Float.floatToIntBits(4.6051702f),0,3,Float.floatToIntBits(-2.0f),0,Float.floatToIntBits(4.5f),Float.floatToIntBits(7.2f),0,Float.floatToIntBits(3.1f),Float.floatToIntBits(1.2f),0,
+			Float.floatToIntBits(1.8f),Float.floatToIntBits(2.5f),0,Float.floatToIntBits(-3.7f),Float.floatToIntBits(-0.85f),0,50,1,0};
+	int[] oldvalues = new int[vc];
+	Arrays.fill(oldvalues, 0);
+	newvaluesptr = computelib.createBuffer(device, vc);
+	oldvaluesptr = computelib.createBuffer(device, vc);
+	computelib.writeBufferi(device, queue, newvaluesptr, newvalues);
+	computelib.writeBufferi(device, queue, oldvaluesptr, oldvalues);
+	*/
+	/*
 	private class RunThread extends Thread {
 		public void run() {
 			System.out.println("running.");
@@ -121,229 +58,210 @@ public class JavaOCLLogicCircuitSimulator extends JFrame implements ActionListen
 			ctimedif = computelib.runProgram(device, queue, program, "processgates", new long[]{circuitptr,oldvaluesptr,newvaluesptr}, new int[]{0}, new int[]{gatecount/cs}, re, true)/(float)re;
 			float tflops = (gatecount/cs) * (1000.0f/ctimedif) / 1000000000000.0f;
 			System.out.println(String.format("%.4f",ctimedif).replace(",", ".")+"ms\t "+String.format("%.4f",tflops).replace(",", ".")+"tflops\t device: "+devicename);
-			/*
 			computelib.readBufferi(device, queue, newvaluesptr, newvalues);
 			computelib.readBufferi(device, queue, oldvaluesptr, oldvalues);
 			for (int i=0;i<vc;i++) {
 				System.out.println("values["+i+"]: "+oldvalues[i]+"("+Float.intBitsToFloat(oldvalues[i])+"f) => "+newvalues[i]+"("+Float.intBitsToFloat(newvalues[i])+"f)");
 			}
-			*/
 			System.out.println("done.");
 		}
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(programTitle);
-		int de = 0;
-		int re = 1000;
-		try {de = Integer.parseInt(args[0]);} catch(Exception ex) {}
-		try {re = Integer.parseInt(args[1]);} catch(Exception ex) {}
-		@SuppressWarnings("unused")
-		JavaOCLLogicCircuitSimulator app = new JavaOCLLogicCircuitSimulator(de,re);
+	*/
+
+	public static void main(String[] arg) {
+		System.out.println("init.");
+		if (arg.length>1) {
+			String fileboot = arg[1];
+			String filecart = arg[2];
+			String filememout = arg[3];
+			String filecartout = arg[4];
+			String filedispout = arg[5];
+			String fileregout = arg[6];
+			int cores = 1;
+			long cycles = 8192;
+			int devnum = Integer.parseUnsignedInt(arg[0]);
+			if (arg.length>7) {
+				cores = Integer.parseUnsignedInt(arg[7]);
+			}
+			if (arg.length>8) {
+				cycles = Long.parseUnsignedLong(arg[8]);
+			}
+			JavaOCLLogicCircuitSimulator emulator = new JavaOCLLogicCircuitSimulator(devnum);
+			emulator.run(fileboot, filecart, filememout, filecartout, filedispout, fileregout, cycles, cores);
+		} else {
+			System.out.println("arguments expected: devnum boot.bin cart.bin mem.out cart.out disp.out reg.out [cores] [cycles]");
+		}
+		System.out.println("exit.");
 	}
 	
-	private class CodeBlock {
-		String code = null;
-		int[] circuit = null;
-		String name = null;
-		int arg1 = -1;
-		int arg2 = -1;
-		int sto3 = -1;
-		int height = -1;
-		int depth = -1;
+	public void run(String fileboot, String filecart, String filememout, String filecartout, String filedispout, String fileregout, long cycles, int cores) {
+		riscchip = new RiscChip(cores);
+		File bootfile = new File(fileboot);
+		File cartfile = new File(filecart);
+		File outputmemfile = new File(filememout);
+		File outputcartfile = new File(filecartout);
+		File outputdispfile = new File(filedispout);
+		File outputregfile = new File(fileregout);
+		try {
+			byte[] bootfilebytes = Files.readAllBytes(bootfile.toPath());
+			byte[] cartfilebytes = Files.readAllBytes(cartfile.toPath());
+			BufferedOutputStream filememoutput = new BufferedOutputStream(new FileOutputStream(outputmemfile));
+			BufferedOutputStream filecartoutput = new BufferedOutputStream(new FileOutputStream(outputcartfile));
+			BufferedOutputStream filedispoutput = new BufferedOutputStream(new FileOutputStream(outputdispfile));
+			BufferedOutputStream fileregoutput = new BufferedOutputStream(new FileOutputStream(outputregfile));
+			ByteBuffer bootbytes = ByteBuffer.wrap(bootfilebytes);
+			ByteBuffer cartbytes = ByteBuffer.wrap(cartfilebytes);
+			long[] boot = new long[RiscChip.memoryamount];
+			long[] cart = new long[RiscChip.cartamount];
+			LongBuffer bootbuffer = bootbytes.asLongBuffer();
+			LongBuffer cartbuffer = cartbytes.asLongBuffer();
+			bootbuffer.get(boot, 0, bootbuffer.remaining());
+			cartbuffer.get(cart, 0, cartbuffer.remaining());
+			riscchip.loadmemory(boot);
+			riscchip.loadcart(cart);
+			riscchip.processchip(cycles);
+			String clSource = ComputeLib.loadProgram("simulator.cl", true);
+			riscchip.program = computelib.compileProgram(device, clSource);
+			riscchip.memoryptr = computelib.createBufferL(device, RiscChip.memoryamount);
+			computelib.writeBufferL(device, queue, riscchip.memoryptr, boot);
+			riscchip.cartptr = computelib.createBufferL(device, RiscChip.cartamount);
+			computelib.writeBufferL(device, queue, riscchip.cartptr, cart);
+			long[] memoryout = new long[RiscChip.memoryamount];
+			long[] cartout = new long[RiscChip.cartamount];
+			long[] dispout = new long[RiscChip.displayamount];
+			long[] regout = new long[RiscChip.registeramount*riscchip.risccores.length];
+			riscchip.savememory(memoryout);
+			riscchip.savecart(cartout);
+			riscchip.savedisplay(dispout);
+			riscchip.saveregistry(regout);
+			byte[] memoryarray = new byte[RiscChip.memoryamount*8];
+			byte[] cartoutarray = new byte[RiscChip.cartamount*8];
+			byte[] dispoutarray = new byte[RiscChip.displayamount*8];
+			byte[] regoutarray = new byte[RiscChip.registeramount*riscchip.risccores.length*8];
+			ByteBuffer memorybytes = ByteBuffer.wrap(memoryarray);
+			ByteBuffer cartoutbytes = ByteBuffer.wrap(cartoutarray);
+			ByteBuffer dispoutbytes = ByteBuffer.wrap(dispoutarray);
+			ByteBuffer regoutbytes = ByteBuffer.wrap(regoutarray);
+			LongBuffer memorylongs = memorybytes.asLongBuffer();
+			LongBuffer cartoutlongs = cartoutbytes.asLongBuffer();
+			LongBuffer dispoutlongs = dispoutbytes.asLongBuffer();
+			LongBuffer regoutlongs = regoutbytes.asLongBuffer();
+			memorylongs.put(memoryout, 0, memoryout.length);
+			cartoutlongs.put(cartout, 0, cartout.length);
+			dispoutlongs.put(dispout, 0, dispout.length);
+			regoutlongs.put(regout, 0, regout.length);
+			filememoutput.write(memoryarray);
+			filecartoutput.write(cartoutarray);
+			filedispoutput.write(dispoutarray);
+			fileregoutput.write(regoutarray);
+			filememoutput.close();
+			filecartoutput.close();
+			filedispoutput.close();
+			fileregoutput.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private class CodeBlocks {
-		CodeBlock maincode = null;
-		CodeBlock[] userblocks = null;
+	public class RiscChip {
+		private long program = NULL;
+		private long memoryptr = NULL;
+		private long cartptr = NULL;
+		public RiscCore[] risccores;
+		public static final int memoryamount = 65536*256;
+		public static final int cartamount = 65536*256;
+		public static final int displayamount = 512*512;
+		public static final int registeramount = 65536;
+		public long[] memoryram = new long[memoryamount];
+		public long[] cartram = new long[cartamount];
+		public long[] displayram = new long[displayamount];
+		public long clockfrequency = 5000000000L;
+		public RiscChip(int risccoreamount) {
+			risccores = new RiscCore[risccoreamount];
+			for (int i=0;i<risccoreamount;i++) {
+				risccores[i] = new RiscCore(i);
+			}
+		}
+		public void processchip(long cycles) {
+			for (long j=0;j<cycles;j++) {
+				for (int i=risccores.length-1;i>=0;i--) {
+					risccores[i].updateregisters();
+					risccores[i].processinstruction();
+				}
+			}
+		}
+		public void loadmemory(long[] memory) {
+			if (memory!=null) {
+				for (int i=0;(i<memory.length)&&(i<memoryamount);i++) {
+					memoryram[i] = memory[i];
+				}
+			}
+		}
+		public void savememory(long[] memory) {
+			if (memory!=null) {
+				for (int i=0;(i<memory.length)&&(i<memoryamount);i++) {
+					memory[i] = memoryram[i];
+				}
+			}
+		}
+		public void loadcart(long[] cart) {
+			if (cart!=null) {
+				for (int i=0;(i<cart.length)&&(i<cartamount);i++) {
+					cartram[i] = cart[i];
+				}
+			}
+		}
+		public void savecart(long[] cart) {
+			if (cart!=null) {
+				for (int i=0;(i<cart.length)&&(i<cartamount);i++) {
+					cart[i] = cartram[i];
+				}
+			}
+		}
+		public void savedisplay(long[] display) {
+			if (display!=null) {
+				for (int i=0;(i<display.length)&&(i<displayamount);i++) {
+					display[i] = displayram[i];
+				}
+			}
+		}
+		public void saveregistry(long[] registry) {
+			if (registry!=null) {
+				for (int j=0;j<risccores.length;j++) {
+					for (int i=0;i<registeramount;i++) {
+						registry[j*registeramount+i] = risccores[j].oldregisters[i];
+					}
+				}
+			}
+		}
 	}
 	
-	private CodeBlocks parseCode(String code) {
-		CodeBlocks codeblocks = new CodeBlocks();
-		codeblocks.maincode = new CodeBlock();
-		codeblocks.maincode.code = "";
-		codeblocks.maincode.name = "MAIN";
-		ArrayList<CodeBlock> codearray = new ArrayList<CodeBlock>();
-		boolean maincodeblock = true;
+	public class RiscCore {
+		private long newregsptr = NULL;
+		private long oldregsptr = NULL;
+		public int corenum = 0;
+		public int cyclenum = 0;
+		private long[] newregisters = new long[RiscChip.registeramount];
+		private long[] oldregisters = new long[RiscChip.registeramount];
+		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
+		private long[] timers = {0, 0, 0, 0, 0, 0, 0 ,0};
+		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
+		private int timerstep = 0;
+		private long instructionstate = 0L;
+		private long instructionstep = 0;
+		private int programcounter = 0;
+		private ByteBuffer instbytes = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes2 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes3 = ByteBuffer.allocate(8);
 		
-		String[] codelines = code.split("\n");
-		for (int i=0;i<codelines.length;i++) {
-			String codeline = codelines[i].trim();
-			if (codeline.length()>0) {
-				if (codeline.startsWith("//")) {
-				} else if (codeline.startsWith("#")) {
-					int arg1 = -1;
-					int arg2 = -1;
-					int sto3 = -1;
-					String[] codelineparts = codeline.split(":");
-					String[] codenameparts = codelineparts[0].split(" ");
-					String codename = codenameparts[0].substring(1).trim();
-					if (codenameparts.length>2) {
-						arg2 = Integer.parseInt(codenameparts[2].trim());
-					}
-					if (codenameparts.length>1) {
-						arg1 = Integer.parseInt(codenameparts[1].trim());
-					}
-					if (codelineparts.length>1) {
-						sto3 = Integer.parseInt(codelineparts[1].trim());
-					}
-					
-					if (codename.equals("MAIN")) {
-						maincodeblock = true;
-						codeblocks.maincode.arg1 = arg1;
-						codeblocks.maincode.arg2 = arg2;
-						codeblocks.maincode.sto3 = sto3;
-					} else if(codename.startsWith("##"))  {
-						maincodeblock = true;
-					} else {
-						maincodeblock = false;
-						CodeBlock newblock = new CodeBlock();
-						newblock.code = "";
-						newblock.name = codename;
-						newblock.arg1 = arg1;
-						newblock.arg2 = arg2;
-						newblock.sto3 = sto3;
-						codearray.add(newblock);
-					}
-				} else {
-					if (maincodeblock) {
-						codeblocks.maincode.code += codeline+"\n";
-					} else {
-						codearray.get(codearray.size()-1).code += codeline+"\n";
-					}
-				}
-			}
-		}
-		codeblocks.userblocks = codearray.toArray(new CodeBlock[codearray.size()]);
-		codeblocks.maincode.circuit = parseCircuit(codeblocks.maincode.code);
-		int me = codeblocks.maincode.circuit.length/cs;
-		for (int e=0;e<me;e++) {
-			if (codeblocks.maincode.circuit[e*cs+1]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+1];}
-			if (codeblocks.maincode.circuit[e*cs+2]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+2];}
-			if (codeblocks.maincode.circuit[e*cs+3]>codeblocks.maincode.height) {codeblocks.maincode.height=codeblocks.maincode.circuit[e*cs+3];}
-		}
-		for (int i=0;i<codeblocks.userblocks.length;i++) {
-			codeblocks.userblocks[i].circuit = parseCircuit(codeblocks.userblocks[i].code);
-			int ce = codeblocks.userblocks[i].circuit.length/cs;
-			for (int e=0;e<ce;e++) {
-				if (codeblocks.userblocks[i].circuit[e*cs+1]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+1];}
-				if (codeblocks.userblocks[i].circuit[e*cs+2]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+2];}
-				if (codeblocks.userblocks[i].circuit[e*cs+3]>codeblocks.userblocks[i].height) {codeblocks.userblocks[i].height=codeblocks.userblocks[i].circuit[e*cs+3];}
-			}
-		}
-		return codeblocks;
-	}
-	
-	private int[] parseCircuit(String circuit) {
-		ArrayList<Integer> circuitarray = new ArrayList<Integer>();
-		String[] circuitlines = circuit.split("\n");
-		for (int i=0;i<circuitlines.length;i++) {
-			int arg1 = -1;
-			int oper = -1;
-			int arg2 = -1;
-			int sto3 = -1;
-
-			String circuitline = circuitlines[i].trim();
-			
-			if (circuitline.length()>0) {
-				String[] circuitlineparts = circuitline.split(":");
-				String circuitlineop = circuitlineparts[0].trim();
-				String circuitlinestore = circuitlineparts[1].trim();
-				String[] circuitlineopparts = circuitlineop.split(" ");
-				
-				String operString = circuitlineopparts[0].trim();
-				if (circuitlineopparts.length>2) {
-					arg2 = Integer.parseInt(circuitlineopparts[2].trim());
-				}
-				if (circuitlineopparts.length>1) {
-					arg1 = Integer.parseInt(circuitlineopparts[1].trim());
-				}
-				sto3 = Integer.parseInt(circuitlinestore);
-				
-				if (operString.equals("BUF")) {
-					oper = 0;
-				} if (operString.equals("NOT")) {
-					oper = 1;
-				} if (operString.equals("AND")) {
-					oper = 2;
-				} if (operString.equals("OR")) {
-					oper = 3;
-				} if (operString.equals("XOR")) {
-					oper = 4;
-				} if (operString.equals("NAND")) {
-					oper = 5;
-				} if (operString.equals("NOR")) {
-					oper = 6;
-				} if (operString.equals("XNOR")) {
-					oper = 7;
-				} if (operString.equals("SHL")) {
-					oper = 8;
-				} if (operString.equals("SHR")) {
-					oper = 9;
-				} if (operString.equals("NEGi")) {
-					oper = 10;
-				} if (operString.equals("SUMi")) {
-					oper = 11;
-				} if (operString.equals("SUBi")) {
-					oper = 12;
-				} if (operString.equals("MULi")) {
-					oper = 13;
-				} if (operString.equals("DIVi")) {
-					oper = 14;
-				} if (operString.equals("COS")) {
-					oper = 15;
-				} if (operString.equals("SIN")) {
-					oper = 16;
-				} if (operString.equals("TAN")) {
-					oper = 17;
-				} if (operString.equals("ACOS")) {
-					oper = 18;
-				} if (operString.equals("ASIN")) {
-					oper = 19;
-				} if (operString.equals("ATAN")) {
-					oper = 20;
-				} if (operString.equals("LOG")) {
-					oper = 21;
-				} if (operString.equals("EXP")) {
-					oper = 22;
-				} if (operString.equals("POW")) {
-					oper = 23;
-				} if (operString.equals("SQRT")) {
-					oper = 24;
-				} if (operString.equals("NROOT")) {
-					oper = 25;
-				} if (operString.equals("NULL")) {
-					oper = 26;
-				} if (operString.equals("ITOF")) {
-					oper = 27;
-				} if (operString.equals("FTOI")) {
-					oper = 28;
-				} if (operString.equals("MGET")) {
-					oper = 29;
-				} if (operString.equals("MSTO")) {
-					oper = 30;
-				} if (operString.equals("IFBUF")) {
-					oper = 31;
-				} if (operString.equals("NEG")) {
-					oper = 32;
-				} if (operString.equals("SUM")) {
-					oper = 33;
-				} if (operString.equals("SUB")) {
-					oper = 34;
-				} if (operString.equals("MUL")) {
-					oper = 35;
-				} if (operString.equals("DIV")) {
-					oper = 36;
-				}
-				
-				circuitarray.add(oper); circuitarray.add(arg1); circuitarray.add(arg2); circuitarray.add(sto3);
-			}
+		public RiscCore(int corenumi) {
+			corenum = corenumi;
 		}
 		
-		int[] circuitints = new int[circuitarray.size()];
-		for (int i=0;i<circuitints.length;i++) {
-			circuitints[i] = circuitarray.get(i);
+		public void processinstruction() {
 		}
-		return circuitints;
+		public void updateregisters() {
+		}
 	}
 }

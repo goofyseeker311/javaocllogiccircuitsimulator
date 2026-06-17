@@ -45,6 +45,15 @@ public class ComputeLib {
 		CL30.clWaitForEvents(event);
 		MemoryStack.stackPop();
 	}
+	public void writeBufferL(long device, long queue, long vmem, long[] v) {
+		MemoryStack clStack = MemoryStack.stackPush();
+		PointerBuffer event = clStack.mallocPointer(1);
+		ByteBuffer vb = ByteBuffer.allocateDirect(v.length*8);
+		vb.asLongBuffer().put(v, 0, v.length);
+		CL30.clEnqueueWriteBuffer(queue, vmem, true, 0, vb, null, event);
+		CL30.clWaitForEvents(event);
+		MemoryStack.stackPop();
+	}
 
 	public void readBufferf(long device, long queue, long vmem, float[] v) {
 		MemoryStack clStack = MemoryStack.stackPush();
@@ -57,6 +66,15 @@ public class ComputeLib {
 		MemoryStack clStack = MemoryStack.stackPush();
 		PointerBuffer event = clStack.mallocPointer(1);
 		CL30.clEnqueueReadBuffer(queue, vmem, true, 0, v, null, event);
+		CL30.clWaitForEvents(event);
+		MemoryStack.stackPop();
+	}
+	public void readBufferL(long device, long queue, long vmem, long[] v) {
+		MemoryStack clStack = MemoryStack.stackPush();
+		PointerBuffer event = clStack.mallocPointer(1);
+		ByteBuffer vb = ByteBuffer.allocateDirect(v.length*8);
+		vb.asLongBuffer().put(v, 0, v.length);
+		CL30.clEnqueueReadBuffer(queue, vmem, true, 0, vb, null, event);
 		CL30.clWaitForEvents(event);
 		MemoryStack.stackPop();
 	}
@@ -78,6 +96,16 @@ public class ComputeLib {
 		pattern.rewind();
 		PointerBuffer event = clStack.mallocPointer(1);
 		CL30.clEnqueueFillBuffer(queue, vmem, pattern, 0, size*4, null, event);
+		CL30.clWaitForEvents(event);
+		MemoryStack.stackPop();
+	}
+	public void fillBufferL(long vmem, long queue, long fill, int size) {
+		MemoryStack clStack = MemoryStack.stackPush();
+		ByteBuffer pattern = clStack.malloc(8);
+		pattern.putLong(fill);
+		pattern.rewind();
+		PointerBuffer event = clStack.mallocPointer(1);
+		CL30.clEnqueueFillBuffer(queue, vmem, pattern, 0, size*8, null, event);
 		CL30.clWaitForEvents(event);
 		MemoryStack.stackPop();
 	}
@@ -109,6 +137,9 @@ public class ComputeLib {
 		long buffer = CL30.clCreateBuffer(context, CL30.CL_MEM_READ_WRITE, size*4, errcode_ret);
 		MemoryStack.stackPop();
 		return buffer;
+	}
+	public long createBufferL(long device, int size) {
+		return createBuffer(device, 2*size);
 	}
 	public void removeBuffer(long vmem) {
 		CL30.clReleaseMemObject(vmem);
