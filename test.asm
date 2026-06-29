@@ -1,7 +1,23 @@
+nop  ff rom header boot load size
+nop  01 rom header data
+nop  02 rom header data
+nop  03 rom header data
+nop  04 rom header data
+nop  05 rom header data
+nop  06 rom header data
+nop  07 rom header data
+nop  A0 rom header data
+nop  A1 rom header data
+nop  A2 rom header data
+nop  A3 rom header data
+nop  A4 rom header data
+nop  A5 rom header data
+nop  A6 rom header data
+nop  A7 rom header data
 
 // empty line
 nop   00000000
-ldi   0000 00000003
+ldi   0000 00000013
 ldi   0008 80000000 ff
 ldi   0010 00000020 ff
 shl   0008 0008 0010 ff
@@ -32,7 +48,7 @@ cmpe  0026 0023
 cmpl  0027 0021
 cmpl  0028 0022
 cmpl  0029 0023
-ldi   002a 00000025
+ldi   002a 00000035
 jmpc  002a 0024
 ldi   002b 01234567
 jmpc  002a 0028
