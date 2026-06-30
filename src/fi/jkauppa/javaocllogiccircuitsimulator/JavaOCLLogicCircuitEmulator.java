@@ -232,7 +232,7 @@ public class JavaOCLLogicCircuitEmulator {
 			} else {
 				instructionstate = riscchip.memoryram[(int)progcounter];
 			}
-			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
+			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", programcounter: "+String.format("%016x", programcounter)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
 					", r0:"+String.format("%016x", oldregisters[0x0])+", r1:"+String.format("%016x", oldregisters[0x1])+", r2:"+String.format("%016x", oldregisters[0x2])+", r3:"+String.format("%016x", oldregisters[0x3])+
 					", r4:"+String.format("%016x", oldregisters[0x4])+", r5:"+String.format("%016x", oldregisters[0x5])+", r6:"+String.format("%016x", oldregisters[0x6])+", r7:"+String.format("%016x", oldregisters[0x7])+
 					", r8:"+String.format("%016x", oldregisters[0x8])+", r9:"+String.format("%016x", oldregisters[0x9])+", rA:"+String.format("%016x", oldregisters[0xA])+", rB:"+String.format("%016x", oldregisters[0xB])+
