@@ -178,6 +178,7 @@
       <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(2950,1110)" name="Constant">
+      <a name="value" val="0x0"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(2970,1540)" name="Constant"/>
