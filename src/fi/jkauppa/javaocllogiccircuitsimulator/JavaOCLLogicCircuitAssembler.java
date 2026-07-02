@@ -135,121 +135,121 @@ public class JavaOCLLogicCircuitAssembler {
 					} else if (codelineparts[0].equals("memw")) {
 						insT = 0x50;
 					} else if (codelineparts[0].equals("cmpe")) {
-						insT = 0x04;
+						insT = 0x01;
 					} else if (codelineparts[0].equals("cmpl")) {
-						insT = 0x14;
+						insT = 0x11;
 					} else if (codelineparts[0].equals("fcmpe")) {
-						insT = 0x24;
+						insT = 0x21;
 					} else if (codelineparts[0].equals("fcmpl")) {
-						insT = 0x34;
-					} else if (codelineparts[0].equals("add")) {
-						insT = 0x05;
-					} else if (codelineparts[0].equals("addo")) {
-						insT = 0x15;
-					} else if (codelineparts[0].equals("sub")) {
-						insT = 0x25;
-					} else if (codelineparts[0].equals("subb")) {
-						insT = 0x35;
-					} else if (codelineparts[0].equals("mul")) {
-						insT = 0x45;
-					} else if (codelineparts[0].equals("mulo")) {
-						insT = 0x55;
-					} else if (codelineparts[0].equals("div")) {
-						insT = 0x65;
-					} else if (codelineparts[0].equals("divr")) {
-						insT = 0x75;
-					} else if (codelineparts[0].equals("neg")) {
-						insT = 0x85;
-					} else if (codelineparts[0].equals("clk")) {
-						insT = 0x95;
-					} else if (codelineparts[0].equals("rnd")) {
-						insT = 0xA5;
-					} else if (codelineparts[0].equals("freq")) {
-						insT = 0xB5;
-					} else if (codelineparts[0].equals("core")) {
-						insT = 0xC5;
-					} else if (codelineparts[0].equals("time")) {
-						insT = 0xD5;
+						insT = 0x31;
 					} else if (codelineparts[0].equals("shl")) {
-						insT = 0x06;
+						insT = 0x02;
 					} else if (codelineparts[0].equals("shr")) {
-						insT = 0x16;
+						insT = 0x12;
 					} else if (codelineparts[0].equals("shar")) {
-						insT = 0x26;
+						insT = 0x22;
 					} else if (codelineparts[0].equals("rotl")) {
-						insT = 0x36;
+						insT = 0x32;
 					} else if (codelineparts[0].equals("rotr")) {
-						insT = 0x46;
+						insT = 0x42;
 					} else if (codelineparts[0].equals("copy")) {
-						insT = 0x56;
+						insT = 0x52;
 					} else if (codelineparts[0].equals("not")) {
-						insT = 0x66;
+						insT = 0x62;
 					} else if (codelineparts[0].equals("or")) {
-						insT = 0x76;
+						insT = 0x72;
 					} else if (codelineparts[0].equals("and")) {
-						insT = 0x86;
+						insT = 0x82;
 					} else if (codelineparts[0].equals("nand")) {
-						insT = 0x96;
+						insT = 0x92;
 					} else if (codelineparts[0].equals("nor")) {
-						insT = 0xA6;
+						insT = 0xA2;
 					} else if (codelineparts[0].equals("xor")) {
-						insT = 0xB6;
+						insT = 0xB2;
 					} else if (codelineparts[0].equals("xnor")) {
-						insT = 0xC6;
+						insT = 0xC2;
 					} else if (codelineparts[0].equals("copyc")) {
-						insT = 0xD6;
-					} else if (codelineparts[0].equals("fadd")) {
-						insT = 0x07;
-					} else if (codelineparts[0].equals("fsub")) {
-						insT = 0x17;
-					} else if (codelineparts[0].equals("fmul")) {
-						insT = 0x27;
-					} else if (codelineparts[0].equals("fdiv")) {
-						insT = 0x37;
-					} else if (codelineparts[0].equals("fneg")) {
-						insT = 0x47;
-					} else if (codelineparts[0].equals("fitf")) {
-						insT = 0x57;
-					} else if (codelineparts[0].equals("ftin")) {
-						insT = 0x67;
-					} else if (codelineparts[0].equals("ftid")) {
-						insT = 0x77;
-					} else if (codelineparts[0].equals("ftiu")) {
-						insT = 0x87;
-					} else if (codelineparts[0].equals("ftit")) {
-						insT = 0x97;
-					} else if (codelineparts[0].equals("finf")) {
-						insT = 0xA7;
-					} else if (codelineparts[0].equals("fnan")) {
-						insT = 0xB7;
-					} else if (codelineparts[0].equals("fsin")) {
-						insT = 0x08;
-					} else if (codelineparts[0].equals("ftan")) {
-						insT = 0x18;
-					} else if (codelineparts[0].equals("fcos")) {
-						insT = 0x28;
-					} else if (codelineparts[0].equals("fasin")) {
-						insT = 0x38;
-					} else if (codelineparts[0].equals("fatan")) {
-						insT = 0x48;
-					} else if (codelineparts[0].equals("facos")) {
-						insT = 0x58;
-					} else if (codelineparts[0].equals("flog")) {
-						insT = 0x68;
-					} else if (codelineparts[0].equals("fpow")) {
-						insT = 0x78;
-					} else if (codelineparts[0].equals("fsqrt")) {
-						insT = 0x88;
+						insT = 0xD2;
 					} else if (codelineparts[0].equals("lone")) {
-						insT = 0x09;
+						insT = 0x03;
 					} else if (codelineparts[0].equals("hone")) {
-						insT = 0x19;
+						insT = 0x13;
 					} else if (codelineparts[0].equals("lzero")) {
-						insT = 0x29;
+						insT = 0x23;
 					} else if (codelineparts[0].equals("hzero")) {
-						insT = 0x39;
+						insT = 0x33;
 					} else if (codelineparts[0].equals("ones")) {
-						insT = 0x49;
+						insT = 0x43;
+					} else if (codelineparts[0].equals("add")) {
+						insT = 0x04;
+					} else if (codelineparts[0].equals("addo")) {
+						insT = 0x14;
+					} else if (codelineparts[0].equals("sub")) {
+						insT = 0x24;
+					} else if (codelineparts[0].equals("subb")) {
+						insT = 0x34;
+					} else if (codelineparts[0].equals("mul")) {
+						insT = 0x44;
+					} else if (codelineparts[0].equals("mulo")) {
+						insT = 0x54;
+					} else if (codelineparts[0].equals("div")) {
+						insT = 0x64;
+					} else if (codelineparts[0].equals("divr")) {
+						insT = 0x74;
+					} else if (codelineparts[0].equals("neg")) {
+						insT = 0x84;
+					} else if (codelineparts[0].equals("clk")) {
+						insT = 0x94;
+					} else if (codelineparts[0].equals("rnd")) {
+						insT = 0xA4;
+					} else if (codelineparts[0].equals("freq")) {
+						insT = 0xB4;
+					} else if (codelineparts[0].equals("core")) {
+						insT = 0xC4;
+					} else if (codelineparts[0].equals("time")) {
+						insT = 0xD4;
+					} else if (codelineparts[0].equals("fadd")) {
+						insT = 0x05;
+					} else if (codelineparts[0].equals("fsub")) {
+						insT = 0x15;
+					} else if (codelineparts[0].equals("fmul")) {
+						insT = 0x25;
+					} else if (codelineparts[0].equals("fdiv")) {
+						insT = 0x35;
+					} else if (codelineparts[0].equals("fneg")) {
+						insT = 0x45;
+					} else if (codelineparts[0].equals("fitf")) {
+						insT = 0x55;
+					} else if (codelineparts[0].equals("ftin")) {
+						insT = 0x65;
+					} else if (codelineparts[0].equals("ftid")) {
+						insT = 0x75;
+					} else if (codelineparts[0].equals("ftiu")) {
+						insT = 0x85;
+					} else if (codelineparts[0].equals("ftit")) {
+						insT = 0x95;
+					} else if (codelineparts[0].equals("finf")) {
+						insT = 0xA5;
+					} else if (codelineparts[0].equals("fnan")) {
+						insT = 0xB5;
+					} else if (codelineparts[0].equals("fsin")) {
+						insT = 0x06;
+					} else if (codelineparts[0].equals("ftan")) {
+						insT = 0x16;
+					} else if (codelineparts[0].equals("fcos")) {
+						insT = 0x26;
+					} else if (codelineparts[0].equals("fasin")) {
+						insT = 0x36;
+					} else if (codelineparts[0].equals("fatan")) {
+						insT = 0x46;
+					} else if (codelineparts[0].equals("facos")) {
+						insT = 0x56;
+					} else if (codelineparts[0].equals("flog")) {
+						insT = 0x66;
+					} else if (codelineparts[0].equals("fpow")) {
+						insT = 0x76;
+					} else if (codelineparts[0].equals("fsqrt")) {
+						insT = 0x86;
 					}
 					
 					if (codelineparts.length>=2) {
