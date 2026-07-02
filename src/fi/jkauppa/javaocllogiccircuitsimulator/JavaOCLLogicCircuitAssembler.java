@@ -101,7 +101,7 @@ public class JavaOCLLogicCircuitAssembler {
 					int regX = Integer.parseUnsignedInt(regXline, 16);
 					long dataval = Long.parseUnsignedLong(dataline, 16);
 					int vecN = Integer.parseUnsignedInt(vecnline, 16);
-					int insT = 0x02;
+					int insT = 0x30;
 					insvalbytes.clear();
 					insvalbytes.putShort((short)regX);
 					insvalbytes.putInt((int)dataval);
@@ -127,13 +127,13 @@ public class JavaOCLLogicCircuitAssembler {
 					int insT = 0;
 					String[] codelineparts = codeline.split(splitregex);
 					if (codelineparts[0].equals("jmp")) {
-						insT = 0x01;
+						insT = 0x10;
 					} else if (codelineparts[0].equals("jmpc")) {
-						insT = 0x11;
+						insT = 0x20;
 					} else if (codelineparts[0].equals("memr")) {
-						insT = 0x03;
+						insT = 0x40;
 					} else if (codelineparts[0].equals("memw")) {
-						insT = 0x13;
+						insT = 0x50;
 					} else if (codelineparts[0].equals("cmpe")) {
 						insT = 0x04;
 					} else if (codelineparts[0].equals("cmpl")) {
