@@ -259,10 +259,10 @@ public class JavaOCLLogicCircuitEmulator {
 						programcounter++;
 					}
 				} break;
-				case 0x01: if (true) {
+				case 0x10: if (true) {
 					programcounter = oldregisters[regX];
 				} break;
-				case 0x11: if (true) {
+				case 0x20: if (true) {
 					long jumpflag = oldregisters[regY];
 					if (jumpflag!=0) {
 						programcounter = oldregisters[regX];
@@ -275,10 +275,10 @@ public class JavaOCLLogicCircuitEmulator {
 						if (vecnbits.get(i)) {
 	
 							switch(insT) {
-								case 0x02: if (true) {
+								case 0x30: if (true) {
 									newregisters[regX+i] = regYZ;
 								} break;
-								case 0x03: if (true) {
+								case 0x40: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -299,7 +299,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 									}
 								} break;
-								case 0x13: if (true) {
+								case 0x50: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -320,19 +320,19 @@ public class JavaOCLLogicCircuitEmulator {
 										riscchip.memoryram[((int)oldregisters[regY])+i] = oldregisters[regX+i];
 									}
 								} break;
-								case 0x04: if (true) {
+								case 0x01: if (true) {
 									newregisters[regX+i] = 0;
 									if (oldregisters[regY+i]==0) {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x14: if (true) {
+								case 0x11: if (true) {
 									newregisters[regX+i] = 0;
 									if (oldregisters[regY+i]<0) {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x24: if (true) {
+								case 0x21: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -341,7 +341,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x34: if (true) {
+								case 0x31: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -350,10 +350,84 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x05: if (true) {
+								case 0x02: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
+								} break;
+								case 0x12: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] >>> oldregisters[regZ+i];
+								} break;
+								case 0x22: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] >> oldregisters[regZ+i];
+								} break;
+								case 0x32: if (true) {
+									newregisters[regX+i] = Long.rotateLeft(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+								} break;
+								case 0x42: if (true) {
+									newregisters[regX+i] = Long.rotateRight(oldregisters[regY+i], (int)oldregisters[regZ+i]);
+								} break;
+								case 0x52: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i];
+								} break;
+								case 0x62: if (true) {
+									newregisters[regX+i] = ~oldregisters[regY+i];
+								} break;
+								case 0x72: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] | oldregisters[regZ+i];
+								} break;
+								case 0x82: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] & oldregisters[regZ+i];
+								} break;
+								case 0x92: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] & oldregisters[regZ+i]);
+								} break;
+								case 0xA2: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] | oldregisters[regZ+i]);
+								} break;
+								case 0xB2: if (true) {
+									newregisters[regX+i] = oldregisters[regY+i] ^ oldregisters[regZ+i];
+								} break;
+								case 0xC2: if (true) {
+									newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
+								} break;
+								case 0xD2: if (true) {
+									newregisters[regX+i] = oldregisters[regX+i];
+									if (oldregisters[regZ+i]!=0) {
+										newregisters[regX+i] = oldregisters[regY+i];
+									}
+								} break;
+								case 0x03: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regylowone = regybits.previousSetBit(63);
+									newregisters[regX+i] = regylowone;
+								} break;
+								case 0x13: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regyhighone = regybits.nextSetBit(0);
+									newregisters[regX+i] = regyhighone;
+								} break;
+								case 0x23: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regylowzero = regybits.nextClearBit(0);
+									newregisters[regX+i] = regylowzero;
+								} break;
+								case 0x33: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									long regyhighzero = regybits.previousClearBit(63);
+									newregisters[regX+i] = regyhighzero;
+								} break;
+								case 0x43: if (true) {
+									long[] regyarray = {oldregisters[regY+i]};
+									BitSet regybits = BitSet.valueOf(regyarray);
+									newregisters[regX+i] = regybits.cardinality();
+								} break;
+								case 0x04: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] + oldregisters[regZ+i];
 								} break;
-								case 0x15: if (true) {
+								case 0x14: if (true) {
 									newregisters[regX+i] = 0;
 									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
 									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
@@ -363,10 +437,10 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x25: if (true) {
+								case 0x24: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] - oldregisters[regZ+i];
 								} break;
-								case 0x35: if (true) {
+								case 0x34: if (true) {
 									newregisters[regX+i] = 0;
 									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
 									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
@@ -376,10 +450,10 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x45: if (true) {
+								case 0x44: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] * oldregisters[regZ+i];
 								} break;
-								case 0x55: if (true) {
+								case 0x54: if (true) {
 									newregisters[regX+i] = 0;
 									BigInteger oldregY = BigInteger.valueOf(oldregisters[regY+i]);
 									BigInteger oldregZ = BigInteger.valueOf(oldregisters[regZ+i]);
@@ -390,28 +464,28 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = newregXlong;
 									}
 								} break;
-								case 0x65: if (true) {
+								case 0x64: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] / oldregisters[regZ+i];
 								} break;
-								case 0x75: if (true) {
+								case 0x74: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] % oldregisters[regZ+i];
 								} break;
-								case 0x85: if (true) {
+								case 0x84: if (true) {
 									newregisters[regX+i] = -oldregisters[regY+i];
 								} break;
-								case 0x95: if (true) {
+								case 0x94: if (true) {
 									if (oldregisters[regZ+i]!=0) {
 										this.counters[i] = oldregisters[regY+i];
 									}
 									newregisters[regX+i] = this.counters[i];
 								} break;
-								case 0xA5: if (true) {
+								case 0xA4: if (true) {
 									if (oldregisters[regY+i]!=0) {
 										this.randoms[i].setSeed(oldregisters[regZ+i]);
 									}
 									newregisters[regX+i] = this.randoms[i].nextLong();
 								} break;
-								case 0xB5: if (true) {
+								case 0xB4: if (true) {
 									if (oldregisters[regZ+i]!=0) {
 										riscchip.clockfrequency = oldregisters[regY+i];
 									}
@@ -420,7 +494,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = riscchip.clockfrequency;
 								} break;
-								case 0xC5: if (true) {
+								case 0xC4: if (true) {
 									if (oldregisters[regY+i]==1) {
 										newregisters[regX+i] = riscchip.risccores.length;
 									} else if (oldregisters[regY+i]==2) {
@@ -439,58 +513,13 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = corenum;
 									}
 								} break;
-								case 0xD5: if (true) {
+								case 0xD4: if (true) {
 									if (oldregisters[regZ+i]!=0) {
 										this.timers[i] = oldregisters[regY+i];
 									}
 									newregisters[regX+i] = this.timers[i];
 								} break;
-								case 0x06: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
-								} break;
-								case 0x16: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] >>> oldregisters[regZ+i];
-								} break;
-								case 0x26: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] >> oldregisters[regZ+i];
-								} break;
-								case 0x36: if (true) {
-									newregisters[regX+i] = Long.rotateLeft(oldregisters[regY+i], (int)oldregisters[regZ+i]);
-								} break;
-								case 0x46: if (true) {
-									newregisters[regX+i] = Long.rotateRight(oldregisters[regY+i], (int)oldregisters[regZ+i]);
-								} break;
-								case 0x56: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i];
-								} break;
-								case 0x66: if (true) {
-									newregisters[regX+i] = ~oldregisters[regY+i];
-								} break;
-								case 0x76: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] | oldregisters[regZ+i];
-								} break;
-								case 0x86: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] & oldregisters[regZ+i];
-								} break;
-								case 0x96: if (true) {
-									newregisters[regX+i] = ~(oldregisters[regY+i] & oldregisters[regZ+i]);
-								} break;
-								case 0xA6: if (true) {
-									newregisters[regX+i] = ~(oldregisters[regY+i] | oldregisters[regZ+i]);
-								} break;
-								case 0xB6: if (true) {
-									newregisters[regX+i] = oldregisters[regY+i] ^ oldregisters[regZ+i];
-								} break;
-								case 0xC6: if (true) {
-									newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
-								} break;
-								case 0xD6: if (true) {
-									newregisters[regX+i] = oldregisters[regX+i];
-									if (oldregisters[regZ+i]!=0) {
-										newregisters[regX+i] = oldregisters[regY+i];
-									}
-								} break;
-								case 0x07: if (true) {
+								case 0x05: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -502,7 +531,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x17: if (true) {
+								case 0x15: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -514,7 +543,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x27: if (true) {
+								case 0x25: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -526,7 +555,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x37: if (true) {
+								case 0x35: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -538,7 +567,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x47: if (true) {
+								case 0x45: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -547,36 +576,36 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x57: if (true) {
+								case 0x55: if (true) {
 									longbytes.clear();
 									longbytes.putDouble((double)oldregisters[regY+i]).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x67: if (true) {
+								case 0x65: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
 									newregisters[regX+i] = Math.round(longdouble);
 								} break;
-								case 0x77: if (true) {
+								case 0x75: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
 									newregisters[regX+i] = (long)Math.floor(longdouble);
 								} break;
-								case 0x87: if (true) {
+								case 0x85: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
 									newregisters[regX+i] = (long)Math.ceil(longdouble);
 								} break;
-								case 0x97: if (true) {
+								case 0x95: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
 									newregisters[regX+i] = (long)longdouble;
 								} break;
-								case 0xA7: if (true) {
+								case 0xA5: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -585,7 +614,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0xB7: if (true) {
+								case 0xB5: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -594,7 +623,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
-								case 0x08: if (true) {
+								case 0x06: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -603,7 +632,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x18: if (true) {
+								case 0x16: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -612,7 +641,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x28: if (true) {
+								case 0x26: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -621,7 +650,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x38: if (true) {
+								case 0x36: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -630,7 +659,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x48: if (true) {
+								case 0x46: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -639,7 +668,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x58: if (true) {
+								case 0x56: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -648,7 +677,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x68: if (true) {
+								case 0x66: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -660,7 +689,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x78: if (true) {
+								case 0x76: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -672,7 +701,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
 								} break;
-								case 0x88: if (true) {
+								case 0x86: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double longdouble = longbytes.asDoubleBuffer().get();
@@ -680,35 +709,6 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.clear();
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
-								} break;
-								case 0x09: if (true) {
-									long[] regyarray = {oldregisters[regY+i]};
-									BitSet regybits = BitSet.valueOf(regyarray);
-									long regylowone = regybits.previousSetBit(63);
-									newregisters[regX+i] = regylowone;
-								} break;
-								case 0x19: if (true) {
-									long[] regyarray = {oldregisters[regY+i]};
-									BitSet regybits = BitSet.valueOf(regyarray);
-									long regyhighone = regybits.nextSetBit(0);
-									newregisters[regX+i] = regyhighone;
-								} break;
-								case 0x29: if (true) {
-									long[] regyarray = {oldregisters[regY+i]};
-									BitSet regybits = BitSet.valueOf(regyarray);
-									long regylowzero = regybits.nextClearBit(0);
-									newregisters[regX+i] = regylowzero;
-								} break;
-								case 0x39: if (true) {
-									long[] regyarray = {oldregisters[regY+i]};
-									BitSet regybits = BitSet.valueOf(regyarray);
-									long regyhighzero = regybits.previousClearBit(63);
-									newregisters[regX+i] = regyhighzero;
-								} break;
-								case 0x49: if (true) {
-									long[] regyarray = {oldregisters[regY+i]};
-									BitSet regybits = BitSet.valueOf(regyarray);
-									newregisters[regX+i] = regybits.cardinality();
 								} break;
 							}
 						}
