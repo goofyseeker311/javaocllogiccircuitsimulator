@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore94" src="https://github.com/user-attachments/assets/de15a711-3a52-4280-a538-c80d0870d517" />
-<img width="3840" height="2112" alt="muxrisccore94a" src="https://github.com/user-attachments/assets/29626f2b-30c8-446e-bbda-055af03ac922" />
-<img width="3840" height="2112" alt="muxrisccore94b" src="https://github.com/user-attachments/assets/9e9f317a-838e-4c3b-b8f2-56b351ff460c" />
+<img width="3840" height="2112" alt="muxrisccore95" src="https://github.com/user-attachments/assets/0252dc7e-8ed6-4edb-959d-ee050edb0f5e" />
+<img width="3840" height="2112" alt="muxrisccore95a" src="https://github.com/user-attachments/assets/17492c2f-b120-40e5-bad2-4cc3892bf05e" />
+<img width="3840" height="2112" alt="muxrisccore95b" src="https://github.com/user-attachments/assets/acf1dfec-b666-496d-aa84-84b6dc281ecb" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -52,16 +52,14 @@ Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560t
 Opcode | Instruction | Name               | Description
 ----------------------------------------------------------------------------------------------------
 any    | ##          | Any Raw Data       | direct data line 64-bit value
-0      | nopYZ       | No Operation       | no operation sleep constant regYZ cycles
+0      | nopYZ       | No Operation       | insV=0 no operation sleep constant regYZ cycles
          []                                 empty line or white space line
          //                                 comment line
-1      | jmpXY       | Jump Destination   | jump to regX if regY is not zero
-         jmpXY                              insV=0 unconditional jump to regX
-         jmpcXY                             insV=1 jump to regX if regY is not zero
-2      | ldiXYZ      | Load 32-bit Uint   | load regX with constant regYZ
-3      | memXY       | Memory Double      | store/load[insV] regX at memory[regY]
-         memrXY                             insV=0 load from shared memory
-         memwXY                             insV=1 store to shared memory
+         jmpXY                              insV=1 unconditional jump to regX
+         jmpcXY                             insV=2 jump to regX if regY is not zero
+         ldiXYZ                             insV=3 load regX with 32-bit constant Uint regYZ
+         memrXY                             insV=4 load regX from shared memory[regY]
+         memwXY                             insV=5 store regX to shared memory[regY]
 4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
