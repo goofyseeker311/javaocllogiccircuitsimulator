@@ -52,9 +52,8 @@ Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560t
 Opcode | Instruction | Name               | Description
 ----------------------------------------------------------------------------------------------------
 any    | ##          | Any Raw Data       | direct data line 64-bit value
-0      | nopYZ       | No Operation       | insV=0 no operation sleep constant regYZ cycles
-         []                                 empty line or white space line
-         //                                 comment line
+0      | [] //       | Flow Control       | empty or white space line, comment line
+         nopYZ                              insV=0 no operation sleep constant regYZ cycles
          jmpXY                              insV=1 unconditional jump to regX
          jmpcXY                             insV=2 jump to regX if regY is not zero
          ldiXYZ                             insV=3 load regX with 32-bit constant Uint regYZ
