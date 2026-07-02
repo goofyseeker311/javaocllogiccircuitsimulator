@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore95" src="https://github.com/user-attachments/assets/0252dc7e-8ed6-4edb-959d-ee050edb0f5e" />
-<img width="3840" height="2112" alt="muxrisccore95a" src="https://github.com/user-attachments/assets/17492c2f-b120-40e5-bad2-4cc3892bf05e" />
-<img width="3840" height="2112" alt="muxrisccore95b" src="https://github.com/user-attachments/assets/acf1dfec-b666-496d-aa84-84b6dc281ecb" />
+<img width="3840" height="2112" alt="muxrisccore96" src="https://github.com/user-attachments/assets/d2b49d90-3118-4fba-9584-4151fd5f7d61" />
+<img width="3840" height="2112" alt="muxrisccore96a" src="https://github.com/user-attachments/assets/a0f243f1-7fbe-4279-81e6-1adf7ab88717" />
+<img width="3840" height="2112" alt="muxrisccore96b" src="https://github.com/user-attachments/assets/8bd7859b-7c3c-46d4-9446-32170741a246" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -59,27 +59,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ldiXYZ                             insV=3 load regX with 32-bit constant Uint regYZ
          memrXY                             insV=4 load regX from shared memory[regY]
          memwXY                             insV=5 store regX to shared memory[regY]
-4      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
+1      | cmpXY       | Compare to Zero    | clear regX to 0, set to 1 if regY comp[insV]
          cmpeXY                             insV=0 integer equal to
          cmplXY                             insV=1 integer less than
          fcmpeXY                            insV=2 float equal to
          fcmplXY                            insV=3 float less than
-5      | intXYZ      | ALU Int Operation  | store integer op[insV] regY regZ to regX
-         addXYZ                             insV=0 integer add
-         addoXYZ                            insV=1 integer add overflow bit
-         subXYZ                             insV=2 integer subtract
-         subbXYZ                            insV=3 integer subtract borrow bit
-         mulXYZ                             insV=4 integer multiply
-         muloXYZ                            insV=5 integer multiply overflow
-         divXYZ                             insV=6 integer divide
-         divrXYZ                            insV=7 integer divide remainder
-         negXYZ                             insV=8 integer negate
-         clkXYZ                             insV=9 integer clock counter
-         rndXYZ                             insV=A integer clock random
-         freqXYZ                            insV=B integer clock frequency
-         coreXYZ                            insV=C integer core info: id, cores, registers, memory
-         timeXYZ                            insV=D integer global time nanoseconds
-6      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
+2      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
          shlXYZ                             insV=0 bitwise shift left regZ bits
          shrXYZ                             insV=1 bitwise shift right regZ bits
          sharXYZ                            insV=2 bitwise shift arithmetic right regZ bits
@@ -94,7 +79,28 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          xorXYZ                             insV=B bitwise xor
          xnorXYZ                            insV=C bitwise xnor
          copycXYZ                           insV=D bitwise conditional copy if regZ is not zero
-7      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
+3      | bitaXYZ     | ALU BitA Operation | store advanced bitwise op[insV] regY regZ to regX
+         loneXYZ                            insV=0 bitwise lowest one bit, -1 if not found
+         honeXYZ                            insV=1 bitwise highest one bit, -1 if not found
+         lzeroXYZ                           insV=2 bitwise lowest zero bit, -1 if not found
+         hzeroXYZ                           insV=3 bitwise highest zero bit, -1 if not found
+         onesXYZ                            insV=4 bitwise count of one bits
+4      | intXYZ      | ALU Int Operation  | store integer op[insV] regY regZ to regX
+         addXYZ                             insV=0 integer add
+         addoXYZ                            insV=1 integer add overflow bit
+         subXYZ                             insV=2 integer subtract
+         subbXYZ                            insV=3 integer subtract borrow bit
+         mulXYZ                             insV=4 integer multiply
+         muloXYZ                            insV=5 integer multiply overflow
+         divXYZ                             insV=6 integer divide
+         divrXYZ                            insV=7 integer divide remainder
+         negXYZ                             insV=8 integer negate
+         clkXYZ                             insV=9 integer clock counter
+         rndXYZ                             insV=A integer clock random
+         freqXYZ                            insV=B integer clock frequency
+         coreXYZ                            insV=C integer core info: id, cores, registers, memory
+         timeXYZ                            insV=D integer global time nanoseconds
+5      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
          fmulXYZ                            insV=2 float multiply
@@ -107,7 +113,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ftitXYZ                            insV=9 float to integer truncate
          finfXYZ                            insV=A float is infinity
          fnanXYZ                            insV=B float is not-a-number
-8      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
+6      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
          fsinXYZ                            insV=0 float sine
          ftanXYZ                            insV=1 float tangent
          fcosXYZ                            insV=2 float cosine
@@ -117,12 +123,6 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          flogXYZ                            insV=6 float logarithm
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
-9      | bitaXYZ     | ALU BitA Operation | store advanced bitwise op[insV] regY regZ to regX
-         loneXYZ                            insV=0 bitwise lowest one bit, -1 if not found
-         honeXYZ                            insV=1 bitwise highest one bit, -1 if not found
-         lzeroXYZ                           insV=2 bitwise lowest zero bit, -1 if not found
-         hzeroXYZ                           insV=3 bitwise highest zero bit, -1 if not found
-         onesXYZ                            insV=4 bitwise count of one bits
 ```
 
 Example looping test assembly code source and binary:
