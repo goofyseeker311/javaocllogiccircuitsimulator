@@ -350,6 +350,42 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = 1;
 									}
 								} break;
+								case 0x41: if (true) {
+									newregisters[regX+i] = 0;
+									if (oldregisters[regY+i]==oldregisters[regZ+i]) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x51: if (true) {
+									newregisters[regX+i] = 0;
+									if (oldregisters[regY+i]<oldregisters[regZ+i]) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x61: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									if (longdouble==longdouble2) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
+								case 0x71: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									double longdouble = longbytes.asDoubleBuffer().get();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									double longdouble2 = longbytes2.asDoubleBuffer().get();
+									if (longdouble<longdouble2) {
+										newregisters[regX+i] = 1;
+									}
+								} break;
 								case 0x02: if (true) {
 									newregisters[regX+i] = oldregisters[regY+i] << oldregisters[regZ+i];
 								} break;
