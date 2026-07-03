@@ -208,6 +208,9 @@ public class JavaOCLLogicCircuitEmulator {
 		private long instructionstep = 0L;
 		private long programcounter = 0xC000000000000000L;
 		private ByteBuffer instbytes = ByteBuffer.allocate(8);
+		private ByteBuffer instbytes2 = ByteBuffer.allocate(8);
+		private ByteBuffer instbytes3 = ByteBuffer.allocate(8);
+		private ByteBuffer instbytes4 = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes2 = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes3 = ByteBuffer.allocate(8);
@@ -279,6 +282,27 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = regYZ;
 								} break;
 								case 0x40: if (true) {
+									int intvalue = instbytes.getInt(2);
+									instbytes2.clear();
+									instbytes2.putInt(intvalue).putInt(intvalue).rewind();
+									long regYZ32 = instbytes2.getLong();
+									newregisters[regX+i] = regYZ32;
+								} break;
+								case 0x50: if (true) {
+									short shortvalue = instbytes.getShort(4);
+									instbytes3.clear();
+									instbytes3.putShort(shortvalue).putShort(shortvalue).putShort(shortvalue).putShort(shortvalue).rewind();
+									long regZ16 = instbytes3.getLong();
+									newregisters[regX+i] = regZ16;
+								} break;
+								case 0x60: if (true) {
+									byte bytevalue = instbytes.get(5);
+									instbytes4.clear();
+									instbytes4.put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).rewind();
+									long regZ8 = instbytes4.getLong();
+									newregisters[regX+i] = regZ8;
+								} break;
+								case 0x70: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -299,7 +323,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 									}
 								} break;
-								case 0x50: if (true) {
+								case 0x80: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);

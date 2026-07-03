@@ -1,6 +1,6 @@
-nop  ff rom header boot load size
-nop  01 rom header data
-nop  02 rom header data
+nop    ff rom header boot load size
+nop    01 rom header data
+nop    02 rom header data
 nop    03 rom header data
 nop    04 rom header data
 nop    05 rom header data
@@ -135,5 +135,9 @@ cmpe   0073 0071 0072
 cmpl   0074 0071 0072
 fcmpe  0075 0059 0059
 fcmpl  0076 0059 005a
+ldi    0077 12345678
+ldi32  0078 12345678
+ldi16  0079 1234
+ldi8   007a 12
 jmp    0000
 ##     A123456789ABCDEF some data
