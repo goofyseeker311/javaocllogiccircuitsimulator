@@ -126,11 +126,11 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
 7      | clockXYZ    | Core-clk Operation | store core clock integer op[insV] regY regZ to regX
-         clkXYZ                             insV=9 integer clock counter
-         rndXYZ                             insV=A integer clock random
-         freqXYZ                            insV=B integer clock frequency
-         coreXYZ                            insV=C integer core info: id, cores, registers, memory
-         timeXYZ                            insV=D integer global time nanoseconds
+         clkXYZ                             insV=0 integer clock counter
+         rndXYZ                             insV=1 integer clock random
+         freqXYZ                            insV=2 integer clock frequency
+         coreXYZ                            insV=3 integer core info: id, cores, registers, memory
+         timeXYZ                            insV=4 integer global time nanoseconds
 ```
 
 Example looping test assembly code source and binary:
