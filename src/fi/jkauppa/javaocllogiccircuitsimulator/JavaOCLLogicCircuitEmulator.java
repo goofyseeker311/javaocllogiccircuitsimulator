@@ -214,11 +214,6 @@ public class JavaOCLLogicCircuitEmulator {
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes2 = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes3 = ByteBuffer.allocate(8);
-		private ByteBuffer longbytes4 = ByteBuffer.allocate(8);
-		private ByteBuffer longbytes5 = ByteBuffer.allocate(8);
-		private ByteBuffer longbytes6 = ByteBuffer.allocate(8);
-		private ByteBuffer longbytes7 = ByteBuffer.allocate(8);
-		private ByteBuffer longbytes8 = ByteBuffer.allocate(8);
 		
 		public RiscCore(int corenumi) {
 			corenum = corenumi;
@@ -780,7 +775,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									int intvalue1 = longbytes.getInt(0);
-									int intvalue2 = longbytes.getInt(1);
+									int intvalue2 = longbytes.getInt(4);
 									longbytes.putLong(0L).rewind();
 									if (intvalue1==0) {
 										longbytes.putInt(0, 1).rewind();
@@ -795,7 +790,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									int intvalue1 = longbytes.getInt(0);
-									int intvalue2 = longbytes.getInt(1);
+									int intvalue2 = longbytes.getInt(4);
 									longbytes.putLong(0L).rewind();
 									if (intvalue1<0) {
 										longbytes.putInt(0, 1).rewind();
@@ -810,7 +805,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									float floatvalue1 = longbytes.getFloat(0);
-									float floatvalue2 = longbytes.getFloat(1);
+									float floatvalue2 = longbytes.getFloat(4);
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1==0.0f) {
 										longbytes.putInt(0, 1).rewind();
@@ -825,7 +820,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									float floatvalue1 = longbytes.getFloat(0);
-									float floatvalue2 = longbytes.getFloat(1);
+									float floatvalue2 = longbytes.getFloat(4);
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1<0.0f) {
 										longbytes.putInt(0, 1).rewind();
@@ -836,10 +831,50 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x48: if (true) {
-									//TODO int16 cmpez
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									short shortvalue1 = longbytes.getShort(0);
+									short shortvalue2 = longbytes.getShort(2);
+									short shortvalue3 = longbytes.getShort(4);
+									short shortvalue4 = longbytes.getShort(6);
+									longbytes.putLong(0L).rewind();
+									if (shortvalue1==0) {
+										longbytes.putShort(0, (short)1).rewind();
+									}
+									if (shortvalue2==0) {
+										longbytes.putShort(2, (short)1).rewind();
+									}
+									if (shortvalue3==0) {
+										longbytes.putShort(4, (short)1).rewind();
+									}
+									if (shortvalue4==0) {
+										longbytes.putShort(6, (short)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x58: if (true) {
-									//TODO int16 cmplz
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									short shortvalue1 = longbytes.getShort(0);
+									short shortvalue2 = longbytes.getShort(2);
+									short shortvalue3 = longbytes.getShort(4);
+									short shortvalue4 = longbytes.getShort(6);
+									longbytes.putLong(0L).rewind();
+									if (shortvalue1<0) {
+										longbytes.putShort(0, (short)1).rewind();
+									}
+									if (shortvalue2<0) {
+										longbytes.putShort(2, (short)1).rewind();
+									}
+									if (shortvalue3<0) {
+										longbytes.putShort(4, (short)1).rewind();
+									}
+									if (shortvalue4<0) {
+										longbytes.putShort(6, (short)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x68: if (true) {
 									//TODO fp16 cmpez
@@ -848,10 +883,82 @@ public class JavaOCLLogicCircuitEmulator {
 									//TODO fp16 cmplz
 								} break;
 								case 0x88: if (true) {
-									//TODO int8 cmpez
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									byte bytevalue1 = longbytes.get(0);
+									byte bytevalue2 = longbytes.get(1);
+									byte bytevalue3 = longbytes.get(2);
+									byte bytevalue4 = longbytes.get(3);
+									byte bytevalue5 = longbytes.get(4);
+									byte bytevalue6 = longbytes.get(5);
+									byte bytevalue7 = longbytes.get(6);
+									byte bytevalue8 = longbytes.get(7);
+									longbytes.putLong(0L).rewind();
+									if (bytevalue1==0) {
+										longbytes.put(0, (byte)1).rewind();
+									}
+									if (bytevalue2==0) {
+										longbytes.put(1, (byte)1).rewind();
+									}
+									if (bytevalue3==0) {
+										longbytes.put(2, (byte)1).rewind();
+									}
+									if (bytevalue4==0) {
+										longbytes.put(3, (byte)1).rewind();
+									}
+									if (bytevalue5==0) {
+										longbytes.put(4, (byte)1).rewind();
+									}
+									if (bytevalue6==0) {
+										longbytes.put(5, (byte)1).rewind();
+									}
+									if (bytevalue7==0) {
+										longbytes.put(6, (byte)1).rewind();
+									}
+									if (bytevalue8==0) {
+										longbytes.put(7, (byte)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x98: if (true) {
-									//TODO int8 cmplz
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									byte bytevalue1 = longbytes.get(0);
+									byte bytevalue2 = longbytes.get(1);
+									byte bytevalue3 = longbytes.get(2);
+									byte bytevalue4 = longbytes.get(3);
+									byte bytevalue5 = longbytes.get(4);
+									byte bytevalue6 = longbytes.get(5);
+									byte bytevalue7 = longbytes.get(6);
+									byte bytevalue8 = longbytes.get(7);
+									longbytes.putLong(0L).rewind();
+									if (bytevalue1<0) {
+										longbytes.put(0, (byte)1).rewind();
+									}
+									if (bytevalue2<0) {
+										longbytes.put(1, (byte)1).rewind();
+									}
+									if (bytevalue3<0) {
+										longbytes.put(2, (byte)1).rewind();
+									}
+									if (bytevalue4<0) {
+										longbytes.put(3, (byte)1).rewind();
+									}
+									if (bytevalue5<0) {
+										longbytes.put(4, (byte)1).rewind();
+									}
+									if (bytevalue6<0) {
+										longbytes.put(5, (byte)1).rewind();
+									}
+									if (bytevalue7<0) {
+										longbytes.put(6, (byte)1).rewind();
+									}
+									if (bytevalue8<0) {
+										longbytes.put(7, (byte)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0xa8: if (true) {
 									//TODO fp8 cmpez

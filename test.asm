@@ -139,21 +139,21 @@ ldi      0077 12345678
 ldi32    0078 12345678
 ldi16    0079 1234
 ldi8     007a 12
-ldi      007b 00000000
-ldi32    007c 00000000
+ldi      007b BF800000
+ldi32    007c FFFFFFFF
 ldi16    007d 0000
 ldi8     007e 00
 cmpez32  007f 007e
-cmplz32  0080 007e
+cmplz32  0080 007c
 fcmpez32 0081 007e
-fcmplz32 0082 007e
+fcmplz32 0082 007b
 cmpez16  0083 007e
-cmplz16  0084 007e
+cmplz16  0084 007c
 fcmpez16 0085 007e
-fcmplz16 0086 007e
+fcmplz16 0086 007b
 cmpez8   0087 007e
-cmplz8   0088 007e
+cmplz8   0088 007c
 fcmpez8  0089 007e
-fcmplz8  008a 007e
+fcmplz8  008a 007b
 jmp      0000
 ##       A123456789ABCDEF some data
