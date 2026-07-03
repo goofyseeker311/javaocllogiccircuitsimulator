@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore99" src="https://github.com/user-attachments/assets/7c311902-69e7-4d00-ab55-7a7c33a7f90e" />
-<img width="3840" height="2112" alt="muxrisccore99a" src="https://github.com/user-attachments/assets/93b25391-76b5-4e9a-846a-86ed3c7d9fcc" />
-<img width="3840" height="2112" alt="muxrisccore99b" src="https://github.com/user-attachments/assets/aa88a0a3-63b1-42fb-91c1-4e316daa0439" />
+<img width="3840" height="2112" alt="muxrisccore100" src="https://github.com/user-attachments/assets/423cdc0f-5cb0-4347-b944-a863b833cc23" />
+<img width="3840" height="2112" alt="muxrisccore100a" src="https://github.com/user-attachments/assets/cded37c0-ad7e-4edd-98fe-d9f4642550d9" />
+<img width="3840" height="2112" alt="muxrisccore100b" src="https://github.com/user-attachments/assets/82944aef-cc77-454a-984f-254918d01a57" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -102,11 +102,6 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          divXYZ                             insV=6 integer divide
          divrXYZ                            insV=7 integer divide remainder
          negXYZ                             insV=8 integer negate
-         clkXYZ                             insV=9 integer clock counter
-         rndXYZ                             insV=A integer clock random
-         freqXYZ                            insV=B integer clock frequency
-         coreXYZ                            insV=C integer core info: id, cores, registers, memory
-         timeXYZ                            insV=D integer global time nanoseconds
 5      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
@@ -130,6 +125,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          flogXYZ                            insV=6 float logarithm
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
+7      | clockXYZ    | Core-clk Operation | store core clock integer op[insV] regY regZ to regX
+         clkXYZ                             insV=9 integer clock counter
+         rndXYZ                             insV=A integer clock random
+         freqXYZ                            insV=B integer clock frequency
+         coreXYZ                            insV=C integer core info: id, cores, registers, memory
+         timeXYZ                            insV=D integer global time nanoseconds
 ```
 
 Example looping test assembly code source and binary:
