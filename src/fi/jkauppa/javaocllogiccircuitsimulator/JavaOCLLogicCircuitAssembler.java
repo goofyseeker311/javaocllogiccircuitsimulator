@@ -214,16 +214,6 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x74;
 					} else if (codelineparts[0].equals("neg")) {
 						insT = 0x84;
-					} else if (codelineparts[0].equals("clk")) {
-						insT = 0x94;
-					} else if (codelineparts[0].equals("rnd")) {
-						insT = 0xA4;
-					} else if (codelineparts[0].equals("freq")) {
-						insT = 0xB4;
-					} else if (codelineparts[0].equals("core")) {
-						insT = 0xC4;
-					} else if (codelineparts[0].equals("time")) {
-						insT = 0xD4;
 					} else if (codelineparts[0].equals("fadd")) {
 						insT = 0x05;
 					} else if (codelineparts[0].equals("fsub")) {
@@ -266,6 +256,16 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x76;
 					} else if (codelineparts[0].equals("fsqrt")) {
 						insT = 0x86;
+					} else if (codelineparts[0].equals("clk")) {
+						insT = 0x07;
+					} else if (codelineparts[0].equals("rnd")) {
+						insT = 0x17;
+					} else if (codelineparts[0].equals("freq")) {
+						insT = 0x27;
+					} else if (codelineparts[0].equals("core")) {
+						insT = 0x37;
+					} else if (codelineparts[0].equals("time")) {
+						insT = 0x47;
 					}
 					
 					if (codelineparts.length>=2) {

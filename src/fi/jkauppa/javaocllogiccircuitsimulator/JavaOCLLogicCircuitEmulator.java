@@ -533,52 +533,6 @@ public class JavaOCLLogicCircuitEmulator {
 								case 0x84: if (true) {
 									newregisters[regX+i] = -oldregisters[regY+i];
 								} break;
-								case 0x94: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										this.counters[i] = oldregisters[regY+i];
-									}
-									newregisters[regX+i] = this.counters[i];
-								} break;
-								case 0xA4: if (true) {
-									if (oldregisters[regY+i]!=0) {
-										this.randoms[i].setSeed(oldregisters[regZ+i]);
-									}
-									newregisters[regX+i] = this.randoms[i].nextLong();
-								} break;
-								case 0xB4: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										riscchip.clockfrequency = oldregisters[regY+i];
-									}
-									if (riscchip.clockfrequency==0) {
-										riscchip.clockfrequency = 100000000L;
-									}
-									newregisters[regX+i] = riscchip.clockfrequency;
-								} break;
-								case 0xC4: if (true) {
-									if (oldregisters[regY+i]==1) {
-										newregisters[regX+i] = riscchip.risccores.length;
-									} else if (oldregisters[regY+i]==2) {
-										newregisters[regX+i] = RiscChip.registeramount;
-									} else if (oldregisters[regY+i]==3) {
-										newregisters[regX+i] = RiscChip.memoryamount;
-									} else if (oldregisters[regY+i]==4) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==5) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==6) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==7) {
-										newregisters[regX+i] = 0;
-									} else {
-										newregisters[regX+i] = corenum;
-									}
-								} break;
-								case 0xD4: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										this.timers[i] = oldregisters[regY+i];
-									}
-									newregisters[regX+i] = this.timers[i];
-								} break;
 								case 0x05: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -769,6 +723,52 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes3.clear();
 									longbytes3.putDouble(longdouble3).rewind();
 									newregisters[regX+i] = longbytes3.getLong();
+								} break;
+								case 0x07: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										this.counters[i] = oldregisters[regY+i];
+									}
+									newregisters[regX+i] = this.counters[i];
+								} break;
+								case 0x17: if (true) {
+									if (oldregisters[regY+i]!=0) {
+										this.randoms[i].setSeed(oldregisters[regZ+i]);
+									}
+									newregisters[regX+i] = this.randoms[i].nextLong();
+								} break;
+								case 0x27: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										riscchip.clockfrequency = oldregisters[regY+i];
+									}
+									if (riscchip.clockfrequency==0) {
+										riscchip.clockfrequency = 100000000L;
+									}
+									newregisters[regX+i] = riscchip.clockfrequency;
+								} break;
+								case 0x37: if (true) {
+									if (oldregisters[regY+i]==1) {
+										newregisters[regX+i] = riscchip.risccores.length;
+									} else if (oldregisters[regY+i]==2) {
+										newregisters[regX+i] = RiscChip.registeramount;
+									} else if (oldregisters[regY+i]==3) {
+										newregisters[regX+i] = RiscChip.memoryamount;
+									} else if (oldregisters[regY+i]==4) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==5) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==6) {
+										newregisters[regX+i] = 0;
+									} else if (oldregisters[regY+i]==7) {
+										newregisters[regX+i] = 0;
+									} else {
+										newregisters[regX+i] = corenum;
+									}
+								} break;
+								case 0x47: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										this.timers[i] = oldregisters[regY+i];
+									}
+									newregisters[regX+i] = this.timers[i];
 								} break;
 							}
 						}
