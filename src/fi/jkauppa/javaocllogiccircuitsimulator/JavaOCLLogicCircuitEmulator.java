@@ -214,6 +214,11 @@ public class JavaOCLLogicCircuitEmulator {
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes2 = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes3 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes4 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes5 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes6 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes7 = ByteBuffer.allocate(8);
+		private ByteBuffer longbytes8 = ByteBuffer.allocate(8);
 		
 		public RiscCore(int corenumi) {
 			corenum = corenumi;
@@ -769,6 +774,90 @@ public class JavaOCLLogicCircuitEmulator {
 										this.timers[i] = oldregisters[regY+i];
 									}
 									newregisters[regX+i] = this.timers[i];
+								} break;
+								case 0x08: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									int intvalue2 = longbytes.getInt(1);
+									longbytes.putLong(0L).rewind();
+									if (intvalue1==0) {
+										longbytes.putInt(0, 1).rewind();
+									}
+									if (intvalue2==0) {
+										longbytes.putInt(4, 1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x18: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									int intvalue2 = longbytes.getInt(1);
+									longbytes.putLong(0L).rewind();
+									if (intvalue1<0) {
+										longbytes.putInt(0, 1).rewind();
+									}
+									if (intvalue2<0) {
+										longbytes.putInt(4, 1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x28: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									float floatvalue1 = longbytes.getFloat(0);
+									float floatvalue2 = longbytes.getFloat(1);
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1==0.0f) {
+										longbytes.putInt(0, 1).rewind();
+									}
+									if (floatvalue2==0.0f) {
+										longbytes.putInt(4, 1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x38: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									float floatvalue1 = longbytes.getFloat(0);
+									float floatvalue2 = longbytes.getFloat(1);
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1<0.0f) {
+										longbytes.putInt(0, 1).rewind();
+									}
+									if (floatvalue2<0.0f) {
+										longbytes.putInt(4, 1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x48: if (true) {
+									//TODO int16 cmpez
+								} break;
+								case 0x58: if (true) {
+									//TODO int16 cmplz
+								} break;
+								case 0x68: if (true) {
+									//TODO fp16 cmpez
+								} break;
+								case 0x78: if (true) {
+									//TODO fp16 cmplz
+								} break;
+								case 0x88: if (true) {
+									//TODO int8 cmpez
+								} break;
+								case 0x98: if (true) {
+									//TODO int8 cmplz
+								} break;
+								case 0xa8: if (true) {
+									//TODO fp8 cmpez
+								} break;
+								case 0xb8: if (true) {
+									//TODO fp8 cmplz
 								} break;
 							}
 						}
