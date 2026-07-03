@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore100" src="https://github.com/user-attachments/assets/423cdc0f-5cb0-4347-b944-a863b833cc23" />
-<img width="3840" height="2112" alt="muxrisccore100a" src="https://github.com/user-attachments/assets/cded37c0-ad7e-4edd-98fe-d9f4642550d9" />
-<img width="3840" height="2112" alt="muxrisccore100b" src="https://github.com/user-attachments/assets/82944aef-cc77-454a-984f-254918d01a57" />
+<img width="3840" height="2112" alt="muxrisccore101" src="https://github.com/user-attachments/assets/0e2ad3e8-c04b-4505-a2e2-5278bce64150" />
+<img width="3840" height="2112" alt="muxrisccore101a" src="https://github.com/user-attachments/assets/4dcb2c11-b79e-4304-9c85-0c4c86d72e77" />
+<img width="3840" height="2112" alt="muxrisccore101b" src="https://github.com/user-attachments/assets/971e21a7-6e07-468a-97ce-48bf419fbfc1" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -125,12 +125,25 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          flogXYZ                            insV=6 float logarithm
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
-7      | clockXYZ    | Core-clk Operation | store core clock integer op[insV] regY regZ to regX
+7      | clockXYZ    | Core-Clk Operation | store core clock integer op[insV] regY regZ to regX
          clkXYZ                             insV=0 integer clock counter
          rndXYZ                             insV=1 integer clock random
          freqXYZ                            insV=2 integer clock frequency
          coreXYZ                            insV=3 integer core info: id, cores, registers, memory
          timeXYZ                            insV=4 integer global time nanoseconds
+8      | cmpvecXY    | Compare Bit Vector | clear regX to 0, set to 1 if regY comp[insV]
+         cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
+         cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
+         fcmpez32XY                         insV=2 2x 32-bit float regY equal to zero
+         fcmplz32XY                         insV=3 2x 32-bit float regY less than zero
+         cmpez16XY                          insV=4 4x 16-bit integer regY equal to zero
+         cmplz16XY                          insV=5 4x 16-bit integer regY less than zero
+         fcmpez16X                          insV=6 4x 16-bit float regY equal to zero
+         fcmplz16X                          insV=7 4x 16-bit float regY less than zero
+         cmpez8XY                           insV=8 8x 8-bit integer regY equal to zero
+         cmplz8XY                           insV=9 8x 8-bit integer regY less than zero
+         fcmpez8XY                          insV=A 8x 8-bit float regY equal to zero
+         fcmplz8XY                          insV=B 8x 8-bit float regY less than zero
 ```
 
 Example looping test assembly code source and binary:
