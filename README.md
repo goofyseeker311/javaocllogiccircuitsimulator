@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore102" src="https://github.com/user-attachments/assets/a632c2d4-c41e-4265-914e-a1f86e821d06" />
-<img width="3840" height="2112" alt="muxrisccore102a" src="https://github.com/user-attachments/assets/b63721e7-c295-4e90-bb3e-257cb7b1e2ea" />
-<img width="3840" height="2112" alt="muxrisccore102b" src="https://github.com/user-attachments/assets/b35e9923-4be6-45e8-bda4-7b4b24b220e4" />
+<img width="3840" height="2112" alt="muxrisccore103" src="https://github.com/user-attachments/assets/cd112a66-5f89-4dc7-87f0-6bc82897a446" />
+<img width="3840" height="2112" alt="muxrisccore103a" src="https://github.com/user-attachments/assets/f9d7ad4f-9c12-43c9-8a4c-b33191882303" />
+<img width="3840" height="2112" alt="muxrisccore103b" src="https://github.com/user-attachments/assets/b610b455-d30e-4f0b-8e4a-f4d4c14c6948" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -157,6 +157,22 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          shr8XYZ                            insV=9 8x 8-bit shift right regZ bits
          shar8XYZ                           insV=A 8x 8-bit shift arithmetic right regZ bits
          copyc8XYZ                          insV=B 8x 8-bit conditional copy if regZ not zero
+A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
+         add32XYZ                           insV=0 2x 32-bit integer add
+         sub32XYZ                           insV=1 2x 32-bit integer subtract
+         mul32XYZ                           insV=2 2x 32-bit integer multiply
+         div32XYZ                           insV=3 2x 32-bit integer divide
+         neg32XYZ                           insV=4 2x 32-bit integer negate
+         add16XYZ                           insV=5 4x 16-bit integer add
+         sub16XYZ                           insV=6 4x 16-bit integer subtract
+         mul16XYZ                           insV=7 4x 16-bit integer multiply
+         div16XYZ                           insV=8 4x 16-bit integer divide
+         neg16XYZ                           insV=9 4x 16-bit integer negate
+         add8XYZ                            insV=A 8x 8-bit integer add
+         sub8XYZ                            insV=B 8x 8-bit integer subtract
+         mul8XYZ                            insV=C 8x 8-bit integer multiply
+         div8XYZ                            insV=D 8x 8-bit integer divide
+         neg8XYZ                            insV=E 8x 8-bit integer negate
 ```
 
 Example looping test assembly code source and binary:
