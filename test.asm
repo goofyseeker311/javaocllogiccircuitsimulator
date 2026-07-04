@@ -155,5 +155,21 @@ cmpez8   0087 007e
 cmplz8   0088 007c
 fcmpez8  0089 007e
 fcmplz8  008a 007b
+ldi      008b 00000001
+ldi32    008c 00000001
+ldi16    008d 0001
+ldi8     008e 01
+shl32    008f 0078 008c
+shr32    0090 0078 008c
+shar32   0091 007c 008c
+copyc32  0092 007c 008c
+shl16    0093 0079 008d
+shr16    0094 0079 008d
+shar16   0095 007c 008d
+copyc16  0096 007c 008d
+shl8     0097 007a 008e
+shr8     0098 007a 008e
+shar8    0099 007c 008e
+copyc8   009a 007c 008e
 jmp      0000
 ##       A123456789ABCDEF some data

@@ -290,6 +290,30 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xa8;
 					} else if (codelineparts[0].equals("fcmplz8")) {
 						insT = 0xb8;
+					} else if (codelineparts[0].equals("shl32")) {
+						insT = 0x09;
+					} else if (codelineparts[0].equals("shr32")) {
+						insT = 0x19;
+					} else if (codelineparts[0].equals("shar32")) {
+						insT = 0x29;
+					} else if (codelineparts[0].equals("copyc32")) {
+						insT = 0x39;
+					} else if (codelineparts[0].equals("shl16")) {
+						insT = 0x49;
+					} else if (codelineparts[0].equals("shr16")) {
+						insT = 0x59;
+					} else if (codelineparts[0].equals("shar16")) {
+						insT = 0x69;
+					} else if (codelineparts[0].equals("copyc16")) {
+						insT = 0x79;
+					} else if (codelineparts[0].equals("shl8")) {
+						insT = 0x89;
+					} else if (codelineparts[0].equals("shr8")) {
+						insT = 0x99;
+					} else if (codelineparts[0].equals("shar8")) {
+						insT = 0xa9;
+					} else if (codelineparts[0].equals("copyc8")) {
+						insT = 0xb9;
 					}
 					
 					if (codelineparts.length>=2) {
