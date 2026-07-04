@@ -314,6 +314,36 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xa9;
 					} else if (codelineparts[0].equals("copyc8")) {
 						insT = 0xb9;
+					} else if (codelineparts[0].equals("add32")) {
+						insT = 0x0a;
+					} else if (codelineparts[0].equals("sub32")) {
+						insT = 0x1a;
+					} else if (codelineparts[0].equals("mul32")) {
+						insT = 0x2a;
+					} else if (codelineparts[0].equals("div32")) {
+						insT = 0x3a;
+					} else if (codelineparts[0].equals("neg32")) {
+						insT = 0x4a;
+					} else if (codelineparts[0].equals("add16")) {
+						insT = 0x5a;
+					} else if (codelineparts[0].equals("sub16")) {
+						insT = 0x6a;
+					} else if (codelineparts[0].equals("mul16")) {
+						insT = 0x7a;
+					} else if (codelineparts[0].equals("div16")) {
+						insT = 0x8a;
+					} else if (codelineparts[0].equals("neg16")) {
+						insT = 0x9a;
+					} else if (codelineparts[0].equals("add8")) {
+						insT = 0xaa;
+					} else if (codelineparts[0].equals("sub8")) {
+						insT = 0xba;
+					} else if (codelineparts[0].equals("mul8")) {
+						insT = 0xca;
+					} else if (codelineparts[0].equals("div8")) {
+						insT = 0xda;
+					} else if (codelineparts[0].equals("neg8")) {
+						insT = 0xea;
 					}
 					
 					if (codelineparts.length>=2) {

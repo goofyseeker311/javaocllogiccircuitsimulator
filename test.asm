@@ -171,5 +171,20 @@ shl8     0097 007a 008e
 shr8     0098 007a 008e
 shar8    0099 007c 008e
 copyc8   009a 007c 008e
+add32    009b 0078 007c
+sub32    009c 0078 007c
+mul32    009d 0078 007c
+div32    009e 0078 007c
+neg32    009f 0078
+add16    00a0 0078 007c
+sub16    00a1 0078 007c
+mul16    00a2 0078 007c
+div16    00a3 0078 007c
+neg16    00a4 0078
+add8     00a5 0078 007c
+sub8     00a6 0078 007c
+mul8     00a7 0078 007c
+div8     00a8 0078 007c
+neg8     00a9 0078
 jmp      0000
 ##       A123456789ABCDEF some data
