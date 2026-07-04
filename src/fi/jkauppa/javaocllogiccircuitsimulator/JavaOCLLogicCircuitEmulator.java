@@ -880,22 +880,10 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									long longvalue1 = Short.toUnsignedLong(longbytes.getShort(0));
-									long longvalue2 = Short.toUnsignedLong(longbytes.getShort(2));
-									long longvalue3 = Short.toUnsignedLong(longbytes.getShort(4));
-									long longvalue4 = Short.toUnsignedLong(longbytes.getShort(6));
-									long longfloat1 = ((longvalue1 & 0x8000)<<16 | ((longvalue1 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue1 & 0x7C00))<<13 | (longvalue1 & 0x3FF));
-									long longfloat2 = ((longvalue2 & 0x8000)<<16 | ((longvalue2 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue2 & 0x7C00))<<13 | (longvalue2 & 0x3FF));
-									long longfloat3 = ((longvalue3 & 0x8000)<<16 | ((longvalue3 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue3 & 0x7C00))<<13 | (longvalue3 & 0x3FF));
-									long longfloat4 = ((longvalue4 & 0x8000)<<16 | ((longvalue4 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue4 & 0x7C00))<<13 | (longvalue4 & 0x3FF));
-									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
-									float floatvalue1 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
-									float floatvalue2 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
-									float floatvalue3 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
-									float floatvalue4 = longbytes2.asFloatBuffer().get(1);
+									float floatvalue1 = halftofloat(longbytes.getShort(0));
+									float floatvalue2 = halftofloat(longbytes.getShort(2));
+									float floatvalue3 = halftofloat(longbytes.getShort(4));
+									float floatvalue4 = halftofloat(longbytes.getShort(6));
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1==0.0f) {
 										longbytes.putShort(0, (short)1).rewind();
@@ -915,22 +903,10 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									long longvalue1 = Short.toUnsignedLong(longbytes.getShort(0));
-									long longvalue2 = Short.toUnsignedLong(longbytes.getShort(2));
-									long longvalue3 = Short.toUnsignedLong(longbytes.getShort(4));
-									long longvalue4 = Short.toUnsignedLong(longbytes.getShort(6));
-									long longfloat1 = ((longvalue1 & 0x8000)<<16 | ((longvalue1 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue1 & 0x7C00))<<13 | (longvalue1 & 0x3FF));
-									long longfloat2 = ((longvalue2 & 0x8000)<<16 | ((longvalue2 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue2 & 0x7C00))<<13 | (longvalue2 & 0x3FF));
-									long longfloat3 = ((longvalue3 & 0x8000)<<16 | ((longvalue3 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue3 & 0x7C00))<<13 | (longvalue3 & 0x3FF));
-									long longfloat4 = ((longvalue4 & 0x8000)<<16 | ((longvalue4 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue4 & 0x7C00))<<13 | (longvalue4 & 0x3FF));
-									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
-									float floatvalue1 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
-									float floatvalue2 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
-									float floatvalue3 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
-									float floatvalue4 = longbytes2.asFloatBuffer().get(1);
+									float floatvalue1 = halftofloat(longbytes.getShort(0));
+									float floatvalue2 = halftofloat(longbytes.getShort(2));
+									float floatvalue3 = halftofloat(longbytes.getShort(4));
+									float floatvalue4 = halftofloat(longbytes.getShort(6));
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1<0.0f) {
 										longbytes.putShort(0, (short)1).rewind();
@@ -1028,38 +1004,14 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									long longvalue1 = Byte.toUnsignedLong(longbytes.get(0));
-									long longvalue2 = Byte.toUnsignedLong(longbytes.get(1));
-									long longvalue3 = Byte.toUnsignedLong(longbytes.get(2));
-									long longvalue4 = Byte.toUnsignedLong(longbytes.get(3));
-									long longvalue5 = Byte.toUnsignedLong(longbytes.get(4));
-									long longvalue6 = Byte.toUnsignedLong(longbytes.get(5));
-									long longvalue7 = Byte.toUnsignedLong(longbytes.get(6));
-									long longvalue8 = Byte.toUnsignedLong(longbytes.get(7));
-									long longfloat1 = ((longvalue1 & 0x80)<<24 | ((longvalue1 & 0x78)==0x78 ? 0x7F8 : (longvalue1 & 0x78))<<20 | (longvalue1 & 0x7));
-									long longfloat2 = ((longvalue2 & 0x80)<<24 | ((longvalue2 & 0x78)==0x78 ? 0x7F8 : (longvalue2 & 0x78))<<20 | (longvalue2 & 0x7));
-									long longfloat3 = ((longvalue3 & 0x80)<<24 | ((longvalue3 & 0x78)==0x78 ? 0x7F8 : (longvalue3 & 0x78))<<20 | (longvalue3 & 0x7));
-									long longfloat4 = ((longvalue4 & 0x80)<<24 | ((longvalue4 & 0x78)==0x78 ? 0x7F8 : (longvalue4 & 0x78))<<20 | (longvalue4 & 0x7));
-									long longfloat5 = ((longvalue5 & 0x80)<<24 | ((longvalue5 & 0x78)==0x78 ? 0x7F8 : (longvalue5 & 0x78))<<20 | (longvalue5 & 0x7));
-									long longfloat6 = ((longvalue6 & 0x80)<<24 | ((longvalue6 & 0x78)==0x78 ? 0x7F8 : (longvalue6 & 0x78))<<20 | (longvalue6 & 0x7));
-									long longfloat7 = ((longvalue7 & 0x80)<<24 | ((longvalue7 & 0x78)==0x78 ? 0x7F8 : (longvalue7 & 0x78))<<20 | (longvalue7 & 0x7));
-									long longfloat8 = ((longvalue8 & 0x80)<<24 | ((longvalue8 & 0x78)==0x78 ? 0x7F8 : (longvalue8 & 0x78))<<20 | (longvalue8 & 0x7));
-									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
-									float floatvalue1 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
-									float floatvalue2 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
-									float floatvalue3 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
-									float floatvalue4 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat5).rewind();
-									float floatvalue5 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat6).rewind();
-									float floatvalue6 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat7).rewind();
-									float floatvalue7 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat8).rewind();
-									float floatvalue8 = longbytes2.asFloatBuffer().get(1);
+									float floatvalue1 = minitofloat(longbytes.get(0));
+									float floatvalue2 = minitofloat(longbytes.get(1));
+									float floatvalue3 = minitofloat(longbytes.get(2));
+									float floatvalue4 = minitofloat(longbytes.get(3));
+									float floatvalue5 = minitofloat(longbytes.get(4));
+									float floatvalue6 = minitofloat(longbytes.get(5));
+									float floatvalue7 = minitofloat(longbytes.get(6));
+									float floatvalue8 = minitofloat(longbytes.get(7));
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1==0.0f) {
 										longbytes.put(0, (byte)1).rewind();
@@ -1091,38 +1043,14 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									long longvalue1 = Byte.toUnsignedLong(longbytes.get(0));
-									long longvalue2 = Byte.toUnsignedLong(longbytes.get(1));
-									long longvalue3 = Byte.toUnsignedLong(longbytes.get(2));
-									long longvalue4 = Byte.toUnsignedLong(longbytes.get(3));
-									long longvalue5 = Byte.toUnsignedLong(longbytes.get(4));
-									long longvalue6 = Byte.toUnsignedLong(longbytes.get(5));
-									long longvalue7 = Byte.toUnsignedLong(longbytes.get(6));
-									long longvalue8 = Byte.toUnsignedLong(longbytes.get(7));
-									long longfloat1 = ((longvalue1 & 0x80)<<24 | ((longvalue1 & 0x78)==0x78 ? 0x7F8 : (longvalue1 & 0x78))<<20 | (longvalue1 & 0x7));
-									long longfloat2 = ((longvalue2 & 0x80)<<24 | ((longvalue2 & 0x78)==0x78 ? 0x7F8 : (longvalue2 & 0x78))<<20 | (longvalue2 & 0x7));
-									long longfloat3 = ((longvalue3 & 0x80)<<24 | ((longvalue3 & 0x78)==0x78 ? 0x7F8 : (longvalue3 & 0x78))<<20 | (longvalue3 & 0x7));
-									long longfloat4 = ((longvalue4 & 0x80)<<24 | ((longvalue4 & 0x78)==0x78 ? 0x7F8 : (longvalue4 & 0x78))<<20 | (longvalue4 & 0x7));
-									long longfloat5 = ((longvalue5 & 0x80)<<24 | ((longvalue5 & 0x78)==0x78 ? 0x7F8 : (longvalue5 & 0x78))<<20 | (longvalue5 & 0x7));
-									long longfloat6 = ((longvalue6 & 0x80)<<24 | ((longvalue6 & 0x78)==0x78 ? 0x7F8 : (longvalue6 & 0x78))<<20 | (longvalue6 & 0x7));
-									long longfloat7 = ((longvalue7 & 0x80)<<24 | ((longvalue7 & 0x78)==0x78 ? 0x7F8 : (longvalue7 & 0x78))<<20 | (longvalue7 & 0x7));
-									long longfloat8 = ((longvalue8 & 0x80)<<24 | ((longvalue8 & 0x78)==0x78 ? 0x7F8 : (longvalue8 & 0x78))<<20 | (longvalue8 & 0x7));
-									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
-									float floatvalue1 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
-									float floatvalue2 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
-									float floatvalue3 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
-									float floatvalue4 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat5).rewind();
-									float floatvalue5 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat6).rewind();
-									float floatvalue6 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat7).rewind();
-									float floatvalue7 = longbytes2.asFloatBuffer().get(1);
-									longbytes2.clear(); longbytes2.putLong(longfloat8).rewind();
-									float floatvalue8 = longbytes2.asFloatBuffer().get(1);
+									float floatvalue1 = minitofloat(longbytes.get(0));
+									float floatvalue2 = minitofloat(longbytes.get(1));
+									float floatvalue3 = minitofloat(longbytes.get(2));
+									float floatvalue4 = minitofloat(longbytes.get(3));
+									float floatvalue5 = minitofloat(longbytes.get(4));
+									float floatvalue6 = minitofloat(longbytes.get(5));
+									float floatvalue7 = minitofloat(longbytes.get(6));
+									float floatvalue8 = minitofloat(longbytes.get(7));
 									longbytes.putLong(0L).rewind();
 									if (floatvalue1<0.0f) {
 										longbytes.put(0, (byte)1).rewind();
@@ -1184,4 +1112,22 @@ public class JavaOCLLogicCircuitEmulator {
 			}
 		}
 	}
+	
+	public static float halftofloat(short half) {
+		long longvalue = Short.toUnsignedLong(half);
+		long longfloat = ((longvalue & 0x8000)<<16 | ((longvalue & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue & 0x7C00))<<13 | (longvalue & 0x3FF));
+		ByteBuffer longbytes = ByteBuffer.allocate(8);
+		longbytes.clear(); longbytes.putLong(longfloat).rewind();
+		float floatvalue = longbytes.asFloatBuffer().get(1);
+		return floatvalue;
+	}
+	public static float minitofloat(byte mini) {
+		long longvalue = Byte.toUnsignedLong(mini);
+		long longfloat = ((longvalue & 0x80)<<24 | ((longvalue & 0x78)==0x78 ? 0x7F8 : (longvalue & 0x78))<<20 | (longvalue & 0x7));
+		ByteBuffer longbytes = ByteBuffer.allocate(8);
+		longbytes.clear(); longbytes.putLong(longfloat).rewind();
+		float floatvalue = longbytes.asFloatBuffer().get(1);
+		return floatvalue;
+	}
+	
 }
