@@ -877,10 +877,74 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x68: if (true) {
-									//TODO fp16 cmpez
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									long longvalue1 = Short.toUnsignedLong(longbytes.getShort(0));
+									long longvalue2 = Short.toUnsignedLong(longbytes.getShort(2));
+									long longvalue3 = Short.toUnsignedLong(longbytes.getShort(4));
+									long longvalue4 = Short.toUnsignedLong(longbytes.getShort(6));
+									long longfloat1 = ((longvalue1 & 0x8000)<<16 | ((longvalue1 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue1 & 0x7C00))<<13 | (longvalue1 & 0x3FF));
+									long longfloat2 = ((longvalue2 & 0x8000)<<16 | ((longvalue2 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue2 & 0x7C00))<<13 | (longvalue2 & 0x3FF));
+									long longfloat3 = ((longvalue3 & 0x8000)<<16 | ((longvalue3 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue3 & 0x7C00))<<13 | (longvalue3 & 0x3FF));
+									long longfloat4 = ((longvalue4 & 0x8000)<<16 | ((longvalue4 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue4 & 0x7C00))<<13 | (longvalue4 & 0x3FF));
+									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
+									float floatvalue1 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
+									float floatvalue2 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
+									float floatvalue3 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
+									float floatvalue4 = longbytes2.asFloatBuffer().get();
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1==0.0f) {
+										longbytes.putShort(0, (short)1).rewind();
+									}
+									if (floatvalue2==0.0f) {
+										longbytes.putShort(2, (short)1).rewind();
+									}
+									if (floatvalue3==0.0f) {
+										longbytes.putShort(4, (short)1).rewind();
+									}
+									if (floatvalue4==0.0f) {
+										longbytes.putShort(6, (short)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x78: if (true) {
-									//TODO fp16 cmplz
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									long longvalue1 = Short.toUnsignedLong(longbytes.getShort(0));
+									long longvalue2 = Short.toUnsignedLong(longbytes.getShort(2));
+									long longvalue3 = Short.toUnsignedLong(longbytes.getShort(4));
+									long longvalue4 = Short.toUnsignedLong(longbytes.getShort(6));
+									long longfloat1 = ((longvalue1 & 0x8000)<<16 | ((longvalue1 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue1 & 0x7C00))<<13 | (longvalue1 & 0x3FF));
+									long longfloat2 = ((longvalue2 & 0x8000)<<16 | ((longvalue2 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue2 & 0x7C00))<<13 | (longvalue2 & 0x3FF));
+									long longfloat3 = ((longvalue3 & 0x8000)<<16 | ((longvalue3 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue3 & 0x7C00))<<13 | (longvalue3 & 0x3FF));
+									long longfloat4 = ((longvalue4 & 0x8000)<<16 | ((longvalue4 & 0x7C00)==0x7C00 ? 0x3FC00 : (longvalue4 & 0x7C00))<<13 | (longvalue4 & 0x3FF));
+									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
+									float floatvalue1 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
+									float floatvalue2 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
+									float floatvalue3 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
+									float floatvalue4 = longbytes2.asFloatBuffer().get();
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1<0.0f) {
+										longbytes.putShort(0, (short)1).rewind();
+									}
+									if (floatvalue2<0.0f) {
+										longbytes.putShort(2, (short)1).rewind();
+									}
+									if (floatvalue3<0.0f) {
+										longbytes.putShort(4, (short)1).rewind();
+									}
+									if (floatvalue4<0.0f) {
+										longbytes.putShort(6, (short)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x88: if (true) {
 									newregisters[regX+i] = 0;
@@ -961,10 +1025,130 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0xa8: if (true) {
-									//TODO fp8 cmpez
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									long longvalue1 = Byte.toUnsignedLong(longbytes.get(0));
+									long longvalue2 = Byte.toUnsignedLong(longbytes.get(1));
+									long longvalue3 = Byte.toUnsignedLong(longbytes.get(2));
+									long longvalue4 = Byte.toUnsignedLong(longbytes.get(3));
+									long longvalue5 = Byte.toUnsignedLong(longbytes.get(4));
+									long longvalue6 = Byte.toUnsignedLong(longbytes.get(5));
+									long longvalue7 = Byte.toUnsignedLong(longbytes.get(6));
+									long longvalue8 = Byte.toUnsignedLong(longbytes.get(7));
+									long longfloat1 = ((longvalue1 & 0x80)<<24 | ((longvalue1 & 0x78)==0x78 ? 0x7F8 : (longvalue1 & 0x78))<<20 | (longvalue1 & 0x7));
+									long longfloat2 = ((longvalue2 & 0x80)<<24 | ((longvalue2 & 0x78)==0x78 ? 0x7F8 : (longvalue2 & 0x78))<<20 | (longvalue2 & 0x7));
+									long longfloat3 = ((longvalue3 & 0x80)<<24 | ((longvalue3 & 0x78)==0x78 ? 0x7F8 : (longvalue3 & 0x78))<<20 | (longvalue3 & 0x7));
+									long longfloat4 = ((longvalue4 & 0x80)<<24 | ((longvalue4 & 0x78)==0x78 ? 0x7F8 : (longvalue4 & 0x78))<<20 | (longvalue4 & 0x7));
+									long longfloat5 = ((longvalue5 & 0x80)<<24 | ((longvalue5 & 0x78)==0x78 ? 0x7F8 : (longvalue5 & 0x78))<<20 | (longvalue5 & 0x7));
+									long longfloat6 = ((longvalue6 & 0x80)<<24 | ((longvalue6 & 0x78)==0x78 ? 0x7F8 : (longvalue6 & 0x78))<<20 | (longvalue6 & 0x7));
+									long longfloat7 = ((longvalue7 & 0x80)<<24 | ((longvalue7 & 0x78)==0x78 ? 0x7F8 : (longvalue7 & 0x78))<<20 | (longvalue7 & 0x7));
+									long longfloat8 = ((longvalue8 & 0x80)<<24 | ((longvalue8 & 0x78)==0x78 ? 0x7F8 : (longvalue8 & 0x78))<<20 | (longvalue8 & 0x7));
+									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
+									float floatvalue1 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
+									float floatvalue2 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
+									float floatvalue3 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
+									float floatvalue4 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat5).rewind();
+									float floatvalue5 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat6).rewind();
+									float floatvalue6 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat7).rewind();
+									float floatvalue7 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat8).rewind();
+									float floatvalue8 = longbytes2.asFloatBuffer().get();
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1==0.0f) {
+										longbytes.put(0, (byte)1).rewind();
+									}
+									if (floatvalue2==0.0f) {
+										longbytes.put(1, (byte)1).rewind();
+									}
+									if (floatvalue3==0.0f) {
+										longbytes.put(2, (byte)1).rewind();
+									}
+									if (floatvalue4==0.0f) {
+										longbytes.put(3, (byte)1).rewind();
+									}
+									if (floatvalue5==0.0f) {
+										longbytes.put(4, (byte)1).rewind();
+									}
+									if (floatvalue6==0.0f) {
+										longbytes.put(5, (byte)1).rewind();
+									}
+									if (floatvalue7==0.0f) {
+										longbytes.put(6, (byte)1).rewind();
+									}
+									if (floatvalue8==0.0f) {
+										longbytes.put(7, (byte)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0xb8: if (true) {
-									//TODO fp8 cmplz
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									long longvalue1 = Byte.toUnsignedLong(longbytes.get(0));
+									long longvalue2 = Byte.toUnsignedLong(longbytes.get(1));
+									long longvalue3 = Byte.toUnsignedLong(longbytes.get(2));
+									long longvalue4 = Byte.toUnsignedLong(longbytes.get(3));
+									long longvalue5 = Byte.toUnsignedLong(longbytes.get(4));
+									long longvalue6 = Byte.toUnsignedLong(longbytes.get(5));
+									long longvalue7 = Byte.toUnsignedLong(longbytes.get(6));
+									long longvalue8 = Byte.toUnsignedLong(longbytes.get(7));
+									long longfloat1 = ((longvalue1 & 0x80)<<24 | ((longvalue1 & 0x78)==0x78 ? 0x7F8 : (longvalue1 & 0x78))<<20 | (longvalue1 & 0x7));
+									long longfloat2 = ((longvalue2 & 0x80)<<24 | ((longvalue2 & 0x78)==0x78 ? 0x7F8 : (longvalue2 & 0x78))<<20 | (longvalue2 & 0x7));
+									long longfloat3 = ((longvalue3 & 0x80)<<24 | ((longvalue3 & 0x78)==0x78 ? 0x7F8 : (longvalue3 & 0x78))<<20 | (longvalue3 & 0x7));
+									long longfloat4 = ((longvalue4 & 0x80)<<24 | ((longvalue4 & 0x78)==0x78 ? 0x7F8 : (longvalue4 & 0x78))<<20 | (longvalue4 & 0x7));
+									long longfloat5 = ((longvalue5 & 0x80)<<24 | ((longvalue5 & 0x78)==0x78 ? 0x7F8 : (longvalue5 & 0x78))<<20 | (longvalue5 & 0x7));
+									long longfloat6 = ((longvalue6 & 0x80)<<24 | ((longvalue6 & 0x78)==0x78 ? 0x7F8 : (longvalue6 & 0x78))<<20 | (longvalue6 & 0x7));
+									long longfloat7 = ((longvalue7 & 0x80)<<24 | ((longvalue7 & 0x78)==0x78 ? 0x7F8 : (longvalue7 & 0x78))<<20 | (longvalue7 & 0x7));
+									long longfloat8 = ((longvalue8 & 0x80)<<24 | ((longvalue8 & 0x78)==0x78 ? 0x7F8 : (longvalue8 & 0x78))<<20 | (longvalue8 & 0x7));
+									longbytes2.clear(); longbytes2.putLong(longfloat1).rewind();
+									float floatvalue1 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat2).rewind();
+									float floatvalue2 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat3).rewind();
+									float floatvalue3 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat4).rewind();
+									float floatvalue4 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat5).rewind();
+									float floatvalue5 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat6).rewind();
+									float floatvalue6 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat7).rewind();
+									float floatvalue7 = longbytes2.asFloatBuffer().get();
+									longbytes2.clear(); longbytes2.putLong(longfloat8).rewind();
+									float floatvalue8 = longbytes2.asFloatBuffer().get();
+									longbytes.putLong(0L).rewind();
+									if (floatvalue1<0.0f) {
+										longbytes.put(0, (byte)1).rewind();
+									}
+									if (floatvalue2<0.0f) {
+										longbytes.put(1, (byte)1).rewind();
+									}
+									if (floatvalue3<0.0f) {
+										longbytes.put(2, (byte)1).rewind();
+									}
+									if (floatvalue4<0.0f) {
+										longbytes.put(3, (byte)1).rewind();
+									}
+									if (floatvalue5<0.0f) {
+										longbytes.put(4, (byte)1).rewind();
+									}
+									if (floatvalue6<0.0f) {
+										longbytes.put(5, (byte)1).rewind();
+									}
+									if (floatvalue7<0.0f) {
+										longbytes.put(6, (byte)1).rewind();
+									}
+									if (floatvalue8<0.0f) {
+										longbytes.put(7, (byte)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
 								} break;
 							}
 						}
