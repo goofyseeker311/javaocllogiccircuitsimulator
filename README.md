@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore106" src="https://github.com/user-attachments/assets/1e9075b5-d285-4242-95d2-86d4a3b23cb8" />
-<img width="3840" height="2112" alt="muxrisccore106a" src="https://github.com/user-attachments/assets/b20ca5de-09ae-4e73-80d0-1245d41eb729" />
-<img width="3840" height="2112" alt="muxrisccore106b" src="https://github.com/user-attachments/assets/27afd354-4ce8-4c55-968c-1c0b58276857" />
+<img width="3840" height="2112" alt="muxrisccore107" src="https://github.com/user-attachments/assets/9c4b5413-08e5-4416-bc8e-ac5364305142" />
+<img width="3840" height="2112" alt="muxrisccore107a" src="https://github.com/user-attachments/assets/1c121776-5da9-4e99-8153-a4a358a67b0e" />
+<img width="3840" height="2112" alt="muxrisccore107b" src="https://github.com/user-attachments/assets/cdf767a2-8612-4c85-a449-025bd454a86a" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -136,27 +136,33 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
          fcmpez32XY                         insV=2 2x 32-bit float regY equal to zero
          fcmplz32XY                         insV=3 2x 32-bit float regY less than zero
-         cmpez16XY                          insV=4 4x 16-bit integer regY equal to zero
-         cmplz16XY                          insV=5 4x 16-bit integer regY less than zero
-         fcmpez16X                          insV=6 4x 16-bit float regY equal to zero
-         fcmplz16X                          insV=7 4x 16-bit float regY less than zero
-         cmpez8XY                           insV=8 8x 8-bit integer regY equal to zero
-         cmplz8XY                           insV=9 8x 8-bit integer regY less than zero
-         fcmpez8XY                          insV=A 8x 8-bit float regY equal to zero
-         fcmplz8XY                          insV=B 8x 8-bit float regY less than zero
+         copyc32XYZ                         insV=4 2x 32-bit conditional copy if regZ not zero
+         cmpez16XY                          insV=5 4x 16-bit integer regY equal to zero
+         cmplz16XY                          insV=6 4x 16-bit integer regY less than zero
+         fcmpez16X                          insV=7 4x 16-bit float regY equal to zero
+         fcmplz16X                          insV=8 4x 16-bit float regY less than zero
+         copyc16XYZ                         insV=9 4x 16-bit conditional copy if regZ not zero
+         cmpez8XY                           insV=A 8x 8-bit integer regY equal to zero
+         cmplz8XY                           insV=B 8x 8-bit integer regY less than zero
+         fcmpez8XY                          insV=C 8x 8-bit float regY equal to zero
+         fcmplz8XY                          insV=D 8x 8-bit float regY less than zero
+         copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
 9      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
          shl32XYZ                           insV=0 2x 32-bit shift left regZ bits
          shr32XYZ                           insV=1 2x 32-bit shift right regZ bits
          shar32XYZ                          insV=2 2x 32-bit shift arithmetic right regZ bits
-         copyc32XYZ                         insV=3 2x 32-bit conditional copy if regZ not zero
-         shl16XYZ                           insV=4 4x 16-bit shift left regZ bits
-         shr16XYZ                           insV=5 4x 16-bit shift right regZ bits
-         shar16XYZ                          insV=6 4x 16-bit shift arithmetic right regZ bits
-         copyc16XYZ                         insV=7 4x 16-bit conditional copy if regZ not zero
-         shl8XYZ                            insV=8 8x 8-bit shift left regZ bits
-         shr8XYZ                            insV=9 8x 8-bit shift right regZ bits
-         shar8XYZ                           insV=A 8x 8-bit shift arithmetic right regZ bits
-         copyc8XYZ                          insV=B 8x 8-bit conditional copy if regZ not zero
+         rotl32XYZ                          insV=3 2x 32-bit rotate left regZ bits
+         rotr32XYZ                          insV=4 2x 32-bit rotate right regZ bits
+         shl16XYZ                           insV=5 4x 16-bit shift left regZ bits
+         shr16XYZ                           insV=6 4x 16-bit shift right regZ bits
+         shar16XYZ                          insV=7 4x 16-bit shift arithmetic right regZ bits
+         rotl16XYZ                          insV=8 4x 16-bit rotate left regZ bits
+         rotr16XYZ                          insV=9 4x 16-bit rotate right regZ bits
+         shl8XYZ                            insV=A 8x 8-bit shift left regZ bits
+         shr8XYZ                            insV=B 8x 8-bit shift right regZ bits
+         shar8XYZ                           insV=C 8x 8-bit shift arithmetic right regZ bits
+         rotl8XYZ                           insV=D 8x 8-bit rotate left regZ bits
+         rotr8XYZ                           insV=E 8x 8-bit rotate right regZ bits
 A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
          add32XYZ                           insV=0 2x 32-bit integer add
          sub32XYZ                           insV=1 2x 32-bit integer subtract
