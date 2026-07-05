@@ -834,6 +834,25 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									int intvalue2 = longbytes.getInt(4);
+									int changevalue1 = longbytes2.getInt(0);
+									int changevalue2 = longbytes2.getInt(4);
+									longbytes.putLong(oldregisters[regX+i]).rewind();
+									if (changevalue1!=0) {
+										longbytes.putInt(0, intvalue1).rewind();
+									}
+									if (changevalue2!=0) {
+										longbytes.putInt(4, intvalue2).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x58: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
 									short shortvalue1 = longbytes.getShort(0);
 									short shortvalue2 = longbytes.getShort(2);
 									short shortvalue3 = longbytes.getShort(4);
@@ -853,7 +872,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x58: if (true) {
+								case 0x68: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -876,7 +895,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x68: if (true) {
+								case 0x78: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -899,7 +918,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x78: if (true) {
+								case 0x88: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -922,7 +941,36 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x88: if (true) {
+								case 0x98: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									short shortvalue1 = longbytes.getShort(0);
+									short shortvalue2 = longbytes.getShort(2);
+									short shortvalue3 = longbytes.getShort(4);
+									short shortvalue4 = longbytes.getShort(6);
+									int changevalue1 = longbytes2.getShort(0);
+									int changevalue2 = longbytes2.getShort(2);
+									int changevalue3 = longbytes2.getShort(4);
+									int changevalue4 = longbytes2.getShort(6);
+									longbytes.putLong(oldregisters[regX+i]).rewind();
+									if (changevalue1!=0) {
+										longbytes.putShort(0, shortvalue1).rewind();
+									}
+									if (changevalue2!=0) {
+										longbytes.putShort(2, shortvalue2).rewind();
+									}
+									if (changevalue3!=0) {
+										longbytes.putShort(4, shortvalue3).rewind();
+									}
+									if (changevalue4!=0) {
+										longbytes.putShort(6, shortvalue4).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xa8: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -961,7 +1009,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x98: if (true) {
+								case 0xb8: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1000,7 +1048,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0xa8: if (true) {
+								case 0xc8: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1039,7 +1087,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0xb8: if (true) {
+								case 0xd8: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1075,6 +1123,55 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 									if (floatvalue8<0.0f) {
 										longbytes.put(7, (byte)1).rewind();
+									}
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xe8: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									byte bytevalue1 = longbytes.get(0);
+									byte bytevalue2 = longbytes.get(1);
+									byte bytevalue3 = longbytes.get(2);
+									byte bytevalue4 = longbytes.get(3);
+									byte bytevalue5 = longbytes.get(4);
+									byte bytevalue6 = longbytes.get(5);
+									byte bytevalue7 = longbytes.get(6);
+									byte bytevalue8 = longbytes.get(7);
+									int changevalue1 = longbytes2.get(0);
+									int changevalue2 = longbytes2.get(1);
+									int changevalue3 = longbytes2.get(2);
+									int changevalue4 = longbytes2.get(3);
+									int changevalue5 = longbytes2.get(4);
+									int changevalue6 = longbytes2.get(5);
+									int changevalue7 = longbytes2.get(6);
+									int changevalue8 = longbytes2.get(7);
+									longbytes.putLong(oldregisters[regX+i]).rewind();
+									if (changevalue1!=0) {
+										longbytes.put(0, bytevalue1).rewind();
+									}
+									if (changevalue2!=0) {
+										longbytes.put(1, bytevalue2).rewind();
+									}
+									if (changevalue3!=0) {
+										longbytes.put(2, bytevalue3).rewind();
+									}
+									if (changevalue4!=0) {
+										longbytes.put(3, bytevalue4).rewind();
+									}
+									if (changevalue5!=0) {
+										longbytes.put(4, bytevalue5).rewind();
+									}
+									if (changevalue6!=0) {
+										longbytes.put(5, bytevalue6).rewind();
+									}
+									if (changevalue7!=0) {
+										longbytes.put(6, bytevalue7).rewind();
+									}
+									if (changevalue8!=0) {
+										longbytes.put(7, bytevalue8).rewind();
 									}
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
@@ -1137,18 +1234,33 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes2.putLong(oldregisters[regZ+i]).rewind();
 									int intvalue1 = longbytes.getInt(0);
 									int intvalue2 = longbytes.getInt(4);
-									int changevalue1 = longbytes2.getInt(0);
-									int changevalue2 = longbytes2.getInt(4);
-									longbytes.putLong(oldregisters[regX+i]).rewind();
-									if (changevalue1!=0) {
-										longbytes.putInt(0, intvalue1).rewind();
-									}
-									if (changevalue2!=0) {
-										longbytes.putInt(4, intvalue2).rewind();
-									}
+									int shiftvalue1 = longbytes2.getInt(0);
+									int shiftvalue2 = longbytes2.getInt(4);
+									longbytes.putLong(0L).rewind();
+									intvalue1 = Integer.rotateLeft(intvalue1, shiftvalue1);
+									intvalue2 = Integer.rotateLeft(intvalue2, shiftvalue2);
+									longbytes.putInt(0, intvalue1).rewind();
+									longbytes.putInt(4, intvalue2).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x49: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									int intvalue2 = longbytes.getInt(4);
+									int shiftvalue1 = longbytes2.getInt(0);
+									int shiftvalue2 = longbytes2.getInt(4);
+									longbytes.putLong(0L).rewind();
+									intvalue1 = Integer.rotateRight(intvalue1, shiftvalue1);
+									intvalue2 = Integer.rotateRight(intvalue2, shiftvalue2);
+									longbytes.putInt(0, intvalue1).rewind();
+									longbytes.putInt(4, intvalue2).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x59: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1173,7 +1285,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putShort(6, (short)shortvalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x59: if (true) {
+								case 0x69: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1198,7 +1310,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putShort(6, (short)shortvalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x69: if (true) {
+								case 0x79: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1223,36 +1335,57 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putShort(6, (short)shortvalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x79: if (true) {
+								case 0x89: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									longbytes2.clear();
 									longbytes2.putLong(oldregisters[regZ+i]).rewind();
-									short shortvalue1 = longbytes.getShort(0);
-									short shortvalue2 = longbytes.getShort(2);
-									short shortvalue3 = longbytes.getShort(4);
-									short shortvalue4 = longbytes.getShort(6);
-									int changevalue1 = longbytes2.getShort(0);
-									int changevalue2 = longbytes2.getShort(2);
-									int changevalue3 = longbytes2.getShort(4);
-									int changevalue4 = longbytes2.getShort(6);
-									longbytes.putLong(oldregisters[regX+i]).rewind();
-									if (changevalue1!=0) {
-										longbytes.putShort(0, shortvalue1).rewind();
-									}
-									if (changevalue2!=0) {
-										longbytes.putShort(2, shortvalue2).rewind();
-									}
-									if (changevalue3!=0) {
-										longbytes.putShort(4, shortvalue3).rewind();
-									}
-									if (changevalue4!=0) {
-										longbytes.putShort(6, shortvalue4).rewind();
-									}
+									int shortvalue1 = longbytes.getShort(0);
+									int shortvalue2 = longbytes.getShort(2);
+									int shortvalue3 = longbytes.getShort(4);
+									int shortvalue4 = longbytes.getShort(6);
+									int shiftvalue1 = longbytes2.getShort(0);
+									int shiftvalue2 = longbytes2.getShort(2);
+									int shiftvalue3 = longbytes2.getShort(4);
+									int shiftvalue4 = longbytes2.getShort(6);
+									longbytes.putLong(0L).rewind();
+									shortvalue1 = Integer.rotateLeft(shortvalue1, shiftvalue1);
+									shortvalue2 = Integer.rotateLeft(shortvalue2, shiftvalue2);
+									shortvalue3 = Integer.rotateLeft(shortvalue3, shiftvalue3);
+									shortvalue4 = Integer.rotateLeft(shortvalue4, shiftvalue4);
+									longbytes.putShort(0, (short)shortvalue1).rewind();
+									longbytes.putShort(2, (short)shortvalue2).rewind();
+									longbytes.putShort(4, (short)shortvalue3).rewind();
+									longbytes.putShort(6, (short)shortvalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x89: if (true) {
+								case 0x99: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									int shortvalue1 = longbytes.getShort(0);
+									int shortvalue2 = longbytes.getShort(2);
+									int shortvalue3 = longbytes.getShort(4);
+									int shortvalue4 = longbytes.getShort(6);
+									int shiftvalue1 = longbytes2.getShort(0);
+									int shiftvalue2 = longbytes2.getShort(2);
+									int shiftvalue3 = longbytes2.getShort(4);
+									int shiftvalue4 = longbytes2.getShort(6);
+									longbytes.putLong(0L).rewind();
+									shortvalue1 = Integer.rotateRight(shortvalue1, shiftvalue1);
+									shortvalue2 = Integer.rotateRight(shortvalue2, shiftvalue2);
+									shortvalue3 = Integer.rotateRight(shortvalue3, shiftvalue3);
+									shortvalue4 = Integer.rotateRight(shortvalue4, shiftvalue4);
+									longbytes.putShort(0, (short)shortvalue1).rewind();
+									longbytes.putShort(2, (short)shortvalue2).rewind();
+									longbytes.putShort(4, (short)shortvalue3).rewind();
+									longbytes.putShort(6, (short)shortvalue4).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xa9: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1293,7 +1426,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.put(7, (byte)bytevalue8).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x99: if (true) {
+								case 0xb9: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1334,7 +1467,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.put(7, (byte)bytevalue8).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0xa9: if (true) {
+								case 0xc9: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
@@ -1375,53 +1508,86 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.put(7, (byte)bytevalue8).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0xb9: if (true) {
+								case 0xd9: if (true) {
 									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									longbytes2.clear();
 									longbytes2.putLong(oldregisters[regZ+i]).rewind();
-									byte bytevalue1 = longbytes.get(0);
-									byte bytevalue2 = longbytes.get(1);
-									byte bytevalue3 = longbytes.get(2);
-									byte bytevalue4 = longbytes.get(3);
-									byte bytevalue5 = longbytes.get(4);
-									byte bytevalue6 = longbytes.get(5);
-									byte bytevalue7 = longbytes.get(6);
-									byte bytevalue8 = longbytes.get(7);
-									int changevalue1 = longbytes2.get(0);
-									int changevalue2 = longbytes2.get(1);
-									int changevalue3 = longbytes2.get(2);
-									int changevalue4 = longbytes2.get(3);
-									int changevalue5 = longbytes2.get(4);
-									int changevalue6 = longbytes2.get(5);
-									int changevalue7 = longbytes2.get(6);
-									int changevalue8 = longbytes2.get(7);
-									longbytes.putLong(oldregisters[regX+i]).rewind();
-									if (changevalue1!=0) {
-										longbytes.put(0, bytevalue1).rewind();
-									}
-									if (changevalue2!=0) {
-										longbytes.put(1, bytevalue2).rewind();
-									}
-									if (changevalue3!=0) {
-										longbytes.put(2, bytevalue3).rewind();
-									}
-									if (changevalue4!=0) {
-										longbytes.put(3, bytevalue4).rewind();
-									}
-									if (changevalue5!=0) {
-										longbytes.put(4, bytevalue5).rewind();
-									}
-									if (changevalue6!=0) {
-										longbytes.put(5, bytevalue6).rewind();
-									}
-									if (changevalue7!=0) {
-										longbytes.put(6, bytevalue7).rewind();
-									}
-									if (changevalue8!=0) {
-										longbytes.put(7, bytevalue8).rewind();
-									}
+									int bytevalue1 = longbytes.get(0);
+									int bytevalue2 = longbytes.get(1);
+									int bytevalue3 = longbytes.get(2);
+									int bytevalue4 = longbytes.get(3);
+									int bytevalue5 = longbytes.get(4);
+									int bytevalue6 = longbytes.get(5);
+									int bytevalue7 = longbytes.get(6);
+									int bytevalue8 = longbytes.get(7);
+									int shiftvalue1 = longbytes2.get(0);
+									int shiftvalue2 = longbytes2.get(1);
+									int shiftvalue3 = longbytes2.get(2);
+									int shiftvalue4 = longbytes2.get(3);
+									int shiftvalue5 = longbytes2.get(4);
+									int shiftvalue6 = longbytes2.get(5);
+									int shiftvalue7 = longbytes2.get(6);
+									int shiftvalue8 = longbytes2.get(7);
+									longbytes.putLong(0L).rewind();
+									bytevalue1 = Integer.rotateLeft(bytevalue1, shiftvalue1);
+									bytevalue2 = Integer.rotateLeft(bytevalue2, shiftvalue2);
+									bytevalue3 = Integer.rotateLeft(bytevalue3, shiftvalue3);
+									bytevalue4 = Integer.rotateLeft(bytevalue4, shiftvalue4);
+									bytevalue5 = Integer.rotateLeft(bytevalue5, shiftvalue5);
+									bytevalue6 = Integer.rotateLeft(bytevalue6, shiftvalue6);
+									bytevalue7 = Integer.rotateLeft(bytevalue7, shiftvalue7);
+									bytevalue8 = Integer.rotateLeft(bytevalue8, shiftvalue8);
+									longbytes.put(0, (byte)bytevalue1).rewind();
+									longbytes.put(1, (byte)bytevalue2).rewind();
+									longbytes.put(2, (byte)bytevalue3).rewind();
+									longbytes.put(3, (byte)bytevalue4).rewind();
+									longbytes.put(4, (byte)bytevalue5).rewind();
+									longbytes.put(5, (byte)bytevalue6).rewind();
+									longbytes.put(6, (byte)bytevalue7).rewind();
+									longbytes.put(7, (byte)bytevalue8).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xe9: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									longbytes2.clear();
+									longbytes2.putLong(oldregisters[regZ+i]).rewind();
+									int bytevalue1 = longbytes.get(0);
+									int bytevalue2 = longbytes.get(1);
+									int bytevalue3 = longbytes.get(2);
+									int bytevalue4 = longbytes.get(3);
+									int bytevalue5 = longbytes.get(4);
+									int bytevalue6 = longbytes.get(5);
+									int bytevalue7 = longbytes.get(6);
+									int bytevalue8 = longbytes.get(7);
+									int shiftvalue1 = longbytes2.get(0);
+									int shiftvalue2 = longbytes2.get(1);
+									int shiftvalue3 = longbytes2.get(2);
+									int shiftvalue4 = longbytes2.get(3);
+									int shiftvalue5 = longbytes2.get(4);
+									int shiftvalue6 = longbytes2.get(5);
+									int shiftvalue7 = longbytes2.get(6);
+									int shiftvalue8 = longbytes2.get(7);
+									longbytes.putLong(0L).rewind();
+									bytevalue1 = Integer.rotateRight(bytevalue1, shiftvalue1);
+									bytevalue2 = Integer.rotateRight(bytevalue2, shiftvalue2);
+									bytevalue3 = Integer.rotateRight(bytevalue3, shiftvalue3);
+									bytevalue4 = Integer.rotateRight(bytevalue4, shiftvalue4);
+									bytevalue5 = Integer.rotateRight(bytevalue5, shiftvalue5);
+									bytevalue6 = Integer.rotateRight(bytevalue6, shiftvalue6);
+									bytevalue7 = Integer.rotateRight(bytevalue7, shiftvalue7);
+									bytevalue8 = Integer.rotateRight(bytevalue8, shiftvalue8);
+									longbytes.put(0, (byte)bytevalue1).rewind();
+									longbytes.put(1, (byte)bytevalue2).rewind();
+									longbytes.put(2, (byte)bytevalue3).rewind();
+									longbytes.put(3, (byte)bytevalue4).rewind();
+									longbytes.put(4, (byte)bytevalue5).rewind();
+									longbytes.put(5, (byte)bytevalue6).rewind();
+									longbytes.put(6, (byte)bytevalue7).rewind();
+									longbytes.put(7, (byte)bytevalue8).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x0a: if (true) {

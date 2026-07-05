@@ -18,18 +18,18 @@ nop      A7 rom header data
 // empty line
 nop      00000000
 ldi      0000 00000013
-ldi      0001 000000ff 7
-ldi      0007 00000010
-shl      0002 0002 0007
-shl      0003 0003 0007
-shl      0003 0003 0007
-ldi      0004 00000000
-ldi      0005 00000200
-ldi      0006 00000400
+ldi      0001 00000010
+ldi      0002 000000ff 7
+shl      0003 0003 0001
+shl      0004 0004 0001
+shl      0004 0004 0001
+ldi      0005 00000000
+ldi      0006 00000200
+ldi      0007 00000400
 ldi      0008 80000000 ff
 ldi      0010 00000020 ff
 shl      0008 0008 0010 ff
-add      0004 0004 0008 7
+add      0005 0005 0008 7
 ldi      0010 00000001
 ldi      0011 00000201
 ldi      0012 00000401
@@ -48,9 +48,9 @@ memw     0020 001c
 memw     0020 001d
 memw     0020 001e
 memw     0020 001f
-memw     0001 0004
 memw     0002 0005
 memw     0003 0006
+memw     0004 0007
 ldi      0021 00000000
 ldi      0022 00000001
 sub      0023 0021 0022
@@ -60,7 +60,7 @@ cmpez    0026 0023
 cmplz    0027 0021
 cmplz    0028 0022
 cmplz    0029 0023
-ldi      002a 00000035
+ldi      002a 00000041
 jmpc     002a 0024
 ldi      002b 01234567
 jmpc     002a 0028
@@ -155,65 +155,71 @@ ldi      007b BF800000
 ldi32    007c FFFFFFFF
 ldi16    007d 0000
 ldi8     007e 00
-cmpez32  007f 007e
-cmplz32  0080 007c
-fcmpez32 0081 007e
-fcmplz32 0082 007b
-cmpez16  0083 007e
-cmplz16  0084 007c
-fcmpez16 0085 007e
-fcmplz16 0086 007b
-cmpez8   0087 007e
-cmplz8   0088 007c
-fcmpez8  0089 007e
-fcmplz8  008a 007b
-ldi      008b 00000001
-ldi32    008c 00000001
-ldi16    008d 0001
-ldi8     008e 01
-shl32    008f 0078 008c
-shr32    0090 0078 008c
-shar32   0091 007c 008c
-copyc32  0092 007c 008c
-shl16    0093 0079 008d
-shr16    0094 0079 008d
-shar16   0095 007c 008d
-copyc16  0096 007c 008d
-shl8     0097 007a 008e
-shr8     0098 007a 008e
-shar8    0099 007c 008e
-copyc8   009a 007c 008e
-add32    009b 0078 007c
-sub32    009c 0078 007c
-mul32    009d 0078 007c
-div32    009e 0078 007c
-neg32    009f 0078
-add16    00a0 0078 007c
-sub16    00a1 0078 007c
-mul16    00a2 0078 007c
-div16    00a3 0078 007c
-neg16    00a4 0078
-add8     00a5 0078 007c
-sub8     00a6 0078 007c
-mul8     00a7 0078 007c
-div8     00a8 0078 007c
-neg8     00a9 0078
-ldi8     00aa CC
-ldi8     00ab CF
-fadd32   00ac 00aa 00ab
-fsub32   00ad 00aa 00ab
-fmul32   00ae 00aa 00ab
-fdiv32   00af 00aa 00ab
-fneg32   00b0 00aa
-fadd16   00b1 00aa 00ab
-fsub16   00b2 00aa 00ab
-fmul16   00b3 00aa 00ab
-fdiv16   00b4 00aa 00ab
-fneg16   00b5 00aa
-fadd8    00b6 00aa 00ab
-fsub8    00b7 00aa 00ab
-fmul8    00b8 00aa 00ab
-fdiv8    00b9 00aa 00ab
-fneg8    00ba 00aa
+ldi      007f 00000001
+ldi32    0080 00000001
+ldi16    0081 0001
+ldi8     0082 01
+cmpez32  0083 007e
+cmplz32  0084 007c
+fcmpez32 0085 007e
+fcmplz32 0086 007b
+copyc32  0087 007c 0080
+cmpez16  0088 007e
+cmplz16  0089 007c
+fcmpez16 008a 007e
+fcmplz16 008b 007b
+copyc16  008c 007c 0081
+cmpez8   008d 007e
+cmplz8   008e 007c
+fcmpez8  008f 007e
+fcmplz8  0090 007b
+copyc8   0091 007c 0082
+shl32    0092 0078 0080
+shr32    0093 0078 0080
+shar32   0094 007c 0080
+rotl32   0095 007c 0080
+rotr32   0096 007c 0080
+shl16    0097 0079 0081
+shr16    0098 0079 0081
+shar16   0099 007c 0081
+rotl16   009a 007c 0081
+rotr16   009b 007c 0081
+shl8     009c 007a 0082
+shr8     009d 007a 0082
+shar8    009e 007c 0082
+rotl8    009f 007c 0082
+rotr8    00a0 007c 0082
+add32    00a1 0078 007c
+sub32    00a2 0078 007c
+mul32    00a3 0078 007c
+div32    00a4 0078 007c
+neg32    00a5 0078
+add16    00a6 0078 007c
+sub16    00a7 0078 007c
+mul16    00a8 0078 007c
+div16    00a9 0078 007c
+neg16    00aa 0078
+add8     00ab 0078 007c
+sub8     00ac 0078 007c
+mul8     00ad 0078 007c
+div8     00ae 0078 007c
+neg8     00af 0078
+ldi8     00b0 CC
+ldi8     00b1 CF
+fadd32   00b2 00b0 00b1
+fsub32   00b3 00b0 00b1
+fmul32   00b4 00b0 00b1
+fdiv32   00b5 00b0 00b1
+fneg32   00b6 00b0
+fadd16   00b7 00b0 00b1
+fsub16   00b8 00b0 00b1
+fmul16   00b9 00b0 00b1
+fdiv16   00ba 00b0 00b1
+fneg16   00bb 00b0
+fadd8    00bc 00b0 00b1
+fsub8    00bd 00b0 00b1
+fmul8    00be 00b0 00b1
+fdiv8    00bf 00b0 00b1
+fneg8    00c0 00b0
 jmp      0000
 ##       A123456789ABCDEF some data
