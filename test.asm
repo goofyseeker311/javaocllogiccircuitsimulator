@@ -186,5 +186,22 @@ sub8     00a6 0078 007c
 mul8     00a7 0078 007c
 div8     00a8 0078 007c
 neg8     00a9 0078
+ldi8     00aa CC
+ldi8     00ab CF
+fadd32   00ac 00aa 00ab
+fsub32   00ad 00aa 00ab
+fmul32   00ae 00aa 00ab
+fdiv32   00af 00aa 00ab
+fneg32   00b0 00aa
+fadd16   00b1 00aa 00ab
+fsub16   00b2 00aa 00ab
+fmul16   00b3 00aa 00ab
+fdiv16   00b4 00aa 00ab
+fneg16   00b5 00aa
+fadd8    00b6 00aa 00ab
+fsub8    00b7 00aa 00ab
+fmul8    00b8 00aa 00ab
+fdiv8    00b9 00aa 00ab
+fneg8    00ba 00aa
 jmp      0000
 ##       A123456789ABCDEF some data

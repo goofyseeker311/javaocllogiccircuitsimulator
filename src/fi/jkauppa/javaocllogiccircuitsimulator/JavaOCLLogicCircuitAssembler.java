@@ -344,6 +344,36 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xda;
 					} else if (codelineparts[0].equals("neg8")) {
 						insT = 0xea;
+					} else if (codelineparts[0].equals("fadd32")) {
+						insT = 0x0b;
+					} else if (codelineparts[0].equals("fsub32")) {
+						insT = 0x1b;
+					} else if (codelineparts[0].equals("fmul32")) {
+						insT = 0x2b;
+					} else if (codelineparts[0].equals("fdiv32")) {
+						insT = 0x3b;
+					} else if (codelineparts[0].equals("fneg32")) {
+						insT = 0x4b;
+					} else if (codelineparts[0].equals("fadd16")) {
+						insT = 0x5b;
+					} else if (codelineparts[0].equals("fsub16")) {
+						insT = 0x6b;
+					} else if (codelineparts[0].equals("fmul16")) {
+						insT = 0x7b;
+					} else if (codelineparts[0].equals("fdiv16")) {
+						insT = 0x8b;
+					} else if (codelineparts[0].equals("fneg16")) {
+						insT = 0x9b;
+					} else if (codelineparts[0].equals("fadd8")) {
+						insT = 0xab;
+					} else if (codelineparts[0].equals("fsub8")) {
+						insT = 0xbb;
+					} else if (codelineparts[0].equals("fmul8")) {
+						insT = 0xcb;
+					} else if (codelineparts[0].equals("fdiv8")) {
+						insT = 0xdb;
+					} else if (codelineparts[0].equals("fneg8")) {
+						insT = 0xeb;
 					}
 					
 					if (codelineparts.length>=2) {
