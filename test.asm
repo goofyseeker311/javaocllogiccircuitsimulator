@@ -30,7 +30,7 @@ ldi      0015 00000a01
 ldi      0016 00000c01
 ldi      0017 00000e01
 add      0018 0008 0010 ff
-ldi      0020 00ffffff
+ldi16    0020 00ff
 memw     0020 0018
 memw     0020 0019
 memw     0020 001a

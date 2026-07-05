@@ -2241,7 +2241,7 @@ public class JavaOCLLogicCircuitEmulator {
 	}
 	public static short floattohalf(float half) {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(half));
-		long floatvalue = (longvalue & 0x80000000)>>16 | (longvalue & 0xF800000)>>13 | (longvalue & 0x3FF);
+		long floatvalue = (longvalue & 0x80000000)>>>16 | (longvalue & 0xF800000)>>>13 | (longvalue & 0x3FF);
 		short shortvalue = (short)floatvalue;
 		return shortvalue;
 	}
@@ -2255,7 +2255,7 @@ public class JavaOCLLogicCircuitEmulator {
 	}
 	public static byte floattomini(float mini) {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(mini));
-		long floatvalue = (longvalue & 0x80000000)>>24 | (longvalue & 0x7800000)>>20 | (longvalue & 0x7);
+		long floatvalue = (longvalue & 0x80000000)>>>24 | (longvalue & 0x7800000)>>>20 | (longvalue & 0x7);
 		byte minivalue = (byte)floatvalue;
 		return minivalue;
 	}
