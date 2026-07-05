@@ -2400,9 +2400,9 @@ public class JavaOCLLogicCircuitEmulator {
 	public static float halftofloat(short half) {
 		long longvalue = Short.toUnsignedLong(half);
 		long longsign = (longvalue & 0x8000)>>>15;
-		long longexp = (longvalue & 0x7C00)>>>10 - 15 + 127;
+		long longexp = ((longvalue & 0x7C00)>>>10) - 15 + 127;
 		long longfrac = (longvalue & 0x3FF);
-		long longfloat = longsign<<31 | longexp<<23 | longfrac;
+		long longfloat = (longsign<<31) | (longexp<<23) | (longfrac<<13);
 		ByteBuffer longbytes = ByteBuffer.allocate(8);
 		longbytes.clear(); longbytes.putLong(longfloat).rewind();
 		float floatvalue = longbytes.asFloatBuffer().get(1);
@@ -2411,24 +2411,18 @@ public class JavaOCLLogicCircuitEmulator {
 	public static short floattohalf(float half) {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(half));
 		long longsign = (longvalue & 0x80000000)>>>31;
-		long longexp = (longvalue & 0x7F800000)>>>23 - 127 + 15;
-		long longfrac = (longvalue & 0x3FF);
-		if (longexp>31) {
-			longexp = 31;
-		}
-		if (longexp<0) {
-			longexp = 0;
-		}
+		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 15;
+		long longfrac = (longvalue & 0x7FFFFF)>>>13;
 		long floatvalue = longsign<<15 | longexp<<10 | longfrac;
 		short shortvalue = (short)floatvalue;
 		return shortvalue;
 	}
 	public static float minitofloat(byte mini) {
-		long longvalue = Byte.toUnsignedLong(mini);
+		long longvalue = Short.toUnsignedLong(mini);
 		long longsign = (longvalue & 0x80)>>>7;
-		long longexp = (longvalue & 0x78)>>>3 - 7 + 127;
+		long longexp = ((longvalue & 0x78)>>>3) - 7 + 127;
 		long longfrac = (longvalue & 0x7);
-		long longfloat = longsign<<31 | longexp<<23 | longfrac;
+		long longfloat = (longsign<<31) | (longexp<<23) | (longfrac<<20);
 		ByteBuffer longbytes = ByteBuffer.allocate(8);
 		longbytes.clear(); longbytes.putLong(longfloat).rewind();
 		float floatvalue = longbytes.asFloatBuffer().get(1);
@@ -2437,14 +2431,8 @@ public class JavaOCLLogicCircuitEmulator {
 	public static byte floattomini(float mini) {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(mini));
 		long longsign = (longvalue & 0x80000000)>>>31;
-		long longexp = (longvalue & 0x7F800000)>>>23 - 127 + 7;
-		long longfrac = (longvalue & 0x3FF);
-		if (longexp>15) {
-			longexp = 15;
-		}
-		if (longexp<0) {
-			longexp = 0;
-		}
+		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 7;
+		long longfrac = (longvalue & 0x7FFFFF)>>>20;
 		long floatvalue = longsign<<7 | longexp<<3 | longfrac;
 		byte minivalue = (byte)floatvalue;
 		return minivalue;
