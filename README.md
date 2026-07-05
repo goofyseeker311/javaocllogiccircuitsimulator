@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore103" src="https://github.com/user-attachments/assets/cd112a66-5f89-4dc7-87f0-6bc82897a446" />
-<img width="3840" height="2112" alt="muxrisccore103a" src="https://github.com/user-attachments/assets/f9d7ad4f-9c12-43c9-8a4c-b33191882303" />
-<img width="3840" height="2112" alt="muxrisccore103b" src="https://github.com/user-attachments/assets/b610b455-d30e-4f0b-8e4a-f4d4c14c6948" />
+<img width="3840" height="2112" alt="muxrisccore104" src="https://github.com/user-attachments/assets/b3b032db-a93e-46ec-9394-8dd57a4fd677" />
+<img width="3840" height="2112" alt="muxrisccore104a" src="https://github.com/user-attachments/assets/6b2987ff-5bbd-4d9d-a9ec-763ab23a1d6e" />
+<img width="3840" height="2112" alt="muxrisccore104b" src="https://github.com/user-attachments/assets/07de5070-ae25-4a1d-8563-419f303323d5" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -173,6 +173,22 @@ A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY r
          mul8XYZ                            insV=C 8x 8-bit integer multiply
          div8XYZ                            insV=D 8x 8-bit integer divide
          neg8XYZ                            insV=E 8x 8-bit integer negate
+B      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
+         fadd32XYZ                          insV=0 2x 32-bit float add
+         fsub32XYZ                          insV=1 2x 32-bit float subtract
+         fmul32XYZ                          insV=2 2x 32-bit float multiply
+         fdiv32XYZ                          insV=3 2x 32-bit float divide
+         fneg32XYZ                          insV=4 2x 32-bit float negate
+         fadd16XYZ                          insV=5 4x 16-bit float add
+         fsub16XYZ                          insV=6 4x 16-bit float subtract
+         fmul16XYZ                          insV=7 4x 16-bit float multiply
+         fdiv16XYZ                          insV=8 4x 16-bit float divide
+         fneg16XYZ                          insV=9 4x 16-bit float negate
+         fadd8XYZ                           insV=A 8x 8-bit float add
+         fsub8XYZ                           insV=B 8x 8-bit float subtract
+         fmul8XYZ                           insV=C 8x 8-bit float multiply
+         fdiv8XYZ                           insV=D 8x 8-bit float divide
+         fneg8XYZ                           insV=E 8x 8-bit float negate
 ```
 
 Example looping test assembly code source and binary:
