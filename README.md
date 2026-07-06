@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore107" src="https://github.com/user-attachments/assets/9c4b5413-08e5-4416-bc8e-ac5364305142" />
-<img width="3840" height="2112" alt="muxrisccore107a" src="https://github.com/user-attachments/assets/1c121776-5da9-4e99-8153-a4a358a67b0e" />
-<img width="3840" height="2112" alt="muxrisccore107b" src="https://github.com/user-attachments/assets/cdf767a2-8612-4c85-a449-025bd454a86a" />
+<img width="3840" height="2112" alt="muxrisccore108" src="https://github.com/user-attachments/assets/db07f20f-d310-413d-aea9-60214b2fd813" />
+<img width="3840" height="2112" alt="muxrisccore108a" src="https://github.com/user-attachments/assets/0f5df134-f2dd-46c9-838c-73c313d4cb2f" />
+<img width="3840" height="2112" alt="muxrisccore108b" src="https://github.com/user-attachments/assets/977f6fba-6ea0-4207-b91f-f7462d70487b" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -56,12 +56,15 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          nopYZ                              insV=0 no operation sleep constant regYZ cycles
          jmpXY                              insV=1 unconditional jump to regX
          jmpcXY                             insV=2 jump to regX if regY is not zero
-         ldiXYZ                             insV=3 load regX with 32-bit constant Uint regYZ
-         ldi32XYZ                           insV=4 load regX with 2x 32-bit constant regYZ
-         ldi16XYZ                           insV=5 load regX with 4x 16-bit constant regZ
-         ldi8XYZ                            insV=6 load regX with 8x 8-bit constant regZ8
-         memrXY                             insV=7 load regX from shared memory[regY]
-         memwXY                             insV=8 store regX to shared memory[regY]
+         jmpc32XY                           insV=3 jump to regX if regY 32-bit is not zero
+         jmpc16XY                           insV=4 jump to regX if regY 16-bit is not zero
+         jmpc8XY                            insV=5 jump to regX if regY 8-bit is not zero
+         ldiXYZ                             insV=6 load regX with 32-bit constant Uint regYZ
+         ldi32XYZ                           insV=7 load regX with 2x 32-bit constant regYZ
+         ldi16XYZ                           insV=8 load regX with 4x 16-bit constant regZ
+         ldi8XYZ                            insV=9 load regX with 8x 8-bit constant regZ8
+         memrXY                             insV=A load regX from shared memory[regY]
+         memwXY                             insV=B store regX to shared memory[regY]
 1      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
