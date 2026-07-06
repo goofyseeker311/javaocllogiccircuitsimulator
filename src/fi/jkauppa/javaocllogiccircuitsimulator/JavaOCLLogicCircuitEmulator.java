@@ -2415,7 +2415,9 @@ public class JavaOCLLogicCircuitEmulator {
 		long longsign = (longvalue & 0x80000000)>>>31;
 		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 15;
 		long longfrac = ((longvalue & 0x7FFFFF) + (longvalue & 0x1000))>>>13;
-		if (longexp < 0) { longexp = 0; }
+		if (longexp == -112) { longexp = 0; }
+		else if (longexp == 143) { longexp = 0x1F; }
+		else if (longexp < 0) { longexp = 0; }
 		else if (longexp > 31) { longexp = 0x1F; }
 		long floatvalue = longsign<<15 | longexp<<10 | longfrac;
 		short shortvalue = (short)floatvalue;
@@ -2439,7 +2441,9 @@ public class JavaOCLLogicCircuitEmulator {
 		long longsign = (longvalue & 0x80000000)>>>31;
 		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 7;
 		long longfrac = ((longvalue & 0x7FFFFF) + (longvalue & 0x80000))>>>20;
-		if (longexp < 0) { longexp = 0; }
+		if (longexp == -120) { longexp = 0; }
+		else if (longexp == 135) { longexp = 0x0F; }
+		else if (longexp < 0) { longexp = 0; }
 		else if (longexp > 15) { longexp = 0xF; }
 		long floatvalue = longsign<<7 | longexp<<3 | longfrac;
 		byte minivalue = (byte)floatvalue;
