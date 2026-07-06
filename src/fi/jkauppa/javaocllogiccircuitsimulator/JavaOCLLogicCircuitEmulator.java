@@ -2402,6 +2402,7 @@ public class JavaOCLLogicCircuitEmulator {
 		long longsign = (longvalue & 0x8000)>>>15;
 		long longexp = ((longvalue & 0x7C00)>>>10) - 15 + 127;
 		long longfrac = (longvalue & 0x3FF);
+		if (longfrac==0) { longexp = 0; }
 		long longfloat = (longsign<<31) | (longexp<<23) | (longfrac<<13);
 		ByteBuffer longbytes = ByteBuffer.allocate(8);
 		longbytes.clear(); longbytes.putLong(longfloat).rewind();
@@ -2422,6 +2423,7 @@ public class JavaOCLLogicCircuitEmulator {
 		long longsign = (longvalue & 0x80)>>>7;
 		long longexp = ((longvalue & 0x78)>>>3) - 7 + 127;
 		long longfrac = (longvalue & 0x7);
+		if (longfrac==0) { longexp = 0; }
 		long longfloat = (longsign<<31) | (longexp<<23) | (longfrac<<20);
 		ByteBuffer longbytes = ByteBuffer.allocate(8);
 		longbytes.clear(); longbytes.putLong(longfloat).rewind();
