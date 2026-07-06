@@ -221,5 +221,20 @@ fsub8    00bd 00b0 00b1
 fmul8    00be 00b0 00b1
 fdiv8    00bf 00b0 00b1
 fneg8    00c0 00b0
+ldi32    00c1 00000001
+ldi      00c2 000000e3
+jmpc32   00c2 00c1
+ldi      00c3 ffaaffa1
+ldi      00c4 bbaaccd1
+ldi16    00c5 0001
+ldi      00c6 000000e8
+jmpc16   00c6 00c1
+ldi      00c7 ffaaffa2
+ldi      00c8 bbaaccd2
+ldi8     00c9 01
+ldi      00ca 000000ed
+jmpc8    00ca 00c1
+ldi      00cb ffaaffa3
+ldi      00cc bbaaccd3
 jmp      0000
 ##       A123456789ABCDEF some data

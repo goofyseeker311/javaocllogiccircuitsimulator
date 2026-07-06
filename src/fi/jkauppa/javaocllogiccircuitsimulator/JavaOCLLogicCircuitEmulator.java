@@ -273,36 +273,60 @@ public class JavaOCLLogicCircuitEmulator {
 						programcounter++;
 					}
 				} break;
+				case 0x30: if (true) {
+					int jumpflag = (int)oldregisters[regY];
+					if (jumpflag!=0) {
+						programcounter = oldregisters[regX];
+					} else {
+						programcounter++;
+					}
+				} break;
+				case 0x40: if (true) {
+					short jumpflag = (short)oldregisters[regY];
+					if (jumpflag!=0) {
+						programcounter = oldregisters[regX];
+					} else {
+						programcounter++;
+					}
+				} break;
+				case 0x50: if (true) {
+					byte jumpflag = (byte)oldregisters[regY];
+					if (jumpflag!=0) {
+						programcounter = oldregisters[regX];
+					} else {
+						programcounter++;
+					}
+				} break;
 				default: if (true) {
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
 	
 							switch(insT) {
-								case 0x30: if (true) {
+								case 0x60: if (true) {
 									newregisters[regX+i] = regYZ;
 								} break;
-								case 0x40: if (true) {
+								case 0x70: if (true) {
 									int intvalue = instbytes.getInt(2);
 									instbytes2.clear();
 									instbytes2.putInt(intvalue).putInt(intvalue).rewind();
 									long regYZ32 = instbytes2.getLong();
 									newregisters[regX+i] = regYZ32;
 								} break;
-								case 0x50: if (true) {
+								case 0x80: if (true) {
 									short shortvalue = instbytes.getShort(4);
 									instbytes3.clear();
 									instbytes3.putShort(shortvalue).putShort(shortvalue).putShort(shortvalue).putShort(shortvalue).rewind();
 									long regZ16 = instbytes3.getLong();
 									newregisters[regX+i] = regZ16;
 								} break;
-								case 0x60: if (true) {
+								case 0x90: if (true) {
 									byte bytevalue = instbytes.get(5);
 									instbytes4.clear();
 									instbytes4.put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).put(bytevalue).rewind();
 									long regZ8 = instbytes4.getLong();
 									newregisters[regX+i] = regZ8;
 								} break;
-								case 0x70: if (true) {
+								case 0xa0: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -323,7 +347,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 									}
 								} break;
-								case 0x80: if (true) {
+								case 0xb0: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);

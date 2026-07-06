@@ -102,13 +102,13 @@ public class JavaOCLLogicCircuitAssembler {
 					int regX = Integer.parseUnsignedInt(regXline, 16);
 					long dataval = Long.parseUnsignedLong(dataline, 16);
 					int vecN = Integer.parseUnsignedInt(vecnline, 16);
-					int insT = 0x30;
+					int insT = 0x60;
 					if (codelinestr.startsWith("ldi32")) {
-						insT = 0x40;
+						insT = 0x70;
 					} else if (codelinestr.startsWith("ldi16")) {
-						insT = 0x50;
+						insT = 0x80;
 					} else if (codelinestr.startsWith("ldi8")) {
-						insT = 0x60;
+						insT = 0x90;
 					}
 					insvalbytes.clear();
 					insvalbytes.putShort((short)regX);
@@ -138,10 +138,16 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x10;
 					} else if (codelineparts[0].equals("jmpc")) {
 						insT = 0x20;
+					} else if (codelineparts[0].equals("jmpc32")) {
+						insT = 0x30;
+					} else if (codelineparts[0].equals("jmpc16")) {
+						insT = 0x40;
+					} else if (codelineparts[0].equals("jmpc8")) {
+						insT = 0x50;
 					} else if (codelineparts[0].equals("memr")) {
-						insT = 0x70;
+						insT = 0xa0;
 					} else if (codelineparts[0].equals("memw")) {
-						insT = 0x80;
+						insT = 0xb0;
 					} else if (codelineparts[0].equals("cmpez")) {
 						insT = 0x01;
 					} else if (codelineparts[0].equals("cmplz")) {
