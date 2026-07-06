@@ -2442,7 +2442,7 @@ public class JavaOCLLogicCircuitEmulator {
 		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 7;
 		long longfrac = ((longvalue & 0x7FFFFF) + (longvalue & 0x80000))>>>20;
 		if (longexp == -120) { longexp = 0; }
-		else if (longexp == 135) { longexp = 0x0F; }
+		else if (longexp == 135) { longexp = 0xF; }
 		else if (longexp < 0) { longexp = 0; }
 		else if (longexp > 15) { longexp = 0xF; }
 		long floatvalue = longsign<<7 | longexp<<3 | longfrac;
