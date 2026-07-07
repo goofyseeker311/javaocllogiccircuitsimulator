@@ -1,4 +1,4 @@
-nop      ff rom header boot load size
+nop      1ff rom header boot load size
 nop      01 rom header data
 nop      02 rom header data
 nop      03 rom header data
@@ -236,5 +236,57 @@ ldi      00ca 000000ed
 jmpc8    00ca 00c1
 ldi      00cb ffaaffa3
 ldi      00cc bbaaccd3
+ldi8     00cd 4C
+ldi8     00ce 40
+fsin32   00cf 00cd
+ftan32   00d0 00cd
+fcos32   00d1 00cd
+flog32   00d2 00cd 00ce
+fpow32   00d3 00cd 00ce
+fsin16   00d4 00cd
+ftan16   00d5 00cd
+fcos16   00d6 00cd
+flog16   00d7 00cd 00ce
+fpow16   00d8 00cd 00ce
+fsin8    00d9 00cd
+ftan8    00da 00cd
+fcos8    00db 00cd
+flog8    00dc 00cd 00ce
+fpow8    00dd 00cd 00ce
+fasin32  00de 00cf
+fatan32  00df 00d0
+facos32  00e0 00d1
+fsqrt32  00e1 00cd
+fasin16  00e2 00d4
+fatan16  00e3 00d5
+facos16  00e4 00d6
+fsqrt16  00e5 00cd
+fasin8   00e6 00d9
+fatan8   00e7 00da
+facos8   00e8 00db
+fsqrt8   00e9 00cd
+ldi8     00ea 78
+ldi8     00eb FF
+finf32   00ec 00ea
+fnan32   00ed 00eb
+finf16   00ee 00ea
+fnan16   00ef 00eb
+finf8    00f0 00ea
+fnan8    00f1 00eb
+fitf32   00f2 00cd
+ftin32   00f3 00cd
+ftid32   00f4 00cd
+ftiu32   00f5 00cd
+ftit32   00f6 00cd
+fitf16   00f7 00cd
+ftin16   00f8 00cd
+ftid16   00f9 00cd
+ftiu16   00fa 00cd
+ftit16   00fb 00cd
+fitf8    00fc 00cd
+ftin8    00fd 00cd
+ftid8    00fe 00cd
+ftiu8    00ff 00cd
+ftit8    0100 00cd
 jmp      0000
 ##       A123456789ABCDEF some data

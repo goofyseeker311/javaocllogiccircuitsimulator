@@ -392,6 +392,102 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xdb;
 					} else if (codelineparts[0].equals("fneg8")) {
 						insT = 0xeb;
+					} else if (codelineparts[0].equals("fsin32")) {
+						insT = 0x0c;
+					} else if (codelineparts[0].equals("ftan32")) {
+						insT = 0x1c;
+					} else if (codelineparts[0].equals("fcos32")) {
+						insT = 0x2c;
+					} else if (codelineparts[0].equals("flog32")) {
+						insT = 0x3c;
+					} else if (codelineparts[0].equals("fpow32")) {
+						insT = 0x4c;
+					} else if (codelineparts[0].equals("fsin16")) {
+						insT = 0x5c;
+					} else if (codelineparts[0].equals("ftan16")) {
+						insT = 0x6c;
+					} else if (codelineparts[0].equals("fcos16")) {
+						insT = 0x7c;
+					} else if (codelineparts[0].equals("flog16")) {
+						insT = 0x8c;
+					} else if (codelineparts[0].equals("fpow16")) {
+						insT = 0x9c;
+					} else if (codelineparts[0].equals("fsin8")) {
+						insT = 0xac;
+					} else if (codelineparts[0].equals("ftan8")) {
+						insT = 0xbc;
+					} else if (codelineparts[0].equals("fcos8")) {
+						insT = 0xcc;
+					} else if (codelineparts[0].equals("flog8")) {
+						insT = 0xdc;
+					} else if (codelineparts[0].equals("fpow8")) {
+						insT = 0xec;
+					} else if (codelineparts[0].equals("fasin32")) {
+						insT = 0x0d;
+					} else if (codelineparts[0].equals("fatan32")) {
+						insT = 0x1d;
+					} else if (codelineparts[0].equals("facos32")) {
+						insT = 0x2d;
+					} else if (codelineparts[0].equals("fsqrt32")) {
+						insT = 0x3d;
+					} else if (codelineparts[0].equals("fasin16")) {
+						insT = 0x5d;
+					} else if (codelineparts[0].equals("fatan16")) {
+						insT = 0x6d;
+					} else if (codelineparts[0].equals("facos16")) {
+						insT = 0x7d;
+					} else if (codelineparts[0].equals("fsqrt16")) {
+						insT = 0x8d;
+					} else if (codelineparts[0].equals("fasin8")) {
+						insT = 0xad;
+					} else if (codelineparts[0].equals("fatan8")) {
+						insT = 0xbd;
+					} else if (codelineparts[0].equals("facos8")) {
+						insT = 0xcd;
+					} else if (codelineparts[0].equals("fsqrt8")) {
+						insT = 0xdd;
+					} else if (codelineparts[0].equals("finf32")) {
+						insT = 0x0e;
+					} else if (codelineparts[0].equals("fnan32")) {
+						insT = 0x1e;
+					} else if (codelineparts[0].equals("finf16")) {
+						insT = 0x5e;
+					} else if (codelineparts[0].equals("fnan16")) {
+						insT = 0x6e;
+					} else if (codelineparts[0].equals("finf8")) {
+						insT = 0xae;
+					} else if (codelineparts[0].equals("fnan8")) {
+						insT = 0xbe;
+					} else if (codelineparts[0].equals("fitf32")) {
+						insT = 0x0f;
+					} else if (codelineparts[0].equals("ftin32")) {
+						insT = 0x1f;
+					} else if (codelineparts[0].equals("ftid32")) {
+						insT = 0x2f;
+					} else if (codelineparts[0].equals("ftiu32")) {
+						insT = 0x3f;
+					} else if (codelineparts[0].equals("ftit32")) {
+						insT = 0x4f;
+					} else if (codelineparts[0].equals("fitf16")) {
+						insT = 0x5f;
+					} else if (codelineparts[0].equals("ftin16")) {
+						insT = 0x6f;
+					} else if (codelineparts[0].equals("ftid16")) {
+						insT = 0x7f;
+					} else if (codelineparts[0].equals("ftiu16")) {
+						insT = 0x8f;
+					} else if (codelineparts[0].equals("ftit16")) {
+						insT = 0x9f;
+					} else if (codelineparts[0].equals("fitf8")) {
+						insT = 0xaf;
+					} else if (codelineparts[0].equals("ftin8")) {
+						insT = 0xbf;
+					} else if (codelineparts[0].equals("ftid8")) {
+						insT = 0xcf;
+					} else if (codelineparts[0].equals("ftiu8")) {
+						insT = 0xdf;
+					} else if (codelineparts[0].equals("ftit8")) {
+						insT = 0xef;
 					}
 					
 					if (codelineparts.length>=2) {
