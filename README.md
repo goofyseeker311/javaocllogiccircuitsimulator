@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore108" src="https://github.com/user-attachments/assets/db07f20f-d310-413d-aea9-60214b2fd813" />
-<img width="3840" height="2112" alt="muxrisccore108a" src="https://github.com/user-attachments/assets/0f5df134-f2dd-46c9-838c-73c313d4cb2f" />
-<img width="3840" height="2112" alt="muxrisccore108b" src="https://github.com/user-attachments/assets/977f6fba-6ea0-4207-b91f-f7462d70487b" />
+<img width="3840" height="2112" alt="muxrisccore109" src="https://github.com/user-attachments/assets/fc2e6e9c-f9ac-474a-a866-a612f1bd5d7a" />
+<img width="3840" height="2112" alt="muxrisccore109a" src="https://github.com/user-attachments/assets/fb9c43bb-ed86-4b51-a2eb-9dd8886a2278" />
+<img width="3840" height="2112" alt="muxrisccore109b" src="https://github.com/user-attachments/assets/32168c0f-bdf1-43b5-b13a-af6847805265" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -197,6 +197,58 @@ B      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY reg
          fmul8XYZ                           insV=C 8x 8-bit float multiply
          fdiv8XYZ                           insV=D 8x 8-bit float divide
          fneg8XYZ                           insV=E 8x 8-bit float negate
+C      | flpavec1XYZ | ALU FlpA Vector 1  | store advanced float op[insV] regY regZ to regX
+         fsin32XYZ                          insV=0 float sine
+         ftan32XYZ                          insV=1 float tangent
+         fcos32XYZ                          insV=2 float cosine
+         flog32XYZ                          insV=3 float logarithm
+         fpow32XYZ                          insV=4 float power
+         fsin16XYZ                          insV=5 float sine
+         ftan16XYZ                          insV=6 float tangent
+         fcos16XYZ                          insV=7 float cosine
+         flog16XYZ                          insV=8 float logarithm
+         fpow16XYZ                          insV=9 float power
+         fsin8XYZ                           insV=A float sine
+         ftan8XYZ                           insV=B float tangent
+         fcos8XYZ                           insV=C float cosine
+         flog8XYZ                           insV=D float logarithm
+         fpow8XYZ                           insV=E float power
+D      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY regZ to regX
+         fasin32XYZ                         insV=0 float arcsine
+         fatan32XYZ                         insV=1 float arctangent
+         facos32XYZ                         insV=2 float arccosine
+         fsqrt32XYZ                         insV=3 float square root
+         fasin16XYZ                         insV=5 float arcsine
+         fatan16XYZ                         insV=6 float arctangent
+         facos16XYZ                         insV=7 float arccosine
+         fsqrt16XYZ                         insV=8 float square root
+         fasin8XYZ                          insV=A float arcsine
+         fatan8XYZ                          insV=B float arctangent
+         facos8XYZ                          insV=C float arccosine
+         fsqrt8XYZ                          insV=D float square root
+E      | flpvec1XYZ  | ALU Flp Vector 1   | store float op[insV] regY regZ to regX
+         finf32XYZ                          insV=0 float is infinity
+         fnan32XYZ                          insV=1 float is not-a-number
+         finf16XYZ                          insV=5 float is infinity
+         fnan16XYZ                          insV=6 float is not-a-number
+         finf8XYZ                           insV=A float is infinity
+         fnan8XYZ                           insV=B float is not-a-number
+F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
+         fitf32XYZ                          insV=0 integer to float
+         ftin32XYZ                          insV=1 float to integer nearest
+         ftid32XYZ                          insV=2 float to integer round down
+         ftiu32XYZ                          insV=3 float to integer round up
+         ftit32XYZ                          insV=4 float to integer truncate
+         fitf16XYZ                          insV=5 integer to float
+         ftin16XYZ                          insV=6 float to integer nearest
+         ftid16XYZ                          insV=7 float to integer round down
+         ftiu16XYZ                          insV=8 float to integer round up
+         ftit16XYZ                          insV=9 float to integer truncate
+         fitf8XYZ                           insV=A integer to float
+         ftin8XYZ                           insV=B float to integer nearest
+         ftid8XYZ                           insV=C float to integer round down
+         ftiu8XYZ                           insV=D float to integer round up
+         ftit8XYZ                           insV=E float to integer truncate
 ```
 
 Example looping test assembly code source and binary:
