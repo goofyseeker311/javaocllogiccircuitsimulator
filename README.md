@@ -143,23 +143,38 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ftidXYZ                            insV=C float to integer round down
          ftiuXYZ                            insV=D float to integer round up
          ftitXYZ                            insV=E float to integer truncate
-6      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
-8      | cmpvecXY    | Compare Bit Vector | vector clear regX to 0, set to 1 if regY comp[insV]
+6      | cmpvecXY    | Comp Zero Vector   | vector clear regX to 0, set to 1 if regY comp[insV]
          cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
          cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
          fcmpez32XY                         insV=2 2x 32-bit float regY equal to zero
          fcmplz32XY                         insV=3 2x 32-bit float regY less than zero
-         copyc32XYZ                         insV=4 2x 32-bit conditional copy if regZ not zero
+         finf32XYZ                          insV=4 2x 32-bit float is infinity
          cmpez16XY                          insV=5 4x 16-bit integer regY equal to zero
          cmplz16XY                          insV=6 4x 16-bit integer regY less than zero
          fcmpez16X                          insV=7 4x 16-bit float regY equal to zero
          fcmplz16X                          insV=8 4x 16-bit float regY less than zero
-         copyc16XYZ                         insV=9 4x 16-bit conditional copy if regZ not zero
+         finf16XYZ                          insV=9 4x 16-bit float is infinity
          cmpez8XY                           insV=A 8x 8-bit integer regY equal to zero
          cmplz8XY                           insV=B 8x 8-bit integer regY less than zero
          fcmpez8XY                          insV=C 8x 8-bit float regY equal to zero
          fcmplz8XY                          insV=D 8x 8-bit float regY less than zero
-         copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
+         finf8XYZ                           insV=E 8x 8-bit float is infinity
+7      | cmpvecXY    | Comp Value Vector  | vector clear regX to 0, set to 1 if regY comp[insV]
+         cmpez32XY                          insV=0 2x 32-bit integer regY equal to regZ
+         cmplz32XY                          insV=1 2x 32-bit integer regY less than regZ
+         fcmpez32XY                         insV=2 2x 32-bit float regY equal to regZ
+         fcmplz32XY                         insV=3 2x 32-bit float regY less than regZ
+         fnan32XYZ                          insV=4 2x 32-bit float is not-a-number
+         cmpez16XY                          insV=5 4x 16-bit integer regY equal to regZ
+         cmplz16XY                          insV=6 4x 16-bit integer regY less than regZ
+         fcmpez16X                          insV=7 4x 16-bit float regY equal to regZ
+         fcmplz16X                          insV=8 4x 16-bit float regY less than regZ
+         fnan16XYZ                          insV=9 4x 16-bit float is not-a-number
+         cmpez8XY                           insV=A 8x 8-bit integer regY equal to regZ
+         cmplz8XY                           insV=B 8x 8-bit integer regY less than regZ
+         fcmpez8XY                          insV=C 8x 8-bit float regY equal to regZ
+         fcmplz8XY                          insV=D 8x 8-bit float regY less than regZ
+         fnan8XYZ                           insV=E 8x 8-bit float is not-a-number
 9      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
          shl32XYZ                           insV=0 2x 32-bit shift left regZ bits
          shr32XYZ                           insV=1 2x 32-bit shift right regZ bits
@@ -192,6 +207,9 @@ A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY r
          mul8XYZ                            insV=C 8x 8-bit integer multiply
          div8XYZ                            insV=D 8x 8-bit integer divide
          neg8XYZ                            insV=E 8x 8-bit integer negate
+         copyc32XYZ                         insV=4 2x 32-bit conditional copy if regZ not zero
+         copyc16XYZ                         insV=9 4x 16-bit conditional copy if regZ not zero
+         copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
 B      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
          fadd32XYZ                          insV=0 2x 32-bit float add
          fsub32XYZ                          insV=1 2x 32-bit float subtract
@@ -238,12 +256,6 @@ D      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY r
          facos8XYZ                          insV=C 8x 8-bit float arccosine
          fsqrt8XYZ                          insV=D 8x 8-bit float square root
 E      | flpvec1XYZ  | ALU Flp Vector 1   | store float op[insV] regY regZ to regX
-         finf32XYZ                          insV=0 2x 32-bit float is infinity
-         fnan32XYZ                          insV=1 2x 32-bit float is not-a-number
-         finf16XYZ                          insV=5 4x 16-bit float is infinity
-         fnan16XYZ                          insV=6 4x 16-bit float is not-a-number
-         finf8XYZ                           insV=A 8x 8-bit float is infinity
-         fnan8XYZ                           insV=B 8x 8-bit float is not-a-number
 F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
          fitf32XYZ                          insV=0 2x 32-bit integer to float
          ftin32XYZ                          insV=1 2x 32-bit float to integer nearest
