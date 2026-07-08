@@ -98,41 +98,52 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          timeXYZ                            insV=E integer global time nanoseconds
 3      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
-         addoXYZ                            insV=1 integer add overflow bit
-         subXYZ                             insV=2 integer subtract
-         subbXYZ                            insV=3 integer subtract borrow bit
-         mulXYZ                             insV=4 integer multiply
-         muloXYZ                            insV=5 integer multiply overflow
-         divXYZ                             insV=6 integer divide
-         divrXYZ                            insV=7 integer divide remainder
-         negXYZ                             insV=8 integer negate
+         subXYZ                             insV=1 integer subtract
+         mulXYZ                             insV=2 integer multiply
+         divXYZ                             insV=3 integer divide
+         negXYZ                             insV=4 integer negate
+         addoXYZ                            insV=5 integer add overflow bit
+         subbXYZ                            insV=6 integer subtract borrow bit
+         muloXYZ                            insV=7 integer multiply overflow
+         divrXYZ                            insV=8 integer divide remainder
          copycXYZ                           insV=9 bitwise conditional copy if regZ is not zero
          loneXYZ                            insV=A bitwise lowest one bit, -1 if not found
          honeXYZ                            insV=B bitwise highest one bit, -1 if not found
          lzeroXYZ                           insV=C bitwise lowest zero bit, -1 if not found
          hzeroXYZ                           insV=E bitwise highest zero bit, -1 if not found
          onesXYZ                            insV=F bitwise count of one bits
-5      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
+4      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
          fmulXYZ                            insV=2 float multiply
          fdivXYZ                            insV=3 float divide
          fnegXYZ                            insV=4 float negate
-         fitfXYZ                            insV=5 integer to float
-         ftinXYZ                            insV=6 float to integer nearest
-         ftidXYZ                            insV=7 float to integer round down
-         ftiuXYZ                            insV=8 float to integer round up
-         ftitXYZ                            insV=9 float to integer truncate
+         fsinXYZ                            insV=5 float sine
+         ftanXYZ                            insV=6 float tangent
+         fcosXYZ                            insV=7 float cosine
+         flogXYZ                            insV=8 float logarithm
+         fpowXYZ                            insV=9 float power
+         fasinXYZ                           insV=A float arcsine
+         fatanXYZ                           insV=B float arctangent
+         facosXYZ                           insV=C float arccosine
+         fsqrtXYZ                           insV=D float square root
+5      | convXYZ     | ALU Conv Operation | store conversion op[insV] regY regZ to regX
+         ff32                               insV=0 convert 64-bit float to 32-bit float
+         f32f16                             insV=1 convert 32-bit float to 16-bit float
+         f16f8                              insV=2 convert 16-bit float to 8-bit float
+         ii32                               insV=3 convert 64-bit integer to 32-bit integer
+         i32i16                             insV=4 convert 32-bit integer to 16-bit integer
+         f8f16                              insV=5 convert 8-bit float to 16-bit float
+         f16f32                             insV=6 convert 16-bit float to 32-bit float
+         f32f                               insV=7 convert 32-bit float to 64-bit float
+         i32i                               insV=8 convert 32-bit integer to 64-bit integer
+         i16i32                             insV=9 convert 16-bit integer to 32-bit integer
+         fitfXYZ                            insV=A integer to float
+         ftinXYZ                            insV=B float to integer nearest
+         ftidXYZ                            insV=C float to integer round down
+         ftiuXYZ                            insV=D float to integer round up
+         ftitXYZ                            insV=E float to integer truncate
 6      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
-         fsinXYZ                            insV=0 float sine
-         ftanXYZ                            insV=1 float tangent
-         fcosXYZ                            insV=2 float cosine
-         fasinXYZ                           insV=3 float arcsine
-         fatanXYZ                           insV=4 float arctangent
-         facosXYZ                           insV=5 float arccosine
-         flogXYZ                            insV=6 float logarithm
-         fpowXYZ                            insV=7 float power
-         fsqrtXYZ                           insV=8 float square root
 8      | cmpvecXY    | Compare Bit Vector | vector clear regX to 0, set to 1 if regY comp[insV]
          cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
          cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
