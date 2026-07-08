@@ -110,8 +110,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          loneXYZ                            insV=A bitwise lowest one bit, -1 if not found
          honeXYZ                            insV=B bitwise highest one bit, -1 if not found
          lzeroXYZ                           insV=C bitwise lowest zero bit, -1 if not found
-         hzeroXYZ                           insV=E bitwise highest zero bit, -1 if not found
-         onesXYZ                            insV=F bitwise count of one bits
+         hzeroXYZ                           insV=D bitwise highest zero bit, -1 if not found
+         onesXYZ                            insV=E bitwise count of one bits
 4      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
@@ -175,7 +175,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          fcmpez8XY                          insV=C 8x 8-bit float regY equal to regZ
          fcmplz8XY                          insV=D 8x 8-bit float regY less than regZ
          fnan8XYZ                           insV=E 8x 8-bit float is not-a-number
-9      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
+8      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
          shl32XYZ                           insV=0 2x 32-bit shift left regZ bits
          shr32XYZ                           insV=1 2x 32-bit shift right regZ bits
          shar32XYZ                          insV=2 2x 32-bit shift arithmetic right regZ bits
@@ -191,7 +191,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          shar8XYZ                           insV=C 8x 8-bit shift arithmetic right regZ bits
          rotl8XYZ                           insV=D 8x 8-bit rotate left regZ bits
          rotr8XYZ                           insV=E 8x 8-bit rotate right regZ bits
-A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
+9      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
          add32XYZ                           insV=0 2x 32-bit integer add
          sub32XYZ                           insV=1 2x 32-bit integer subtract
          mul32XYZ                           insV=2 2x 32-bit integer multiply
@@ -207,10 +207,39 @@ A      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY r
          mul8XYZ                            insV=C 8x 8-bit integer multiply
          div8XYZ                            insV=D 8x 8-bit integer divide
          neg8XYZ                            insV=E 8x 8-bit integer negate
+A      | intvecXYZ   | ALU Int Vector 2   | vector store integer op[insV] regY regZ to regX
+         addo32XYZ                          insV=0 2x 32-bit integer add overflow bit
+         subb32XYZ                          insV=1 2x 32-bit integer subtract borrow bit
+         mulo32XYZ                          insV=2 2x 32-bit integer multiply overflow
+         divr32XYZ                          insV=3 2x 32-bit integer divide remainder
          copyc32XYZ                         insV=4 2x 32-bit conditional copy if regZ not zero
+         addo16XYZ                          insV=5 4x 16-bit integer add overflow bit
+         subb16XYZ                          insV=6 4x 16-bit integer subtract borrow bit
+         mulo16XYZ                          insV=7 4x 16-bit integer multiply overflow
+         divr16XYZ                          insV=8 4x 16-bit integer divide remainder
          copyc16XYZ                         insV=9 4x 16-bit conditional copy if regZ not zero
+         addo8XYZ                           insV=A 8x 8-bit integer add overflow bit
+         subb8XYZ                           insV=B 8x 8-bit integer subtract borrow bit
+         mulo8XYZ                           insV=C 8x 8-bit integer multiply overflow
+         divr8XYZ                           insV=D 8x 8-bit integer divide remainder
          copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
-B      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
+B      | intvecXYZ   | ALU Bit Vector 2   | vector store bitwise op[insV] regY regZ to regX
+         lone32XYZ                          insV=0 2x 32-bit lowest one bit, -1 if not found
+         hone32XYZ                          insV=1 2x 32-bit highest one bit, -1 if not found
+         lzero32XYZ                         insV=2 2x 32-bit lowest zero bit, -1 if not found
+         hzero32XYZ                         insV=3 2x 32-bit highest zero bit, -1 if not found
+         ones32XYZ                          insV=4 2x 32-bit count of one bits
+         lone16XYZ                          insV=5 4x 16-bit lowest one bit, -1 if not found
+         hone16XYZ                          insV=6 4x 16-bit highest one bit, -1 if not found
+         lzero16XYZ                         insV=7 4x 16-bit lowest zero bit, -1 if not found
+         hzero16XYZ                         insV=8 4x 16-bit highest zero bit, -1 if not found
+         ones16XYZ                          insV=9 4x 16-bit count of one bits
+         lone8XYZ                           insV=A 8x 8-bit lowest one bit, -1 if not found
+         hone8XYZ                           insV=B 8x 8-bit highest one bit, -1 if not found
+         lzero8XYZ                          insV=C 8x 8-bit lowest zero bit, -1 if not found
+         hzero8XYZ                          insV=D 8x 8-bit highest zero bit, -1 if not found
+         ones8XYZ                           insV=E 8x 8-bit count of one bits
+C      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
          fadd32XYZ                          insV=0 2x 32-bit float add
          fsub32XYZ                          insV=1 2x 32-bit float subtract
          fmul32XYZ                          insV=2 2x 32-bit float multiply
@@ -226,7 +255,7 @@ B      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY reg
          fmul8XYZ                           insV=C 8x 8-bit float multiply
          fdiv8XYZ                           insV=D 8x 8-bit float divide
          fneg8XYZ                           insV=E 8x 8-bit float negate
-C      | flpavec1XYZ | ALU FlpA Vector 1  | store advanced float op[insV] regY regZ to regX
+D      | flpavec1XYZ | ALU FlpA Vector    | store advanced float op[insV] regY regZ to regX
          fsin32XYZ                          insV=0 2x 32-bit float sine
          ftan32XYZ                          insV=1 2x 32-bit float tangent
          fcos32XYZ                          insV=2 2x 32-bit float cosine
@@ -242,7 +271,7 @@ C      | flpavec1XYZ | ALU FlpA Vector 1  | store advanced float op[insV] regY r
          fcos8XYZ                           insV=C 8x 8-bit float cosine
          flog8XYZ                           insV=D 8x 8-bit float logarithm
          fpow8XYZ                           insV=E 8x 8-bit float power
-D      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY regZ to regX
+E      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY regZ to regX
          fasin32XYZ                         insV=0 2x 32-bit float arcsine
          fatan32XYZ                         insV=1 2x 32-bit float arctangent
          facos32XYZ                         insV=2 2x 32-bit float arccosine
@@ -255,7 +284,6 @@ D      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY r
          fatan8XYZ                          insV=B 8x 8-bit float arctangent
          facos8XYZ                          insV=C 8x 8-bit float arccosine
          fsqrt8XYZ                          insV=D 8x 8-bit float square root
-E      | flpvec1XYZ  | ALU Flp Vector 1   | store float op[insV] regY regZ to regX
 F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
          fitf32XYZ                          insV=0 2x 32-bit integer to float
          ftin32XYZ                          insV=1 2x 32-bit float to integer nearest
