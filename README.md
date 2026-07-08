@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore111" src="https://github.com/user-attachments/assets/903d44c3-fd64-4ca5-8fae-0504ac49cfa9" />
-<img width="3840" height="2112" alt="muxrisccore111a" src="https://github.com/user-attachments/assets/ece1da21-c23c-4135-a2a5-08a3bc6d87f1" />
-<img width="3840" height="2112" alt="muxrisccore111b" src="https://github.com/user-attachments/assets/dda61f4c-3776-4ab4-8e25-43251dce5e97" />
+<img width="3840" height="2112" alt="muxrisccore112" src="https://github.com/user-attachments/assets/2e0a4538-9824-420b-aa15-01eb25672be6" />
+<img width="3840" height="2112" alt="muxrisccore112a" src="https://github.com/user-attachments/assets/3a467824-0094-4d04-9616-1ca20db2ed70" />
+<img width="3840" height="2112" alt="muxrisccore112b" src="https://github.com/user-attachments/assets/b9595962-5902-447e-a860-9b801ca81e3d" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -127,17 +127,17 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          fatanXYZ                           insV=B float arctangent
          facosXYZ                           insV=C float arccosine
          fsqrtXYZ                           insV=D float square root
-5      | convXYZ     | ALU Conv Operation | store conversion op[insV] regY regZ to regX
-         ff32                               insV=0 convert 64-bit float to 32-bit float
-         f32f16                             insV=1 convert 32-bit float to 16-bit float
-         f16f8                              insV=2 convert 16-bit float to 8-bit float
-         ii32                               insV=3 convert 64-bit integer to 32-bit integer
-         i32i16                             insV=4 convert 32-bit integer to 16-bit integer
-         f8f16                              insV=5 convert 8-bit float to 16-bit float
-         f16f32                             insV=6 convert 16-bit float to 32-bit float
+5      | convXYZ     | ALU Conv Vector    | store conversion op[insV] regY regZ to regX
+         ff32                               insV=0 convert 64-bit float to 2x 32-bit float
+         f32f16                             insV=1 convert 32-bit float to 4x 16-bit float
+         f16f8                              insV=2 convert 16-bit float to 8x 8-bit float
+         ii32                               insV=3 convert 64-bit integer to 2x 32-bit integer
+         i32i16                             insV=4 convert 32-bit integer to 4x 16-bit integer
+         f8f16                              insV=5 convert 8-bit float to 4x 16-bit float
+         f16f32                             insV=6 convert 16-bit float to 2x 32-bit float
          f32f                               insV=7 convert 32-bit float to 64-bit float
          i32i                               insV=8 convert 32-bit integer to 64-bit integer
-         i16i32                             insV=9 convert 16-bit integer to 32-bit integer
+         i16i32                             insV=9 convert 16-bit integer to 2x 32-bit integer
          fitfXYZ                            insV=A integer to float
          ftinXYZ                            insV=B float to integer nearest
          ftidXYZ                            insV=C float to integer round down
