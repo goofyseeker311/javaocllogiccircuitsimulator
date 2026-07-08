@@ -61,7 +61,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ldiXYZ                             insV=6 load regX with 32-bit constant Uint regYZ
          ldi32XYZ                           insV=7 load regX with 2x 32-bit constant regYZ
          ldi16XYZ                           insV=8 load regX with 4x 16-bit constant regZ
-         ldi8XYZ                            insV=9 load regX with 8x 8-bit constant regZ8
+         ldi8XYZ                            insV=9 load regX with 8x 8-bit constant regZ
          memrXY                             insV=A load regX from shared memory[regY]
          memwXY                             insV=B store regX to shared memory[regY]
 1      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
