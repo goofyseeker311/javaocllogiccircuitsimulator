@@ -89,8 +89,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          norXYZ                             insV=5 bitwise nor
          xorXYZ                             insV=6 bitwise xor
          xnorXYZ                            insV=7 bitwise xnor
-         i16i8XYZ                           insV=8 convert 16-bit integer to 8-bit integer
-         i8i16XYZ                           insV=9 convert 8-bit integer to 16-bit integer
+         i16i8XYZ                           insV=8 convert 4x 16-bit integer to 8x 8-bit integer
+         i8i16XYZ                           insV=9 convert 4x 8-bit integer to 4x 16-bit integer
          clkXYZ                             insV=A integer clock counter
          rndXYZ                             insV=B integer clock random
          freqXYZ                            insV=C integer clock frequency
