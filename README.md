@@ -69,32 +69,34 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          cmplzXY                            insV=1 integer regY less than zero
          fcmpezXY                           insV=2 float regY equal to zero
          fcmplzXY                           insV=3 float regY less than zero
-         cmpeXY                             insV=4 integer regY equal to regZ
-         cmplXY                             insV=5 integer regY less than regZ
-         fcmpeXY                            insV=6 float regY equal to regZ
-         fcmplXY                            insV=7 float regY less than regZ
+         finfXYZ                            insV=4 float is infinity
+         cmpeXY                             insV=5 integer regY equal to regZ
+         cmplXY                             insV=6 integer regY less than regZ
+         fcmpeXY                            insV=7 float regY equal to regZ
+         fcmplXY                            insV=8 float regY less than regZ
+         fnanXYZ                            insV=9 float is not-a-number
+         shlXYZ                             insV=A bitwise shift left regZ bits
+         shrXYZ                             insV=B bitwise shift right regZ bits
+         sharXYZ                            insV=C bitwise shift arithmetic right regZ bits
+         rotlXYZ                            insV=D bitwise rotate left regZ bits
+         rotrXYZ                            insV=E bitwise rotate right regZ bits
 2      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
-         shlXYZ                             insV=0 bitwise shift left regZ bits
-         shrXYZ                             insV=1 bitwise shift right regZ bits
-         sharXYZ                            insV=2 bitwise shift arithmetic right regZ bits
-         rotlXYZ                            insV=3 bitwise rotate left regZ bits
-         rotrXYZ                            insV=4 bitwise rotate right regZ bits
-         copyXYZ                            insV=5 bitwise copy
-         notXYZ                             insV=6 bitwise not
-         orXYZ                              insV=7 bitwise or
-         andXYZ                             insV=8 bitwise and
-         nandXYZ                            insV=9 bitwise nand
-         norXYZ                             insV=A bitwise nor
-         xorXYZ                             insV=B bitwise xor
-         xnorXYZ                            insV=C bitwise xnor
-         copycXYZ                           insV=D bitwise conditional copy if regZ is not zero
-3      | bitaXYZ     | ALU BitA Operation | store advanced bitwise op[insV] regY regZ to regX
-         loneXYZ                            insV=0 bitwise lowest one bit, -1 if not found
-         honeXYZ                            insV=1 bitwise highest one bit, -1 if not found
-         lzeroXYZ                           insV=2 bitwise lowest zero bit, -1 if not found
-         hzeroXYZ                           insV=3 bitwise highest zero bit, -1 if not found
-         onesXYZ                            insV=4 bitwise count of one bits
-4      | intXYZ      | ALU Int Operation  | store integer op[insV] regY regZ to regX
+         copyXYZ                            insV=0 bitwise copy
+         notXYZ                             insV=1 bitwise not
+         orXYZ                              insV=2 bitwise or
+         andXYZ                             insV=3 bitwise and
+         nandXYZ                            insV=4 bitwise nand
+         norXYZ                             insV=5 bitwise nor
+         xorXYZ                             insV=6 bitwise xor
+         xnorXYZ                            insV=7 bitwise xnor
+         i16i8XYZ                           insV=8 convert 16-bit integer to 8-bit integer
+         i8i16XYZ                           insV=9 convert 8-bit integer to 16-bit integer
+         clkXYZ                             insV=A integer clock counter
+         rndXYZ                             insV=B integer clock random
+         freqXYZ                            insV=C integer clock frequency
+         coreXYZ                            insV=D integer core info: id, cores, registers, memory
+         timeXYZ                            insV=E integer global time nanoseconds
+3      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
          addoXYZ                            insV=1 integer add overflow bit
          subXYZ                             insV=2 integer subtract
@@ -104,6 +106,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          divXYZ                             insV=6 integer divide
          divrXYZ                            insV=7 integer divide remainder
          negXYZ                             insV=8 integer negate
+         copycXYZ                           insV=9 bitwise conditional copy if regZ is not zero
+         loneXYZ                            insV=A bitwise lowest one bit, -1 if not found
+         honeXYZ                            insV=B bitwise highest one bit, -1 if not found
+         lzeroXYZ                           insV=C bitwise lowest zero bit, -1 if not found
+         hzeroXYZ                           insV=E bitwise highest zero bit, -1 if not found
+         onesXYZ                            insV=F bitwise count of one bits
 5      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
@@ -115,8 +123,6 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ftidXYZ                            insV=7 float to integer round down
          ftiuXYZ                            insV=8 float to integer round up
          ftitXYZ                            insV=9 float to integer truncate
-         finfXYZ                            insV=A float is infinity
-         fnanXYZ                            insV=B float is not-a-number
 6      | flpaXYZ     | ALU FlpA Operation | store advanced float op[insV] regY regZ to regX
          fsinXYZ                            insV=0 float sine
          ftanXYZ                            insV=1 float tangent
@@ -127,12 +133,6 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          flogXYZ                            insV=6 float logarithm
          fpowXYZ                            insV=7 float power
          fsqrtXYZ                           insV=8 float square root
-7      | clockXYZ    | Core-Clk Operation | store core clock integer op[insV] regY regZ to regX
-         clkXYZ                             insV=0 integer clock counter
-         rndXYZ                             insV=1 integer clock random
-         freqXYZ                            insV=2 integer clock frequency
-         coreXYZ                            insV=3 integer core info: id, cores, registers, memory
-         timeXYZ                            insV=4 integer global time nanoseconds
 8      | cmpvecXY    | Compare Bit Vector | vector clear regX to 0, set to 1 if regY comp[insV]
          cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
          cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
