@@ -526,10 +526,10 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0xa2: if (true) {
+									newregisters[regX+i] = this.counters[i];
 									if (oldregisters[regZ+i]!=0) {
 										this.counters[i] = oldregisters[regY+i];
 									}
-									newregisters[regX+i] = this.counters[i];
 								} break;
 								case 0xb2: if (true) {
 									if (oldregisters[regY+i]!=0) {
