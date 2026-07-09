@@ -318,5 +318,56 @@ i16i32   011b 0115
 i8i16    011c 0116
 ldi8     011d 56
 ldi8     011e 78
+ldi8     011f 00
+ldi8     0120 01
+lone32   0121 011f
+lone32   0122 0120
+hone32   0123 011f
+hone32   0124 0120
+lzero32  0125 011f
+lzero32  0126 0120
+hzero32  0127 011f
+hzero32  0128 0120
+ones32   0129 011f
+ones32   012a 0120
+lone16   012b 011f
+lone16   012c 0120
+hone16   012d 011f
+hone16   012e 0120
+lzero16  012f 011f
+lzero16  0130 0120
+hzero16  0131 011f
+hzero16  0132 0120
+ones16   0133 011f
+ones16   0134 0120
+lone8    0135 011f
+lone8    0136 0120
+hone8    0137 011f
+hone8    0138 0120
+lzero8   0139 011f
+lzero8   013a 0120
+hzero8   013b 011f
+hzero8   013c 0120
+ones8    013d 011f
+ones8    013e 0120
+ldi8     013f 9E
+ldi8     0140 83
+ldi8     0141 48
+ldi8     0142 37
+addo32   0143 013f 0140
+subb32   0144 0140 013f
+mulo32   0145 0141 0142
+divr32   0146 0141 0142
+addo16   0147 013f 0140
+subb16   0148 0140 013f
+mulo16   0149 0141 0142
+divr16   014a 0141 0142
+addo8    014b 013f 0140
+subb8    014c 0140 013f
+mulo8    014d 0141 0142
+divr8    014e 0141 0142
+ldi      01ff 00000000
+clk      0200 01ff
+nop      ffff
 jmp      0000
 ##       A123456789ABCDEF some data
