@@ -367,7 +367,7 @@ subb8    014c 0140 013f
 mulo8    014d 0141 0142
 divr8    014e 0141 0142
 ldi      01ff 00000000
-clk      0200 01ff
+clk      0200 01ff 01ff
 nop      ffff
 jmp      0000
 ##       A123456789ABCDEF some data
