@@ -220,6 +220,21 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 		
 		public void processinstruction() {
+			for (int i=0;i<counters.length;i++) {
+				counters[i]++;
+			}
+			if (timerstep==0) {
+				for (int i=0;i<timers.length;i++) {
+					timers[i]++;
+				}
+			}
+			if (++timerstep>=5) {
+				timerstep = 0;
+			}
+			for (int i=0;i<randoms.length;i++) {
+				randoms[i].nextLong();
+			}
+			
 			long[] progarray = {programcounter};
 			BitSet progbits = BitSet.valueOf(progarray);
 			long progcounter = programcounter;
@@ -4886,21 +4901,6 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter = 0;
 			}
 			cyclenum++;
-
-			for (int i=0;i<counters.length;i++) {
-				counters[i]++;
-			}
-			if (timerstep==0) {
-				for (int i=0;i<timers.length;i++) {
-					timers[i]++;
-				}
-			}
-			if (++timerstep>=5) {
-				timerstep = 0;
-			}
-			for (int i=0;i<randoms.length;i++) {
-				randoms[i].nextLong();
-			}
 		}
 		
 		public void updateregisters() {
