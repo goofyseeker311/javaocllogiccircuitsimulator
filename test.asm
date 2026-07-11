@@ -366,6 +366,20 @@ addo8    014b 013f 0140
 subb8    014c 0140 013f
 mulo8    014d 0141 0142
 divr8    014e 0141 0142
+ldi8     014f 29
+ldi8     0150 F2
+fmin     0151 014f 0150
+fmax     0152 014f 0150
+fabs     0153 0150
+fmin32   0154 014f 0150
+fmax32   0155 014f 0150
+fabs32   0156 0150
+fmin16   0157 014f 0150
+fmax16   0158 014f 0150
+fabs16   0159 0150
+fmin8    015a 014f 0150
+fmax8    015b 014f 0150
+fabs8    015c 0150
 ldi      01ff 00000000
 clk      0200 01ff 01ff
 nop      ffff

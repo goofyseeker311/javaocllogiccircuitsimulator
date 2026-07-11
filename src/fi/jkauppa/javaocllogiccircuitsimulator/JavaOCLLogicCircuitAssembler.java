@@ -270,6 +270,10 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xc4;
 					} else if (codelineparts[0].equals("fsqrt")) {
 						insT = 0xd4;
+					} else if (codelineparts[0].equals("fmin")) {
+						insT = 0xe4;
+					} else if (codelineparts[0].equals("fmax")) {
+						insT = 0xf4;
 						
 					} else if (codelineparts[0].equals("ff32")) {
 						insT = 0x05;
@@ -301,6 +305,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xd5;
 					} else if (codelineparts[0].equals("ftit")) {
 						insT = 0xe5;
+					} else if (codelineparts[0].equals("fabs")) {
+						insT = 0xf5;
 						
 					} else if (codelineparts[0].equals("cmpez32")) {
 						insT = 0x06;
@@ -456,6 +462,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xda;
 					} else if (codelineparts[0].equals("copyc8")) {
 						insT = 0xea;
+					} else if (codelineparts[0].equals("fmin32")) {
+						insT = 0xfa;
 						
 					} else if (codelineparts[0].equals("lone32")) {
 						insT = 0x0b;
@@ -487,6 +495,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xdb;
 					} else if (codelineparts[0].equals("ones8")) {
 						insT = 0xeb;
+					} else if (codelineparts[0].equals("fmax32")) {
+						insT = 0xfb;
 						
 					} else if (codelineparts[0].equals("fadd32")) {
 						insT = 0x0c;
@@ -518,6 +528,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xdc;
 					} else if (codelineparts[0].equals("fneg8")) {
 						insT = 0xec;
+					} else if (codelineparts[0].equals("fmin16")) {
+						insT = 0xfc;
 						
 					} else if (codelineparts[0].equals("fsin32")) {
 						insT = 0x0d;
@@ -549,6 +561,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xdd;
 					} else if (codelineparts[0].equals("fpow8")) {
 						insT = 0xed;
+					} else if (codelineparts[0].equals("fmax16")) {
+						insT = 0xfd;
 						
 					} else if (codelineparts[0].equals("fasin32")) {
 						insT = 0x0e;
@@ -558,6 +572,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x2e;
 					} else if (codelineparts[0].equals("fsqrt32")) {
 						insT = 0x3e;
+					} else if (codelineparts[0].equals("fabs32")) {
+						insT = 0x4e;
 					} else if (codelineparts[0].equals("fasin16")) {
 						insT = 0x5e;
 					} else if (codelineparts[0].equals("fatan16")) {
@@ -566,6 +582,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x7e;
 					} else if (codelineparts[0].equals("fsqrt16")) {
 						insT = 0x8e;
+					} else if (codelineparts[0].equals("fabs16")) {
+						insT = 0x9e;
 					} else if (codelineparts[0].equals("fasin8")) {
 						insT = 0xae;
 					} else if (codelineparts[0].equals("fatan8")) {
@@ -574,6 +592,10 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xce;
 					} else if (codelineparts[0].equals("fsqrt8")) {
 						insT = 0xde;
+					} else if (codelineparts[0].equals("fabs8")) {
+						insT = 0xee;
+					} else if (codelineparts[0].equals("fmin8")) {
+						insT = 0xfe;
 						
 					} else if (codelineparts[0].equals("fitf32")) {
 						insT = 0x0f;
@@ -605,6 +627,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xdf;
 					} else if (codelineparts[0].equals("ftit8")) {
 						insT = 0xef;
+					} else if (codelineparts[0].equals("fmax8")) {
+						insT = 0xff;
 					}
 					
 					if (codelineparts.length>=2) {
