@@ -241,6 +241,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xd3;
 					} else if (codelineparts[0].equals("ones")) {
 						insT = 0xe3;
+					} else if (codelineparts[0].equals("fexp")) {
+						insT = 0xf3;
 						
 					} else if (codelineparts[0].equals("fadd")) {
 						insT = 0x04;
@@ -369,6 +371,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xd7;
 					} else if (codelineparts[0].equals("fnan8")) {
 						insT = 0xe7;
+					} else if (codelineparts[0].equals("fexp32")) {
+						insT = 0xf7;
 
 					} else if (codelineparts[0].equals("shl32")) {
 						insT = 0x08;
@@ -400,6 +404,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xd8;
 					} else if (codelineparts[0].equals("rotr8")) {
 						insT = 0xe8;
+					} else if (codelineparts[0].equals("fexp16")) {
+						insT = 0xf8;
 
 					} else if (codelineparts[0].equals("add32")) {
 						insT = 0x09;
@@ -431,6 +437,8 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xd9;
 					} else if (codelineparts[0].equals("neg8")) {
 						insT = 0xe9;
+					} else if (codelineparts[0].equals("fexp8")) {
+						insT = 0xf9;
 						
 					} else if (codelineparts[0].equals("addo32")) {
 						insT = 0x0a;

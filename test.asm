@@ -380,6 +380,11 @@ fabs16   0159 0150
 fmin8    015a 014f 0150
 fmax8    015b 014f 0150
 fabs8    015c 0150
+ldi8     015d BF
+fexp     015e 015d
+fexp32   015f 015d
+fexp16   0160 015d
+fexp8    0161 015d
 ldi      01ff 00000000
 clk      0200 01ff 01ff
 nop      ffff
