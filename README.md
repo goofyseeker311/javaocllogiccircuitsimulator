@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore116" src="https://github.com/user-attachments/assets/45e9b284-a4a5-4b15-92dd-6ffe96663dff" />
-<img width="3840" height="2112" alt="muxrisccore116a" src="https://github.com/user-attachments/assets/f41c462c-834b-4cac-9648-862bfbd5b011" />
-<img width="3840" height="2112" alt="muxrisccore116b" src="https://github.com/user-attachments/assets/b91367b5-aec8-49e5-9b51-fbf756e199b8" />
+<img width="3840" height="2112" alt="muxrisccore117" src="https://github.com/user-attachments/assets/2a09d36a-a07e-4d17-9269-378438ded286" />
+<img width="3840" height="2112" alt="muxrisccore117a" src="https://github.com/user-attachments/assets/a28b4c63-1d17-4ee5-bf4f-33a77a58e179" />
+<img width="3840" height="2112" alt="muxrisccore117b" src="https://github.com/user-attachments/assets/0e87fa7a-6d05-4809-96d3-8a0448800576" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -127,6 +127,8 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          fatanXYZ                           insV=B float arctangent
          facosXYZ                           insV=C float arccosine
          fsqrtXYZ                           insV=D float square root
+         fminXYZ                            insV=E float min
+         fmaxXYZ                            insV=F float max
 5      | convXYZ     | ALU Conv Vector    | store conversion op[insV] regY regZ to regX
          ff32                               insV=0 convert 64-bit float to 2x 32-bit float
          f32f16                             insV=1 convert 2x 32-bit float to 4x 16-bit float
@@ -143,6 +145,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ftidXYZ                            insV=C float to integer round down
          ftiuXYZ                            insV=D float to integer round up
          ftitXYZ                            insV=E float to integer truncate
+         fabsXYZ                            insV=F float abs
 6      | cmpvecXY    | Comp Zero Vector   | vector clear regX to 0, set to 1 if regY comp[insV]
          cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
          cmplz32XY                          insV=1 2x 32-bit integer regY less than zero
@@ -223,6 +226,7 @@ A      | intvecXYZ   | ALU Int Vector 2   | vector store integer op[insV] regY r
          mulo8XYZ                           insV=C 8x 8-bit integer multiply overflow
          divr8XYZ                           insV=D 8x 8-bit integer divide remainder
          copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
+         fmin32XYZ                          insV=F 2x 32-bit float min
 B      | intvecXYZ   | ALU Bit Vector 2   | vector store bitwise op[insV] regY regZ to regX
          lone32XYZ                          insV=0 2x 32-bit lowest one bit, -1 if not found
          hone32XYZ                          insV=1 2x 32-bit highest one bit, -1 if not found
@@ -239,6 +243,7 @@ B      | intvecXYZ   | ALU Bit Vector 2   | vector store bitwise op[insV] regY r
          lzero8XYZ                          insV=C 8x 8-bit lowest zero bit, -1 if not found
          hzero8XYZ                          insV=D 8x 8-bit highest zero bit, -1 if not found
          ones8XYZ                           insV=E 8x 8-bit count of one bits
+         fmax32XYZ                          insV=F 2x 32-bit float max
 C      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
          fadd32XYZ                          insV=0 2x 32-bit float add
          fsub32XYZ                          insV=1 2x 32-bit float subtract
@@ -255,6 +260,7 @@ C      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY reg
          fmul8XYZ                           insV=C 8x 8-bit float multiply
          fdiv8XYZ                           insV=D 8x 8-bit float divide
          fneg8XYZ                           insV=E 8x 8-bit float negate
+         fmin16XYZ                          insV=F 4x 16-bit float min
 D      | flpavec1XYZ | ALU FlpA Vector    | store advanced float op[insV] regY regZ to regX
          fsin32XYZ                          insV=0 2x 32-bit float sine
          ftan32XYZ                          insV=1 2x 32-bit float tangent
@@ -271,19 +277,24 @@ D      | flpavec1XYZ | ALU FlpA Vector    | store advanced float op[insV] regY r
          fcos8XYZ                           insV=C 8x 8-bit float cosine
          flog8XYZ                           insV=D 8x 8-bit float logarithm
          fpow8XYZ                           insV=E 8x 8-bit float power
+         fmax16XYZ                          insV=F 4x 16-bit float max
 E      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY regZ to regX
          fasin32XYZ                         insV=0 2x 32-bit float arcsine
          fatan32XYZ                         insV=1 2x 32-bit float arctangent
          facos32XYZ                         insV=2 2x 32-bit float arccosine
          fsqrt32XYZ                         insV=3 2x 32-bit float square root
+         fabs32XYZ                          insV=4 2x 32-bit float abs
          fasin16XYZ                         insV=5 4x 16-bit float arcsine
          fatan16XYZ                         insV=6 4x 16-bit float arctangent
          facos16XYZ                         insV=7 4x 16-bit float arccosine
          fsqrt16XYZ                         insV=8 4x 16-bit float square root
+         fabs16XYZ                          insV=9 4x 16-bit float abs
          fasin8XYZ                          insV=A 8x 8-bit float arcsine
          fatan8XYZ                          insV=B 8x 8-bit float arctangent
          facos8XYZ                          insV=C 8x 8-bit float arccosine
          fsqrt8XYZ                          insV=D 8x 8-bit float square root
+         fabs8XYZ                           insV=E 8x 8-bit float abs
+         fmin8XYZ                           insV=F 8x 8-bit float min
 F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
          fitf32XYZ                          insV=0 2x 32-bit integer to float
          ftin32XYZ                          insV=1 2x 32-bit float to integer nearest
@@ -300,6 +311,7 @@ F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to re
          ftid8XYZ                           insV=C 8x 8-bit float to integer round down
          ftiu8XYZ                           insV=D 8x 8-bit float to integer round up
          ftit8XYZ                           insV=E 8x 8-bit float to integer truncate
+         fmax8XYZ                           insV=F 8x 8-bit float max
 ```
 
 Example looping test assembly code source and binary:
