@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore117" src="https://github.com/user-attachments/assets/2a09d36a-a07e-4d17-9269-378438ded286" />
-<img width="3840" height="2112" alt="muxrisccore117a" src="https://github.com/user-attachments/assets/a28b4c63-1d17-4ee5-bf4f-33a77a58e179" />
-<img width="3840" height="2112" alt="muxrisccore117b" src="https://github.com/user-attachments/assets/0e87fa7a-6d05-4809-96d3-8a0448800576" />
+<img width="3840" height="2112" alt="muxrisccore118" src="https://github.com/user-attachments/assets/f584be9a-83f7-4eb4-8106-8a6aa98ab1ac" />
+<img width="3840" height="2112" alt="muxrisccore118a" src="https://github.com/user-attachments/assets/c00f8cdd-a556-4932-ae79-d09be326bbce" />
+<img width="3840" height="2112" alt="muxrisccore118b" src="https://github.com/user-attachments/assets/cc965144-0a37-4167-9e82-70bd6c53c28a" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -112,6 +112,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          lzeroXYZ                           insV=C bitwise lowest zero bit, -1 if not found
          hzeroXYZ                           insV=D bitwise highest zero bit, -1 if not found
          onesXYZ                            insV=E bitwise count of one bits
+         fexpXYZ                            insV=F float exponential
 4      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
@@ -178,6 +179,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          fcmpez8XY                          insV=C 8x 8-bit float regY equal to regZ
          fcmplz8XY                          insV=D 8x 8-bit float regY less than regZ
          fnan8XYZ                           insV=E 8x 8-bit float is not-a-number
+         fexp32XYZ                          insV=F 2x 32-bit float exponential
 8      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
          shl32XYZ                           insV=0 2x 32-bit shift left regZ bits
          shr32XYZ                           insV=1 2x 32-bit shift right regZ bits
@@ -194,6 +196,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          shar8XYZ                           insV=C 8x 8-bit shift arithmetic right regZ bits
          rotl8XYZ                           insV=D 8x 8-bit rotate left regZ bits
          rotr8XYZ                           insV=E 8x 8-bit rotate right regZ bits
+         fexp16XYZ                          insV=F 4x 16-bit float exponential
 9      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
          add32XYZ                           insV=0 2x 32-bit integer add
          sub32XYZ                           insV=1 2x 32-bit integer subtract
@@ -210,6 +213,7 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          mul8XYZ                            insV=C 8x 8-bit integer multiply
          div8XYZ                            insV=D 8x 8-bit integer divide
          neg8XYZ                            insV=E 8x 8-bit integer negate
+         fexp8XYZ                           insV=F 8x 8-bit float exponential
 A      | intvecXYZ   | ALU Int Vector 2   | vector store integer op[insV] regY regZ to regX
          addo32XYZ                          insV=0 2x 32-bit integer add overflow bit
          subb32XYZ                          insV=1 2x 32-bit integer subtract borrow bit
