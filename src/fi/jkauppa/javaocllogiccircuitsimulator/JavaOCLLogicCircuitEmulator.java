@@ -4927,12 +4927,22 @@ public class JavaOCLLogicCircuitEmulator {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(half));
 		long longsign = (longvalue & 0x80000000)>>>31;
 		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 15;
-		long longfrac = ((longvalue & 0x7FFFFF) + (longvalue & 0x1000))>>>13;
+		long longfrac = (longvalue & 0x7FFFFF)>>>13;
 		if (longexp == -112) { longexp = 0; }
 		else if (longexp == 143) { longexp = 0x1F; }
 		else if (longexp < 0) { longexp = 0; longfrac = 0; }
 		else if (longexp > 31) { longexp = 0x1F; longfrac = 0; }
-		long floatvalue = longsign<<15 | longexp<<10 | longfrac;
+		else {
+			long roundup = (longvalue & 0x1000);
+			if (roundup!=0) {
+				if (longfrac == 0x3FF) {
+					longexp += 1;
+				}
+				longfrac += 1;
+				longfrac &= 0x3FF;
+			}
+		}
+		long floatvalue = (longsign<<15) | (longexp<<10) | longfrac;
 		short shortvalue = (short)floatvalue;
 		return shortvalue;
 	}
@@ -4953,12 +4963,22 @@ public class JavaOCLLogicCircuitEmulator {
 		long longvalue = Integer.toUnsignedLong(Float.floatToRawIntBits(mini));
 		long longsign = (longvalue & 0x80000000)>>>31;
 		long longexp = ((longvalue & 0x7F800000)>>>23) - 127 + 7;
-		long longfrac = ((longvalue & 0x7FFFFF) + (longvalue & 0x80000))>>>20;
+		long longfrac = (longvalue & 0x7FFFFF)>>>20;
 		if (longexp == -120) { longexp = 0; }
 		else if (longexp == 135) { longexp = 0xF; }
 		else if (longexp < 0) { longexp = 0; longfrac = 0; }
 		else if (longexp > 15) { longexp = 0xF; longfrac = 0; }
-		long floatvalue = longsign<<7 | longexp<<3 | longfrac;
+		else {
+			long roundup = (longvalue & 0x80000);
+			if (roundup!=0) {
+				if (longfrac == 0x7) {
+					longexp += 1;
+				}
+				longfrac += 1;
+				longfrac &= 0x7;
+			}
+		}
+		long floatvalue = (longsign<<7) | (longexp<<3) | longfrac;
 		byte minivalue = (byte)floatvalue;
 		return minivalue;
 	}
