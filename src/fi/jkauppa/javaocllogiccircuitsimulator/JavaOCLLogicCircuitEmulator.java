@@ -4930,8 +4930,8 @@ public class JavaOCLLogicCircuitEmulator {
 		long longfrac = (longvalue & 0x7FFFFF)>>>13;
 		if (longexp == -112) { longexp = 0; }
 		else if (longexp == 143) { longexp = 0x1F; }
-		else if (longexp < 0) { longexp = 0; longfrac = 0; }
-		else if (longexp > 31) { longexp = 0x1F; longfrac = 0; }
+		else if (longexp <= 0) { longexp = 0; longfrac = 0; }
+		else if (longexp >= 31) { longexp = 0x1F; longfrac = 0; }
 		else {
 			long roundup = (longvalue & 0x1000);
 			if (roundup!=0) {
@@ -4966,8 +4966,8 @@ public class JavaOCLLogicCircuitEmulator {
 		long longfrac = (longvalue & 0x7FFFFF)>>>20;
 		if (longexp == -120) { longexp = 0; }
 		else if (longexp == 135) { longexp = 0xF; }
-		else if (longexp < 0) { longexp = 0; longfrac = 0; }
-		else if (longexp > 15) { longexp = 0xF; longfrac = 0; }
+		else if (longexp <= 0) { longexp = 0; longfrac = 0; }
+		else if (longexp >= 15) { longexp = 0xF; longfrac = 0; }
 		else {
 			long roundup = (longvalue & 0x80000);
 			if (roundup!=0) {
