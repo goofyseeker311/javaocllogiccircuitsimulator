@@ -23,9 +23,9 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
 <img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
 <img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
-<img width="3840" height="2112" alt="muxrisccore118" src="https://github.com/user-attachments/assets/f584be9a-83f7-4eb4-8106-8a6aa98ab1ac" />
-<img width="3840" height="2112" alt="muxrisccore118a" src="https://github.com/user-attachments/assets/c00f8cdd-a556-4932-ae79-d09be326bbce" />
-<img width="3840" height="2112" alt="muxrisccore118b" src="https://github.com/user-attachments/assets/cc965144-0a37-4167-9e82-70bd6c53c28a" />
+<img width="3840" height="2112" alt="muxrisccore119" src="https://github.com/user-attachments/assets/3a465662-2be8-4e6a-9ffd-03d208ec2e92" />
+<img width="3840" height="2112" alt="muxrisccore119a" src="https://github.com/user-attachments/assets/42f2ce75-be9f-467b-b855-4665e4147275" />
+<img width="3840" height="2112" alt="muxrisccore119b" src="https://github.com/user-attachments/assets/4f2d4674-7eb9-4c61-a2ec-72dcc5ebf105" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -62,8 +62,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ldi32XYZ                           insV=7 load regX with 2x 32-bit constant regYZ
          ldi16XYZ                           insV=8 load regX with 4x 16-bit constant regZ
          ldi8XYZ                            insV=9 load regX with 8x 8-bit constant regZ
-         memrXY                             insV=A load regX from shared memory[regY]
-         memwXY                             insV=B store regX to shared memory[regY]
+         clkXYZ                             insV=A integer clock counter
+         rndXYZ                             insV=B integer clock random
+         coreXYZ                            insV=C integer core info id cores reg mem dw dh freq ver
+         timeXYZ                            insV=D integer global time nanoseconds
+         memrXY                             insV=E load regX from shared memory[regY]
+         memwXY                             insV=F store regX to shared memory[regY]
 1      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
@@ -89,13 +93,12 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          norXYZ                             insV=5 bitwise nor
          xorXYZ                             insV=6 bitwise xor
          xnorXYZ                            insV=7 bitwise xnor
-         i16i8XYZ                           insV=8 convert 4x 16-bit integer to 8x 8-bit integer
-         i8i16XYZ                           insV=9 convert 4x 8-bit integer to 4x 16-bit integer
-         clkXYZ                             insV=A integer clock counter
-         rndXYZ                             insV=B integer clock random
-         freqXYZ                            insV=C integer clock frequency
-         coreXYZ                            insV=D integer core info: id, cores, registers, memory
-         timeXYZ                            insV=E integer global time nanoseconds
+         ii32                               insV=A convert 64-bit integer to 2x 32-bit integer
+         i32i16                             insV=B convert 2x 32-bit integer to 4x 16-bit integer
+         i16i8XYZ                           insV=C convert 4x 16-bit integer to 8x 8-bit integer
+         i32i                               insV=D convert 32-bit integer to 64-bit integer
+         i16i32                             insV=E convert 2x 16-bit integer to 2x 32-bit integer
+         i8i16XYZ                           insV=F convert 4x 8-bit integer to 4x 16-bit integer
 3      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
          subXYZ                             insV=1 integer subtract
@@ -134,13 +137,13 @@ any    | ##          | Any Raw Data       | direct data line 64-bit value
          ff32                               insV=0 convert 64-bit float to 2x 32-bit float
          f32f16                             insV=1 convert 2x 32-bit float to 4x 16-bit float
          f16f8                              insV=2 convert 4x 16-bit float to 8x 8-bit float
-         ii32                               insV=3 convert 64-bit integer to 2x 32-bit integer
-         i32i16                             insV=4 convert 2x 32-bit integer to 4x 16-bit integer
-         f8f16                              insV=5 convert 4x 8-bit float to 4x 16-bit float
-         f16f32                             insV=6 convert 2x 16-bit float to 2x 32-bit float
-         f32f                               insV=7 convert 32-bit float to 64-bit float
-         i32i                               insV=8 convert 32-bit integer to 64-bit integer
-         i16i32                             insV=9 convert 2x 16-bit integer to 2x 32-bit integer
+         f8f16                              insV=3 convert 4x 8-bit float to 4x 16-bit float
+         f16f32                             insV=4 convert 2x 16-bit float to 2x 32-bit float
+         f32f                               insV=5 convert 32-bit float to 64-bit float
+         fexpXYZ                            insV=6 float natural logarithm
+         fexp32XYZ                          insV=7 2x 32-bit float natural logarithm
+         fexp16XYZ                          insV=8 4x 16-bit float natural logarithm
+         fexp8XYZ                           insV=9 8x 8-bit float natural logarithm
          fitfXYZ                            insV=A integer to float
          ftinXYZ                            insV=B float to integer nearest
          ftidXYZ                            insV=C float to integer round down
