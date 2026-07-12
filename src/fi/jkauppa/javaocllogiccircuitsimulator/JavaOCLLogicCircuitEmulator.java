@@ -12,6 +12,7 @@ import java.util.BitSet;
 import java.util.Random;
 
 public class JavaOCLLogicCircuitEmulator {
+	private long systemnanotime = System.nanoTime();;
 	private RiscChip riscchip = null;
 	public static void main(String[] arg) {
 		System.out.println("init.");
@@ -114,8 +115,11 @@ public class JavaOCLLogicCircuitEmulator {
 		public static final int memoryamount = 65536*256;
 		public static final int cartamount = 65536*256;
 		public static final int bootamount = 65536*256;
-		public static final int displayamount = 512*512;
+		public static final int displaywidth = 512;
+		public static final int displayheight = 512;
+		public static final int displayamount = displaywidth*displayheight;
 		public static final int registeramount = 65536;
+		public static final int coreversion = 0;
 		public long[] memoryram = new long[memoryamount];
 		public long[] cartram = new long[cartamount];
 		public long[] bootrom = new long[bootamount];
@@ -201,7 +205,7 @@ public class JavaOCLLogicCircuitEmulator {
 		private long[] newregisters = new long[RiscChip.registeramount];
 		private long[] oldregisters = new long[RiscChip.registeramount];
 		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
-		private long[] timers = {0, 0, 0, 0, 0, 0, 0 ,0};
+		private long[] timers = {systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime};
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private int timerstep = 0;
 		private long instructionstate = 0L;
@@ -342,6 +346,43 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = regZ8;
 								} break;
 								case 0xa0: if (true) {
+									newregisters[regX+i] = this.counters[i];
+									if (oldregisters[regZ+i]!=0) {
+										this.counters[i] = oldregisters[regY+i];
+									}
+								} break;
+								case 0xb0: if (true) {
+									if (oldregisters[regY+i]!=0) {
+										this.randoms[i].setSeed(oldregisters[regZ+i]);
+									}
+									newregisters[regX+i] = this.randoms[i].nextLong();
+								} break;
+								case 0xc0: if (true) {
+									if (oldregisters[regY+i]==1) {
+										newregisters[regX+i] = riscchip.risccores.length;
+									} else if (oldregisters[regY+i]==2) {
+										newregisters[regX+i] = RiscChip.registeramount;
+									} else if (oldregisters[regY+i]==3) {
+										newregisters[regX+i] = RiscChip.memoryamount;
+									} else if (oldregisters[regY+i]==4) {
+										newregisters[regX+i] = RiscChip.displaywidth;
+									} else if (oldregisters[regY+i]==5) {
+										newregisters[regX+i] = RiscChip.displayheight;
+									} else if (oldregisters[regY+i]==6) {
+										newregisters[regX+i] = riscchip.clockfrequency;
+									} else if (oldregisters[regY+i]==7) {
+										newregisters[regX+i] = RiscChip.coreversion;
+									} else {
+										newregisters[regX+i] = corenum;
+									}
+								} break;
+								case 0xd0: if (true) {
+									if (oldregisters[regZ+i]!=0) {
+										this.timers[i] = oldregisters[regY+i];
+									}
+									newregisters[regX+i] = this.timers[i];
+								} break;
+								case 0xe0: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -362,7 +403,7 @@ public class JavaOCLLogicCircuitEmulator {
 										newregisters[regX+i] = riscchip.memoryram[((int)oldregisters[regY])+i];
 									}
 								} break;
-								case 0xb0: if (true) {
+								case 0xf0: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
 									BitSet regybits = BitSet.valueOf(regyaddr);
 									boolean regybit63 = regybits.get(63);
@@ -508,7 +549,25 @@ public class JavaOCLLogicCircuitEmulator {
 								case 0x72: if (true) {
 									newregisters[regX+i] = ~(oldregisters[regY+i] ^ oldregisters[regZ+i]);
 								} break;
-								case 0x82: if (true) {
+								case 0xa2: if (true) {
+									long longvalue1 = oldregisters[regY+i];
+									longbytes.putInt(0, (int)longvalue1).rewind();
+									longbytes.putInt(4, (int)longvalue1).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xb2: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									int intvalue2 = longbytes.getInt(4);
+									longbytes.putLong(0L).rewind();
+									longbytes.putShort(0, (short)intvalue1).rewind();
+									longbytes.putShort(2, (short)intvalue1).rewind();
+									longbytes.putShort(4, (short)intvalue2).rewind();
+									longbytes.putShort(6, (short)intvalue2).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xc2: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									int shortvalue1 = longbytes.getShort(0);
@@ -526,7 +585,25 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.put(7, (byte)shortvalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x92: if (true) {
+								case 0xd2: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									int intvalue1 = longbytes.getInt(0);
+									longbytes.putLong(0L).rewind();
+									longbytes.putLong(0, (long)intvalue1).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xe2: if (true) {
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									int bytevalue1 = longbytes.getShort(0);
+									int bytevalue2 = longbytes.getShort(4);
+									longbytes.putLong(0L).rewind();
+									longbytes.putInt(0, (int)bytevalue1).rewind();
+									longbytes.putInt(4, (int)bytevalue2).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0xf2: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									int bytevalue1 = longbytes.get(0);
@@ -539,52 +616,6 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putShort(4, (short)bytevalue3).rewind();
 									longbytes.putShort(6, (short)bytevalue4).rewind();
 									newregisters[regX+i] = longbytes.getLong();
-								} break;
-								case 0xa2: if (true) {
-									newregisters[regX+i] = this.counters[i];
-									if (oldregisters[regZ+i]!=0) {
-										this.counters[i] = oldregisters[regY+i];
-									}
-								} break;
-								case 0xb2: if (true) {
-									if (oldregisters[regY+i]!=0) {
-										this.randoms[i].setSeed(oldregisters[regZ+i]);
-									}
-									newregisters[regX+i] = this.randoms[i].nextLong();
-								} break;
-								case 0xc2: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										riscchip.clockfrequency = oldregisters[regY+i];
-									}
-									if (riscchip.clockfrequency==0) {
-										riscchip.clockfrequency = 100000000L;
-									}
-									newregisters[regX+i] = riscchip.clockfrequency;
-								} break;
-								case 0xd2: if (true) {
-									if (oldregisters[regY+i]==1) {
-										newregisters[regX+i] = riscchip.risccores.length;
-									} else if (oldregisters[regY+i]==2) {
-										newregisters[regX+i] = RiscChip.registeramount;
-									} else if (oldregisters[regY+i]==3) {
-										newregisters[regX+i] = RiscChip.memoryamount;
-									} else if (oldregisters[regY+i]==4) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==5) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==6) {
-										newregisters[regX+i] = 0;
-									} else if (oldregisters[regY+i]==7) {
-										newregisters[regX+i] = 0;
-									} else {
-										newregisters[regX+i] = corenum;
-									}
-								} break;
-								case 0xe2: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										this.timers[i] = oldregisters[regY+i];
-									}
-									newregisters[regX+i] = this.timers[i];
 								} break;
 								
 								case 0x03: if (true) {
@@ -890,24 +921,6 @@ public class JavaOCLLogicCircuitEmulator {
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x35: if (true) {
-									long longvalue1 = oldregisters[regY+i];
-									longbytes.putInt(0, (int)longvalue1).rewind();
-									longbytes.putInt(4, (int)longvalue1).rewind();
-									newregisters[regX+i] = longbytes.getLong();
-								} break;
-								case 0x45: if (true) {
-									longbytes.clear();
-									longbytes.putLong(oldregisters[regY+i]).rewind();
-									int intvalue1 = longbytes.getInt(0);
-									int intvalue2 = longbytes.getInt(4);
-									longbytes.putLong(0L).rewind();
-									longbytes.putShort(0, (short)intvalue1).rewind();
-									longbytes.putShort(2, (short)intvalue1).rewind();
-									longbytes.putShort(4, (short)intvalue2).rewind();
-									longbytes.putShort(6, (short)intvalue2).rewind();
-									newregisters[regX+i] = longbytes.getLong();
-								} break;
-								case 0x55: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									float bytevalue1 = minitofloat(longbytes.get(0));
@@ -921,7 +934,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putShort(6, floattohalf(bytevalue4)).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x65: if (true) {
+								case 0x45: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									float shortvalue1 = halftofloat(longbytes.getShort(0));
@@ -931,7 +944,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putFloat(4, shortvalue2).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x75: if (true) {
+								case 0x55: if (true) {
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									float floatvalue1 = longbytes.getFloat(0);
@@ -939,22 +952,77 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putDouble(0, (double)floatvalue1).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
-								case 0x85: if (true) {
+								case 0x65: if (true) {
+									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									int intvalue1 = longbytes.getInt(0);
+									double doublevalue1a = longbytes.getDouble(0);
 									longbytes.putLong(0L).rewind();
-									longbytes.putLong(0, (long)intvalue1).rewind();
+									double doublevaluea = Math.log(doublevalue1a);
+									longbytes.putDouble(0, doublevaluea).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x75: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									float floatvalue1a = longbytes.getFloat(0);
+									float floatvalue1b = longbytes.getFloat(4);
+									longbytes.putLong(0L).rewind();
+									float floatvaluea = (float)(Math.log(floatvalue1a));
+									float floatvalueb = (float)(Math.log(floatvalue1b));
+									longbytes.putFloat(0, floatvaluea).rewind();
+									longbytes.putFloat(4, floatvalueb).rewind();
+									newregisters[regX+i] = longbytes.getLong();
+								} break;
+								case 0x85: if (true) {
+									newregisters[regX+i] = 0;
+									longbytes.clear();
+									longbytes.putLong(oldregisters[regY+i]).rewind();
+									float floatvalue1a = halftofloat(longbytes.getShort(0));
+									float floatvalue1b = halftofloat(longbytes.getShort(2));
+									float floatvalue1c = halftofloat(longbytes.getShort(4));
+									float floatvalue1d = halftofloat(longbytes.getShort(6));
+									longbytes.putLong(0L).rewind();
+									float floatvaluea = (float)(Math.log(floatvalue1a));
+									float floatvalueb = (float)(Math.log(floatvalue1b));
+									float floatvaluec = (float)(Math.log(floatvalue1c));
+									float floatvalued = (float)(Math.log(floatvalue1d));
+									longbytes.putShort(0, floattohalf(floatvaluea)).rewind();
+									longbytes.putShort(2, floattohalf(floatvalueb)).rewind();
+									longbytes.putShort(4, floattohalf(floatvaluec)).rewind();
+									longbytes.putShort(6, floattohalf(floatvalued)).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0x95: if (true) {
+									newregisters[regX+i] = 0;
 									longbytes.clear();
 									longbytes.putLong(oldregisters[regY+i]).rewind();
-									int bytevalue1 = longbytes.getShort(0);
-									int bytevalue2 = longbytes.getShort(4);
+									float floatvalue1a = minitofloat(longbytes.get(0));
+									float floatvalue1b = minitofloat(longbytes.get(1));
+									float floatvalue1c = minitofloat(longbytes.get(2));
+									float floatvalue1d = minitofloat(longbytes.get(3));
+									float floatvalue1e = minitofloat(longbytes.get(4));
+									float floatvalue1f = minitofloat(longbytes.get(5));
+									float floatvalue1g = minitofloat(longbytes.get(6));
+									float floatvalue1h = minitofloat(longbytes.get(7));
 									longbytes.putLong(0L).rewind();
-									longbytes.putInt(0, (int)bytevalue1).rewind();
-									longbytes.putInt(4, (int)bytevalue2).rewind();
+									float floatvaluea = (float)(Math.log(floatvalue1a));
+									float floatvalueb = (float)(Math.log(floatvalue1b));
+									float floatvaluec = (float)(Math.log(floatvalue1c));
+									float floatvalued = (float)(Math.log(floatvalue1d));
+									float floatvaluee = (float)(Math.log(floatvalue1e));
+									float floatvaluef = (float)(Math.log(floatvalue1f));
+									float floatvalueg = (float)(Math.log(floatvalue1g));
+									float floatvalueh = (float)(Math.log(floatvalue1h));
+									longbytes.put(0, floattomini(floatvaluea)).rewind();
+									longbytes.put(1, floattomini(floatvalueb)).rewind();
+									longbytes.put(2, floattomini(floatvaluec)).rewind();
+									longbytes.put(3, floattomini(floatvalued)).rewind();
+									longbytes.put(4, floattomini(floatvaluee)).rewind();
+									longbytes.put(5, floattomini(floatvaluef)).rewind();
+									longbytes.put(6, floattomini(floatvalueg)).rewind();
+									longbytes.put(7, floattomini(floatvalueh)).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
 								case 0xa5: if (true) {

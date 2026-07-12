@@ -144,10 +144,18 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x40;
 					} else if (codelineparts[0].equals("jmpc8")) {
 						insT = 0x50;
-					} else if (codelineparts[0].equals("memr")) {
+					} else if (codelineparts[0].equals("clk")) {
 						insT = 0xa0;
-					} else if (codelineparts[0].equals("memw")) {
+					} else if (codelineparts[0].equals("rnd")) {
 						insT = 0xb0;
+					} else if (codelineparts[0].equals("core")) {
+						insT = 0xc0;
+					} else if (codelineparts[0].equals("time")) {
+						insT = 0xd0;
+					} else if (codelineparts[0].equals("memr")) {
+						insT = 0xe0;
+					} else if (codelineparts[0].equals("memw")) {
+						insT = 0xf0;
 						
 					} else if (codelineparts[0].equals("cmpez")) {
 						insT = 0x01;
@@ -196,20 +204,18 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x62;
 					} else if (codelineparts[0].equals("xnor")) {
 						insT = 0x72;
-					} else if (codelineparts[0].equals("i16i8")) {
-						insT = 0x82;
-					} else if (codelineparts[0].equals("i8i16")) {
-						insT = 0x92;
-					} else if (codelineparts[0].equals("clk")) {
+					} else if (codelineparts[0].equals("ii32")) {
 						insT = 0xa2;
-					} else if (codelineparts[0].equals("rnd")) {
+					} else if (codelineparts[0].equals("i32i16")) {
 						insT = 0xb2;
-					} else if (codelineparts[0].equals("freq")) {
+					} else if (codelineparts[0].equals("i16i8")) {
 						insT = 0xc2;
-					} else if (codelineparts[0].equals("core")) {
+					} else if (codelineparts[0].equals("i32i")) {
 						insT = 0xd2;
-					} else if (codelineparts[0].equals("time")) {
+					} else if (codelineparts[0].equals("i16i32")) {
 						insT = 0xe2;
+					} else if (codelineparts[0].equals("i8i16")) {
+						insT = 0xf2;
 						
 					} else if (codelineparts[0].equals("add")) {
 						insT = 0x03;
@@ -283,19 +289,19 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0x15;
 					} else if (codelineparts[0].equals("f16f8")) {
 						insT = 0x25;
-					} else if (codelineparts[0].equals("ii32")) {
-						insT = 0x35;
-					} else if (codelineparts[0].equals("i32i16")) {
-						insT = 0x45;
 					} else if (codelineparts[0].equals("f8f16")) {
-						insT = 0x55;
+						insT = 0x35;
 					} else if (codelineparts[0].equals("f16f32")) {
-						insT = 0x65;
+						insT = 0x45;
 					} else if (codelineparts[0].equals("f32f")) {
+						insT = 0x55;
+					} else if (codelineparts[0].equals("fln")) {
+						insT = 0x65;
+					} else if (codelineparts[0].equals("fln32")) {
 						insT = 0x75;
-					} else if (codelineparts[0].equals("i32i")) {
+					} else if (codelineparts[0].equals("fln16")) {
 						insT = 0x85;
-					} else if (codelineparts[0].equals("i16i32")) {
+					} else if (codelineparts[0].equals("fln8")) {
 						insT = 0x95;
 					} else if (codelineparts[0].equals("fitf")) {
 						insT = 0xa5;

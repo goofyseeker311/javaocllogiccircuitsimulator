@@ -385,6 +385,11 @@ fexp     015e 015d
 fexp32   015f 015d
 fexp16   0160 015d
 fexp8    0161 015d
+ldi8     0162 3F
+fln      0163 0162
+fln32    0164 0162
+fln16    0165 0162
+fln8     0166 0162
 ldi      01ff 00000000
 clk      0200 01ff 01ff
 nop      ffff
