@@ -40,23 +40,12 @@ any    | Raw Data                         | any raw data
          ldi, ldi32, ldi16, ldi8            insV=6-9 load regX 1x32/2x32/4x16/8x8-bit constant regYZ
          clk, rnd, core, time               insV=A-D integer counter, random, core info, global time
          memr, memw                         insV=E-F load/store regX from/to shared memory[regY]
-1      | convXYZ     | ALU Conv Vector    | store conversion operation regY regZ to regX
-         ii32                               insV=0 convert 64-bit integer to 2x 32-bit integer
-         i32i16                             insV=1 convert 2x 32-bit integer to 4x 16-bit integer
-         i16i8XYZ                           insV=2 convert 4x 16-bit integer to 8x 8-bit integer
-         i32i                               insV=3 convert 32-bit integer to 64-bit integer
-         i16i32                             insV=4 convert 2x 16-bit integer to 2x 32-bit integer
-         i8i16XYZ                           insV=5 convert 4x 8-bit integer to 4x 16-bit integer
-         ff32                               insV=6 convert 64-bit float to 2x 32-bit float
-         f32f16                             insV=7 convert 2x 32-bit float to 4x 16-bit float
-         f16f8                              insV=8 convert 4x 16-bit float to 8x 8-bit float
-         f8f16                              insV=9 convert 4x 8-bit float to 4x 16-bit float
-         f16f32                             insV=A convert 2x 16-bit float to 2x 32-bit float
-         f32f                               insV=B convert 32-bit float to 64-bit float
-         fitfXYZ                            insV=C convert integer to float
-         fitf32XYZ                          insV=D convert 2x 32-bit integer to float
-         fitf16XYZ                          insV=E convert 4x 16-bit integer to float
-         fitf8XYZ                           insV=F convert 8x 8-bit integer to float
+1      | ALU Conv Vector                  | store conversion operation regY regZ to regX
+         ii32, i32i16, i16i8                insV=0-2 integer 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
+         i32i, i16i32, i8i16                insV=3-5 integer 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
+         ff32, f32f16, f16f8                insV=0-2 float 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
+         f32f, f16f32, f8f16                insV=3-5 float 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
+         fitf, fitf32, fitf16, fitf8        insV=C-F integer to float 1x64b, 2x32b, 4x16b, 8x8b
 2      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
          copy, not, or, and                 insV=0-3 bitwise copy/not/or/and
          nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor
