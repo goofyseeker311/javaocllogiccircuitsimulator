@@ -87,23 +87,11 @@ any | Raw Data                            | any raw data
       mul, mul32, mul16, mul8               insV=8-B integer multiply 1x64b, 2x32b, 4x16b, 8x8b
       div, div32, div16, div8               insV=C-F integer divide 1x64b, 2x32b, 4x16b, 8x8b
 A   | ALU Integer                         | store integer operation regY regZ to regX
-      addoXYZ                               insV=5 integer add overflow bit
-      addo32XYZ                             insV=0 2x 32-bit integer add overflow bit
-      addo16XYZ                             insV=5 4x 16-bit integer add overflow bit
-      addo8XYZ                              insV=A 8x 8-bit integer add overflow bit
-      subbXYZ                               insV=6 integer subtract borrow bit
-      subb32XYZ                             insV=1 2x 32-bit integer subtract borrow bit
-      subb16XYZ                             insV=6 4x 16-bit integer subtract borrow bit
-      subb8XYZ                              insV=B 8x 8-bit integer subtract borrow bit
-      muloXYZ                               insV=7 integer multiply overflow
-      mulo32XYZ                             insV=2 2x 32-bit integer multiply overflow
-      mulo16XYZ                             insV=7 4x 16-bit integer multiply overflow
-      mulo8XYZ                              insV=C 8x 8-bit integer multiply overflow
-      divrXYZ                               insV=8 integer divide remainder
-      divr32XYZ                             insV=3 2x 32-bit integer divide remainder
-      divr16XYZ                             insV=8 4x 16-bit integer divide remainder
-      divr8XYZ                              insV=D 8x 8-bit integer divide remainder
-9   | flpXYZ      | ALU Float             | store float op[insV] regY regZ to regX
+      addo, addo32, addo16, addo8           insV=0-3 int add overflow 1x64b, 2x32b, 4x16b, 8x8b
+      subb, subb32, subb16, subb8           insV=4-7 int subtract borrow 1x64b, 2x32b, 4x16b, 8x8b
+      mulo, mulo32, mulo16, mulo8           insV=8-B int multiply overflow 1x64b, 2x32b, 4x16b, 8x8b
+      divr, divr32, divr16, divr8           insV=C-F int divide remainder 1x64b, 2x32b, 4x16b, 8x8b
+B   | ALU Float                           | store float op[insV] regY regZ to regX
       faddXYZ                               insV=0 float add
       fsubXYZ                               insV=1 float subtract
       fmulXYZ                               insV=2 float multiply
@@ -118,7 +106,7 @@ A   | ALU Integer                         | store integer operation regY regZ to
       fatanXYZ                              insV=B float arctangent
       facosXYZ                              insV=C float arccosine
       fsqrtXYZ                              insV=D float square root
-5   | convXYZ     | ALU Float             | store conversion op[insV] regY regZ to regX
+C   | ALU Float                           | store conversion op[insV] regY regZ to regX
       fexpXYZ                               insV=6 float natural logarithm
       fexp32XYZ                             insV=7 2x 32-bit float natural logarithm
       fexp16XYZ                             insV=8 4x 16-bit float natural logarithm
@@ -133,7 +121,7 @@ A   | ALU Integer                         | store integer operation regY regZ to
       fexp8XYZ                              insV=F 8x 8-bit float exponential
       fmax32XYZ                             insV=F 2x 32-bit float max
       fmin32XYZ                             insV=F 2x 32-bit float min
-C   | flpvecXYZ   | ALU Flp Vector        | vector store float op[insV] regY regZ to regX
+D   | ALU Float                           | store float operation regY regZ to regX
       fadd32XYZ                             insV=0 2x 32-bit float add
       fsub32XYZ                             insV=1 2x 32-bit float subtract
       fmul32XYZ                             insV=2 2x 32-bit float multiply
@@ -150,7 +138,7 @@ C   | flpvecXYZ   | ALU Flp Vector        | vector store float op[insV] regY reg
       fdiv8XYZ                              insV=D 8x 8-bit float divide
       fneg8XYZ                              insV=E 8x 8-bit float negate
       fmin16XYZ                             insV=F 4x 16-bit float min
-D   | flpavec1XYZ | ALU FlpA Vector       | store advanced float op[insV] regY regZ to regX
+D   | ALU Float                           | store float operation regY regZ to regX
       fsin32XYZ                             insV=0 2x 32-bit float sine
       ftan32XYZ                             insV=1 2x 32-bit float tangent
       fcos32XYZ                             insV=2 2x 32-bit float cosine
@@ -167,7 +155,7 @@ D   | flpavec1XYZ | ALU FlpA Vector       | store advanced float op[insV] regY r
       flog8XYZ                              insV=D 8x 8-bit float logarithm
       fpow8XYZ                              insV=E 8x 8-bit float power
       fmax16XYZ                             insV=F 4x 16-bit float max
-E   | flpavec2XYZ | ALU FlpA Vector 2     | store advanced float op[insV] regY regZ to regX
+E   | ALU Float                           | store float operation regY regZ to regX
       fasin32XYZ                            insV=0 2x 32-bit float arcsine
       fatan32XYZ                            insV=1 2x 32-bit float arctangent
       facos32XYZ                            insV=2 2x 32-bit float arccosine
