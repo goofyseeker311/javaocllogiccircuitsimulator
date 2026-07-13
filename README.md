@@ -50,7 +50,7 @@ any | Raw Data                            | any raw data
       cmpl, cmpl32, cmpl16, cmpl8           insV=4-7 int regY less regZ
       fcmpe, fcmpe32, fcmpe16, fcmpe8       insV=8-B float regY equal regZ
       fcmpl, fcmpl32, fcmpl16, fcmpl8       insV=C-F float regY less regZ
-3   | ALU Compare Value                   | set 1 if comp regY regZ 1x64b, 2x32b, 4x16b, 8x8b
+3   | ALU Compare Special                 | set 1 if comp regY regZ 1x64b, 2x32b, 4x16b, 8x8b
       neg, neg32, neg16, neg8               insV=0-3 integer negate
       copyc, copyc32, copyc16, copyc8       insV=4-7 conditional if regZ
       finf, finf32, finf16, finf8           insV=8-B float is infinity
