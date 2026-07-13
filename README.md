@@ -104,6 +104,7 @@ D   | ALU Float                           | float regY to regX
       fln, fln32, fln16, fln8               insV=0-3 float natural log
       fexp, fexp32, fexp16, fexp8           insV=4-7 float exponential
       fabs, fabs32, fabs16, fabs8           insV=8-B float abs
+      ffact, ffact32, ffact16, ffact8       insV=C-F float factorial
 E   | ALU Conversion                      | conversion regY to regX
       ftin, ftin32, ftin16, ftin8           insV=0-3 float to int nearest
       ftid, ftid32, ftid16, ftid8           insV=4-7 float to int down
