@@ -51,28 +51,34 @@ any    | Raw Data                         | any raw data
          ftid, ftid32, ftid16, ftid8        insV=4-7 float to int down 1x64b, 2x32b, 4x16b, 8x8b
          ftiu, ftiu32, ftiu16, ftiu8        insV=8-B float to int up 1x64b, 2x32b, 4x16b, 8x8b
          ftit, ftit32, ftit16, ftit8        insV=8-B float to int truncate 1x64b, 2x32b, 4x16b, 8x8b
-3      | ALU Bit Operation, Float Inf/NaN | store bitwise operation, inf/nan regY regZ op to regX
+3      | ALU Bitwise                      | store bitwise operation regY regZ op to regX
          copy, not, or, and                 insV=0-3 bitwise copy/not/or/and
          nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor
-         finf, finf32, finf16, finf8        insV=8-B float is infinity 1x64b, 2x32b, 4x16b, 8x8b
-         fnan, fnan32, fnan16, fnan8        insV=C-F float is not-a-number 1x64b, 2x32b, 4x16b, 8x8b
-4      | ALU Compare Zero                 | clear regX to 0, set to 1 if regY compare regZ
+         shl, shl32, shl16, shl8            insV=8-B shift left regZ 1x64b, 2x32b, 4x16b, 8x8b
+         shr, shr32, shr16, shr8            insV=C-F shift right regZ 1x64b, 2x32b, 4x16b, 8x8b
+4      | ALU Bitwise                      | store bitwise operation regY regZ op to regX
+         shar, shar32, shar16, shar8        insV=0-3 arit-shift right regZ 1x64b, 2x32b, 4x16b, 8x8b
+         rotl, rotl32, rotl16, rotl8        insV=4-7 rotate left regZ 1x64b, 2x32b, 4x16b, 8x8b
+         rotr, rotr32, rotr16, rotr8        insV=8-B rotate right regZ 1x64b, 2x32b, 4x16b, 8x8b
+         ones, ones32, ones16, ones8        insV=C-F count of one bits 1x64b, 2x32b, 4x16b, 8x8b
+5      | ALU Bitwise                      | store bitwise operation regY regZ op to regX
+         lone, lone32, lone16, lone8        insV=0-3 lowest one bit or -1 1x64b, 2x32b, 4x16b, 8x8b
+         hone, hone32, hone16, hone8        insV=4-7 highest one bit or -1 1x64b, 2x32b, 4x16b, 8x8b
+         lzero, lzero32, lzero16, lzero8    insV=8-B lowest zero bit or -1 1x64b, 2x32b, 4x16b, 8x8b
+         hzero, hzero32, hzero16, hzero8    insV=C-F highest zero bit or -1 1x64b, 2x32b, 4x16b, 8x8b
+6      | ALU Compare Zero                 | clear regX to 0, set to 1 if regY compare zero
          cmpez                              insV=0-3 int regY equal zero 1x64b, 2x32b, 4x16b, 8x8b
          cmplz                              insV=4-7 int regY less zero 1x64b, 2x32b, 4x16b, 8x8b
          fcmpez                             insV=8-B float regY equal zero 1x64b, 2x32b, 4x16b, 8x8b
          fcmplz                             insV=C-F float regY less zero 1x64b, 2x32b, 4x16b, 8x8b
-5      | ALU Compare Values               | clear regX to 0, set to 1 if regY compare regZ
+7      | ALU Compare Values               | clear regX to 0, set to 1 if regY compare regZ
          cmpe                               insV=0-3 int regY equal regZ 1x64b, 2x32b, 4x16b, 8x8b
          cmpl                               insV=4-7 int regY less regZ 1x64b, 2x32b, 4x16b, 8x8b
          fcmpe                              insV=8-B float regY equal regZ 1x64b, 2x32b, 4x16b, 8x8b
          fcmpl                              insV=C-F float regY less regZ 1x64b, 2x32b, 4x16b, 8x8b
-6      | ALU Compare Values               | clear regX to 0, set to 1 if regY compare regZ
-         shlXYZ                             insV=A bitwise shift left regZ bits
-         shrXYZ                             insV=B bitwise shift right regZ bits
-         sharXYZ                            insV=C bitwise shift arithmetic right regZ bits
-         rotlXYZ                            insV=D bitwise rotate left regZ bits
-         rotrXYZ                            insV=E bitwise rotate right regZ bits
-7      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
+8      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
+         finf, finf32, finf16, finf8        insV=8-B float is infinity 1x64b, 2x32b, 4x16b, 8x8b
+         fnan, fnan32, fnan16, fnan8        insV=C-F float is not-a-number 1x64b, 2x32b, 4x16b, 8x8b
          addXYZ                             insV=0 integer add
          subXYZ                             insV=1 integer subtract
          mulXYZ                             insV=2 integer multiply
@@ -83,13 +89,8 @@ any    | Raw Data                         | any raw data
          muloXYZ                            insV=7 integer multiply overflow
          divrXYZ                            insV=8 integer divide remainder
          copycXYZ                           insV=9 bitwise conditional copy if regZ is not zero
-         loneXYZ                            insV=A bitwise lowest one bit, -1 if not found
-         honeXYZ                            insV=B bitwise highest one bit, -1 if not found
-         lzeroXYZ                           insV=C bitwise lowest zero bit, -1 if not found
-         hzeroXYZ                           insV=D bitwise highest zero bit, -1 if not found
-         onesXYZ                            insV=E bitwise count of one bits
          fexpXYZ                            insV=F float exponential
-8      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
+9      | flpXYZ      | ALU Flp Operation  | store float op[insV] regY regZ to regX
          faddXYZ                            insV=0 float add
          fsubXYZ                            insV=1 float subtract
          fmulXYZ                            insV=2 float multiply
@@ -115,21 +116,6 @@ any    | Raw Data                         | any raw data
          fabsXYZ                            insV=F float abs
          fexp32XYZ                          insV=F 2x 32-bit float exponential
 8      | bitvecXYZ   | ALU Bit Vector     | vector store bitwise op[insV] regY regZ to regX
-         shl32XYZ                           insV=0 2x 32-bit shift left regZ bits
-         shr32XYZ                           insV=1 2x 32-bit shift right regZ bits
-         shar32XYZ                          insV=2 2x 32-bit shift arithmetic right regZ bits
-         rotl32XYZ                          insV=3 2x 32-bit rotate left regZ bits
-         rotr32XYZ                          insV=4 2x 32-bit rotate right regZ bits
-         shl16XYZ                           insV=5 4x 16-bit shift left regZ bits
-         shr16XYZ                           insV=6 4x 16-bit shift right regZ bits
-         shar16XYZ                          insV=7 4x 16-bit shift arithmetic right regZ bits
-         rotl16XYZ                          insV=8 4x 16-bit rotate left regZ bits
-         rotr16XYZ                          insV=9 4x 16-bit rotate right regZ bits
-         shl8XYZ                            insV=A 8x 8-bit shift left regZ bits
-         shr8XYZ                            insV=B 8x 8-bit shift right regZ bits
-         shar8XYZ                           insV=C 8x 8-bit shift arithmetic right regZ bits
-         rotl8XYZ                           insV=D 8x 8-bit rotate left regZ bits
-         rotr8XYZ                           insV=E 8x 8-bit rotate right regZ bits
          fexp16XYZ                          insV=F 4x 16-bit float exponential
 9      | intvecXYZ   | ALU Int Vector     | vector store integer op[insV] regY regZ to regX
          add32XYZ                           insV=0 2x 32-bit integer add
@@ -166,21 +152,6 @@ A      | intvecXYZ   | ALU Int Vector 2   | vector store integer op[insV] regY r
          copyc8XYZ                          insV=E 8x 8-bit conditional copy if regZ not zero
          fmin32XYZ                          insV=F 2x 32-bit float min
 B      | intvecXYZ   | ALU Bit Vector 2   | vector store bitwise op[insV] regY regZ to regX
-         lone32XYZ                          insV=0 2x 32-bit lowest one bit, -1 if not found
-         hone32XYZ                          insV=1 2x 32-bit highest one bit, -1 if not found
-         lzero32XYZ                         insV=2 2x 32-bit lowest zero bit, -1 if not found
-         hzero32XYZ                         insV=3 2x 32-bit highest zero bit, -1 if not found
-         ones32XYZ                          insV=4 2x 32-bit count of one bits
-         lone16XYZ                          insV=5 4x 16-bit lowest one bit, -1 if not found
-         hone16XYZ                          insV=6 4x 16-bit highest one bit, -1 if not found
-         lzero16XYZ                         insV=7 4x 16-bit lowest zero bit, -1 if not found
-         hzero16XYZ                         insV=8 4x 16-bit highest zero bit, -1 if not found
-         ones16XYZ                          insV=9 4x 16-bit count of one bits
-         lone8XYZ                           insV=A 8x 8-bit lowest one bit, -1 if not found
-         hone8XYZ                           insV=B 8x 8-bit highest one bit, -1 if not found
-         lzero8XYZ                          insV=C 8x 8-bit lowest zero bit, -1 if not found
-         hzero8XYZ                          insV=D 8x 8-bit highest zero bit, -1 if not found
-         ones8XYZ                           insV=E 8x 8-bit count of one bits
          fmax32XYZ                          insV=F 2x 32-bit float max
 C      | flpvecXYZ   | ALU Flp Vector     | vector store float op[insV] regY regZ to regX
          fadd32XYZ                          insV=0 2x 32-bit float add
