@@ -1,4 +1,4 @@
-# MISC k64 chip
+# MISC K64 Chip
 
 MISC compute chip contains 64k cores, total of 32GB register nvsram and 8TB memory nvsram.
 Each core contains 64k local 64-bit ram registers, and mapped rom, ram, touch-display ram.
@@ -27,29 +27,20 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ---
 
 
-RISC core-gate instruction set architecture (64-bit variation of RISC-V):
+MISC core-gate instruction set architecture:
 ```
 
-Opcode | Instruction | Name               | Description
+Opcode | Instruction                      | Description
 ----------------------------------------------------------------------------------------------------
-any    | ##          | Any Raw Data       | direct data line 64-bit value
-0      | [] //       | Flow Control       | empty or white space line, comment line
-         nopYZ                              insV=0 no operation sleep constant regYZ cycles
-         jmpXY                              insV=1 unconditional jump to regX
-         jmpcXY                             insV=2 jump to regX if regY is not zero
-         jmpc32XY                           insV=3 jump to regX if regY 32-bit is not zero
-         jmpc16XY                           insV=4 jump to regX if regY 16-bit is not zero
-         jmpc8XY                            insV=5 jump to regX if regY 8-bit is not zero
-         ldiXYZ                             insV=6 load regX with 32-bit constant Uint regYZ
-         ldi32XYZ                           insV=7 load regX with 2x 32-bit constant regYZ
-         ldi16XYZ                           insV=8 load regX with 4x 16-bit constant regZ
-         ldi8XYZ                            insV=9 load regX with 8x 8-bit constant regZ
-         clkXYZ                             insV=A integer clock counter
-         rndXYZ                             insV=B integer clock random
-         coreXYZ                            insV=C integer core info id cores reg mem dw dh freq ver
-         timeXYZ                            insV=D integer global time nanoseconds
-         memrXY                             insV=E load regX from shared memory[regY]
-         memwXY                             insV=F store regX to shared memory[regY]
+any    | Raw Data                         | any raw data
+         ##                                 direct data line 64-bit value
+0      | Flow Control                     | generic flow control
+         nop [] //                          insV=0 no operation sleep constant regYZ cycles, comment
+         jmp                                insV=1 unconditional jump to regX
+         jmpc, jmpc32, jmpc16, jmpc8        insV=2-5 jump to regX if regY 64/32/16/8-bit is not zero
+         ldi, ldi32, ldi16, ldi8            insV=6-9 load regX 1x32/2x32/4x16/8x8-bit constant regYZ
+         clk, rnd, core, time               insV=A-D integer counter, random, core info, global time
+         memr, memw                         insV=E-F load/store regX from/to shared memory[regY]
 1      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
