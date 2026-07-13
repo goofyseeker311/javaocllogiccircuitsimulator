@@ -102,53 +102,19 @@ C   | ALU Float                           | store float operation regY regZ to r
       fpow, fpow32, fpow16, fpow8           insV=8-B float power 1x64b, 2x32b, 4x16b, 8x8b
       fsqrt, fsqrt32, fsqrt16, fsqrt8       insV=C-F float square root 1x64b, 2x32b, 4x16b, 8x8b
 D   | ALU Float                           | store float operation regY regZ to regX
-      fsinXYZ                               insV=5 float sine
-      ftanXYZ                               insV=6 float tangent
-      fcosXYZ                               insV=7 float cosine
-      fasinXYZ                              insV=A float arcsine
-      fatanXYZ                              insV=B float arctangent
-      facosXYZ                              insV=C float arccosine
-D   | ALU Float                           | store float operation regY regZ to regX
-      fsin32XYZ                             insV=0 2x 32-bit float sine
-      ftan32XYZ                             insV=1 2x 32-bit float tangent
-      fcos32XYZ                             insV=2 2x 32-bit float cosine
-      fsin16XYZ                             insV=5 4x 16-bit float sine
-      ftan16XYZ                             insV=6 4x 16-bit float tangent
-      fcos16XYZ                             insV=7 4x 16-bit float cosine
-      fsin8XYZ                              insV=A 8x 8-bit float sine
-      ftan8XYZ                              insV=B 8x 8-bit float tangent
-      fcos8XYZ                              insV=C 8x 8-bit float cosine
+      fsin, fsin32, fsin16, fsin8           insV=0-3 float sine 1x64b, 2x32b, 4x16b, 8x8b
+      ftan, ftan32, ftan16, ftan8           insV=4-7 float tangent 1x64b, 2x32b, 4x16b, 8x8b
+      fcos, fcos32, fcos16, fcos8           insV=8-B float cosine 1x64b, 2x32b, 4x16b, 8x8b
+      fmin, fmin32, fmin16, fmin8           insV=C-F float min 1x64b, 2x32b, 4x16b, 8x8b
 E   | ALU Float                           | store float operation regY regZ to regX
-      fasin32XYZ                            insV=0 2x 32-bit float arcsine
-      fatan32XYZ                            insV=1 2x 32-bit float arctangent
-      facos32XYZ                            insV=2 2x 32-bit float arccosine
-      fabs32XYZ                             insV=4 2x 32-bit float abs
-      fabs16XYZ                             insV=9 4x 16-bit float abs
-      fabs8XYZ                              insV=E 8x 8-bit float abs
-      fasin16XYZ                            insV=5 4x 16-bit float arcsine
-      fatan16XYZ                            insV=6 4x 16-bit float arctangent
-      facos16XYZ                            insV=7 4x 16-bit float arccosine
-      fasin8XYZ                             insV=A 8x 8-bit float arcsine
-      fatan8XYZ                             insV=B 8x 8-bit float arctangent
-      facos8XYZ                             insV=C 8x 8-bit float arccosine
+      fasin, fasin32, fasin16, fasin8       insV=0-3 float arcsine 1x64b, 2x32b, 4x16b, 8x8b
+      fatan, fatan32, fatan16, fatan8       insV=4-7 float arctangent 1x64b, 2x32b, 4x16b, 8x8b
+      facos, facos32, facos16, facos8       insV=8-B float arccosine 1x64b, 2x32b, 4x16b, 8x8b
+      fmax, fmax32, fmax16, fmax8           insV=C-F float max 1x64b, 2x32b, 4x16b, 8x8b
 F   | ALU Float                           | store float operation regY regZ to regX
-      flnXYZ                               insV=6 float natural logarithm
-      fln32XYZ                             insV=7 2x 32-bit float natural logarithm
-      fln16XYZ                             insV=8 4x 16-bit float natural logarithm
-      fln8XYZ                              insV=9 8x 8-bit float natural logarithm
-      fexp32XYZ                             insV=F 2x 32-bit float exponential
-      fexpXYZ                               insV=F float exponential
-      fexp16XYZ                             insV=F 4x 16-bit float exponential
-      fexp8XYZ                              insV=F 8x 8-bit float exponential
-      fabsXYZ                               insV=F float abs
-      fminXYZ                               insV=E float min
-      fmaxXYZ                               insV=F float max
-      fmax8XYZ                              insV=F 8x 8-bit float max
-      fmax32XYZ                             insV=F 2x 32-bit float max
-      fmin32XYZ                             insV=F 2x 32-bit float min
-      fmin16XYZ                             insV=F 4x 16-bit float min
-      fmin8XYZ                              insV=F 8x 8-bit float min
-      fmax16XYZ                             insV=F 4x 16-bit float max
+      fexp, fexp32, fexp16, fexp8           insV=0-3 float exponential 1x64b, 2x32b, 4x16b, 8x8b
+      fln, fln32, fln16, fln8               insV=4-7 float natural logarithm 1x64b, 2x32b, 4x16b, 8x8b
+      fabs, fabs32, fabs16, fabs8           insV=8-B float abs 1x64b, 2x32b, 4x16b, 8x8b
 ```
 
 Example looping test assembly code source and binary:
