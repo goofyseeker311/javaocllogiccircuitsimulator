@@ -40,16 +40,27 @@ any    | Raw Data                         | any raw data
          ldi, ldi32, ldi16, ldi8            insV=6-9 load regX 1x32/2x32/4x16/8x8-bit constant regYZ
          clk, rnd, core, time               insV=A-D integer counter, random, core info, global time
          memr, memw                         insV=E-F load/store regX from/to shared memory[regY]
-1      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
-         copy, not, or, and                 insV=0-3 bitwise copy/not/or/and regY regZ to regX
-         nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor regY regZ to regX
-         ii32                               insV=A convert 64-bit integer to 2x 32-bit integer
-         i32i16                             insV=B convert 2x 32-bit integer to 4x 16-bit integer
-         i16i8XYZ                           insV=C convert 4x 16-bit integer to 8x 8-bit integer
-         i32i                               insV=D convert 32-bit integer to 64-bit integer
-         i16i32                             insV=E convert 2x 16-bit integer to 2x 32-bit integer
-         i8i16XYZ                           insV=F convert 4x 8-bit integer to 4x 16-bit integer
-2      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
+1      | convXYZ     | ALU Conv Vector    | store conversion operation regY regZ to regX
+         ii32                               insV=0 convert 64-bit integer to 2x 32-bit integer
+         i32i16                             insV=1 convert 2x 32-bit integer to 4x 16-bit integer
+         i16i8XYZ                           insV=2 convert 4x 16-bit integer to 8x 8-bit integer
+         i32i                               insV=3 convert 32-bit integer to 64-bit integer
+         i16i32                             insV=4 convert 2x 16-bit integer to 2x 32-bit integer
+         i8i16XYZ                           insV=5 convert 4x 8-bit integer to 4x 16-bit integer
+         ff32                               insV=6 convert 64-bit float to 2x 32-bit float
+         f32f16                             insV=7 convert 2x 32-bit float to 4x 16-bit float
+         f16f8                              insV=8 convert 4x 16-bit float to 8x 8-bit float
+         f8f16                              insV=9 convert 4x 8-bit float to 4x 16-bit float
+         f16f32                             insV=A convert 2x 16-bit float to 2x 32-bit float
+         f32f                               insV=B convert 32-bit float to 64-bit float
+         fitfXYZ                            insV=C convert integer to float
+         fitf32XYZ                          insV=D convert 2x 32-bit integer to float
+         fitf16XYZ                          insV=E convert 4x 16-bit integer to float
+         fitf8XYZ                           insV=F convert 8x 8-bit integer to float
+2      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
+         copy, not, or, and                 insV=0-3 bitwise copy/not/or/and
+         nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor
+3      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
          fcmpezXY                           insV=2 float regY equal to zero
@@ -100,17 +111,10 @@ any    | Raw Data                         | any raw data
          fminXYZ                            insV=E float min
          fmaxXYZ                            insV=F float max
 5      | convXYZ     | ALU Conv Vector    | store conversion op[insV] regY regZ to regX
-         ff32                               insV=0 convert 64-bit float to 2x 32-bit float
-         f32f16                             insV=1 convert 2x 32-bit float to 4x 16-bit float
-         f16f8                              insV=2 convert 4x 16-bit float to 8x 8-bit float
-         f8f16                              insV=3 convert 4x 8-bit float to 4x 16-bit float
-         f16f32                             insV=4 convert 2x 16-bit float to 2x 32-bit float
-         f32f                               insV=5 convert 32-bit float to 64-bit float
          fexpXYZ                            insV=6 float natural logarithm
          fexp32XYZ                          insV=7 2x 32-bit float natural logarithm
          fexp16XYZ                          insV=8 4x 16-bit float natural logarithm
          fexp8XYZ                           insV=9 8x 8-bit float natural logarithm
-         fitfXYZ                            insV=A integer to float
          ftinXYZ                            insV=B float to integer nearest
          ftidXYZ                            insV=C float to integer round down
          ftiuXYZ                            insV=D float to integer round up
@@ -269,17 +273,14 @@ E      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY r
          fabs8XYZ                           insV=E 8x 8-bit float abs
          fmin8XYZ                           insV=F 8x 8-bit float min
 F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
-         fitf32XYZ                          insV=0 2x 32-bit integer to float
          ftin32XYZ                          insV=1 2x 32-bit float to integer nearest
          ftid32XYZ                          insV=2 2x 32-bit float to integer round down
          ftiu32XYZ                          insV=3 2x 32-bit float to integer round up
          ftit32XYZ                          insV=4 2x 32-bit float to integer truncate
-         fitf16XYZ                          insV=5 4x 16-bit integer to float
          ftin16XYZ                          insV=6 4x 16-bit float to integer nearest
          ftid16XYZ                          insV=7 4x 16-bit float to integer round down
          ftiu16XYZ                          insV=8 4x 16-bit float to integer round up
          ftit16XYZ                          insV=9 4x 16-bit float to integer truncate
-         fitf8XYZ                           insV=A 8x 8-bit integer to float
          ftin8XYZ                           insV=B 8x 8-bit float to integer nearest
          ftid8XYZ                           insV=C 8x 8-bit float to integer round down
          ftiu8XYZ                           insV=D 8x 8-bit float to integer round up
