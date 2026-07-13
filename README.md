@@ -29,7 +29,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 MISC instruction set architecture:
 ```
-Op  | Instruction                         | Description
+Op  | Instruction (-, 32, 16, 8)          | Description (1x64b, 2x32b, 4x16b, 8x8b)
 ----------------------------------------------------------------------------------------------------
 any | Raw Data                            | any raw data
       ##                                    direct data line 64-bit value
@@ -40,81 +40,81 @@ any | Raw Data                            | any raw data
       ldi, ldi32, ldi16, ldi8               insV=6-9 load regX 1x32/2x32/4x16/8x8-bit constant regYZ
       clk, rnd, core, time                  insV=A-D integer counter, random, core info, global time
       memr, memw                            insV=E-F load/store regX from/to shared memory[regY]
-1   | ALU Compare Zero                    | set 1 if comp regY zero 1x64b, 2x32b, 4x16b, 8x8b
-      cmpez, cmpez32, cmpez16, cmpez8       insV=0-3 int regY equal zero
-      cmplz, cmplz32, cmplz16, cmplz8       insV=4-7 int regY less zero
-      fcmpez, fcmpez32, fcmpez16, fcmpez8   insV=8-B float regY equal zero
-      fcmplz, fcmplz32, fcmplz16, fcmplz8   insV=C-F float regY less zero
-2   | ALU Compare Value                   | set 1 if comp regY regZ 1x64b, 2x32b, 4x16b, 8x8b
-      cmpe, cmpe32, cmpe16, cmpe8           insV=0-3 int regY equal regZ
-      cmpl, cmpl32, cmpl16, cmpl8           insV=4-7 int regY less regZ
-      fcmpe, fcmpe32, fcmpe16, fcmpe8       insV=8-B float regY equal regZ
-      fcmpl, fcmpl32, fcmpl16, fcmpl8       insV=C-F float regY less regZ
-3   | ALU Compare Special                 | set 1 if comp regY regZ 1x64b, 2x32b, 4x16b, 8x8b
+1   | ALU Compare Zero                    | set 1 if comp regY to zero
+      cmpez, cmpez32, cmpez16, cmpez8       insV=0-3 int regY equal to zero
+      cmplz, cmplz32, cmplz16, cmplz8       insV=4-7 int regY less than zero
+      fcmpez, fcmpez32, fcmpez16, fcmpez8   insV=8-B float regY equal to zero
+      fcmplz, fcmplz32, fcmplz16, fcmplz8   insV=C-F float regY less than zero
+2   | ALU Compare Value                   | set 1 if comp regY to regZ
+      cmpe, cmpe32, cmpe16, cmpe8           insV=0-3 int regY equal to regZ
+      cmpl, cmpl32, cmpl16, cmpl8           insV=4-7 int regY less than regZ
+      fcmpe, fcmpe32, fcmpe16, fcmpe8       insV=8-B float regY equal to regZ
+      fcmpl, fcmpl32, fcmpl16, fcmpl8       insV=C-F float regY less than regZ
+3   | ALU Compare Special                 | set 1 if comp regY or regZ
       neg, neg32, neg16, neg8               insV=0-3 integer negate
-      copyc, copyc32, copyc16, copyc8       insV=4-7 conditional if regZ
+      copyc, copyc32, copyc16, copyc8       insV=4-7 conditional copy if regZ
       finf, finf32, finf16, finf8           insV=8-B float is infinity
       fnan, fnan32, fnan16, fnan8           insV=C-F float is not-a-number
-3   | ALU Bitwise                         | bitwise regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+3   | ALU Bitwise                         | bitwise regY regZ to regX
       copy, not, or, and                    insV=0-3 bitwise copy/not/or/and
       nand, nor, xor, xnor                  insV=4-7 bitwise nand/nor/xor/xnor
       shl, shl32, shl16, shl8               insV=8-B shift left regZ
       shr, shr32, shr16, shr8               insV=C-F shift right regZ
-4   | ALU Bitwise                         | bitwise regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+4   | ALU Bitwise                         | bitwise regY regZ to regX
       shar, shar32, shar16, shar8           insV=0-3 arit-shift right regZ
       rotl, rotl32, rotl16, rotl8           insV=4-7 rotate left regZ
       rotr, rotr32, rotr16, rotr8           insV=8-B rotate right regZ
       ones, ones32, ones16, ones8           insV=C-F count of one bits
-5   | ALU Bitwise                         | bitwise regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+5   | ALU Bitwise                         | bitwise regY regZ to regX
       lone, lone32, lone16, lone8           insV=0-3 lowest one bit or -1 
       hone, hone32, hone16, hone8           insV=4-7 highest one bit or -1
       lzero, lzero32, lzero16, lzero8       insV=8-B lowest zero bit or -1
       hzero, hzero32, hzero16, hzero8       insV=C-F highest zero bit or -1
-9   | ALU Integer                         | integer regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+9   | ALU Integer                         | integer regY regZ to regX
       add, add32, add16, add8               insV=0-3 integer add
       sub, sub32, sub16, sub8               insV=4-7 integer subtract
       mul, mul32, mul16, mul8               insV=8-B integer multiply
       div, div32, div16, div8               insV=C-F integer divide
-A   | ALU Integer                         | integer regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+A   | ALU Integer                         | integer regY regZ to regX
       addo, addo32, addo16, addo8           insV=0-3 int add overflow
       subb, subb32, subb16, subb8           insV=4-7 int subtract borrow
       mulo, mulo32, mulo16, mulo8           insV=8-B int multiply overflow
       divr, divr32, divr16, divr8           insV=C-F int divide remainder
-9   | ALU Float                           | float regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+9   | ALU Float                           | float regY regZ to regX
       fadd, fadd32, fadd16, fadd8           insV=0-3 float add
       fsub, fsub32, fsub16, fsub8           insV=4-7 float subtract
       fmul, fmul32, fmul16, fmul8           insV=8-B float multiply
       fdiv, fdiv32, fdiv16, fdiv8           insV=C-F float divide
-A   | ALU Float                           | float regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+A   | ALU Float                           | float regY regZ to regX
       fneg, fneg32, fneg16, fneg8           insV=0-3 float negate
       flog, flog32, flog16, flog8           insV=4-7 float logarithm
       fpow, fpow32, fpow16, fpow8           insV=8-B float power
       fsqrt, fsqrt32, fsqrt16, fsqrt8       insV=C-F float square root
-B   | ALU Float                           | float regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+B   | ALU Float                           | float regY regZ to regX
       fsin, fsin32, fsin16, fsin8           insV=0-3 float sine
       ftan, ftan32, ftan16, ftan8           insV=4-7 float tangent
       fcos, fcos32, fcos16, fcos8           insV=8-B float cosine
       fmin, fmin32, fmin16, fmin8           insV=C-F float min
-C   | ALU Float                           | float regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+C   | ALU Float                           | float regY regZ to regX
       fasin, fasin32, fasin16, fasin8       insV=0-3 float arcsine
       fatan, fatan32, fatan16, fatan8       insV=4-7 float arctangent
       facos, facos32, facos16, facos8       insV=8-B float arccosine
       fmax, fmax32, fmax16, fmax8           insV=C-F float max
-D   | ALU Float                           | float regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+D   | ALU Float                           | float regY regZ to regX
       fexp, fexp32, fexp16, fexp8           insV=0-3 float exponential
       fln, fln32, fln16, fln8               insV=4-7 float natural log
       fabs, fabs32, fabs16, fabs8           insV=8-B float abs
-E   | ALU Conversion                      | conversion regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
+E   | ALU Conversion                      | conversion regY regZ to regX
+      ftin, ftin32, ftin16, ftin8           insV=0-3 float to int nearest
+      ftid, ftid32, ftid16, ftid8           insV=4-7 float to int down
+      ftiu, ftiu32, ftiu16, ftiu8           insV=8-B float to int up
+      ftit, ftit32, ftit16, ftit8           insV=8-B float to int truncate
+F   | ALU Conversion                      | conversion regY regZ to regX
       ii32, i32i16, i16i8                   insV=0-2 integer 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
       i32i, i16i32, i8i16                   insV=3-5 integer 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
       ff32, f32f16, f16f8                   insV=0-2 float 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
       f32f, f16f32, f8f16                   insV=3-5 float 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
       fitf, fitf32, fitf16, fitf8           insV=C-F integer to float
-F   | ALU Conversion                      | conversion regY regZ to regX 1x64b, 2x32b, 4x16b, 8x8b
-      ftin, ftin32, ftin16, ftin8           insV=0-3 float to int nearest
-      ftid, ftid32, ftid16, ftid8           insV=4-7 float to int down
-      ftiu, ftiu32, ftiu16, ftiu8           insV=8-B float to int up
-      ftit, ftit32, ftit16, ftit8           insV=8-B float to int truncate
 ```
 
 Example looping test assembly code source and binary:
