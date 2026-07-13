@@ -113,7 +113,7 @@ E   | ALU Float                           | store float operation regY regZ to r
       fmax, fmax32, fmax16, fmax8           insV=C-F float max 1x64b, 2x32b, 4x16b, 8x8b
 F   | ALU Float                           | store float operation regY regZ to regX
       fexp, fexp32, fexp16, fexp8           insV=0-3 float exponential 1x64b, 2x32b, 4x16b, 8x8b
-      fln, fln32, fln16, fln8               insV=4-7 float natural logarithm 1x64b, 2x32b, 4x16b, 8x8b
+      fln, fln32, fln16, fln8               insV=4-7 float natural log 1x64b, 2x32b, 4x16b, 8x8b
       fabs, fabs32, fabs16, fabs8           insV=8-B float abs 1x64b, 2x32b, 4x16b, 8x8b
 ```
 
