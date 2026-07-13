@@ -7,8 +7,8 @@ Every integer instruction uses two's complement signed long integer operations.
 Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
-Estimated logic transistors per core is 1M making 64k cores about 64 billion.
-Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
+Estimated logic transistors per core is 1million making 64k cores about 64 billion.
+Estimated ram transistors per core is 8million 512KB and 512billion total 32GB.
 Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
 Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
@@ -40,7 +40,16 @@ any    | Raw Data                         | any raw data
          ldi, ldi32, ldi16, ldi8            insV=6-9 load regX 1x32/2x32/4x16/8x8-bit constant regYZ
          clk, rnd, core, time               insV=A-D integer counter, random, core info, global time
          memr, memw                         insV=E-F load/store regX from/to shared memory[regY]
-1      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
+1      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
+         copy, not, or, and                 insV=0-3 bitwise copy/not/or/and regY regZ to regX
+         nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor regY regZ to regX
+         ii32                               insV=A convert 64-bit integer to 2x 32-bit integer
+         i32i16                             insV=B convert 2x 32-bit integer to 4x 16-bit integer
+         i16i8XYZ                           insV=C convert 4x 16-bit integer to 8x 8-bit integer
+         i32i                               insV=D convert 32-bit integer to 64-bit integer
+         i16i32                             insV=E convert 2x 16-bit integer to 2x 32-bit integer
+         i8i16XYZ                           insV=F convert 4x 8-bit integer to 4x 16-bit integer
+2      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
          fcmpezXY                           insV=2 float regY equal to zero
@@ -56,21 +65,6 @@ any    | Raw Data                         | any raw data
          sharXYZ                            insV=C bitwise shift arithmetic right regZ bits
          rotlXYZ                            insV=D bitwise rotate left regZ bits
          rotrXYZ                            insV=E bitwise rotate right regZ bits
-2      | bitXYZ      | ALU Bit Operation  | store bitwise op[insV] regY regZ to regX
-         copyXYZ                            insV=0 bitwise copy
-         notXYZ                             insV=1 bitwise not
-         orXYZ                              insV=2 bitwise or
-         andXYZ                             insV=3 bitwise and
-         nandXYZ                            insV=4 bitwise nand
-         norXYZ                             insV=5 bitwise nor
-         xorXYZ                             insV=6 bitwise xor
-         xnorXYZ                            insV=7 bitwise xnor
-         ii32                               insV=A convert 64-bit integer to 2x 32-bit integer
-         i32i16                             insV=B convert 2x 32-bit integer to 4x 16-bit integer
-         i16i8XYZ                           insV=C convert 4x 16-bit integer to 8x 8-bit integer
-         i32i                               insV=D convert 32-bit integer to 64-bit integer
-         i16i32                             insV=E convert 2x 16-bit integer to 2x 32-bit integer
-         i8i16XYZ                           insV=F convert 4x 8-bit integer to 4x 16-bit integer
 3      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
          subXYZ                             insV=1 integer subtract
