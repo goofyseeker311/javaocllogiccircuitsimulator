@@ -46,10 +46,15 @@ any    | Raw Data                         | any raw data
          ff32, f32f16, f16f8                insV=0-2 float 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
          f32f, f16f32, f8f16                insV=3-5 float 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
          fitf, fitf32, fitf16, fitf8        insV=C-F integer to float 1x64b, 2x32b, 4x16b, 8x8b
-2      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
+2      | ALU Conv Vector                  | store conversion operation regY regZ to regX
+         ftin, ftin32, ftin16, ftin8        insV=0-3 float to int nearest 1x64b, 2x32b, 4x16b, 8x8b
+         ftid, ftid32, ftid16, ftid8        insV=4-7 float to int down 1x64b, 2x32b, 4x16b, 8x8b
+         ftiu, ftiu32, ftiu16, ftiu8        insV=8-B float to int up 1x64b, 2x32b, 4x16b, 8x8b
+         ftit, ftit32, ftit16, ftit8        insV=8-B float to int truncate 1x64b, 2x32b, 4x16b, 8x8b
+3      | ALU Bit Operation                | bitwise operation store regY regZ op to regX
          copy, not, or, and                 insV=0-3 bitwise copy/not/or/and
          nand, nor, xor, xnor               insV=4-7 bitwise nand/nor/xor/xnor
-3      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
+4      | cmpXY       | Compare Values     | clear regX to 0, set to 1 if regY comp[insV] regZ
          cmpezXY                            insV=0 integer regY equal to zero
          cmplzXY                            insV=1 integer regY less than zero
          fcmpezXY                           insV=2 float regY equal to zero
@@ -65,7 +70,7 @@ any    | Raw Data                         | any raw data
          sharXYZ                            insV=C bitwise shift arithmetic right regZ bits
          rotlXYZ                            insV=D bitwise rotate left regZ bits
          rotrXYZ                            insV=E bitwise rotate right regZ bits
-3      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
+5      | intXYZ      | ALU Int/BitA Ops   | store integer bitwise op[insV] regY regZ to regX
          addXYZ                             insV=0 integer add
          subXYZ                             insV=1 integer subtract
          mulXYZ                             insV=2 integer multiply
@@ -99,15 +104,12 @@ any    | Raw Data                         | any raw data
          fsqrtXYZ                           insV=D float square root
          fminXYZ                            insV=E float min
          fmaxXYZ                            insV=F float max
+         fmax8XYZ                           insV=F 8x 8-bit float max
 5      | convXYZ     | ALU Conv Vector    | store conversion op[insV] regY regZ to regX
          fexpXYZ                            insV=6 float natural logarithm
          fexp32XYZ                          insV=7 2x 32-bit float natural logarithm
          fexp16XYZ                          insV=8 4x 16-bit float natural logarithm
          fexp8XYZ                           insV=9 8x 8-bit float natural logarithm
-         ftinXYZ                            insV=B float to integer nearest
-         ftidXYZ                            insV=C float to integer round down
-         ftiuXYZ                            insV=D float to integer round up
-         ftitXYZ                            insV=E float to integer truncate
          fabsXYZ                            insV=F float abs
 6      | cmpvecXY    | Comp Zero Vector   | vector clear regX to 0, set to 1 if regY comp[insV]
          cmpez32XY                          insV=0 2x 32-bit integer regY equal to zero
@@ -261,20 +263,6 @@ E      | flpavec2XYZ | ALU FlpA Vector 2  | store advanced float op[insV] regY r
          fsqrt8XYZ                          insV=D 8x 8-bit float square root
          fabs8XYZ                           insV=E 8x 8-bit float abs
          fmin8XYZ                           insV=F 8x 8-bit float min
-F      | flpvec2XYZ  | ALU Flp Vector 2   | store float op[insV] regY regZ to regX
-         ftin32XYZ                          insV=1 2x 32-bit float to integer nearest
-         ftid32XYZ                          insV=2 2x 32-bit float to integer round down
-         ftiu32XYZ                          insV=3 2x 32-bit float to integer round up
-         ftit32XYZ                          insV=4 2x 32-bit float to integer truncate
-         ftin16XYZ                          insV=6 4x 16-bit float to integer nearest
-         ftid16XYZ                          insV=7 4x 16-bit float to integer round down
-         ftiu16XYZ                          insV=8 4x 16-bit float to integer round up
-         ftit16XYZ                          insV=9 4x 16-bit float to integer truncate
-         ftin8XYZ                           insV=B 8x 8-bit float to integer nearest
-         ftid8XYZ                           insV=C 8x 8-bit float to integer round down
-         ftiu8XYZ                           insV=D 8x 8-bit float to integer round up
-         ftit8XYZ                           insV=E 8x 8-bit float to integer truncate
-         fmax8XYZ                           insV=F 8x 8-bit float max
 ```
 
 Example looping test assembly code source and binary:
