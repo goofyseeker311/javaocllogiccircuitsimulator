@@ -29,7 +29,6 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
 MISC core-gate instruction set architecture:
 ```
-
 Opcode | Instruction                      | Description
 ----------------------------------------------------------------------------------------------------
 any    | Raw Data                         | any raw data
