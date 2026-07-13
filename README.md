@@ -101,8 +101,8 @@ C   | ALU Float                           | float regY regZ to regX
       facos, facos32, facos16, facos8       insV=8-B float arccosine
       fmax, fmax32, fmax16, fmax8           insV=C-F float max
 D   | ALU Float                           | float regY to regX
-      fexp, fexp32, fexp16, fexp8           insV=0-3 float exponential
-      fln, fln32, fln16, fln8               insV=4-7 float natural log
+      fln, fln32, fln16, fln8               insV=0-3 float natural log
+      fexp, fexp32, fexp16, fexp8           insV=4-7 float exponential
       fabs, fabs32, fabs16, fabs8           insV=8-B float abs
 E   | ALU Conversion                      | conversion regY to regX
       ftin, ftin32, ftin16, ftin8           insV=0-3 float to int nearest
