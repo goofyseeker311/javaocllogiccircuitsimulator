@@ -55,27 +55,27 @@ any | Raw Data                            | any raw data
       copyc, copyc32, copyc16, copyc8       insV=4-7 conditional copy
       finf, finf32, finf16, finf8           insV=8-B float is infinity
       fnan, fnan32, fnan16, fnan8           insV=C-F float is not-a-number
-3   | ALU Bitwise                         | bitwise regY regZ to regX
+4   | ALU Bitwise                         | bitwise regY regZ to regX
       copy, not, or, and                    insV=0-3 bitwise copy/not/or/and
       nand, nor, xor, xnor                  insV=4-7 bitwise nand/nor/xor/xnor
       shl, shl32, shl16, shl8               insV=8-B bitwise shift left
       shr, shr32, shr16, shr8               insV=C-F bitwise shift right
-4   | ALU Bitwise                         | bitwise regY regZ to regX
+5   | ALU Bitwise                         | bitwise regY regZ to regX
       shar, shar32, shar16, shar8           insV=0-3 bitwise arithmetic shift right
       rotl, rotl32, rotl16, rotl8           insV=4-7 bitwise rotate left
       rotr, rotr32, rotr16, rotr8           insV=8-B bitwise rotate right
       ones, ones32, ones16, ones8           insV=C-F bitwise count of one bits
-5   | ALU Bitwise                         | bitwise regY to regX
+6   | ALU Bitwise                         | bitwise regY to regX
       lone, lone32, lone16, lone8           insV=0-3 bitwise lowest one bit or -1 
       hone, hone32, hone16, hone8           insV=4-7 bitwise highest one bit or -1
       lzero, lzero32, lzero16, lzero8       insV=8-B bitwise lowest zero bit or -1
       hzero, hzero32, hzero16, hzero8       insV=C-F bitwise highest zero bit or -1
-9   | ALU Integer                         | integer regY regZ to regX
+7   | ALU Integer                         | integer regY regZ to regX
       add, add32, add16, add8               insV=0-3 integer add
       sub, sub32, sub16, sub8               insV=4-7 integer subtract
       mul, mul32, mul16, mul8               insV=8-B integer multiply
       div, div32, div16, div8               insV=C-F integer divide
-A   | ALU Integer                         | integer regY regZ to regX
+8   | ALU Integer                         | integer regY regZ to regX
       addo, addo32, addo16, addo8           insV=0-3 integer add overflow
       subb, subb32, subb16, subb8           insV=4-7 integer subtract borrow
       mulo, mulo32, mulo16, mulo8           insV=8-B integer multiply overflow
