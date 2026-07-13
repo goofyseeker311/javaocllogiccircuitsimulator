@@ -1,15 +1,15 @@
-# Java OpenCL Logic Circuit Simulator
+# MISC k64 chip
 
-Logic Circuit Assembler (LCA) / Logic Gate Assembler (LGA)
-
-Java OpenCL Logic Circuit Simulator for simulating and debugging fully pipelined binary gate logic.
-Includes visual designer that also converts OpenCL C code to binary micro-fpga gate logic.
-
-* Not designed to be sequential operation execution similar to assembly code, but rather be a continuous execution circuit definition language with core-width x pipeline-depth input work item dimensions.
-* System architecture is based on 1-cycle latency FPGA gates and large SRAM block with three full-length sram block mimo OR-multiplexers to read/write int32 argument/indirect($) and store pointer values directly for each gate.
-* Any external communication to the logic gate system is through SRAM direct read/write, from such as PCIe, USB, SD-card, HBM or DDR5 memory bridge controllers.
-* Each separately programmable/assignable micro-FPGA gate runs internally at a multiplier speed of the main circuit clock speed to enable one clock cycle per gate operation.
-* Programmer/IDE is responsible of assigning correct output pointer values for each gate considering multiple OR-multiplexed value store collision.
+MISC compute chip contains 64k cores, total of 32GB register nvsram and 8TB memory nvsram.
+Each core contains 64k local 64-bit ram registers, and mapped rom, ram, touch-display ram.
+Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
+Every integer instruction uses two's complement signed long integer operations.
+Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
+Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
+insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
+Estimated logic transistors per core is 1M making 64k cores about 64 billion.
+Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
+Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
 Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
 
@@ -17,12 +17,6 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-![logiccircuitgateassembler](https://github.com/user-attachments/assets/2a9904c7-4958-4e9e-9b49-f2199cf8d8c1)
-![logicgatepipelinecompute35a](https://github.com/user-attachments/assets/b4f329cd-e06d-4db8-9960-a326d26a73a0)
-<img width="3840" height="2160" alt="gatepipelinecomputearchitecture50a" src="https://github.com/user-attachments/assets/01ce93e4-1485-4f61-84ef-cb870990b77b" />
-<img width="3840" height="2160" alt="computecorefpganetwork16a" src="https://github.com/user-attachments/assets/b6b8fab4-c29f-4b8b-a790-f336ad341ca0" />
-<img width="3840" height="2160" alt="misccomputechip16a" src="https://github.com/user-attachments/assets/4a07f1a0-883b-4efd-89a6-f1136022905a" />
-<img width="3840" height="2160" alt="simultaneousmultiportram36a" src="https://github.com/user-attachments/assets/90f3121b-dc37-4803-9727-6cefca328011" />
 <img width="3840" height="2112" alt="muxrisccore120" src="https://github.com/user-attachments/assets/6610129d-0d8c-4ca5-bcc9-9b5aa5ddeff3" />
 <img width="3840" height="2112" alt="muxrisccore120a" src="https://github.com/user-attachments/assets/4feca124-6560-4023-a94d-d473ca89cd30" />
 <img width="3840" height="2112" alt="muxrisccore120b" src="https://github.com/user-attachments/assets/13223f90-8d6d-4490-b380-65ee644b207f" />
@@ -33,20 +27,8 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 ---
 
 
-
-
 RISC core-gate instruction set architecture (64-bit variation of RISC-V):
 ```
-MISC compute chip contains 64k cores, total of 32GB register nvsram and 8TB memory nvsram.
-Each core contains 64k local 64-bit ram registers, and mapped rom, ram, touch-display ram.
-Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
-Every integer instruction uses two's complement signed long integer operations.
-Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
-Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
-insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
-Estimated logic transistors per core is 200k making 64k cores about 12.8 billion.
-Estimated ram transistors per core is 8million 512KB and 256billion total 32GB.
-Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
 Opcode | Instruction | Name               | Description
 ----------------------------------------------------------------------------------------------------
