@@ -71,26 +71,39 @@ any | Raw Data                            | any raw data
       cmplz, cmplz32, cmplz16, cmplz8       insV=4-7 int regY less zero 1x64b, 2x32b, 4x16b, 8x8b
       fcmpez, fcmpez32, fcmpez16, fcmpez8   insV=8-B float regY equal zero 1x64b, 2x32b, 4x16b, 8x8b
       fcmplz, fcmplz32, fcmplz16, fcmplz8   insV=C-F float regY less zero 1x64b, 2x32b, 4x16b, 8x8b
-7   | ALU Compare Values                  | clear regX to 0, set to 1 if regY compare regZ
+7   | ALU Compare Value                   | clear regX to 0, set to 1 if regY compare regZ
       cmpe, cmpe32, cmpe16, cmpe8           insV=0-3 int regY equal regZ 1x64b, 2x32b, 4x16b, 8x8b
       cmpl, cmpl32, cmpl16, cmpl8           insV=4-7 int regY less regZ 1x64b, 2x32b, 4x16b, 8x8b
       fcmpe, fcmpe32, fcmpe16, fcmpe8       insV=8-B float regY equal regZ 1x64b, 2x32b, 4x16b, 8x8b
       fcmpl, fcmpl32, fcmpl16, fcmpl8       insV=C-F float regY less regZ 1x64b, 2x32b, 4x16b, 8x8b
-8   | intXYZ      | ALU Int/BitA Ops      | store integer bitwise op[insV] regY regZ to regX
+8   | ALU Compare Value                   | clear regX to 0, set to 1 if regY compare value
+      neg, neg32, neg16, neg8               insV=0-3 integer negate 1x64b, 2x32b, 4x16b, 8x8b
+      copyc, copyc32, copyc16, copyc8       insV=4-7 conditional if regZ 1x64b, 2x32b, 4x16b, 8x8b
       finf, finf32, finf16, finf8           insV=8-B float is infinity 1x64b, 2x32b, 4x16b, 8x8b
       fnan, fnan32, fnan16, fnan8           insV=C-F float is not-a-number 1x64b, 2x32b, 4x16b, 8x8b
-      addXYZ                                insV=0 integer add
-      subXYZ                                insV=1 integer subtract
-      mulXYZ                                insV=2 integer multiply
-      divXYZ                                insV=3 integer divide
-      negXYZ                                insV=4 integer negate
+9   | ALU Integer                         | store integer operation regY regZ to regX
+      add, add32, add16, add8               insV=0-3 integer add 1x64b, 2x32b, 4x16b, 8x8b
+      sub, sub32, sub16, sub8               insV=4-7 integer subtract 1x64b, 2x32b, 4x16b, 8x8b
+      mul, mul32, mul16, mul8               insV=8-B integer multiply 1x64b, 2x32b, 4x16b, 8x8b
+      div, div32, div16, div8               insV=C-F integer divide 1x64b, 2x32b, 4x16b, 8x8b
+A   | ALU Integer                         | store integer operation regY regZ to regX
       addoXYZ                               insV=5 integer add overflow bit
+      addo32XYZ                             insV=0 2x 32-bit integer add overflow bit
+      addo16XYZ                             insV=5 4x 16-bit integer add overflow bit
+      addo8XYZ                              insV=A 8x 8-bit integer add overflow bit
       subbXYZ                               insV=6 integer subtract borrow bit
+      subb32XYZ                             insV=1 2x 32-bit integer subtract borrow bit
+      subb16XYZ                             insV=6 4x 16-bit integer subtract borrow bit
+      subb8XYZ                              insV=B 8x 8-bit integer subtract borrow bit
       muloXYZ                               insV=7 integer multiply overflow
+      mulo32XYZ                             insV=2 2x 32-bit integer multiply overflow
+      mulo16XYZ                             insV=7 4x 16-bit integer multiply overflow
+      mulo8XYZ                              insV=C 8x 8-bit integer multiply overflow
       divrXYZ                               insV=8 integer divide remainder
-      copycXYZ                              insV=9 bitwise conditional copy if regZ is not zero
-      fexpXYZ                               insV=F float exponential
-9   | flpXYZ      | ALU Flp Operation     | store float op[insV] regY regZ to regX
+      divr32XYZ                             insV=3 2x 32-bit integer divide remainder
+      divr16XYZ                             insV=8 4x 16-bit integer divide remainder
+      divr8XYZ                              insV=D 8x 8-bit integer divide remainder
+9   | flpXYZ      | ALU Float             | store float op[insV] regY regZ to regX
       faddXYZ                               insV=0 float add
       fsubXYZ                               insV=1 float subtract
       fmulXYZ                               insV=2 float multiply
@@ -105,54 +118,21 @@ any | Raw Data                            | any raw data
       fatanXYZ                              insV=B float arctangent
       facosXYZ                              insV=C float arccosine
       fsqrtXYZ                              insV=D float square root
-      fminXYZ                               insV=E float min
-      fmaxXYZ                               insV=F float max
-      fmax8XYZ                              insV=F 8x 8-bit float max
-5   | convXYZ     | ALU Conv Vector       | store conversion op[insV] regY regZ to regX
+5   | convXYZ     | ALU Float             | store conversion op[insV] regY regZ to regX
       fexpXYZ                               insV=6 float natural logarithm
       fexp32XYZ                             insV=7 2x 32-bit float natural logarithm
       fexp16XYZ                             insV=8 4x 16-bit float natural logarithm
       fexp8XYZ                              insV=9 8x 8-bit float natural logarithm
       fabsXYZ                               insV=F float abs
       fexp32XYZ                             insV=F 2x 32-bit float exponential
-8   | bitvecXYZ   | ALU Bit Vector        | vector store bitwise op[insV] regY regZ to regX
+      fminXYZ                               insV=E float min
+      fmaxXYZ                               insV=F float max
+      fmax8XYZ                              insV=F 8x 8-bit float max
+      fexpXYZ                               insV=F float exponential
       fexp16XYZ                             insV=F 4x 16-bit float exponential
-9   | intvecXYZ   | ALU Int Vector        | vector store integer op[insV] regY regZ to regX
-      add32XYZ                              insV=0 2x 32-bit integer add
-      sub32XYZ                              insV=1 2x 32-bit integer subtract
-      mul32XYZ                              insV=2 2x 32-bit integer multiply
-      div32XYZ                              insV=3 2x 32-bit integer divide
-      neg32XYZ                              insV=4 2x 32-bit integer negate
-      add16XYZ                              insV=5 4x 16-bit integer add
-      sub16XYZ                              insV=6 4x 16-bit integer subtract
-      mul16XYZ                              insV=7 4x 16-bit integer multiply
-      div16XYZ                              insV=8 4x 16-bit integer divide
-      neg16XYZ                              insV=9 4x 16-bit integer negate
-      add8XYZ                               insV=A 8x 8-bit integer add
-      sub8XYZ                               insV=B 8x 8-bit integer subtract
-      mul8XYZ                               insV=C 8x 8-bit integer multiply
-      div8XYZ                               insV=D 8x 8-bit integer divide
-      neg8XYZ                               insV=E 8x 8-bit integer negate
       fexp8XYZ                              insV=F 8x 8-bit float exponential
-A   | intvecXYZ   | ALU Int Vector 2      | vector store integer op[insV] regY regZ to regX
-      addo32XYZ                             insV=0 2x 32-bit integer add overflow bit
-      subb32XYZ                             insV=1 2x 32-bit integer subtract borrow bit
-      mulo32XYZ                             insV=2 2x 32-bit integer multiply overflow
-      divr32XYZ                             insV=3 2x 32-bit integer divide remainder
-      copyc32XYZ                            insV=4 2x 32-bit conditional copy if regZ not zero
-      addo16XYZ                             insV=5 4x 16-bit integer add overflow bit
-      subb16XYZ                             insV=6 4x 16-bit integer subtract borrow bit
-      mulo16XYZ                             insV=7 4x 16-bit integer multiply overflow
-      divr16XYZ                             insV=8 4x 16-bit integer divide remainder
-      copyc16XYZ                            insV=9 4x 16-bit conditional copy if regZ not zero
-      addo8XYZ                              insV=A 8x 8-bit integer add overflow bit
-      subb8XYZ                              insV=B 8x 8-bit integer subtract borrow bit
-      mulo8XYZ                              insV=C 8x 8-bit integer multiply overflow
-      divr8XYZ                              insV=D 8x 8-bit integer divide remainder
-      copyc8XYZ                             insV=E 8x 8-bit conditional copy if regZ not zero
-      fmin32XYZ                             insV=F 2x 32-bit float min
-B   | intvecXYZ   | ALU Bit Vector 2      | vector store bitwise op[insV] regY regZ to regX
       fmax32XYZ                             insV=F 2x 32-bit float max
+      fmin32XYZ                             insV=F 2x 32-bit float min
 C   | flpvecXYZ   | ALU Flp Vector        | vector store float op[insV] regY regZ to regX
       fadd32XYZ                             insV=0 2x 32-bit float add
       fsub32XYZ                             insV=1 2x 32-bit float subtract
