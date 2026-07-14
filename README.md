@@ -37,7 +37,7 @@ any | Raw Data                            | any raw data
       nop [] //                             insV=0 no operation sleep constant regYZ cycles, comment
       jmp, jmpc                             insV=1-2 unconditional jump to regX, if regY is not zero
       ldi, ld, ld32, ld16, ld8              insV=3-7 load regX constant regYZ, lane 1 regY
-      clk, rnd, core, time                  insV=A-D integer counter, random, core info, global time
+      clk, rnd, core, freq, time            insV=9-D counter, random, core info, frequency, nanotime
       memr, memw                            insV=E-F load/store regX from/to shared memory[regY]
 1   | ALU Compare Zero                    | set 1 if comp regY to zero
       cmpez, cmpez32, cmpez16, cmpez8       insV=0-3 integer regY equal to zero
