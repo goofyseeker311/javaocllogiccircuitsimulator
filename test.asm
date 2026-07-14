@@ -39,7 +39,8 @@ ldi      0015 00000a01
 ldi      0016 00000c01
 ldi      0017 00000e01
 add      0018 0008 0010 ff
-ldi16    0020 00ff
+ldi      0020 00ff
+ld16     0020 0020
 memw     0020 0018
 memw     0020 0019
 memw     0020 001a
@@ -60,7 +61,7 @@ cmpez    0026 0023
 cmplz    0027 0021
 cmplz    0028 0022
 cmplz    0029 0023
-ldi      002a 00000041
+ldi      002a 00000042
 jmpc     002a 0024
 ldi      002b 01234567
 jmpc     002a 0028
@@ -148,17 +149,26 @@ cmpl     0074 0071 0072
 fcmpe    0075 0059 0059
 fcmpl    0076 0059 005a
 ldi      0077 12345678
-ldi32    0078 12345678
-ldi16    0079 1234
-ldi8     007a 12
+ldi      0078 12345678
+ld32     0078 0078
+ldi      0079 1234
+ld16     0079 0079
+ldi      007a 12
+ld8      007a 12
 ldi      007b BF800000
-ldi32    007c FFFFFFFF
-ldi16    007d 0000
-ldi8     007e 00
+ldi      007c FFFFFFFF
+ld32     007c 007c
+ldi      007d 0000
+ld16     007d 007d
+ldi      007e 00
+ld8      007e 007e
 ldi      007f 00000001
-ldi32    0080 00000001
-ldi16    0081 0001
-ldi8     0082 01
+ldi      0080 00000001
+ld32     0080 0080
+ldi      0081 0001
+ld16     0081 0081
+ldi      0082 01
+ld8      0082 0082
 cmpez32  0083 007e
 cmplz32  0084 007c
 fcmpez32 0085 007e
@@ -204,8 +214,10 @@ sub8     00ac 0078 007c
 mul8     00ad 0078 007c
 div8     00ae 0078 007c
 neg8     00af 0078
-ldi8     00b0 CC
-ldi8     00b1 CF
+ldi      00b0 CC
+ld8      00b0 00b0
+ldi      00b1 CF
+ld8      00b1 00b1
 fadd32   00b2 00b0 00b1
 fsub32   00b3 00b0 00b1
 fmul32   00b4 00b0 00b1
@@ -221,23 +233,28 @@ fsub8    00bd 00b0 00b1
 fmul8    00be 00b0 00b1
 fdiv8    00bf 00b0 00b1
 fneg8    00c0 00b0
-ldi32    00c1 00000001
-ldi      00c2 000000e3
-jmpc32   00c2 00c1
+ldi      00c1 00000001
+ld32     00c1 00c1
+ldi      00c2 000000f0
+jmpc     00c2 00c1
 ldi      00c3 ffaaffa1
 ldi      00c4 bbaaccd1
-ldi16    00c5 0001
-ldi      00c6 000000e8
-jmpc16   00c6 00c1
+ldi      00c5 0001
+ld16     00c5 00c5
+ldi      00c6 000000f6
+jmpc     00c6 00c1
 ldi      00c7 ffaaffa2
 ldi      00c8 bbaaccd2
-ldi8     00c9 01
-ldi      00ca 000000ed
-jmpc8    00ca 00c1
+ldi      00c9 01
+ld8      00c9 00c9
+ldi      00ca 000000fc
+jmpc     00ca 00c1
 ldi      00cb ffaaffa3
 ldi      00cc bbaaccd3
-ldi8     00cd 4C
-ldi8     00ce 40
+ldi      00cd 4C
+ld8      00cd 00cd
+ldi      00ce 40
+ld8      00ce 00ce
 fsin32   00cf 00cd
 ftan32   00d0 00cd
 fcos32   00d1 00cd
@@ -265,8 +282,10 @@ fasin8   00e6 00d9
 fatan8   00e7 00da
 facos8   00e8 00db
 fsqrt8   00e9 00cd
-ldi8     00ea 78
-ldi8     00eb FF
+ldi      00ea 78
+ld8      00ea 00ea
+ldi      00eb FF
+ld8      00eb 00eb
 finf32   00ec 00ea
 fnan32   00ed 00eb
 finf16   00ee 00ea
@@ -288,8 +307,10 @@ ftin8    00fd 00cd
 ftid8    00fe 00cd
 ftiu8    00ff 00cd
 ftit8    0100 00cd
-ldi8     0101 23
-ldi8     0102 78
+ldi      0101 23
+ld8      0101 0101
+ldi      0102 78
+ld8      0102 0102
 cmpe32   0103 0101 0101
 cmpl32   0104 0101 0102
 fcmpe32  0105 0101 0101
@@ -302,8 +323,10 @@ cmpe8    010b 0101 0101
 cmpl8    010c 0101 0102
 fcmpe8   010d 0101 0101
 fcmpl8   010e 0101 0102
-ldi8     010f 44
-ldi8     0110 FF
+ldi      010f 44
+ld8      010f 010f
+ldi      0110 FF
+ld8      0110 0110
 ff32     0111 010f
 f32f16   0112 010f
 f16f8    0113 010f
@@ -316,10 +339,14 @@ f8f16    0119 0113
 i32i     011a 0114
 i16i32   011b 0115
 i8i16    011c 0116
-ldi8     011d 56
-ldi8     011e 78
-ldi8     011f 00
-ldi8     0120 01
+ldi      011d 56
+ld8      011d 011d
+ldi      011e 78
+ld8      011e 011e
+ldi      011f 00
+ld8      011f 011f
+ldi      0120 01
+ld8      0120 0120
 lone32   0121 011f
 lone32   0122 0120
 hone32   0123 011f
@@ -350,10 +377,14 @@ hzero8   013b 011f
 hzero8   013c 0120
 ones8    013d 011f
 ones8    013e 0120
-ldi8     013f 9E
-ldi8     0140 83
-ldi8     0141 48
-ldi8     0142 37
+ldi      013f 9E
+ld8      013f 013f
+ldi      0140 83
+ld8      0140 0140
+ldi      0141 48
+ld8      0141 0141
+ldi      0142 37
+ld8      0142 0142
 addo32   0143 013f 0140
 subb32   0144 0140 013f
 mulo32   0145 0141 0142
@@ -366,8 +397,10 @@ addo8    014b 013f 0140
 subb8    014c 0140 013f
 mulo8    014d 0141 0142
 divr8    014e 0141 0142
-ldi8     014f 29
-ldi8     0150 F2
+ldi      014f 29
+ld8      014f 014f
+ldi      0150 F2
+ld8      0150 0150
 fmin     0151 014f 0150
 fmax     0152 014f 0150
 fabs     0153 0150
@@ -380,16 +413,24 @@ fabs16   0159 0150
 fmin8    015a 014f 0150
 fmax8    015b 014f 0150
 fabs8    015c 0150
-ldi8     015d BF
+ldi      015d BF
+ld8      015d 015d
 fexp     015e 015d
 fexp32   015f 015d
 fexp16   0160 015d
 fexp8    0161 015d
-ldi8     0162 3F
+ldi      0162 3F
+ld8      0162 0162
 fln      0163 0162
 fln32    0164 0162
 fln16    0165 0162
 fln8     0166 0162
+ldi      0167 15
+ld8      0167 0167
+fgam     0168 0167
+fgam32   0169 0167
+fgam16   016a 0167
+fgam8    016b 0167
 ldi      01ff 00000000
 clk      0200 01ff 01ff
 nop      ffff
