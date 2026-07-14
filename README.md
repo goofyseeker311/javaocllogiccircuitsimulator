@@ -110,11 +110,11 @@ E   | ALU Conversion                      | conversion regY to regX
       ftiu, ftiu32, ftiu16, ftiu8           insV=8-B float to int up
       ftit, ftit32, ftit16, ftit8           insV=C-F float to int truncate
 F   | ALU Conversion                      | conversion regY to regX
-      ii32, i32i16, i16i8                   insV=0-2 integer 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
-      i32i, i16i32, i8i16                   insV=3-5 integer 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
-      ff32, f32f16, f16f8                   insV=6-8 float 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
-      f32f, f16f32, f8f16                   insV=9-B float 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
-      fitf, fitf32, fitf16, fitf8           insV=C-F integer to float
+      fitf, fitf32, fitf16, fitf8           insV=0-3 integer to float
+      ii32, i32i16, i16i8                   insV=4-6 integer 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
+      i32i, i16i32, i8i16                   insV=7-9 integer 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
+      ff32, f32f16, f16f8                   insV=A-C float 1x64b->2x32b, 2x32b->4x16b, 4x16b->8x8b
+      f32f, f16f32, f8f16                   insV=D-F float 1x32b->1x64b, 2x16b->2x32b, 4x8b->4x16b
 ```
 
 Example looping test assembly code source and binary:
