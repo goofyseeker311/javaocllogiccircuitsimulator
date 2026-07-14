@@ -35,10 +35,8 @@ any | Raw Data                            | any raw data
       ##                                    direct data line 64-bit value
 0   | Flow Control                        | generic flow control
       nop [] //                             insV=0 no operation sleep constant regYZ cycles, comment
-      jmp                                   insV=1 unconditional jump to regX
-      jmpc                                  insV=2 jump to regX if regY is not zero
-      ldi                                   insV=3 load regX 32-bit constant regYZ
-      ld, ld32, ld16, ld8                   insV=4-7 load regX lane 1 regY
+      jmp, jmpc                             insV=1-2 unconditional jump to regX, if regY is not zero
+      ldi, ld, ld32, ld16, ld8              insV=3-7 load regX constant regYZ, lane 1 regY
       clk, rnd, core, time                  insV=A-D integer counter, random, core info, global time
       memr, memw                            insV=E-F load/store regX from/to shared memory[regY]
 1   | ALU Compare Zero                    | set 1 if comp regY to zero
