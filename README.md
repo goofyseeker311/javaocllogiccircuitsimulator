@@ -32,11 +32,11 @@ MISC instruction set architecture:
 Op  | Instruction (-, 32, 16, 8)          | Description (1x64b, 2x32b, 4x16b, 8x8b)
 ----------------------------------------------------------------------------------------------------
 any | Raw Data                            | any raw data
-      ##                                    direct data line 64-bit value
+      ## LABEL                              direct data line 64-bit value, or LABEL: address
 0   | Flow Control                        | generic flow control
-      nop [] //                             insV=0 no operation sleep constant regYZ cycles, comment
+      LABEL: nop [] //                      insV=0 no operation sleep regYZ cycles, LABEL, comment
       jmp, jmpc                             insV=1-2 unconditional jump to regX, if regY is not zero
-      ldi, ld, ld32, ld16, ld8              insV=3-7 load regX constant regYZ, lane 1 regY
+      ldi, ld, ld32, ld16, ld8              insV=3-7 load regX constant/LABEL regYZ, lane 1 regY
       clk, rnd, core, freq, time            insV=9-D counter, random, core info, frequency, nanotime
       memr, memw                            insV=E-F load/store regX from/to shared memory[regY]
 1   | ALU Compare Zero                    | set 1 if comp regY to zero
@@ -103,7 +103,7 @@ D   | ALU Float                           | float regY to regX
       fln, fln32, fln16, fln8               insV=0-3 float natural log
       fexp, fexp32, fexp16, fexp8           insV=4-7 float exponential
       fabs, fabs32, fabs16, fabs8           insV=8-B float abs
-      fgam, fgam32, fgam16, fgam8           insV=C-F float gamma
+      fgam, fgam32, fgam16, fgam8           insV=C-F float gamma(x+1) = n!
 E   | ALU Conversion                      | conversion regY to regX
       ftin, ftin32, ftin16, ftin8           insV=0-3 float to integer nearest
       ftid, ftid32, ftid16, ftid8           insV=4-7 float to integer down
