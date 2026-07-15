@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.Hashtable;
 
 public class JavaOCLLogicCircuitAssembler {
 
@@ -30,18 +31,35 @@ public class JavaOCLLogicCircuitAssembler {
 		long filesize = inputfile.length();
 		System.out.println("filein: "+filein+", fileout: "+fileout+", size: "+filesize+" bytes");
 		try {
+			Hashtable<String,Long> labellist = new Hashtable<String,Long>();
+			BufferedReader labelreader = new BufferedReader(new FileReader(inputfile));
 			BufferedReader filereader = new BufferedReader(new FileReader(inputfile));
 			BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
 			byte[] outputbytes = new byte[8];
 			ByteBuffer insvalbytes = ByteBuffer.allocate(8);
 			String commentline = null;
-			int linenumber = 0;
+			long linenumber = 0;
 			String splitregex = "\\s+|,";
 			String readline = null;
+			while((readline=labelreader.readLine())!=null) {
+				String codeline = readline.trim();
+				int labelindex = codeline.indexOf(":");
+				if (labelindex>=0) {
+					String labelline = codeline.substring(0, labelindex).trim();
+					labellist.put(labelline, linenumber);
+					System.out.println("label: "+labelline+" = "+String.format("0x%016x", linenumber));
+				}
+				linenumber++;
+			}
+			linenumber = 0;
 			while((readline=filereader.readLine())!=null) {
 				String codeline = readline.trim();
+				int labelindex = codeline.indexOf(":");
+				if (labelindex>=0) {
+					codeline = codeline.substring(labelindex+1).trim();
+				}
 				commentline = "";
-				if (codeline.length()==0) {
+				if ((codeline.length()==0)||(codeline.startsWith("//"))) {
 					insvalbytes.clear();
 					insvalbytes.putLong(0L);
 					insvalbytes.rewind();
@@ -49,21 +67,17 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', nothing");
-				} else if (codeline.startsWith("//")) {
-					insvalbytes.clear();
-					insvalbytes.putLong(0L);
-					insvalbytes.rewind();
-					insvalbytes.get(outputbytes, 0, 8);
-					fileoutput.write(outputbytes);
-					insvalbytes.rewind();
-					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', comment");
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', comment");
 				} else if (codeline.startsWith("##")) {
 					codeline = codeline.substring(2).trim();
 					String[] codelineparts = codeline.split(splitregex);
 					String dataline = codelineparts[0];
-					long dataval = Long.parseUnsignedLong(dataline, 16);
+					long dataval = 0;
+					if (labellist.containsKey(dataline)) {
+						dataval = labellist.get(dataline);
+					} else {
+						dataval = Long.parseUnsignedLong(dataline, 16);
+					}
 					insvalbytes.clear();
 					insvalbytes.putLong(dataval);
 					insvalbytes.rewind();
@@ -71,7 +85,7 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', data");
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', data");
 				} else if (codeline.startsWith("nop")) {
 					codeline = codeline.substring(3).trim();
 					String[] codelineparts = codeline.split(splitregex);
@@ -88,21 +102,24 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', sleep");
-				} else if (codeline.startsWith("ldi")) {
-					String codelinestr = codeline;
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', sleep");
+				} else if (codeline.startsWith("jmpi")) {
 					String[] codelineparts = codeline.split(splitregex);
 					codeline = codelineparts[0];
-					String regXline = codelineparts[1];
-					String dataline = codelineparts[2];
+					String dataline = codelineparts[1];
 					String vecnline = "0";
 					if (codelineparts.length>=4) {
 						vecnline = codelineparts[3];
 					}
-					int regX = Integer.parseUnsignedInt(regXline, 16);
-					long dataval = Long.parseUnsignedLong(dataline, 16);
+					int regX = 0;
+					long dataval = 0;
+					if (labellist.containsKey(dataline)) {
+						dataval = labellist.get(dataline);
+					} else {
+						dataval = Long.parseUnsignedLong(dataline, 16);
+					}
 					int vecN = Integer.parseUnsignedInt(vecnline, 16);
-					int insT = 0x30;
+					int insT = 0x10;
 					insvalbytes.clear();
 					insvalbytes.putShort((short)regX);
 					insvalbytes.putInt((int)dataval);
@@ -113,7 +130,36 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', immediate");
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', jump immediate");
+				} else if (codeline.startsWith("ldi")) {
+					String[] codelineparts = codeline.split(splitregex);
+					codeline = codelineparts[0];
+					String regXline = codelineparts[1];
+					String dataline = codelineparts[2];
+					String vecnline = "0";
+					if (codelineparts.length>=4) {
+						vecnline = codelineparts[3];
+					}
+					int regX = Integer.parseUnsignedInt(regXline, 16);
+					long dataval = 0;
+					if (labellist.containsKey(dataline)) {
+						dataval = labellist.get(dataline);
+					} else {
+						dataval = Long.parseUnsignedLong(dataline, 16);
+					}
+					int vecN = Integer.parseUnsignedInt(vecnline, 16);
+					int insT = 0x40;
+					insvalbytes.clear();
+					insvalbytes.putShort((short)regX);
+					insvalbytes.putInt((int)dataval);
+					insvalbytes.put((byte)vecN);
+					insvalbytes.put((byte)insT);
+					insvalbytes.rewind();
+					insvalbytes.get(outputbytes, 0, 8);
+					fileoutput.write(outputbytes);
+					insvalbytes.rewind();
+					long insval = insvalbytes.getLong();
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', load immediate");
 				} else {
 					int commentind = codeline.indexOf("//");
 					if (commentind>-1) {
@@ -128,17 +174,17 @@ public class JavaOCLLogicCircuitAssembler {
 					int insT = 0;
 					String[] codelineparts = codeline.split(splitregex);
 					if (codelineparts[0].equals("jmp")) {
-						insT = 0x10;
-					} else if (codelineparts[0].equals("jmpc")) {
 						insT = 0x20;
+					} else if (codelineparts[0].equals("jmpc")) {
+						insT = 0x30;
 					} else if (codelineparts[0].equals("ld")) {
-						insT = 0x40;
-					} else if (codelineparts[0].equals("ld32")) {
 						insT = 0x50;
-					} else if (codelineparts[0].equals("ld16")) {
+					} else if (codelineparts[0].equals("ld32")) {
 						insT = 0x60;
-					} else if (codelineparts[0].equals("ld8")) {
+					} else if (codelineparts[0].equals("ld16")) {
 						insT = 0x70;
+					} else if (codelineparts[0].equals("ld8")) {
+						insT = 0x80;
 					} else if (codelineparts[0].equals("clk")) {
 						insT = 0x90;
 					} else if (codelineparts[0].equals("rnd")) {
@@ -650,17 +696,17 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xff;
 					}
 					
-					if (codelineparts.length>=2) {
-						regX = Integer.parseUnsignedInt(codelineparts[1], 16);
-					}
-					if (codelineparts.length>=3) {
-						regY = Integer.parseUnsignedInt(codelineparts[2], 16);
+					if (codelineparts.length>=5) {
+						vecN = Integer.parseUnsignedInt(codelineparts[4], 16);
 					}
 					if (codelineparts.length>=4) {
 						regZ = Integer.parseUnsignedInt(codelineparts[3], 16);
 					}
-					if (codelineparts.length>=5) {
-						vecN = Integer.parseUnsignedInt(codelineparts[4], 16);
+					if (codelineparts.length>=3) {
+						regY = Integer.parseUnsignedInt(codelineparts[2], 16);
+					}
+					if (codelineparts.length>=2) {
+						regX = Integer.parseUnsignedInt(codelineparts[1], 16);
 					}
 					
 					insvalbytes.clear();
@@ -674,10 +720,11 @@ public class JavaOCLLogicCircuitAssembler {
 					fileoutput.write(outputbytes);
 					insvalbytes.rewind();
 					long insval = insvalbytes.getLong();
-					System.out.println("output: "+String.format("%016x", insval)+", readline("+linenumber+"): '"+readline+"', comment: '"+commentline+"'");
+					System.out.println("output: "+String.format("%016x", insval)+", readline("+String.format("0x%016x", linenumber)+"): '"+readline+"', comment: '"+commentline+"'");
 				}
 				linenumber++;
 			}
+			labelreader.close();
 			filereader.close();
 			fileoutput.close();
 		} catch (FileNotFoundException e) {

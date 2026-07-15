@@ -1,24 +1,31 @@
-nop      1ff rom header boot load size
-nop      01 rom header data
-nop      02 rom header data
-nop      03 rom header data
-nop      04 rom header data
-nop      05 rom header data
-nop      06 rom header data
-nop      07 rom header data
-nop      A0 rom header data
-nop      A1 rom header data
-nop      A2 rom header data
-nop      A3 rom header data
-nop      A4 rom header data
-nop      A5 rom header data
-nop      A6 rom header data
-nop      A7 rom header data
+nop     1ff // rom header boot load size
+nop      01 // rom header data
+nop      02 // rom header data
+nop      03 // rom header data
+nop      04 // rom header data
+nop      05 // rom header data
+nop      06 // rom header data
+nop      07 // rom header data
+nop      A0 // rom header data
+nop      A1 // rom header data
+nop      A2 // rom header data
+nop      A3 // rom header data
+nop      A4 // rom header data
+nop      A5 // rom header data
+nop      A6 // rom header data
+nop      A7 // rom header data
 
 // empty line
-nop      00000000
-ldi      0000 00000013
-ldi      0001 00000010
+        jmpi    START
+        ##      START
+START:  nop     00000000
+        ldi     0000    13
+        memr    0000    0000
+        ldi     002a    SKIP1
+        ldi     00c2    SKIP2
+        ldi     00c6    SKIP3
+        ldi     00ca    SKIP4
+        ldi     0001    00000010
 ldi      0002 000000ff 7
 shl      0003 0003 0001
 shl      0004 0004 0001
@@ -64,7 +71,7 @@ cmplz    0029 0023
 ldi      002a 00000042
 jmpc     002a 0024
 ldi      002b 01234567
-jmpc     002a 0028
+SKIP1:   jmpc 002a 0028
 memr     002c 0000
 memw     0020 0010
 ldi      002d ffffffff
@@ -235,22 +242,19 @@ fdiv8    00bf 00b0 00b1
 fneg8    00c0 00b0
 ldi      00c1 00000001
 ld32     00c1 00c1
-ldi      00c2 000000f0
 jmpc     00c2 00c1
 ldi      00c3 ffaaffa1
-ldi      00c4 bbaaccd1
+SKIP2:   ldi 00c4 bbaaccd1
 ldi      00c5 0001
 ld16     00c5 00c5
-ldi      00c6 000000f6
 jmpc     00c6 00c1
 ldi      00c7 ffaaffa2
-ldi      00c8 bbaaccd2
+SKIP3:   ldi 00c8 bbaaccd2
 ldi      00c9 01
 ld8      00c9 00c9
-ldi      00ca 000000fc
 jmpc     00ca 00c1
 ldi      00cb ffaaffa3
-ldi      00cc bbaaccd3
+SKIP4: ldi 00cc bbaaccd3
 ldi      00cd 4C
 ld8      00cd 00cd
 ldi      00ce 40
