@@ -68,7 +68,6 @@ cmpez    0026 0023
 cmplz    0027 0021
 cmplz    0028 0022
 cmplz    0029 0023
-ldi      002a 00000042
 jmpc     002a 0024
 ldi      002b 01234567
 SKIP1:   jmpc 002a 0028
