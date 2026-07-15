@@ -279,9 +279,12 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 				} break;
 				case 0x10: if (true) {
-					programcounter = oldregisters[regX];
+					programcounter = regYZ;
 				} break;
 				case 0x20: if (true) {
+					programcounter = oldregisters[regX];
+				} break;
+				case 0x30: if (true) {
 					long jumpflag = oldregisters[regY];
 					if (jumpflag!=0) {
 						programcounter = oldregisters[regX];
@@ -289,7 +292,7 @@ public class JavaOCLLogicCircuitEmulator {
 						programcounter++;
 					}
 				} break;
-				case 0x40: if (true) {
+				case 0x50: if (true) {
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
 							newregisters[regX+i] = oldregisters[regY];
@@ -297,7 +300,7 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 					programcounter++;
 				} break;
-				case 0x50: if (true) {
+				case 0x60: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
 					int intvalue1 = longbytes.getInt(4);
@@ -312,7 +315,7 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 					programcounter++;
 				} break;
-				case 0x60: if (true) {
+				case 0x70: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
 					short shortvalue1 = longbytes.getShort(6);
@@ -329,7 +332,7 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 					programcounter++;
 				} break;
-				case 0x70: if (true) {
+				case 0x80: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
 					byte bytevalue1 = longbytes.get(7);
@@ -355,7 +358,7 @@ public class JavaOCLLogicCircuitEmulator {
 						if (vecnbits.get(i)) {
 	
 							switch(insT) {
-								case 0x30: if (true) {
+								case 0x40: if (true) {
 									newregisters[regX+i] = regYZ;
 								} break;
 								case 0x90: if (true) {
