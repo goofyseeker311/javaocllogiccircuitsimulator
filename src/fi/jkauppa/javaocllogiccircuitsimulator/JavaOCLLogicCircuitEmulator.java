@@ -295,39 +295,44 @@ public class JavaOCLLogicCircuitEmulator {
 							newregisters[regX+i] = oldregisters[regY];
 						}
 					}
+					programcounter++;
 				} break;
 				case 0x50: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
-					int intvalue1 = longbytes.getInt(0);
+					int intvalue1 = longbytes.getInt(4);
 					longbytes.putLong(0L).rewind();
 					longbytes.putInt(0, intvalue1).rewind();
 					longbytes.putInt(4, intvalue1).rewind();
+					long longbytesvalue = longbytes.getLong();
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
-							newregisters[regX+i] = longbytes.getLong();
+							newregisters[regX+i] = longbytesvalue;
 						}
 					}
+					programcounter++;
 				} break;
 				case 0x60: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
-					short shortvalue1 = longbytes.getShort(0);
+					short shortvalue1 = longbytes.getShort(6);
 					longbytes.putLong(0L).rewind();
 					longbytes.putShort(0, shortvalue1).rewind();
 					longbytes.putShort(2, shortvalue1).rewind();
 					longbytes.putShort(4, shortvalue1).rewind();
 					longbytes.putShort(6, shortvalue1).rewind();
+					long longbytesvalue = longbytes.getLong();
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
-							newregisters[regX+i] = longbytes.getLong();
+							newregisters[regX+i] = longbytesvalue;
 						}
 					}
+					programcounter++;
 				} break;
 				case 0x70: if (true) {
 					longbytes.clear();
 					longbytes.putLong(oldregisters[regY]).rewind();
-					byte bytevalue1 = longbytes.get(0);
+					byte bytevalue1 = longbytes.get(7);
 					longbytes.putLong(0L).rewind();
 					longbytes.put(0, bytevalue1).rewind();
 					longbytes.put(1, bytevalue1).rewind();
@@ -337,11 +342,13 @@ public class JavaOCLLogicCircuitEmulator {
 					longbytes.put(5, bytevalue1).rewind();
 					longbytes.put(6, bytevalue1).rewind();
 					longbytes.put(7, bytevalue1).rewind();
+					long longbytesvalue = longbytes.getLong();
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
-							newregisters[regX+i] = longbytes.getLong();
+							newregisters[regX+i] = longbytesvalue;
 						}
 					}
+					programcounter++;
 				} break;
 				default: if (true) {
 					for (int i=0;i<8;i++) {
