@@ -33371,7 +33371,7 @@
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(270,850)" name="Constant">
-      <a name="value" val="0xffffffffffffffff"/>
+      <a name="value" val="0x3ffe750750750750"/>
       <a name="width" val="64"/>
     </comp>
     <comp lib="0" loc="(270,870)" name="Constant">
@@ -33442,10 +33442,10 @@
       <a name="facing" val="west"/>
       <a name="radix" val="float"/>
     </comp>
-    <comp lib="0" loc="(840,690)" name="Constant">
+    <comp lib="0" loc="(830,880)" name="Probe">
+      <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="value" val="0x0"/>
-      <a name="width" val="64"/>
+      <a name="radix" val="float"/>
     </comp>
     <comp lib="4" loc="(1000,590)" name="FPAdder">
       <a name="fpwidth" val="64"/>
@@ -33692,6 +33692,7 @@
     <wire from="(540,660)" to="(550,660)"/>
     <wire from="(540,740)" to="(560,740)"/>
     <wire from="(540,820)" to="(570,820)"/>
+    <wire from="(540,900)" to="(580,900)"/>
     <wire from="(550,600)" to="(550,660)"/>
     <wire from="(550,600)" to="(770,600)"/>
     <wire from="(560,260)" to="(570,260)"/>
@@ -33700,6 +33701,8 @@
     <wire from="(570,260)" to="(570,290)"/>
     <wire from="(570,640)" to="(570,820)"/>
     <wire from="(570,640)" to="(750,640)"/>
+    <wire from="(580,660)" to="(580,900)"/>
+    <wire from="(580,660)" to="(740,660)"/>
     <wire from="(590,340)" to="(600,340)"/>
     <wire from="(590,400)" to="(720,400)"/>
     <wire from="(590,470)" to="(600,470)"/>
@@ -33717,6 +33720,9 @@
     <wire from="(720,540)" to="(800,540)"/>
     <wire from="(730,360)" to="(730,520)"/>
     <wire from="(730,520)" to="(810,520)"/>
+    <wire from="(740,660)" to="(740,880)"/>
+    <wire from="(740,660)" to="(840,660)"/>
+    <wire from="(740,880)" to="(830,880)"/>
     <wire from="(750,640)" to="(750,860)"/>
     <wire from="(750,640)" to="(840,640)"/>
     <wire from="(750,860)" to="(830,860)"/>
@@ -33738,9 +33744,6 @@
     <wire from="(810,520)" to="(810,740)"/>
     <wire from="(810,520)" to="(840,520)"/>
     <wire from="(810,740)" to="(830,740)"/>
-    <wire from="(830,660)" to="(830,690)"/>
-    <wire from="(830,660)" to="(840,660)"/>
-    <wire from="(830,690)" to="(840,690)"/>
     <wire from="(880,530)" to="(890,530)"/>
     <wire from="(880,570)" to="(890,570)"/>
     <wire from="(880,610)" to="(890,610)"/>
