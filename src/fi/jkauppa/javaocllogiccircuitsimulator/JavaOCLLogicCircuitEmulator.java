@@ -4823,7 +4823,7 @@ public class JavaOCLLogicCircuitEmulator {
 									longbytes.putLong(oldregisters[regY+i]).rewind();
 									double doublevalue1 = longbytes.getDouble(0);
 									longbytes.putLong(0L).rewind();
-									double doublevaluea = Double.longBitsToDouble(0xffffffffffffffffL);
+									double doublevaluea = gammap1factorial(doublevalue1);
 									longbytes.putDouble(0, doublevaluea).rewind();
 									newregisters[regX+i] = longbytes.getLong();
 								} break;
@@ -4833,8 +4833,8 @@ public class JavaOCLLogicCircuitEmulator {
 									float floatvalue1 = longbytes.getFloat(0);
 									float floatvalue2 = longbytes.getFloat(4);
 									longbytes.putLong(0L).rewind();
-									float floatvaluea = Float.intBitsToFloat(0xffffffff);
-									float floatvalueb = Float.intBitsToFloat(0xffffffff);
+									float floatvaluea = (float)gammap1factorial(floatvalue1);
+									float floatvalueb = (float)gammap1factorial(floatvalue2);
 									longbytes.putFloat(0, floatvaluea).rewind();
 									longbytes.putFloat(4, floatvalueb).rewind();
 									newregisters[regX+i] = longbytes.getLong();
@@ -4847,10 +4847,10 @@ public class JavaOCLLogicCircuitEmulator {
 									float floatvalue3 = halftofloat(longbytes.getShort(4));
 									float floatvalue4 = halftofloat(longbytes.getShort(6));
 									longbytes.putLong(0L).rewind();
-									short shortvaluea = (short)0xffff;
-									short shortvalueb = (short)0xffff;
-									short shortvaluec = (short)0xffff;
-									short shortvalued = (short)0xffff;
+									short shortvaluea = floattohalf((float)gammap1factorial(floatvalue1));
+									short shortvalueb = floattohalf((float)gammap1factorial(floatvalue2));
+									short shortvaluec = floattohalf((float)gammap1factorial(floatvalue3));
+									short shortvalued = floattohalf((float)gammap1factorial(floatvalue4));
 									longbytes.putShort(0, shortvaluea).rewind();
 									longbytes.putShort(2, shortvalueb).rewind();
 									longbytes.putShort(4, shortvaluec).rewind();
@@ -4869,14 +4869,14 @@ public class JavaOCLLogicCircuitEmulator {
 									float floatvalue7 = minitofloat(longbytes.get(6));
 									float floatvalue8 = minitofloat(longbytes.get(7));
 									longbytes.putLong(0L).rewind();
-									byte bytevaluea = (byte)0xff;
-									byte bytevalueb = (byte)0xff;
-									byte bytevaluec = (byte)0xff;
-									byte bytevalued = (byte)0xff;
-									byte bytevaluee = (byte)0xff;
-									byte bytevaluef = (byte)0xff;
-									byte bytevalueg = (byte)0xff;
-									byte bytevalueh = (byte)0xff;
+									byte bytevaluea = floattomini((float)gammap1factorial(floatvalue1));
+									byte bytevalueb = floattomini((float)gammap1factorial(floatvalue2));
+									byte bytevaluec = floattomini((float)gammap1factorial(floatvalue3));
+									byte bytevalued = floattomini((float)gammap1factorial(floatvalue4));
+									byte bytevaluee = floattomini((float)gammap1factorial(floatvalue5));
+									byte bytevaluef = floattomini((float)gammap1factorial(floatvalue6));
+									byte bytevalueg = floattomini((float)gammap1factorial(floatvalue7));
+									byte bytevalueh = floattomini((float)gammap1factorial(floatvalue8));
 									longbytes.put(0, bytevaluea).rewind();
 									longbytes.put(1, bytevalueb).rewind();
 									longbytes.put(2, bytevaluec).rewind();
@@ -5464,6 +5464,41 @@ public class JavaOCLLogicCircuitEmulator {
 		long floatvalue = (longsign<<7) | (longexp<<3) | longfrac;
 		byte minivalue = (byte)floatvalue;
 		return minivalue;
+	}
+	
+	public static double gammap1factorial(double x) {
+		double xp1 = x + 1.0f;
+		double lngammaval1 = xp1*Math.log(xp1);
+		double lngammaval2 = -xp1;
+		double lngammaval3 = 0.5f*Math.log(2.0f*Math.PI/xp1);
+		double x1 = xp1 + 1.0f;
+		double x2 = xp1 + 2.0f;
+		double x3 = xp1 + 3.0f;
+		double x4 = xp1 + 4.0f;
+		double x5 = xp1 + 5.0f;
+		double xm1 = x1;
+		double xm2 = x2 * xm1;
+		double xm3 = x3 * xm2;
+		double xm4 = x4 * xm3;
+		double xm5 = x5 * xm4;
+		double xd1 = 1.0f / xm1;
+		double xd2 = 1.0f / xm2;
+		double xd3 = 1.0f / xm3;
+		double xd4 = 1.0f / xm4;
+		double xd5 = 1.0f / xm5;
+		double c1 = Double.longBitsToDouble(0x3fb5555555555555L);
+		double c2 = Double.longBitsToDouble(0x3fb5555555555555L);
+		double c3 = Double.longBitsToDouble(0x3fc4fa4fa4fa4fa5L);
+		double c4 = Double.longBitsToDouble(0x3fdeeeeeeeeeeeefL);
+		double c5 = Double.longBitsToDouble(0x3FFE750750750750L);
+		double lngammaval4 = c1 * xd1;
+		double lngammaval5 = c2 * xd2;
+		double lngammaval6 = c3 * xd3;
+		double lngammaval7 = c4 * xd4;
+		double lngammaval8 = c5 * xd5;
+		double lngammaval = lngammaval1 + lngammaval2 + lngammaval3 + lngammaval4 + lngammaval5 + lngammaval6 + lngammaval7 + lngammaval8;
+		double gammaval = Math.exp(lngammaval);
+		return gammaval;
 	}
 	
 }
