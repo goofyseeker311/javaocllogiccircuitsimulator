@@ -134,7 +134,6 @@ START: nop   00000200           | 0000000002000000 | sleep for 513 cycles, label
        ldi   001a 00000028      | 001A000000280040 | load register 1a with value 0x28
        ldi   001b 00000001      | 001B000000010040 | load register 1b with value 0x1
        ldi   001c 00000008      | 001C000000080040 | load register 1c with value 0x8
-       ldi   0020 00000010      | 0020000000100040 | load register 20 with value 0x10
 COPY:  copy  0010 0008 0000 ff  | 001000080000FF04 | copy registers 8-f to 10-17, label COPY
        copy  0008 0000 0000 ff  | 000800000000FF04 | copy registers 0-7 to 8-f
        add   0000 0008 0010 ff  | 000000080010FF07 | add registers 8-f and 10-17 to 0-7
@@ -143,7 +142,7 @@ COPY:  copy  0010 0008 0000 ff  | 001000080000FF04 | copy registers 8-f to 10-17
        add   0018 0018 001b     | 00180018001B0007 | add register 18 and 1b to 18
        sub   001e 0018 0019     | 001E001800190047 | subtract register 18 and 19 to 1e
        cmplz 001f 001e          | 001F001E00000041 | compare register 1e less 0 to 1f
-       ldi   001d COPY          | 001D0000001C0040 | load register 1d label COPY line number
+       ldi   001d COPY          | 001D0000001B0040 | load register 1d label COPY line number
        jmpc  001d 001f          | 001D001F00000030 | jump to register 1d if 1f not zero
        jmpi  START              | 0000000000120010 | jump to label START line number
        ##    A123456789ABCDEF   | A123456789ABCDEF | data line A123456789ABCDEF
@@ -152,12 +151,12 @@ COPY:  copy  0010 0008 0000 ff  | 001000080000FF04 | copy registers 8-f to 10-17
 Example looping test assembly to c-code approximate:
 ```
 while(true) {                      // infinite while loop
-  register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to long 1 vectorized 8x
-  register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to long 1 vectorized 8x
-  register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to long 0 vectorized 8x
+  register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to 0x1 vectorized 8x
+  register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to 0x1 vectorized 8x
+  register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to 0x0 vectorized 8x
   register<24> long i = 0;         // init loop i with register 24 long integer value 0
-  register<25> long imax = 32;     // init loop imax with register 25 long integer value 32
-  register<26> long *mem = 0x18;   // init mem with register 26 long integer pointer at 0x18
+  register<25> long imax = 0x20;   // init loop imax with register 25 long integer value 0x20
+  register<26> long *mem = 0x28;   // init mem with register 26 long integer pointer at 0x28
   for (;i<imax;i++) {              // for loop long integer i index value from 0 to 31
     fib3{8} = fib2{8};             // copy array of old fib2 values to fib3 vectorized 8x
     fib2{8} = fib1{8};             // copy array of old fib1 values to fib2 vectorized 8x
