@@ -43,9 +43,10 @@ public class JavaOCLLogicCircuitAssembler {
 			String readline = null;
 			while((readline=labelreader.readLine())!=null) {
 				String codeline = readline.trim();
-				int labelindex = codeline.indexOf(":");
-				if (labelindex>=0) {
-					String labelline = codeline.substring(0, labelindex).trim();
+				String[] codelineparts = codeline.split(splitregex);
+				String dataline = codelineparts[0];
+				if (dataline.endsWith(":")) {
+					String labelline = dataline.substring(0, dataline.length()-1).trim();
 					labellist.put(labelline, linenumber);
 					System.out.println("label: "+labelline+" = "+String.format("0x%016x", linenumber));
 				}
