@@ -122,7 +122,7 @@ Example looping test assembly code source and binary:
 ```
 source listing                  | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-       nop                      | 0000000000000000 | sleep for 1 cycle, lines 0-f
+       ##    0000000000000000   | 0000000000000000 | data lines 0-f
        []                       | 0000000000000000 | empty line
        // empty line            | 0000000000000000 | comment line
 START: nop   00000200           | 0000000002000000 | sleep for 513 cycles, label START
