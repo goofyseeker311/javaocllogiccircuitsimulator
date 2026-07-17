@@ -124,28 +124,28 @@ source listing                  | binary           | explanation
 ----------------------------------------------------------------------------------------------------
        []                       | 0000000000000000 | empty line
        // empty line            | 0000000000000000 | comment line
-START: nop   00000200           | 0000000000000000 | 
-       ldi   0000 00000001 ff   | 0000000000000000 | 
-       ldi   0008 00000001 ff   | 0000000000000000 | 
-       ldi   0010 00000000 ff   | 0000000000000000 | 
-       ldi   0018 00000000      | 0000000000000000 | 
-       ldi   0019 00000020      | 0000000000000000 | 
-       ldi   001a 00000028      | 0000000000000000 | 
-       ldi   001b 00000001      | 0000000000000000 | 
-       ldi   001c 00000008      | 0000000000000000 | 
-       ldi   0020 00000010      | 0000000000000000 | 
-COPY:  copy  0010 0008 0000 ff  | 0000000000000000 | 
-       copy  0008 0000 0000 ff  | 0000000000000000 | 
-       add   0000 0008 0010 ff  | 0000000000000000 | 
-       memw  0000 001a 0000 ff  | 0000000000000000 | 
-       add   001a 001a 001c     | 0000000000000000 | 
-       add   0018 0018 001b     | 0000000000000000 | 
-       sub   001e 0018 0019     | 0000000000000000 | 
-       cmplz 001f 001e          | 0000000000000000 | 
-       ldi   001d COPY          | 0000000000000000 | 
-       jmpc  001d 001f          | 0000000000000000 | 
-       jmpi  START              | 0000000000000000 | 
-       ##    A123456789ABCDEF   | 0000000000000000 | 
+START: nop   00000200           | 0000000002000000 | sleep for 513 cycles, label START
+       ldi   0000 00000001 ff   | 000000000001FF40 | load registers 0-7 with value 0x1
+       ldi   0008 00000001 ff   | 000800000001FF40 | load registers 8-f with value 0x1
+       ldi   0010 00000000 ff   | 001000000000FF40 | load registers 10-17 with value 0x0
+       ldi   0018 00000000      | 0018000000000040 | load register 18 with value 0x0
+       ldi   0019 00000020      | 0019000000200040 | load register 19 with value 0x20
+       ldi   001a 00000028      | 001A000000280040 | load register 1a with value 0x28
+       ldi   001b 00000001      | 001B000000010040 | load register 1b with value 0x1
+       ldi   001c 00000008      | 001C000000080040 | load register 1c with value 0x8
+       ldi   0020 00000010      | 0020000000100040 | load register 20 with value 0x10
+COPY:  copy  0010 0008 0000 ff  | 001000080000FF04 | copy registers 8-f to 10-17, label COPY
+       copy  0008 0000 0000 ff  | 000800000000FF04 | copy registers 0-7 to 8-f
+       add   0000 0008 0010 ff  | 000000080010FF07 | add registers 8-f and 10-17 to 0-7
+       memw  0000 001a 0000 ff  | 0000001A0000FFF0 | write registers 0-7 to mem[28-2f]
+       add   001a 001a 001c     | 001A001A001C0007 | add register 1a and 1c to 1a
+       add   0018 0018 001b     | 00180018001B0007 | add register 18 and 1b to 18
+       sub   001e 0018 0019     | 001E001800190047 | subtract register 18 and 19 to 1e
+       cmplz 001f 001e          | 001F001E00000041 | compare register 1e less 0 to 1f
+       ldi   001d COPY          | 001D0000001C0040 | load register 1d label COPY line number
+       jmpc  001d 001f          | 001D001F00000030 | jump to register 1d if 1f not zero
+       jmpi  START              | 0000000000120010 | jump to label START line number
+       ##    A123456789ABCDEF   | A123456789ABCDEF | data line A123456789ABCDEF
 ```
 
 Example looping test assembly to c-code approximate:
