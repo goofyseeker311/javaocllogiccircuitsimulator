@@ -55,9 +55,12 @@ public class JavaOCLLogicCircuitAssembler {
 			linenumber = 0;
 			while((readline=filereader.readLine())!=null) {
 				String codeline = readline.trim();
-				int labelindex = codeline.indexOf(":");
-				if (labelindex>=0) {
-					codeline = codeline.substring(labelindex+1).trim();
+				if (true) {
+					String[] codelineparts = codeline.split(splitregex);
+					String dataline = codelineparts[0];
+					if (dataline.endsWith(":")) {
+						codeline = codeline.substring(dataline.length()+1).trim();
+					}
 				}
 				commentline = "";
 				if ((codeline.length()==0)||(codeline.startsWith("//"))) {
