@@ -17,10 +17,10 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore127" src="https://github.com/user-attachments/assets/4d08e5f1-2a1b-44da-bd6f-cd7a464b343b" />
-<img width="3840" height="2112" alt="muxrisccore127a" src="https://github.com/user-attachments/assets/c96057ff-a478-45f8-b955-84efb1b8a542" />
-<img width="3840" height="2112" alt="muxrisccore127b" src="https://github.com/user-attachments/assets/13105c7c-336a-4c39-8efa-0b586f73fcd5" />
-<img width="3840" height="2112" alt="muxrisccore127c" src="https://github.com/user-attachments/assets/9829db25-3375-4a54-8b63-63e9291faaea" />
+<img width="3840" height="2112" alt="muxrisccore128" src="https://github.com/user-attachments/assets/e6a9f0ad-627e-436a-b5ec-cb6191187059" />
+<img width="3840" height="2112" alt="muxrisccore128a" src="https://github.com/user-attachments/assets/ca20c1b1-0c01-4580-9ab2-8a4131652b55" />
+<img width="3840" height="2112" alt="muxrisccore128b" src="https://github.com/user-attachments/assets/d21eb0ea-5909-4a26-a339-99657714d264" />
+<img width="3840" height="2112" alt="muxrisccore128c" src="https://github.com/user-attachments/assets/098be481-ad31-435d-9ebf-a45a6c4a2700" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
@@ -120,32 +120,32 @@ F   | ALU Conversion                      | conversion regY to regX
 
 Example looping test assembly code source and binary:
 ```
-source listing         | binary           | explanation
+source listing                  | binary           | explanation
 ----------------------------------------------------------------------------------------------------
-[]                     | 0000000000000000 | empty line
-// empty line          | 0000000000000000 | comment line
-nop  00000200          | 0000000002000000 | no operation sleep 512+1 cycles
-ldi  0000 00000001 ff  | 000000000001ff02 | load registers 0-7 with 0x1, current fibonacci num
-ldi  0008 00000001 ff  | 000800000001ff02 | load registers 8-15 with 0x1, previous fibonacci num
-ldi  0010 00000000 ff  | 001000000000ff02 | load registers 16-23 with 0x0, previous+ fibonacci num
-ldi  0018 00000000     | 0018000000000002 | load register 24 with value 0x0, for loop index from 0
-ldi  0019 00000020     | 0019000000200002 | load register 25 with value 0x20, for loop less than 32
-ldi  001a 00000018     | 001a000000180002 | load register 26 with value 0x18, ram store start index
-ldi  001b 00000001     | 001b000000010002 | load register 27 with value 0x1, constant 0x1 add
-ldi  001c 00000008     | 001c000000080002 | load register 28 with value 0x8, constant 0x8 add
-ldi  001d 0000000C     | 001d0000000C0002 | load register 29 with value 0xC constant jump address
-ldi  0020 00000000     | 0020000000000002 | load register 32 with value 0x0 constant jump address
-copy 0010 0008 0000 ff | 001000080000ff56 | copy registers 8-15 to register 16-23
-copy 0008 0000 0000 ff | 000800000000ff56 | copy registers 0-7 to register 8-15
-add  0000 0008 0010 ff | 000000080010ff05 | store add of registers 8-15 and 16-23 to register 0-7
-memw 0000 001a 0000 ff | 0000001a0000ff13 | store registers 0-7 to register 26 memory location 0-7
-add  001a 001a 001c    | 001a001a001c0005 | store add of register 26 and register 28 to register 26
-add  0018 0018 001b    | 00180018001b0005 | store add of register 24 and register 27 to register 24
-sub  001e 0018 0019    | 001e001800190025 | store sub of register 24 and register 25 to register 30
-cmpl 001f 001e         | 001f001e00000014 | clear register 31, set if register 30 int less than 0
-jmpc 001d 001f         | 001d001f00000011 | jump to register 29 if register 31 is not zero
-jmp  0020              | 0020000000000001 | unconditional jump to register 32
-##   A123456789ABCDEF  | a123456789abcdef | custom data segment with any instruction or data
+       []                       | 0000000000000000 | empty line
+       // empty line            | 0000000000000000 | comment line
+START: nop   00000200           | 0000000000000000 | 
+       ldi   0000 00000001 ff   | 0000000000000000 | 
+       ldi   0008 00000001 ff   | 0000000000000000 | 
+       ldi   0010 00000000 ff   | 0000000000000000 | 
+       ldi   0018 00000000      | 0000000000000000 | 
+       ldi   0019 00000020      | 0000000000000000 | 
+       ldi   001a 00000028      | 0000000000000000 | 
+       ldi   001b 00000001      | 0000000000000000 | 
+       ldi   001c 00000008      | 0000000000000000 | 
+       ldi   0020 00000010      | 0000000000000000 | 
+COPY:  copy  0010 0008 0000 ff  | 0000000000000000 | 
+       copy  0008 0000 0000 ff  | 0000000000000000 | 
+       add   0000 0008 0010 ff  | 0000000000000000 | 
+       memw  0000 001a 0000 ff  | 0000000000000000 | 
+       add   001a 001a 001c     | 0000000000000000 | 
+       add   0018 0018 001b     | 0000000000000000 | 
+       sub   001e 0018 0019     | 0000000000000000 | 
+       cmplz 001f 001e          | 0000000000000000 | 
+       ldi   001d COPY          | 0000000000000000 | 
+       jmpc  001d 001f          | 0000000000000000 | 
+       jmpi  START              | 0000000000000000 | 
+       ##    A123456789ABCDEF   | 0000000000000000 | 
 ```
 
 Example looping test assembly to c-code approximate:
