@@ -265,12 +265,13 @@ public class JavaOCLLogicCircuitEmulator {
 			byte vecN = instbytes.get();
 			int insT = Byte.toUnsignedInt(instbytes.get());
 			long regYZ = Integer.toUnsignedLong(instbytes.getInt(2));
+			long regXYZN = Long.rotateRight(instructionstate & 0xffffffffffffff00L, 8);
 			byte[] vecnarray = {vecN};
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
 			switch(insT) {
 				case 0x00: if (true) {
-					long sleepsteps = regYZ;
+					long sleepsteps = regXYZN;
 					if (instructionstep<sleepsteps) {
 						instructionstep++;
 					} else {
@@ -279,7 +280,7 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 				} break;
 				case 0x10: if (true) {
-					programcounter = regYZ;
+					programcounter = regXYZN;
 				} break;
 				case 0x20: if (true) {
 					programcounter = oldregisters[regX];

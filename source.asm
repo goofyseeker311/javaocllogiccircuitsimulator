@@ -16,7 +16,7 @@
        ##    000000000000a700   // rom header data
 
        // empty line
-START: nop   00000200
+START: nop   00000000000200
        ldi   0000 00000001 ff
        ldi   0008 00000001 ff
        ldi   0010 00000000 ff

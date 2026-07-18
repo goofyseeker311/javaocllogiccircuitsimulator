@@ -37,6 +37,7 @@ public class JavaOCLLogicCircuitAssembler {
 			BufferedOutputStream fileoutput = new BufferedOutputStream(new FileOutputStream(outputfile));
 			byte[] outputbytes = new byte[8];
 			ByteBuffer insvalbytes = ByteBuffer.allocate(8);
+			ByteBuffer longbytes = ByteBuffer.allocate(8);
 			String commentline = null;
 			long linenumber = 0;
 			String splitregex = "\\s+|,";
@@ -94,13 +95,16 @@ public class JavaOCLLogicCircuitAssembler {
 					codeline = codeline.substring(3).trim();
 					String[] codelineparts = codeline.split(splitregex);
 					String dataline = codelineparts[0];
-					int regX = 0;
 					long dataval = Long.parseUnsignedLong(dataline, 16);
-					int insT = 0x00;
+					byte insVO = 0x00;
+					longbytes.clear();
+					longbytes.putLong(dataval);
 					insvalbytes.clear();
-					insvalbytes.putShort((short)regX);
-					insvalbytes.putInt((int)dataval);
-					insvalbytes.putShort((short)insT);
+					insvalbytes.put((byte)0);
+					insvalbytes.putShort(longbytes.getShort(2));
+					insvalbytes.putShort(longbytes.getShort(4));
+					insvalbytes.putShort(longbytes.getShort(6));
+					insvalbytes.put(insVO);
 					insvalbytes.rewind();
 					insvalbytes.get(outputbytes, 0, 8);
 					fileoutput.write(outputbytes);
@@ -111,24 +115,21 @@ public class JavaOCLLogicCircuitAssembler {
 					String[] codelineparts = codeline.split(splitregex);
 					codeline = codelineparts[0];
 					String dataline = codelineparts[1];
-					String vecnline = "0";
-					if (codelineparts.length>=4) {
-						vecnline = codelineparts[3];
-					}
-					int regX = 0;
 					long dataval = 0;
 					if (labellist.containsKey(dataline)) {
 						dataval = labellist.get(dataline);
 					} else {
 						dataval = Long.parseUnsignedLong(dataline, 16);
 					}
-					int vecN = Integer.parseUnsignedInt(vecnline, 16);
-					int insT = 0x10;
+					byte insVO = 0x10;
+					longbytes.clear();
+					longbytes.putLong(dataval);
 					insvalbytes.clear();
-					insvalbytes.putShort((short)regX);
-					insvalbytes.putInt((int)dataval);
-					insvalbytes.put((byte)vecN);
-					insvalbytes.put((byte)insT);
+					insvalbytes.put((byte)0);
+					insvalbytes.putShort(longbytes.getShort(2));
+					insvalbytes.putShort(longbytes.getShort(4));
+					insvalbytes.putShort(longbytes.getShort(6));
+					insvalbytes.put(insVO);
 					insvalbytes.rewind();
 					insvalbytes.get(outputbytes, 0, 8);
 					fileoutput.write(outputbytes);
