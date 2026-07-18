@@ -1,19 +1,19 @@
-       ##       0002000000000000   // rom header boot load size
-       ##       0001000000000000   // rom header data
-       ##       0002000000000000   // rom header data
-       ##       0003000000000000   // rom header data
-       ##       0004000000000000   // rom header data
-       ##       0005000000000000   // rom header data
-       ##       0006000000000000   // rom header data
-       ##       0007000000000000   // rom header data
-       ##       00a0000000000000   // rom header data
-       ##       00a1000000000000   // rom header data
-       ##       00a2000000000000   // rom header data
-       ##       00a3000000000000   // rom header data
-       ##       00a4000000000000   // rom header data
-       ##       00a5000000000000   // rom header data
-       ##       00a6000000000000   // rom header data
-       ##       00a7000000000000   // rom header data
+       ##       0000000000000200   // rom header boot load size
+       ##       0000000000000100   // rom header data
+       ##       0000000000000200   // rom header data
+       ##       0000000000000300   // rom header data
+       ##       0000000000000400   // rom header data
+       ##       0000000000000500   // rom header data
+       ##       0000000000000600   // rom header data
+       ##       0000000000000700   // rom header data
+       ##       000000000000a000   // rom header data
+       ##       000000000000a100   // rom header data
+       ##       000000000000a200   // rom header data
+       ##       000000000000a300   // rom header data
+       ##       000000000000a400   // rom header data
+       ##       000000000000a500   // rom header data
+       ##       000000000000a600   // rom header data
+       ##       000000000000a700   // rom header data
 
        // empty line
        jmpi     START
