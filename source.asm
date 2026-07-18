@@ -1,4 +1,4 @@
-       ##    0000000000000100   // rom header boot load size
+       ##    0000000000000800   // rom header boot load size
        ##    0000000000000100   // rom header data
        ##    0000000000000200   // rom header data
        ##    0000000000000300   // rom header data
