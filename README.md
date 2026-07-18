@@ -125,7 +125,7 @@ source listing                  | binary           | explanation
        ##    0000000000000000   | 0000000000000000 | data lines 0-f
        []                       | 0000000000000000 | empty line
        // empty line            | 0000000000000000 | comment line
-START: nop   00000200           | 0000000002000000 | sleep for 513 cycles, label START
+START: nop   00000000000200     | 0000000000020000 | sleep for 513 cycles, label START
        ldi   0000 00000001 ff   | 000000000001FF40 | load registers 0-7 with value 0x1
        ldi   0008 00000001 ff   | 000800000001FF40 | load registers 8-f with value 0x1
        ldi   0010 00000000 ff   | 001000000000FF40 | load registers 10-17 with value 0x0
@@ -144,13 +144,14 @@ COPY:  copy  0010 0008 0000 ff  | 001000080000FF04 | copy registers 8-f to 10-17
        cmplz 001f 001e          | 001F001E00000041 | compare register 1e less 0 to 1f
        ldi   001d COPY          | 001D0000001B0040 | load register 1d label COPY line number
        jmpc  001d 001f          | 001D001F00000030 | jump to register 1d if 1f not zero
-       jmpi  START              | 0000000000120010 | jump to label START line number
+       jmpi  START              | 0000000000001210 | jump to label START line number
        ##    A123456789ABCDEF   | A123456789ABCDEF | data line A123456789ABCDEF
 ```
 
 Example looping test assembly to c-code approximate:
 ```
 while(true) {                      // infinite while loop
+  sleep(0x201);                    // sleep for 513 cycles
   register<0> long fib1{8} = 0x1;  // init fib1 with registers array 0-7 to 0x1 vectorized 8x
   register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to 0x1 vectorized 8x
   register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to 0x0 vectorized 8x
