@@ -17,10 +17,10 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore131" src="https://github.com/user-attachments/assets/980f8e88-f9bb-4db9-88e4-0054dbc79c8d" />
-<img width="3840" height="2112" alt="muxrisccore131a" src="https://github.com/user-attachments/assets/43208f76-fb59-456d-bbba-ad6e261b7ab4" />
-<img width="3840" height="2112" alt="muxrisccore131b" src="https://github.com/user-attachments/assets/25b9e09b-3341-4761-9dc2-3aca850aabc9" />
-<img width="3840" height="2112" alt="muxrisccore131c" src="https://github.com/user-attachments/assets/fe0c128a-915b-430f-8853-34b746676a40" />
+<img width="3840" height="2112" alt="muxrisccore132" src="https://github.com/user-attachments/assets/53f277b1-33ef-4803-a971-d31572c1e2ce" />
+<img width="3840" height="2112" alt="muxrisccore132a" src="https://github.com/user-attachments/assets/2440aaed-e18f-42d0-b2b3-196bbf944abd" />
+<img width="3840" height="2112" alt="muxrisccore132b" src="https://github.com/user-attachments/assets/f40dc5f7-e71c-42a9-acf0-660c49ab85d3" />
+<img width="3840" height="2112" alt="muxrisccore132c" src="https://github.com/user-attachments/assets/f3fcf7d0-00f5-4d28-b662-649b957827d9" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
