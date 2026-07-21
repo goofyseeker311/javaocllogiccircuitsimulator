@@ -17,12 +17,12 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore139" src="https://github.com/user-attachments/assets/dae486df-a280-4711-b4f9-e92a1c0fa658" />
-<img width="3840" height="2112" alt="muxrisccore139a" src="https://github.com/user-attachments/assets/0ca501cd-5fd0-4988-a16b-93ab06309cd9" />
-<img width="3840" height="2112" alt="muxrisccore139b" src="https://github.com/user-attachments/assets/2dd29f51-9bf2-4cbf-a956-dd47c8b9a584" />
-<img width="3840" height="2112" alt="muxrisccore139c" src="https://github.com/user-attachments/assets/8c300fe6-dc5f-4b42-bc51-c04a36cd9836" />
-<img width="3840" height="2112" alt="muxrisccore139d" src="https://github.com/user-attachments/assets/d7a67af4-5354-4f84-be6a-f7269b227c23" />
-<img width="3840" height="2112" alt="muxrisccore139e" src="https://github.com/user-attachments/assets/f6ae1085-92d1-4d19-80d8-39aae874e933" />
+<img width="3840" height="2112" alt="muxrisccore140" src="https://github.com/user-attachments/assets/7d576951-4d9e-4890-8f03-25836f3bc481" />
+<img width="3840" height="2112" alt="muxrisccore140a" src="https://github.com/user-attachments/assets/ab7f27e7-9e82-4b08-bd55-f6b8c53af1da" />
+<img width="3840" height="2112" alt="muxrisccore140b" src="https://github.com/user-attachments/assets/bb4d9d1c-b761-4b3b-9c0d-35fb2a9f30ad" />
+<img width="3840" height="2112" alt="muxrisccore140c" src="https://github.com/user-attachments/assets/f7136aef-13b8-4e9c-895e-966f13b5cdef" />
+<img width="3840" height="2112" alt="muxrisccore140d" src="https://github.com/user-attachments/assets/bd65f0d2-1198-4beb-80d8-ba4eeb0c860a" />
+<img width="3840" height="2112" alt="muxrisccore140e" src="https://github.com/user-attachments/assets/61fce76d-2609-4410-8f9b-d9e5388b6fec" />
 <img width="3840" height="2112" alt="microfpgamux11" src="https://github.com/user-attachments/assets/94a30e13-19f2-4139-ace9-8e971c280713" />
 <img width="3840" height="2112" alt="microfpgamux11a" src="https://github.com/user-attachments/assets/cd161100-2d86-44a3-a655-48f662db4a90" />
 <img width="3840" height="2112" alt="microfpgamux11b" src="https://github.com/user-attachments/assets/196386ae-b823-4ae1-8455-d9856306a3cc" />
