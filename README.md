@@ -25,10 +25,10 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore145e" src="https://github.com/user-attachments/assets/dcc142f8-171e-42d6-bd41-f5d1c9ce0763" />
 <img width="3840" height="2112" alt="muxrisccore145f" src="https://github.com/user-attachments/assets/94d42bba-3474-4413-8926-9be0244afb70" />
 <img width="3840" height="2112" alt="muxrisccore145g" src="https://github.com/user-attachments/assets/e3ab0a2e-b0bd-4679-8a6a-3d25bf0b2c98" />
-<img width="3840" height="2112" alt="muxfpga13" src="https://github.com/user-attachments/assets/73253560-2043-4f88-a936-5eed51cbdcc9" />
-<img width="3840" height="2112" alt="muxfpga13a" src="https://github.com/user-attachments/assets/18e9b828-6aef-4ced-bef0-4a4ce7c71102" />
-<img width="3840" height="2112" alt="muxfpga13b" src="https://github.com/user-attachments/assets/a2aa8942-d39f-490d-a8da-f2540db320fd" />
-<img width="3840" height="2112" alt="muxfpga13c" src="https://github.com/user-attachments/assets/299de5fa-6f2b-4554-952e-a8c2cfed3886" />
+<img width="3840" height="2112" alt="muxfpga14" src="https://github.com/user-attachments/assets/08716aeb-7680-4787-b8fa-8972d858f0a4" />
+<img width="3840" height="2112" alt="muxfpga14a" src="https://github.com/user-attachments/assets/45218316-cced-479a-97e2-122013d58129" />
+<img width="3840" height="2112" alt="muxfpga14b" src="https://github.com/user-attachments/assets/4d070a42-6af0-4d0d-9d8e-916be84b2a76" />
+<img width="3840" height="2112" alt="muxfpga14c" src="https://github.com/user-attachments/assets/6c86b163-e763-4258-914a-f3b23c073369" />
 
 ---
 
