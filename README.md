@@ -17,7 +17,7 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore147" src="https://github.com/user-attachments/assets/b969a1c1-4cda-4fda-97b5-96937dc266b0" />
+<img width="3840" height="2112" alt="muxrisccore148" src="https://github.com/user-attachments/assets/fc8263b2-55e5-4551-83b9-e1db77984919" />
 <img width="3840" height="2112" alt="muxrisccore147a" src="https://github.com/user-attachments/assets/415f4ea7-5005-4a34-ac87-471a0df0857e" />
 <img width="3840" height="2112" alt="muxrisccore146a" src="https://github.com/user-attachments/assets/7b06cac9-0f50-4313-b3fc-9ea0abdc8bc4" />
 <img width="3840" height="2112" alt="muxrisccore146b" src="https://github.com/user-attachments/assets/86337add-15b9-4359-9f81-d7055cba2e04" />
