@@ -17,16 +17,21 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore154" src="https://github.com/user-attachments/assets/ae8e0ef4-8035-4d59-8609-bc9b3e857d67" />
-<img width="3840" height="2112" alt="muxrisccore154a" src="https://github.com/user-attachments/assets/63fd09aa-3b34-4d49-ba83-64e7b19ea412" />
-<img width="3840" height="2112" alt="muxrisccore154b" src="https://github.com/user-attachments/assets/354d33d5-a07b-4700-b1b7-10dd2f2467d6" />
-<img width="3840" height="2112" alt="muxrisccore154c" src="https://github.com/user-attachments/assets/e5316b03-70a2-49d0-9201-40b3a828dcab" />
-<img width="3840" height="2112" alt="muxrisccore154d" src="https://github.com/user-attachments/assets/56b95424-cf08-4527-8714-c068443f80e8" />
-<img width="3840" height="2112" alt="muxrisccore154e" src="https://github.com/user-attachments/assets/14dff25f-0fab-4ed1-80cc-44d7d7d32917" />
-<img width="3840" height="2112" alt="muxrisccore154f" src="https://github.com/user-attachments/assets/84b19da6-a9db-47e0-aa94-eaa0ef0546f2" />
-<img width="3840" height="2112" alt="muxrisccore154g" src="https://github.com/user-attachments/assets/c94bedbe-0bd4-40a8-8fc8-16675056394a" />
-<img width="3840" height="2112" alt="muxrisccore154h" src="https://github.com/user-attachments/assets/3dafe480-0176-482a-99b8-9d1027fcadb3" />
-<img width="3840" height="2112" alt="muxrisccore154i" src="https://github.com/user-attachments/assets/806333ce-b734-4148-a94f-c74d75af917c" />
+<img width="3840" height="2112" alt="muxrisccore155" src="https://github.com/user-attachments/assets/e90f62a6-15f6-4b0e-91ae-d5de3d59b6e5" />
+<img width="3840" height="2112" alt="muxrisccore155a" src="https://github.com/user-attachments/assets/a569c6c6-f343-49e6-a7ac-b709cadea0e1" />
+<img width="3840" height="2112" alt="muxrisccore155b" src="https://github.com/user-attachments/assets/de57767a-fa98-431f-b28b-7d8f5afe3fff" />
+<img width="3840" height="2112" alt="muxrisccore155c" src="https://github.com/user-attachments/assets/85e7e875-53d9-4b6c-a20a-79e763701c07" />
+<img width="3840" height="2112" alt="muxrisccore155d" src="https://github.com/user-attachments/assets/baf4a71e-90c8-4e4c-8715-499faa0b9748" />
+<img width="3840" height="2112" alt="muxrisccore155e" src="https://github.com/user-attachments/assets/144ef987-00b8-40c2-8f73-d8b18a87d4c5" />
+<img width="3840" height="2112" alt="muxrisccore155f" src="https://github.com/user-attachments/assets/48a7f06c-b265-4a7b-86f8-bf5103fd920d" />
+<img width="3840" height="2112" alt="muxrisccore155g" src="https://github.com/user-attachments/assets/8473d3ac-b6d6-416f-a4dc-dacf2a5d8f43" />
+<img width="3840" height="2112" alt="muxrisccore155h" src="https://github.com/user-attachments/assets/485ffead-2fe9-47d7-9396-90de9fe1a15c" />
+<img width="3840" height="2112" alt="muxrisccore155i" src="https://github.com/user-attachments/assets/5fb558b8-0eb3-480e-9f44-94e55efe3180" />
+<img width="3840" height="2112" alt="muxrisccore155j" src="https://github.com/user-attachments/assets/fee6a3cf-04df-4540-8c6c-d1e9f73e4d41" />
+<img width="3840" height="2112" alt="muxrisccore155k" src="https://github.com/user-attachments/assets/2d9d46cc-9400-4506-81d3-a9ce06328c1d" />
+<img width="3840" height="2112" alt="muxrisccore155l" src="https://github.com/user-attachments/assets/ccc347f7-69ad-4a47-ae4e-1f390879f6b8" />
+<img width="3840" height="2112" alt="muxrisccore155m" src="https://github.com/user-attachments/assets/a2733f0c-19c7-4d96-8f10-ff052de12a4d" />
+<img width="3840" height="2112" alt="muxrisccore155n" src="https://github.com/user-attachments/assets/c019ed86-a982-40f9-af2e-e6fc4fc59e66" />
 
 ---
 
