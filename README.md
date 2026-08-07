@@ -17,14 +17,14 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore155" src="https://github.com/user-attachments/assets/e90f62a6-15f6-4b0e-91ae-d5de3d59b6e5" />
+<img width="3840" height="2112" alt="muxrisccore156" src="https://github.com/user-attachments/assets/e5f7ac5b-208b-4941-a7d0-999a2e5ce69d" />
 <img width="3840" height="2112" alt="muxrisccore155a" src="https://github.com/user-attachments/assets/a569c6c6-f343-49e6-a7ac-b709cadea0e1" />
-<img width="3840" height="2112" alt="muxrisccore155b" src="https://github.com/user-attachments/assets/de57767a-fa98-431f-b28b-7d8f5afe3fff" />
-<img width="3840" height="2112" alt="muxrisccore155c" src="https://github.com/user-attachments/assets/85e7e875-53d9-4b6c-a20a-79e763701c07" />
+<img width="3840" height="2112" alt="muxrisccore156a" src="https://github.com/user-attachments/assets/451c01a2-0347-4888-a9eb-44c86c5deaa4" />
+<img width="3840" height="2112" alt="muxrisccore156b" src="https://github.com/user-attachments/assets/55a455b7-dc43-4933-9b76-4e9099ba9417" />
 <img width="3840" height="2112" alt="muxrisccore155d" src="https://github.com/user-attachments/assets/baf4a71e-90c8-4e4c-8715-499faa0b9748" />
-<img width="3840" height="2112" alt="muxrisccore155e" src="https://github.com/user-attachments/assets/144ef987-00b8-40c2-8f73-d8b18a87d4c5" />
+<img width="3840" height="2112" alt="muxrisccore156c" src="https://github.com/user-attachments/assets/ee72ead8-a280-4c0d-beb8-ecdc75d041cb" />
 <img width="3840" height="2112" alt="muxrisccore155f" src="https://github.com/user-attachments/assets/48a7f06c-b265-4a7b-86f8-bf5103fd920d" />
-<img width="3840" height="2112" alt="muxrisccore155g" src="https://github.com/user-attachments/assets/8473d3ac-b6d6-416f-a4dc-dacf2a5d8f43" />
+<img width="3840" height="2112" alt="muxrisccore156d" src="https://github.com/user-attachments/assets/cf8707e2-9e2a-4052-8c46-649cbd16ad39" />
 <img width="3840" height="2112" alt="muxrisccore155h" src="https://github.com/user-attachments/assets/485ffead-2fe9-47d7-9396-90de9fe1a15c" />
 <img width="3840" height="2112" alt="muxrisccore155i" src="https://github.com/user-attachments/assets/5fb558b8-0eb3-480e-9f44-94e55efe3180" />
 <img width="3840" height="2112" alt="muxrisccore155j" src="https://github.com/user-attachments/assets/fee6a3cf-04df-4540-8c6c-d1e9f73e4d41" />
