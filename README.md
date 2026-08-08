@@ -17,21 +17,21 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore159" src="https://github.com/user-attachments/assets/bbcbc66a-bf10-4cdc-829d-af16186022e8" />
-<img width="3840" height="2112" alt="muxrisccore155a" src="https://github.com/user-attachments/assets/a569c6c6-f343-49e6-a7ac-b709cadea0e1" />
-<img width="3840" height="2112" alt="muxrisccore159a" src="https://github.com/user-attachments/assets/09b4802c-ef31-4353-95d6-a4300e61579f" />
-<img width="3840" height="2112" alt="muxrisccore159b" src="https://github.com/user-attachments/assets/99be7f66-872d-49a9-b610-0b12443b233b" />
-<img width="3840" height="2112" alt="muxrisccore155d" src="https://github.com/user-attachments/assets/baf4a71e-90c8-4e4c-8715-499faa0b9748" />
-<img width="3840" height="2112" alt="muxrisccore156c" src="https://github.com/user-attachments/assets/ee72ead8-a280-4c0d-beb8-ecdc75d041cb" />
-<img width="3840" height="2112" alt="muxrisccore155f" src="https://github.com/user-attachments/assets/48a7f06c-b265-4a7b-86f8-bf5103fd920d" />
-<img width="3840" height="2112" alt="muxrisccore156d" src="https://github.com/user-attachments/assets/cf8707e2-9e2a-4052-8c46-649cbd16ad39" />
-<img width="3840" height="2112" alt="muxrisccore155h" src="https://github.com/user-attachments/assets/485ffead-2fe9-47d7-9396-90de9fe1a15c" />
-<img width="3840" height="2112" alt="muxrisccore155i" src="https://github.com/user-attachments/assets/5fb558b8-0eb3-480e-9f44-94e55efe3180" />
-<img width="3840" height="2112" alt="muxrisccore155j" src="https://github.com/user-attachments/assets/fee6a3cf-04df-4540-8c6c-d1e9f73e4d41" />
-<img width="3840" height="2112" alt="muxrisccore155k" src="https://github.com/user-attachments/assets/2d9d46cc-9400-4506-81d3-a9ce06328c1d" />
-<img width="3840" height="2112" alt="muxrisccore155l" src="https://github.com/user-attachments/assets/ccc347f7-69ad-4a47-ae4e-1f390879f6b8" />
-<img width="3840" height="2112" alt="muxrisccore155m" src="https://github.com/user-attachments/assets/a2733f0c-19c7-4d96-8f10-ff052de12a4d" />
-<img width="3840" height="2112" alt="muxrisccore155n" src="https://github.com/user-attachments/assets/c019ed86-a982-40f9-af2e-e6fc4fc59e66" />
+<img width="3840" height="2112" alt="muxrisccore160" src="https://github.com/user-attachments/assets/62eacb76-58c5-4824-9bc0-aa6d892e8480" />
+<img width="3840" height="2112" alt="muxrisccore160a" src="https://github.com/user-attachments/assets/586aee4a-37de-49a5-b8a5-91c250556f25" />
+<img width="3840" height="2112" alt="muxrisccore160b" src="https://github.com/user-attachments/assets/639fee6d-2124-4e37-9cdb-60a8882cd68a" />
+<img width="3840" height="2112" alt="muxrisccore160c" src="https://github.com/user-attachments/assets/ee44047d-b62d-4c2a-877d-d3fbe9731aeb" />
+<img width="3840" height="2112" alt="muxrisccore160d" src="https://github.com/user-attachments/assets/40828b59-5a76-47db-b2f5-984caad78d45" />
+<img width="3840" height="2112" alt="muxrisccore160e" src="https://github.com/user-attachments/assets/bafd772b-c191-4bb8-96e0-c1afe964d731" />
+<img width="3840" height="2112" alt="muxrisccore160f" src="https://github.com/user-attachments/assets/4c2e7eff-0aab-4625-86c8-dd542dd07b7b" />
+<img width="3840" height="2112" alt="muxrisccore160g" src="https://github.com/user-attachments/assets/d9829baa-a048-4157-9b9b-766471b89c82" />
+<img width="3840" height="2112" alt="muxrisccore160h" src="https://github.com/user-attachments/assets/5ffe2541-0f24-4a65-9826-bef077200525" />
+<img width="3840" height="2112" alt="muxrisccore160i" src="https://github.com/user-attachments/assets/927a39ca-6db1-4cac-88ac-ac3195d65922" />
+<img width="3840" height="2112" alt="muxrisccore160j" src="https://github.com/user-attachments/assets/6ac4d917-55d9-437c-a374-75a256ad82ed" />
+<img width="3840" height="2112" alt="muxrisccore160k" src="https://github.com/user-attachments/assets/28e6386a-bb5d-4f8b-8c8b-d4647fb4db5f" />
+<img width="3840" height="2112" alt="muxrisccore160l" src="https://github.com/user-attachments/assets/a9d2284f-cd2a-468f-9d8e-a487657e75d3" />
+<img width="3840" height="2112" alt="muxrisccore160m" src="https://github.com/user-attachments/assets/e6c5684f-a650-490b-8d64-ec24c41d7e24" />
+<img width="3840" height="2112" alt="muxrisccore160n" src="https://github.com/user-attachments/assets/804df1c3-247b-43a2-9662-2f060eb84083" />
 
 ---
 
@@ -46,7 +46,8 @@ any | Raw Data                            | any raw data
       LABEL: nop [] //                      insV=0 no operation sleep regXYZN cycles, LABEL, comment
       jmpi, jmp, jmpc                       insV=1-3 jump to constant/LABEL regXYZN, regX, if regY
       ldi, ld, ld32, ld16, ld8              insV=4-8 load regX constant/LABEL regYZ, lane 1 regY
-      clk, rnd, core, freq, time            insV=9-D counter, random, core info, frequency, nanotime
+      clk, rnd, core                        insV=9-B clock counter, clock random, core info
+      logr, logw                            insV=C-D read/write regX op regY regZ from/to fpga[regY]
       memr, memw                            insV=E-F load/store regX from/to shared memory[regY]
 1   | ALU Compare Zero                    | set 1 if comp regY to zero
       cmpez, cmpez32, cmpez16, cmpez8       insV=0-3 integer regY equal to zero
