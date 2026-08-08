@@ -43,7 +43,7 @@ Op  | Instruction (-, 32, 16, 8)          | Description (1x64b, 2x32b, 4x16b, 8x
 any | Raw Data                            | any raw data
       ## LABEL                              direct data line 64-bit value, or LABEL: address
 0   | Flow Control                        | generic flow control
-      LABEL: nop [] //                      insV=0 no operation sleep regXYZN cycles, LABEL, comment
+      LABEL: nop [] //                      insV=0 sleep regXYZN cycles, halt all-1, LABEL, comment
       jmpi, jmp, jmpc                       insV=1-3 jump to constant/LABEL regXYZN, regX, if regY
       ldi, ld, ld32, ld16, ld8              insV=4-8 load regX constant/LABEL regYZ, lane 1 regY
       clk, rnd, core                        insV=9-B clock counter, clock random, core info
