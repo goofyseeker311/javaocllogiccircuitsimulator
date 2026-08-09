@@ -89,11 +89,12 @@ SKIP1: jmpc     002a 0028
        div      0036 0017 0014
        divr     0037 0017 0014
        neg      0038 002d
-       clk      0039 0000 0021
-       rnd      003a 0000 0021
-       freq     003b 0000 0021
+       clk      0039
+       rnd      003a
+       ldi      003b 0000003b
+       memc     0000 003b 0022 d
        core     003c 0010
-       time     003d 0000 0021
+       time     003d
        shr      003e 002d 002f
        shar     003f 002e 002f
        rotl     0040 002e 002f

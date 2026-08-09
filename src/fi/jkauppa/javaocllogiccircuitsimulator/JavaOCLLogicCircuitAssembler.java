@@ -196,9 +196,9 @@ public class JavaOCLLogicCircuitAssembler {
 						insT = 0xa0;
 					} else if (codelineparts[0].equals("core")) {
 						insT = 0xb0;
-					} else if (codelineparts[0].equals("freq")) {
-						insT = 0xc0;
 					} else if (codelineparts[0].equals("time")) {
+						insT = 0xc0;
+					} else if (codelineparts[0].equals("memc")) {
 						insT = 0xd0;
 					} else if (codelineparts[0].equals("memr")) {
 						insT = 0xe0;
