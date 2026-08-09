@@ -47,7 +47,8 @@ any | Raw Data                            | any raw data
       jmpi, jmp, jmpc                       insV=1-3 jump to constant/LABEL regXYZN, regX, if regY
       ldi, ld, ld32, ld16, ld8              insV=4-8 load regX constant/LABEL regYZ, lane 1 regY
       clk, rnd, core, time                  insV=9-C clock counter, random, core info, nanotime
-      memc, memr, memw                      insV=D-F conf/load/store regX regZ op vecN in ram[regY]
+      memc                                  insV=D config op vecN ram[regX] ram[regZ] to ram[regY]
+      memr, memw                            insV=E-F load/store regX from/to shared ram[regY]
 1   | ALU Compare Zero                    | set 1 if comp regY to zero
       cmpez, cmpez32, cmpez16, cmpez8       insV=0-3 integer regY equal to zero
       cmplz, cmplz32, cmplz16, cmplz8       insV=4-7 integer regY less than zero
