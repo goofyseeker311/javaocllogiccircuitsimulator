@@ -12,7 +12,7 @@ import java.util.BitSet;
 import java.util.Random;
 
 public class JavaOCLLogicCircuitEmulator {
-	private long systemnanotime = System.nanoTime();;
+	private long systemnanotime = System.nanoTime();
 	private RiscChip riscchip = null;
 	public static void main(String[] arg) {
 		System.out.println("init.");
@@ -221,21 +221,6 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 		
 		public void processinstruction() {
-			for (int i=0;i<counters.length;i++) {
-				counters[i]++;
-			}
-			if (timerstep==0) {
-				for (int i=0;i<timers.length;i++) {
-					timers[i]++;
-				}
-			}
-			if (++timerstep>=5) {
-				timerstep = 0;
-			}
-			for (int i=0;i<randoms.length;i++) {
-				randoms[i].nextLong();
-			}
-			
 			long[] progarray = {programcounter};
 			BitSet progbits = BitSet.valueOf(progarray);
 			long progcounter = programcounter;
@@ -272,7 +257,9 @@ public class JavaOCLLogicCircuitEmulator {
 			switch(insT) {
 				case 0x00: if (true) {
 					long sleepsteps = regXYZN;
-					if (instructionstep<sleepsteps) {
+					if (sleepsteps == 0x00ffffffffffffffL) {
+						instructionstep = 0;
+					} else if (instructionstep<sleepsteps) {
 						instructionstep++;
 					} else {
 						instructionstep = 0;
@@ -364,14 +351,8 @@ public class JavaOCLLogicCircuitEmulator {
 								} break;
 								case 0x90: if (true) {
 									newregisters[regX+i] = this.counters[i];
-									if (oldregisters[regZ+i]!=0) {
-										this.counters[i] = oldregisters[regY+i];
-									}
 								} break;
 								case 0xa0: if (true) {
-									if (oldregisters[regY+i]!=0) {
-										this.randoms[i].setSeed(oldregisters[regZ+i]);
-									}
 									newregisters[regX+i] = this.randoms[i].nextLong();
 								} break;
 								case 0xb0: if (true) {
@@ -394,16 +375,10 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 								} break;
 								case 0xc0: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										riscchip.clockfrequency = oldregisters[regY+i];
-									}
-									newregisters[regX+i] = riscchip.clockfrequency;
+									newregisters[regX+i] = this.timers[i];
 								} break;
 								case 0xd0: if (true) {
-									if (oldregisters[regZ+i]!=0) {
-										this.timers[i] = oldregisters[regY+i];
-									}
-									newregisters[regX+i] = this.timers[i];
+									//TODO: memc fpga logic element config instruction
 								} break;
 								case 0xe0: if (true) {
 									long[] regyaddr = {oldregisters[regY]};
@@ -5379,6 +5354,21 @@ public class JavaOCLLogicCircuitEmulator {
 					}
 				}
 				programcounter++;
+			}
+
+			for (int i=0;i<counters.length;i++) {
+				counters[i]++;
+			}
+			if (timerstep==0) {
+				for (int i=0;i<timers.length;i++) {
+					timers[i]++;
+				}
+			}
+			if (++timerstep>=5) {
+				timerstep = 0;
+			}
+			for (int i=0;i<randoms.length;i++) {
+				randoms[i].nextLong();
 			}
 			
 			if (progcounter>=RiscChip.memoryamount) {
