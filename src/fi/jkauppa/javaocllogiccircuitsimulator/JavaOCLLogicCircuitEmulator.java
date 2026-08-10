@@ -113,7 +113,6 @@ public class JavaOCLLogicCircuitEmulator {
 		public long[] valmemoryram = new long[memoryamount];
 		public long[] inmemoryram = new long[memoryamount];
 		public long[] outmemoryram = new long[memoryamount];
-		public boolean[] fpgaramfi = new boolean[memoryamount];
 		public long[] fpgaramcv = new long[memoryamount];
 		public byte[] fpgaramop = new byte[memoryamount];
 		public long[] fpgaramoy = new long[memoryamount];
@@ -143,63 +142,70 @@ public class JavaOCLLogicCircuitEmulator {
 			}
 		}
 		public void processfpga() {
-			for (int i=0;i<RiscChip.memoryamount;i++) {
-				riscchip.fpgaramfi[i] = false;
-				long fpgasourcey = oldmemoryram[(int)riscchip.fpgaramoy[i]];
-				long fpgasourcez = oldmemoryram[(int)riscchip.fpgaramoz[i]];
-				switch(riscchip.fpgaramop[i]) {
-					default:
-					case 0x0:
-						valmemoryram[i] = oldmemoryram[i];
-					break;
-					case 0x1:
-						valmemoryram[i] = ~fpgasourcey;
-					break;
-					case 0x2:
-						valmemoryram[i] = fpgasourcey | fpgasourcez;
-					break;
-					case 0x3:
-						valmemoryram[i] = fpgasourcey & fpgasourcez;
-					break;
-					case 0x4:
-						valmemoryram[i] = ~(fpgasourcey & fpgasourcez);
-					break;
-					case 0x5:
-						valmemoryram[i] = ~(fpgasourcey | fpgasourcez);
-					break;
-					case 0x6:
-						valmemoryram[i] = fpgasourcey ^ fpgasourcez;
-					break;
-					case 0x7:
-						valmemoryram[i] = ~(fpgasourcey ^ fpgasourcez);
-					break;
-					case 0x8:
-						valmemoryram[i] = fpgasourcey << fpgasourcez;
-					break;
-					case 0x9:
-						valmemoryram[i] = fpgasourcey >>> fpgasourcez;
-					break;
-					case 0xA:
-						valmemoryram[i] = fpgasourcey >> fpgasourcez;
-					break;
-					case 0xB:
-						valmemoryram[i] = Long.rotateLeft(fpgasourcey, (int)fpgasourcez);
-					break;
-					case 0xC:
-						valmemoryram[i] = Long.rotateRight(fpgasourcey, (int)fpgasourcez);
-					break;
-					case 0xD:
-						valmemoryram[i] = 0x1L;
-					break;
-					case 0xE:
-						valmemoryram[i] = inmemoryram[i];
-					break;
-					case 0xF:
-						valmemoryram[i] = fpgasourcey;
-						riscchip.fpgaramfi[i] = true;
-					break;
+			boolean valueschanged = true;
+			while (valueschanged) {
+				valueschanged = false;
+				for (int i=0;i<RiscChip.memoryamount;i++) {
+					long fpgasourcey = oldmemoryram[(int)riscchip.fpgaramoy[i]];
+					long fpgasourcez = oldmemoryram[(int)riscchip.fpgaramoz[i]];
+					long fpgavaluex = valmemoryram[i];
+					switch(riscchip.fpgaramop[i]) {
+						default:
+						case 0x0:
+							fpgavaluex = oldmemoryram[i];
+						break;
+						case 0x1:
+							fpgavaluex = ~fpgasourcey;
+						break;
+						case 0x2:
+							fpgavaluex = fpgasourcey | fpgasourcez;
+						break;
+						case 0x3:
+							fpgavaluex = fpgasourcey & fpgasourcez;
+						break;
+						case 0x4:
+							fpgavaluex = ~(fpgasourcey & fpgasourcez);
+						break;
+						case 0x5:
+							fpgavaluex = ~(fpgasourcey | fpgasourcez);
+						break;
+						case 0x6:
+							fpgavaluex = fpgasourcey ^ fpgasourcez;
+						break;
+						case 0x7:
+							fpgavaluex = ~(fpgasourcey ^ fpgasourcez);
+						break;
+						case 0x8:
+							fpgavaluex = fpgasourcey << fpgasourcez;
+						break;
+						case 0x9:
+							fpgavaluex = fpgasourcey >>> fpgasourcez;
+						break;
+						case 0xA:
+							fpgavaluex = fpgasourcey >> fpgasourcez;
+						break;
+						case 0xB:
+							fpgavaluex = Long.rotateLeft(fpgasourcey, (int)fpgasourcez);
+						break;
+						case 0xC:
+							fpgavaluex = Long.rotateRight(fpgasourcey, (int)fpgasourcez);
+						break;
+						case 0xD:
+							fpgavaluex = 0x1L;
+						break;
+						case 0xE:
+							fpgavaluex = inmemoryram[i];
+						break;
+						case 0xF:
+							fpgavaluex = fpgasourcey;
+						break;
+					}
+					if ((valmemoryram[i] != fpgavaluex) || (outmemoryram[i] != fpgasourcey)) {
+						valueschanged = true;
+					}
+					valmemoryram[i] = fpgavaluex;
+					outmemoryram[i] = fpgasourcey;
 				}
-				outmemoryram[i] = fpgasourcey;
 			}
 		}
 		public void loadmemory(long[] memory) {
@@ -380,6 +386,7 @@ public class JavaOCLLogicCircuitEmulator {
 					riscchip.fpgaramoy[memorybaseregY] = memorybaseregX;
 					riscchip.fpgaramop[memorybaseregY] = vecN;
 					riscchip.fpgaramoz[memorybaseregY] = memorybaseregZ;
+					programcounter++;
 				} break;
 				default: if (true) {
 					for (int i=0;i<8;i++) {
