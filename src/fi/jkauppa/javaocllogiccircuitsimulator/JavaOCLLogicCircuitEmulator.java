@@ -110,6 +110,14 @@ public class JavaOCLLogicCircuitEmulator {
 		public static final int coreversion = 0;
 		public long[] oldmemoryram = new long[memoryamount];
 		public long[] newmemoryram = new long[memoryamount];
+		public long[] valmemoryram = new long[memoryamount];
+		public long[] inmemoryram = new long[memoryamount];
+		public long[] outmemoryram = new long[memoryamount];
+		public boolean[] fpgaramfi = new boolean[memoryamount];
+		public long[] fpgaramcv = new long[memoryamount];
+		public byte[] fpgaramop = new byte[memoryamount];
+		public long[] fpgaramoy = new long[memoryamount];
+		public long[] fpgaramoz = new long[memoryamount];
 		public long[] cartram = new long[cartamount];
 		public long[] bootrom = new long[bootamount];
 		public long[] displayram = new long[displayamount];
@@ -126,11 +134,72 @@ public class JavaOCLLogicCircuitEmulator {
 					risccores[i].processinstruction();
 				}
 				swapmemory();
+				processfpga();
 			}
 		}
 		public void swapmemory() {
 			for (int i=0;i<RiscChip.memoryamount;i++) {
 				riscchip.oldmemoryram[i] = riscchip.newmemoryram[i];
+			}
+		}
+		public void processfpga() {
+			for (int i=0;i<RiscChip.memoryamount;i++) {
+				riscchip.fpgaramfi[i] = false;
+				long fpgasourcey = oldmemoryram[(int)riscchip.fpgaramoy[i]];
+				long fpgasourcez = oldmemoryram[(int)riscchip.fpgaramoz[i]];
+				switch(riscchip.fpgaramop[i]) {
+					default:
+					case 0x0:
+						valmemoryram[i] = oldmemoryram[i];
+					break;
+					case 0x1:
+						valmemoryram[i] = ~fpgasourcey;
+					break;
+					case 0x2:
+						valmemoryram[i] = fpgasourcey | fpgasourcez;
+					break;
+					case 0x3:
+						valmemoryram[i] = fpgasourcey & fpgasourcez;
+					break;
+					case 0x4:
+						valmemoryram[i] = ~(fpgasourcey & fpgasourcez);
+					break;
+					case 0x5:
+						valmemoryram[i] = ~(fpgasourcey | fpgasourcez);
+					break;
+					case 0x6:
+						valmemoryram[i] = fpgasourcey ^ fpgasourcez;
+					break;
+					case 0x7:
+						valmemoryram[i] = ~(fpgasourcey ^ fpgasourcez);
+					break;
+					case 0x8:
+						valmemoryram[i] = fpgasourcey << fpgasourcez;
+					break;
+					case 0x9:
+						valmemoryram[i] = fpgasourcey >>> fpgasourcez;
+					break;
+					case 0xA:
+						valmemoryram[i] = fpgasourcey >> fpgasourcez;
+					break;
+					case 0xB:
+						valmemoryram[i] = Long.rotateLeft(fpgasourcey, (int)fpgasourcez);
+					break;
+					case 0xC:
+						valmemoryram[i] = Long.rotateRight(fpgasourcey, (int)fpgasourcez);
+					break;
+					case 0xD:
+						valmemoryram[i] = 0x1L;
+					break;
+					case 0xE:
+						valmemoryram[i] = inmemoryram[i];
+					break;
+					case 0xF:
+						valmemoryram[i] = fpgasourcey;
+						riscchip.fpgaramfi[i] = true;
+					break;
+				}
+				outmemoryram[i] = fpgasourcey;
 			}
 		}
 		public void loadmemory(long[] memory) {
@@ -211,7 +280,7 @@ public class JavaOCLLogicCircuitEmulator {
 			corenum = corenumi;
 			threadroot = 0xFFFL - corenumi; //0xFFFFFFL - corenumi;
 			threadbase = 0xBFBL - 0x300L * corenumi; //0xFFEFFBL - 0xFFFFL * corenumi;
-			memorybase = 0x400L;
+			memorybase = 0x000L;
 			registermask = 0L;
 			memorymask = 0L;
 		}
@@ -278,7 +347,9 @@ public class JavaOCLLogicCircuitEmulator {
 			long oldregistersregX = riscchip.oldmemoryram[registerbaseregX];
 			long oldregistersregY = riscchip.oldmemoryram[registerbaseregY];
 			long oldregistersregZ = riscchip.oldmemoryram[registerbaseregZ];
+			int memorybaseregX = (int)memorybase+(int)(oldregistersregX&(~memorymask));
 			int memorybaseregY = (int)memorybase+(int)(oldregistersregY&(~memorymask));
+			int memorybaseregZ = (int)memorybase+(int)(oldregistersregZ&(~memorymask));
 			switch(insT) {
 				case 0x00: if (true) {
 					long sleepsteps = regXYZN;
@@ -304,6 +375,11 @@ public class JavaOCLLogicCircuitEmulator {
 					} else {
 						programcounter++;
 					}
+				} break;
+				case 0xd0: if (true) {
+					riscchip.fpgaramoy[memorybaseregY] = memorybaseregX;
+					riscchip.fpgaramop[memorybaseregY] = vecN;
+					riscchip.fpgaramoz[memorybaseregY] = memorybaseregZ;
 				} break;
 				default: if (true) {
 					for (int i=0;i<8;i++) {
@@ -385,9 +461,6 @@ public class JavaOCLLogicCircuitEmulator {
 								} break;
 								case 0xc0: if (true) {
 									newregistersregXpi = this.timer;
-								} break;
-								case 0xd0: if (true) {
-									//TODO: memc fpga logic element config instruction
 								} break;
 								case 0xe0: if (true) {
 									long[] regyaddr = {oldregistersregY};
