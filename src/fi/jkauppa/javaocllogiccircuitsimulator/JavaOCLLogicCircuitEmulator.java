@@ -137,6 +137,7 @@ public class JavaOCLLogicCircuitEmulator {
 			if (memory!=null) {
 				for (int i=0;(i<memory.length)&&(i<memoryamount);i++) {
 					oldmemoryram[i] = memory[i];
+					newmemoryram[i] = memory[i];
 				}
 			}
 		}
@@ -187,8 +188,8 @@ public class JavaOCLLogicCircuitEmulator {
 	public class RiscCore {
 		public int corenum = 0;
 		public int cyclenum = 0;
-		private long[] counters = {0, 0, 0, 0, 0, 0, 0 ,0};
-		private long[] timers = {systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime, systemnanotime};
+		private long counter = 0;
+		private long timer = systemnanotime;
 		private Random[] randoms = {new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random(), new Random()};
 		private int timerstep = 0;
 		private long instructionstate = 0L;
@@ -210,7 +211,7 @@ public class JavaOCLLogicCircuitEmulator {
 			corenum = corenumi;
 			threadroot = 0xFFFL - corenumi; //0xFFFFFFL - corenumi;
 			threadbase = 0xBFBL - 0x300L * corenumi; //0xFFEFFBL - 0xFFFFL * corenumi;
-			memorybase = 0L;
+			memorybase = 0x400L;
 			registermask = 0L;
 			memorymask = 0L;
 		}
@@ -247,9 +248,9 @@ public class JavaOCLLogicCircuitEmulator {
 				}
 				instructionstate = riscchip.bootrom[(int)progcounter];
 			} else {
-				instructionstate = riscchip.oldmemoryram[(int)progcounter];
+				instructionstate = riscchip.oldmemoryram[(int)memorybase+(int)(progcounter&(~memorymask))];
 			}
-			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", programcounter: "+String.format("%016x", programcounter)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+instructionstep+
+			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", programcounter: "+String.format("%016x", programcounter)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+String.format("%016x", instructionstep)+
 					", r0:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x0])+", r1:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x1])+", r2:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x2])+", r3:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x3])+
 					", r4:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x4])+", r5:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x5])+", r6:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x6])+", r7:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x7])+
 					", r8:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x8])+", r9:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x9])+", rA:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0xA])+", rB:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0xB])+
@@ -268,15 +269,16 @@ public class JavaOCLLogicCircuitEmulator {
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
 			vecnbits.set(0);
 			
-			int registerbaseregX = (int)registerbase+regX;
-			int registerbaseregY = (int)registerbase+regY;
-			int registerbaseregZ = (int)registerbase+regZ;
+			int registerbaseregX = (int)registerbase+(int)(regX&(~registermask));
+			int registerbaseregY = (int)registerbase+(int)(regY&(~registermask));
+			int registerbaseregZ = (int)registerbase+(int)(regZ&(~registermask));
 			if (registerbaseregX>=RiscChip.memoryamount) {registerbaseregX=0;}
 			if (registerbaseregY>=RiscChip.memoryamount) {registerbaseregY=0;}
 			if (registerbaseregZ>=RiscChip.memoryamount) {registerbaseregZ=0;}
 			long oldregistersregX = riscchip.oldmemoryram[registerbaseregX];
 			long oldregistersregY = riscchip.oldmemoryram[registerbaseregY];
 			long oldregistersregZ = riscchip.oldmemoryram[registerbaseregZ];
+			int memorybaseregY = (int)memorybase+(int)(oldregistersregY&(~memorymask));
 			switch(insT) {
 				case 0x00: if (true) {
 					long sleepsteps = regXYZN;
@@ -357,7 +359,7 @@ public class JavaOCLLogicCircuitEmulator {
 									newregistersregXpi = longbytesvalue;
 								} break;
 								case 0x90: if (true) {
-									newregistersregXpi = this.counters[i];
+									newregistersregXpi = this.counter;
 								} break;
 								case 0xa0: if (true) {
 									newregistersregXpi = this.randoms[i].nextLong();
@@ -366,7 +368,7 @@ public class JavaOCLLogicCircuitEmulator {
 									if (oldregistersregYpi==1) {
 										newregistersregXpi = riscchip.risccores.length;
 									} else if (oldregistersregYpi==2) {
-										newregistersregXpi = 0L;
+										newregistersregXpi = 65536L;
 									} else if (oldregistersregYpi==3) {
 										newregistersregXpi = RiscChip.memoryamount;
 									} else if (oldregistersregYpi==4) {
@@ -382,7 +384,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 								} break;
 								case 0xc0: if (true) {
-									newregistersregXpi = this.timers[i];
+									newregistersregXpi = this.timer;
 								} break;
 								case 0xd0: if (true) {
 									//TODO: memc fpga logic element config instruction
@@ -405,7 +407,7 @@ public class JavaOCLLogicCircuitEmulator {
 											newregistersregXpi = riscchip.cartram[((int)memaddress)+i];
 										}
 									} else {
-										newregistersregXpi = riscchip.oldmemoryram[((int)oldregistersregY)+i];
+										newregistersregXpi = riscchip.oldmemoryram[memorybaseregY+i];
 									}
 								} break;
 								case 0xf0: if (true) {
@@ -426,7 +428,7 @@ public class JavaOCLLogicCircuitEmulator {
 											riscchip.cartram[((int)memaddress)+i] = oldregistersregXpi;
 										}
 									} else {
-										riscchip.newmemoryram[((int)oldregistersregY)+i] = oldregistersregXpi;
+										riscchip.newmemoryram[memorybaseregY+i] = oldregistersregXpi;
 									}
 								} break;
 								
@@ -5365,13 +5367,9 @@ public class JavaOCLLogicCircuitEmulator {
 				programcounter++;
 			}
 
-			for (int i=0;i<counters.length;i++) {
-				counters[i]++;
-			}
+			counter++;
 			if (timerstep==0) {
-				for (int i=0;i<timers.length;i++) {
-					timers[i]++;
-				}
+				timer++;
 			}
 			if (++timerstep>=5) {
 				timerstep = 0;
