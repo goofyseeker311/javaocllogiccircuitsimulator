@@ -514,7 +514,7 @@ public class JavaOCLLogicCircuitEmulator {
 									}
 								} break;
 								default: if (true) {
-									newregistersregXpi = alucompute(insT, regYZ, oldregistersregY, oldregistersregXpi, oldregistersregYpi, oldregistersregZpi);
+									newregistersregXpi = alucompute(insT, oldregistersregXpi, oldregistersregYpi, oldregistersregZpi);
 									
 								}
 							}
@@ -552,7 +552,7 @@ public class JavaOCLLogicCircuitEmulator {
 		}
 	}
 	
-	public static long alucompute(int insT, long regYZ, long oldregistersregY, long oldregistersregXpi, long oldregistersregYpi, long oldregistersregZpi) {
+	public static long alucompute(int insT, long oldregistersregXpi, long oldregistersregYpi, long oldregistersregZpi) {
 		ByteBuffer longbytes = ByteBuffer.allocate(8);
 		ByteBuffer longbytes2 = ByteBuffer.allocate(8);
 		ByteBuffer longbytes3 = ByteBuffer.allocate(8);
@@ -1389,7 +1389,7 @@ public class JavaOCLLogicCircuitEmulator {
 				}
 			} break;
 			case 0x53: if (true) {
-				newregistersregXpi = 0;
+				newregistersregXpi = oldregistersregXpi;
 				longbytes.clear();
 				longbytes.putLong(oldregistersregYpi).rewind();
 				longbytes2.clear();
@@ -1408,7 +1408,7 @@ public class JavaOCLLogicCircuitEmulator {
 				newregistersregXpi = longbytes.getLong();
 			} break;
 			case 0x63: if (true) {
-				newregistersregXpi = 0;
+				newregistersregXpi = oldregistersregXpi;
 				longbytes.clear();
 				longbytes.putLong(oldregistersregYpi).rewind();
 				longbytes2.clear();
@@ -1437,7 +1437,7 @@ public class JavaOCLLogicCircuitEmulator {
 				newregistersregXpi = longbytes.getLong();
 			} break;
 			case 0x73: if (true) {
-				newregistersregXpi = 0;
+				newregistersregXpi = oldregistersregXpi;
 				longbytes.clear();
 				longbytes.putLong(oldregistersregYpi).rewind();
 				longbytes2.clear();
