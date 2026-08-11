@@ -113,6 +113,7 @@ public class JavaOCLLogicCircuitEmulator {
 		public long[] valmemoryram = new long[memoryamount];
 		public long[] inmemoryram = new long[memoryamount];
 		public long[] outmemoryram = new long[memoryamount];
+		public long[] sncmemoryram = new long[memoryamount];
 		public long[] fpgaramcv = new long[memoryamount];
 		public byte[] fpgaramop = new byte[memoryamount];
 		public long[] fpgaramoy = new long[memoryamount];
@@ -149,6 +150,7 @@ public class JavaOCLLogicCircuitEmulator {
 					long fpgasourcey = oldmemoryram[(int)riscchip.fpgaramoy[i]];
 					long fpgasourcez = oldmemoryram[(int)riscchip.fpgaramoz[i]];
 					long fpgavaluex = valmemoryram[i];
+					long fpgasyncx = sncmemoryram[i];
 					switch(riscchip.fpgaramop[i]) {
 						default:
 						case 0x0:
@@ -197,13 +199,14 @@ public class JavaOCLLogicCircuitEmulator {
 							fpgavaluex = inmemoryram[i];
 						break;
 						case 0xF:
-							fpgavaluex = fpgasourcey;
+							fpgasyncx = fpgasourcey;
 						break;
 					}
-					if ((valmemoryram[i] != fpgavaluex) || (outmemoryram[i] != fpgasourcey)) {
+					if ((valmemoryram[i] != fpgavaluex) || (sncmemoryram[i] != fpgasyncx) || (outmemoryram[i] != fpgasourcey)) {
 						valueschanged = true;
 					}
 					valmemoryram[i] = fpgavaluex;
+					sncmemoryram[i] = fpgasyncx;
 					outmemoryram[i] = fpgasourcey;
 				}
 			}
