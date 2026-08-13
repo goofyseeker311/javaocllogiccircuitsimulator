@@ -33,7 +33,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore164m" src="https://github.com/user-attachments/assets/7cfa53b1-2723-47bd-842e-376156c70407" />
 <img width="3840" height="2112" alt="muxrisccore164n" src="https://github.com/user-attachments/assets/08464db8-5d82-424a-a46b-d289284ed3e7" />
 <img width="3840" height="2112" alt="fpcomp3" src="https://github.com/user-attachments/assets/85773867-66cf-4b7c-bb71-e7845866983f" />
-<img width="3840" height="2112" alt="fpcomp3a" src="https://github.com/user-attachments/assets/683d79d0-9cd5-48e6-b4f4-45165ec01898" />
+<img width="3840" height="2112" alt="fpcomp4a" src="https://github.com/user-attachments/assets/1d7942c0-c059-4dca-a2b5-8e5f2a582ff5" />
 <img width="3840" height="2112" alt="fpcomp3b" src="https://github.com/user-attachments/assets/d839f136-2103-4f6c-bb94-4575a783ab14" />
 
 ---
