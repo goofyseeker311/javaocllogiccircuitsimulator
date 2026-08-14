@@ -300,6 +300,7 @@ public class JavaOCLLogicCircuitEmulator {
 				riscchip.oldmemoryram[(int)threadbase+2] = memorybase;
 				riscchip.oldmemoryram[(int)threadbase+3] = registermask;
 				riscchip.oldmemoryram[(int)threadbase+4] = memorymask;
+				counter = 2;
 				firsttime = false;
 			}
 			
