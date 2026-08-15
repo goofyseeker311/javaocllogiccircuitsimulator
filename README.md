@@ -1,7 +1,7 @@
 # MISC K64 Chip
 
-MISC compute chip contains 64k cores, total of 32GB register nvsram and 8TB memory nvsram.
-Each core contains 64k local 64-bit ram registers, and mapped rom, ram, touch-display ram.
+MISC compute chip contains 64k cores, and 8TB shared multiport fpga bitwise logic-element register nvsram.
+Each core contains fully featured 64/32/16/8-bit floating point, integer, and bitwise operations alu.
 Every instruction uses/operates on full 64-bit register values always, and runs in 1 cycle.
 Every integer instruction uses two's complement signed long integer operations.
 Instruction high bits can contain specific simple variations of instructions, and vector duplicates.
