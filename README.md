@@ -32,13 +32,13 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore171l" src="https://github.com/user-attachments/assets/e6c1543a-b48b-40ba-873e-a9131c553888" />
 <img width="3840" height="2112" alt="muxrisccore171m" src="https://github.com/user-attachments/assets/940fb7c2-767a-4bd7-abb1-08e06aa9ad60" />
 <img width="3840" height="2112" alt="muxrisccore171n" src="https://github.com/user-attachments/assets/823fca8f-e7bc-4cbe-aaf1-b5988a322b00" />
-<img width="3840" height="2112" alt="fpcomp6" src="https://github.com/user-attachments/assets/bb15e0f6-086a-4ed9-9d13-0cb8e6905f76" />
-<img width="3840" height="2112" alt="fpcomp6a" src="https://github.com/user-attachments/assets/ec448689-e5f3-42c8-9ec7-b2293a06f1f3" />
-<img width="3840" height="2112" alt="fpcomp6b" src="https://github.com/user-attachments/assets/4bbc33cc-fddf-4b8f-941e-dd1ac71d431b" />
-<img width="3840" height="2112" alt="fpcomp6c" src="https://github.com/user-attachments/assets/55a36d9c-5963-4831-a8e4-e36d9bbdf87e" />
-<img width="3840" height="2112" alt="fpcomp6d" src="https://github.com/user-attachments/assets/bf42d86b-cdde-4183-a32e-5aa26f2bf1ea" />
-<img width="3840" height="2112" alt="fpcomp6e" src="https://github.com/user-attachments/assets/cc0fb098-9bd8-4c04-9f2f-7266b3b4a1a9" />
-<img width="3840" height="2112" alt="fpcomp6f" src="https://github.com/user-attachments/assets/63b11abf-c1e2-4b3a-a669-654c34d0d08d" />
+<img width="3840" height="2112" alt="fpcomp7" src="https://github.com/user-attachments/assets/f9c15c54-40fb-4a13-afb1-bee10c8a4810" />
+<img width="3840" height="2112" alt="fpcomp7a" src="https://github.com/user-attachments/assets/0ad80d2a-8eff-4111-ae18-d03d2fbff123" />
+<img width="3840" height="2112" alt="fpcomp7b" src="https://github.com/user-attachments/assets/6dc3a38e-a618-4cd4-a3d4-c25a6f68f2b8" />
+<img width="3840" height="2112" alt="fpcomp7c" src="https://github.com/user-attachments/assets/c868c4aa-8b16-44cf-b874-af922a11d922" />
+<img width="3840" height="2112" alt="fpcomp7d" src="https://github.com/user-attachments/assets/4da0e4f9-534c-467f-8035-40a60c420694" />
+<img width="3840" height="2112" alt="fpcomp7e" src="https://github.com/user-attachments/assets/a1e2a4a4-5291-4f53-b92e-1f582649b930" />
+<img width="3840" height="2112" alt="fpcomp7f" src="https://github.com/user-attachments/assets/006cd910-95d8-4bd1-90b4-e183a2a5869a" />
 
 ---
 
