@@ -32,9 +32,13 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore171l" src="https://github.com/user-attachments/assets/e6c1543a-b48b-40ba-873e-a9131c553888" />
 <img width="3840" height="2112" alt="muxrisccore171m" src="https://github.com/user-attachments/assets/940fb7c2-767a-4bd7-abb1-08e06aa9ad60" />
 <img width="3840" height="2112" alt="muxrisccore171n" src="https://github.com/user-attachments/assets/823fca8f-e7bc-4cbe-aaf1-b5988a322b00" />
-<img width="3840" height="2112" alt="fpcomp3" src="https://github.com/user-attachments/assets/85773867-66cf-4b7c-bb71-e7845866983f" />
-<img width="3840" height="2112" alt="fpcomp5a" src="https://github.com/user-attachments/assets/a82f6f65-dd2b-438c-b7d3-2b67f8a77b80" />
-<img width="3840" height="2112" alt="fpcomp3b" src="https://github.com/user-attachments/assets/d839f136-2103-4f6c-bb94-4575a783ab14" />
+<img width="3840" height="2112" alt="fpcomp6" src="https://github.com/user-attachments/assets/bb15e0f6-086a-4ed9-9d13-0cb8e6905f76" />
+<img width="3840" height="2112" alt="fpcomp6a" src="https://github.com/user-attachments/assets/ec448689-e5f3-42c8-9ec7-b2293a06f1f3" />
+<img width="3840" height="2112" alt="fpcomp6b" src="https://github.com/user-attachments/assets/4bbc33cc-fddf-4b8f-941e-dd1ac71d431b" />
+<img width="3840" height="2112" alt="fpcomp6c" src="https://github.com/user-attachments/assets/55a36d9c-5963-4831-a8e4-e36d9bbdf87e" />
+<img width="3840" height="2112" alt="fpcomp6d" src="https://github.com/user-attachments/assets/bf42d86b-cdde-4183-a32e-5aa26f2bf1ea" />
+<img width="3840" height="2112" alt="fpcomp6e" src="https://github.com/user-attachments/assets/cc0fb098-9bd8-4c04-9f2f-7266b3b4a1a9" />
+<img width="3840" height="2112" alt="fpcomp6f" src="https://github.com/user-attachments/assets/63b11abf-c1e2-4b3a-a669-654c34d0d08d" />
 
 ---
 
