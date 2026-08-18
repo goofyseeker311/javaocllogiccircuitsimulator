@@ -44,7 +44,7 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="fpcomp7e" src="https://github.com/user-attachments/assets/a1e2a4a4-5291-4f53-b92e-1f582649b930" />
 <img width="3840" height="2112" alt="fpcomp7f" src="https://github.com/user-attachments/assets/006cd910-95d8-4bd1-90b4-e183a2a5869a" />
 <img width="3840" height="2112" alt="fpcomp12k" src="https://github.com/user-attachments/assets/736df279-a077-45cd-a63c-7613027705e1" />
-<img width="3840" height="2112" alt="fpcomp13l" src="https://github.com/user-attachments/assets/e1f10d3a-2c08-4a14-844d-117f4d15494c" />
+<img width="3840" height="2112" alt="fpcomp14l" src="https://github.com/user-attachments/assets/80acd58e-e6c4-4121-a0b0-7016b4ec9b38" />
 
 ---
 
