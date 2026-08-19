@@ -322,6 +322,7 @@ public class JavaOCLLogicCircuitEmulator {
 			threadcycle[5] = riscchip.oldmemoryram[(int)threadroot+5];
 			threadcycle[6] = riscchip.oldmemoryram[(int)threadroot+6];
 			threadbase = threadcycle[threadcycleind];
+			riscchip.oldmemoryram[(int)threadroot+7] = threadbase;
 			programcounter = riscchip.oldmemoryram[(int)threadbase];
 			instructionstep = riscchip.oldmemoryram[(int)threadbase+1];
 			memorybase = riscchip.oldmemoryram[(int)threadbase+2];
@@ -561,14 +562,14 @@ public class JavaOCLLogicCircuitEmulator {
 			}
 			cyclenum++;
 
-			riscchip.newmemoryram[(int)threadroot] = threadcycle[0];
-			riscchip.newmemoryram[(int)threadroot+1] = threadcycle[1];
-			riscchip.newmemoryram[(int)threadroot+2] = threadcycle[2];
-			riscchip.newmemoryram[(int)threadroot+3] = threadcycle[3];
-			riscchip.newmemoryram[(int)threadroot+4] = threadcycle[4];
-			riscchip.newmemoryram[(int)threadroot+5] = threadcycle[5];
-			riscchip.newmemoryram[(int)threadroot+6] = threadcycle[6];
-			riscchip.newmemoryram[(int)threadroot+7] = threadbase;
+			riscchip.newmemoryram[(int)threadroot] = riscchip.oldmemoryram[(int)threadroot];
+			riscchip.newmemoryram[(int)threadroot+1] = riscchip.oldmemoryram[(int)threadroot+1];
+			riscchip.newmemoryram[(int)threadroot+2] = riscchip.oldmemoryram[(int)threadroot+2];
+			riscchip.newmemoryram[(int)threadroot+3] = riscchip.oldmemoryram[(int)threadroot+3];
+			riscchip.newmemoryram[(int)threadroot+4] = riscchip.oldmemoryram[(int)threadroot+4];
+			riscchip.newmemoryram[(int)threadroot+5] = riscchip.oldmemoryram[(int)threadroot+5];
+			riscchip.newmemoryram[(int)threadroot+6] = riscchip.oldmemoryram[(int)threadroot+6];
+			riscchip.newmemoryram[(int)threadroot+7] = riscchip.oldmemoryram[(int)threadroot+7];
 			riscchip.newmemoryram[(int)threadbase] = programcounter;
 			riscchip.newmemoryram[(int)threadbase+1] = instructionstep;
 			riscchip.newmemoryram[(int)threadbase+2] = memorybase;
