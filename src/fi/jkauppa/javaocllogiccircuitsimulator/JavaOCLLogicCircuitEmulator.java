@@ -273,20 +273,22 @@ public class JavaOCLLogicCircuitEmulator {
 		private long instructionstate = 0L;
 		private long instructionstep = 0L;
 		private long programcounter = 0xC000000000000000L;
-		private long threadroot = 0xFFF; //0xFFFFFFL;
-		private long threadbase = 0xBFB; //0xFFEFFBL;
-		private long registerbase = 0xC00; //0xFFF000L;
+		private long threadroot = 0xFF8;
+		private long threadbase = 0xBFB;
+		private long[] threadcycle = {0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB};
+		private long registerbase = 0xC00;
 		private long memorybase = 0L;
 		private long registermask = 0L;
 		private long memorymask = 0L;
 		private ByteBuffer instbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private boolean firsttime = true;
+		private int threadcycleind = 0;
 		
 		public RiscCore(int corenumi) {
 			corenum = corenumi;
-			threadroot = 0xFFFL - corenumi; //0xFFFFFFL - corenumi;
-			threadbase = 0xBFBL - 0x300L * corenumi; //0xFFEFFBL - 0xFFFFL * corenumi;
+			threadroot = 0xFF8L - corenumi;
+			threadbase = 0xBFBL - 0x300L * corenumi;
 			memorybase = 0x000L;
 			registermask = 0L;
 			memorymask = 0L;
@@ -294,17 +296,32 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public void processinstruction() {
 			if (firsttime) {
-				riscchip.oldmemoryram[(int)threadroot] = threadbase;
+				riscchip.oldmemoryram[(int)threadroot] = threadcycle[0];
+				riscchip.oldmemoryram[(int)threadroot+1] = threadcycle[1];
+				riscchip.oldmemoryram[(int)threadroot+2] = threadcycle[2];
+				riscchip.oldmemoryram[(int)threadroot+3] = threadcycle[3];
+				riscchip.oldmemoryram[(int)threadroot+4] = threadcycle[4];
+				riscchip.oldmemoryram[(int)threadroot+5] = threadcycle[5];
+				riscchip.oldmemoryram[(int)threadroot+6] = threadcycle[6];
+				riscchip.oldmemoryram[(int)threadroot+7] = threadbase;
 				riscchip.oldmemoryram[(int)threadbase] = programcounter;
 				riscchip.oldmemoryram[(int)threadbase+1] = instructionstep;
 				riscchip.oldmemoryram[(int)threadbase+2] = memorybase;
 				riscchip.oldmemoryram[(int)threadbase+3] = registermask;
 				riscchip.oldmemoryram[(int)threadbase+4] = memorymask;
-				counter = 2;
+				counter = 9;
+				threadcycleind = 3;
 				firsttime = false;
 			}
 
-			threadbase = riscchip.oldmemoryram[(int)threadroot];
+			threadcycle[0] = riscchip.oldmemoryram[(int)threadroot];
+			threadcycle[1] = riscchip.oldmemoryram[(int)threadroot+1];
+			threadcycle[2] = riscchip.oldmemoryram[(int)threadroot+2];
+			threadcycle[3] = riscchip.oldmemoryram[(int)threadroot+3];
+			threadcycle[4] = riscchip.oldmemoryram[(int)threadroot+4];
+			threadcycle[5] = riscchip.oldmemoryram[(int)threadroot+5];
+			threadcycle[6] = riscchip.oldmemoryram[(int)threadroot+6];
+			threadbase = threadcycle[threadcycleind];
 			programcounter = riscchip.oldmemoryram[(int)threadbase];
 			instructionstep = riscchip.oldmemoryram[(int)threadbase+1];
 			memorybase = riscchip.oldmemoryram[(int)threadbase+2];
@@ -327,7 +344,7 @@ public class JavaOCLLogicCircuitEmulator {
 			} else {
 				instructionstate = riscchip.oldmemoryram[(int)memorybase+(int)(progcounter&(~memorymask))];
 			}
-			System.out.println("core: "+String.format("%04x", corenum)+", cycle: "+String.format("%016x", cyclenum)+", programcounter: "+String.format("%016x", programcounter)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+String.format("%016x", instructionstep)+
+			System.out.println("core: "+String.format("%04x", corenum)+", thread("+threadcycleind+"): "+String.format("%04x", threadbase)+", cycle: "+String.format("%08x", cyclenum)+", programcounter: "+String.format("%016x", programcounter)+", instructionstate: "+String.format("%016x", instructionstate)+", instructionstep: "+String.format("%08x", instructionstep)+
 					", r0:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x0])+", r1:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x1])+", r2:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x2])+", r3:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x3])+
 					", r4:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x4])+", r5:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x5])+", r6:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x6])+", r7:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x7])+
 					", r8:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x8])+", r9:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0x9])+", rA:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0xA])+", rB:"+String.format("%016x", riscchip.oldmemoryram[(int)registerbase+0xB])+
@@ -544,12 +561,24 @@ public class JavaOCLLogicCircuitEmulator {
 			}
 			cyclenum++;
 
-			riscchip.newmemoryram[(int)threadroot] = threadbase;
+			riscchip.newmemoryram[(int)threadroot] = threadcycle[0];
+			riscchip.newmemoryram[(int)threadroot+1] = threadcycle[1];
+			riscchip.newmemoryram[(int)threadroot+2] = threadcycle[2];
+			riscchip.newmemoryram[(int)threadroot+3] = threadcycle[3];
+			riscchip.newmemoryram[(int)threadroot+4] = threadcycle[4];
+			riscchip.newmemoryram[(int)threadroot+5] = threadcycle[5];
+			riscchip.newmemoryram[(int)threadroot+6] = threadcycle[6];
+			riscchip.newmemoryram[(int)threadroot+7] = threadbase;
 			riscchip.newmemoryram[(int)threadbase] = programcounter;
 			riscchip.newmemoryram[(int)threadbase+1] = instructionstep;
 			riscchip.newmemoryram[(int)threadbase+2] = memorybase;
 			riscchip.newmemoryram[(int)threadbase+3] = registermask;
 			riscchip.newmemoryram[(int)threadbase+4] = memorymask;
+			
+			threadcycleind++;
+			if (threadcycleind>6) {
+				threadcycleind = 0;
+			}
 		}
 	}
 	
