@@ -425,6 +425,8 @@ public class JavaOCLLogicCircuitEmulator {
 					riscchip.newmemoryram[(int)threadbase] = programcounter;
 				} break;
 				default: if (true) {
+					programcounter++;
+					riscchip.newmemoryram[(int)threadbase] = programcounter;
 
 					for (int i=0;i<8;i++) {
 						if (vecnbits.get(i)) {
@@ -557,8 +559,6 @@ public class JavaOCLLogicCircuitEmulator {
 							riscchip.newmemoryram[registerbaseregX+i] = newregistersregXpi;
 						}
 					}
-					programcounter++;
-					riscchip.newmemoryram[(int)threadbase] = programcounter;
 					
 				}
 			}
