@@ -21,8 +21,6 @@ HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 <img width="3840" height="2112" alt="muxrisccore174a" src="https://github.com/user-attachments/assets/ab1dbc35-2b61-4637-a9ca-de1423e3c496" />
 <img width="3840" height="2112" alt="muxrisccore174b" src="https://github.com/user-attachments/assets/67d3e73d-76af-4921-b78c-2817e71b61c6" />
 <img width="3840" height="2112" alt="muxrisccore173d" src="https://github.com/user-attachments/assets/774d2b4e-f62c-43c5-831c-787814169cc6" />
-<img width="3840" height="2112" alt="muxrisccore173e" src="https://github.com/user-attachments/assets/d05e46d7-f808-4382-b9c0-7e740b79e75f" />
-<img width="3840" height="2112" alt="muxrisccore173f" src="https://github.com/user-attachments/assets/c3ee6421-7255-41cb-90f0-ec6543a4450e" />
 <img width="3840" height="2112" alt="muxrisccore173g" src="https://github.com/user-attachments/assets/9f2e776e-9ac1-4ee4-b2a9-ca3a9940f4e1" />
 <img width="3840" height="2112" alt="muxrisccore173h" src="https://github.com/user-attachments/assets/472ec53b-c2f3-4165-a318-f23439d11ad9" />
 <img width="3840" height="2112" alt="muxrisccore173i" src="https://github.com/user-attachments/assets/8e6dbcf8-8429-4c8d-bc33-69a987620a1a" />
