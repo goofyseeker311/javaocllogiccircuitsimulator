@@ -8,7 +8,6 @@ Instruction high bits can contain specific simple variations of instructions, an
 Each 64-bit instruction is formed from 16-bit [regX regY regZ insT] parameters.
 insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
 Estimated logic transistors per core is 1million making 64k cores about 64 billion.
-Estimated ram transistors per core is 8million 512KB and 512billion total 32GB.
 Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
 Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
@@ -17,18 +16,18 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore174" src="https://github.com/user-attachments/assets/f77b6de1-c91e-4c14-87fe-5527a527d0d1" />
-<img width="3840" height="2112" alt="muxrisccore174a" src="https://github.com/user-attachments/assets/ab1dbc35-2b61-4637-a9ca-de1423e3c496" />
-<img width="3840" height="2112" alt="muxrisccore174b" src="https://github.com/user-attachments/assets/67d3e73d-76af-4921-b78c-2817e71b61c6" />
-<img width="3840" height="2112" alt="muxrisccore173d" src="https://github.com/user-attachments/assets/774d2b4e-f62c-43c5-831c-787814169cc6" />
-<img width="3840" height="2112" alt="muxrisccore173g" src="https://github.com/user-attachments/assets/9f2e776e-9ac1-4ee4-b2a9-ca3a9940f4e1" />
-<img width="3840" height="2112" alt="muxrisccore173h" src="https://github.com/user-attachments/assets/472ec53b-c2f3-4165-a318-f23439d11ad9" />
-<img width="3840" height="2112" alt="muxrisccore173i" src="https://github.com/user-attachments/assets/8e6dbcf8-8429-4c8d-bc33-69a987620a1a" />
-<img width="3840" height="2112" alt="muxrisccore173j" src="https://github.com/user-attachments/assets/ac309985-c087-4652-97e3-f4e148feffb9" />
-<img width="3840" height="2112" alt="muxrisccore173k" src="https://github.com/user-attachments/assets/0b693e07-b973-4101-b65b-48d1a7626f74" />
-<img width="3840" height="2112" alt="muxrisccore173l" src="https://github.com/user-attachments/assets/13154f6a-dbd9-479b-bc4f-903403514b20" />
-<img width="3840" height="2112" alt="muxrisccore173m" src="https://github.com/user-attachments/assets/2dddd246-e9a6-4b2d-b963-48302e4df51b" />
-<img width="3840" height="2112" alt="muxrisccore173n" src="https://github.com/user-attachments/assets/1924cb65-2fb1-4aa4-aa1b-98e9802bc79f" />
+<img width="3840" height="2112" alt="muxrisccore175" src="https://github.com/user-attachments/assets/db3f176e-0ae6-4adf-8cd3-44b5f655d0d0" />
+<img width="3840" height="2112" alt="muxrisccore175a" src="https://github.com/user-attachments/assets/e014b625-799a-4039-b884-43a56aee4c36" />
+<img width="3840" height="2112" alt="muxrisccore175b" src="https://github.com/user-attachments/assets/017af80b-1855-4c55-bd79-975afa7e7508" />
+<img width="3840" height="2112" alt="muxrisccore175c" src="https://github.com/user-attachments/assets/5e26a300-1c7b-466f-ae9f-06935a512cd1" />
+<img width="3840" height="2112" alt="muxrisccore175d" src="https://github.com/user-attachments/assets/d3b88754-b907-41f6-a00d-a7f4d19b6109" />
+<img width="3840" height="2112" alt="muxrisccore175e" src="https://github.com/user-attachments/assets/83103fba-5c25-4f0b-99ec-894f2dbc4494" />
+<img width="3840" height="2112" alt="muxrisccore175f" src="https://github.com/user-attachments/assets/361722b3-0533-4242-aa7b-d2bb4b813b69" />
+<img width="3840" height="2112" alt="muxrisccore175g" src="https://github.com/user-attachments/assets/e9abb256-cd31-4460-9806-81d5b9ca72a7" />
+<img width="3840" height="2112" alt="muxrisccore175h" src="https://github.com/user-attachments/assets/890cc59c-219a-4786-a007-f05aa711d317" />
+<img width="3840" height="2112" alt="muxrisccore175i" src="https://github.com/user-attachments/assets/f61302f1-a5f2-4b46-9037-730bc6fca475" />
+<img width="3840" height="2112" alt="muxrisccore175j" src="https://github.com/user-attachments/assets/fdcf523c-5b47-46b6-9474-8807f8780e0c" />
+<img width="3840" height="2112" alt="muxrisccore175k" src="https://github.com/user-attachments/assets/8e5c151b-aea6-4bcc-82a7-ee63d5a912a0" />
 <img width="3840" height="2112" alt="fpcomp7" src="https://github.com/user-attachments/assets/f9c15c54-40fb-4a13-afb1-bee10c8a4810" />
 <img width="3840" height="2112" alt="fpcomp8a" src="https://github.com/user-attachments/assets/005b35b7-625b-48f4-97cf-a89c383455d1" />
 <img width="3840" height="2112" alt="fpcomp7b" src="https://github.com/user-attachments/assets/6dc3a38e-a618-4cd4-a3d4-c25a6f68f2b8" />
