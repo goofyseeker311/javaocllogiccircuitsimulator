@@ -17,10 +17,9 @@ GNU Octave 11.1.0 used for generic math and generating circuit constants: https:
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore173" src="https://github.com/user-attachments/assets/89589e74-b9b4-48c4-a049-105dea2ec4d0" />
-<img width="3840" height="2112" alt="muxrisccore173a" src="https://github.com/user-attachments/assets/fab2239f-71be-4681-9902-95fb8645cdce" />
-<img width="3840" height="2112" alt="muxrisccore173b" src="https://github.com/user-attachments/assets/1cd8c9fe-5182-448f-aea5-a7f04f721abd" />
-<img width="3840" height="2112" alt="muxrisccore173c" src="https://github.com/user-attachments/assets/fa6c775f-250d-4bae-99a9-3130b2b02531" />
+<img width="3840" height="2112" alt="muxrisccore174" src="https://github.com/user-attachments/assets/f77b6de1-c91e-4c14-87fe-5527a527d0d1" />
+<img width="3840" height="2112" alt="muxrisccore174a" src="https://github.com/user-attachments/assets/ab1dbc35-2b61-4637-a9ca-de1423e3c496" />
+<img width="3840" height="2112" alt="muxrisccore174b" src="https://github.com/user-attachments/assets/67d3e73d-76af-4921-b78c-2817e71b61c6" />
 <img width="3840" height="2112" alt="muxrisccore173d" src="https://github.com/user-attachments/assets/774d2b4e-f62c-43c5-831c-787814169cc6" />
 <img width="3840" height="2112" alt="muxrisccore173e" src="https://github.com/user-attachments/assets/d05e46d7-f808-4382-b9c0-7e740b79e75f" />
 <img width="3840" height="2112" alt="muxrisccore173f" src="https://github.com/user-attachments/assets/c3ee6421-7255-41cb-90f0-ec6543a4450e" />
@@ -155,7 +154,7 @@ START: nop   00000000000200     | 0000000000020000 | sleep for 513 cycles, label
        ldi   0008 00000001 ff   | 000800000001FF40 | load registers 8-f with value 0x1
        ldi   0010 00000000 ff   | 001000000000FF40 | load registers 10-17 with value 0x0
        ldi   0018 00000000      | 0018000000000040 | load register 18 with value 0x0
-       ldi   0019 00000020      | 0019000000200040 | load register 19 with value 0x20
+       ldi   0019 00000014      | 0019000000140040 | load register 19 with value 0x14
        ldi   001a 00000028      | 001A000000280040 | load register 1a with value 0x28
        ldi   001b 00000001      | 001B000000010040 | load register 1b with value 0x1
        ldi   001c 00000008      | 001C000000080040 | load register 1c with value 0x8
@@ -181,7 +180,7 @@ while(true) {                      // infinite while loop
   register<8> long fib2{8} = 0x1;  // init fib2 with registers array 8-15 to 0x1 vectorized 8x
   register<16> long fib3{8} = 0x0; // init fib3 with registers array 16-23 to 0x0 vectorized 8x
   register<24> long i = 0;         // init loop i with register 24 long integer value 0
-  register<25> long imax = 0x20;   // init loop imax with register 25 long integer value 0x20
+  register<25> long imax = 0x14;   // init loop imax with register 25 long integer value 0x14
   register<26> long *mem = 0x28;   // init mem with register 26 long integer pointer at 0x28
   for (;i<imax;i++) {              // for loop long integer i index value from 0 to 31
     fib3{8} = fib2{8};             // copy array of old fib2 values to fib3 vectorized 8x
