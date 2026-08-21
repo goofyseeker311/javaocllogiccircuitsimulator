@@ -101,9 +101,9 @@ public class JavaOCLLogicCircuitEmulator {
 	
 	public class RiscChip {
 		public RiscCore[] risccores;
-		public static final int memoryamount = 4096; //65536*256;
-		public static final int cartamount = 4096; //65536*256;
-		public static final int bootamount = 4096; //65536*256;
+		public static final int memoryamount = 256;
+		public static final int cartamount = 256;
+		public static final int bootamount = 256;
 		public static final int displaywidth = 512;
 		public static final int displayheight = 512;
 		public static final int displayamount = displaywidth*displayheight;
@@ -273,10 +273,10 @@ public class JavaOCLLogicCircuitEmulator {
 		private long instructionstate = 0L;
 		private long instructionstep = 0L;
 		private long programcounter = 0xC000000000000000L;
-		private long threadroot = 0xFF8;
-		private long threadbase = 0xBFB;
-		private long[] threadcycle = {0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB, 0xBFB};
-		private long registerbase = 0xC00;
+		private long threadroot = 0xF8;
+		private long threadbase = 0xCB;
+		private long[] threadcycle = {threadbase, threadbase, threadbase, threadbase, threadbase, threadbase, threadbase};
+		private long registerbase = threadbase+5;
 		private long memorybase = 0L;
 		private long registermask = 0L;
 		private long memorymask = 0L;
@@ -287,9 +287,9 @@ public class JavaOCLLogicCircuitEmulator {
 		
 		public RiscCore(int corenumi) {
 			corenum = corenumi;
-			threadroot = 0xFF8L - corenumi;
-			threadbase = 0xBFBL - 0x300L * corenumi;
-			memorybase = 0x000L;
+			threadroot = 0xF8L - corenumi;
+			threadbase = 0xCBL - 0x30L * corenumi;
+			memorybase = 0x00L;
 			registermask = 0L;
 			memorymask = 0L;
 		}

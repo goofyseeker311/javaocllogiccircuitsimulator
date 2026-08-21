@@ -1,4 +1,4 @@
-       ##    0000000000010000   // rom header boot load size
+       ##    0000000000002800   // rom header boot load size
        ##    0000000000000100   // rom header data
        ##    0000000000000200   // rom header data
        ##    0000000000000300   // rom header data
@@ -21,7 +21,7 @@ START: nop   00000000000200
        ldi   0008 00000001 ff
        ldi   0010 00000000 ff
        ldi   0018 00000000
-       ldi   0019 00000020
+       ldi   0019 00000014
        ldi   001a 00000028
        ldi   001b 00000001
        ldi   001c 00000008
