@@ -372,7 +372,9 @@ public class JavaOCLLogicCircuitEmulator {
 			long regXYZN = Long.rotateRight(instructionstate & 0xffffffffffffff00L, 8);
 			byte[] vecnarray = {vecN};
 			BitSet vecnbits = BitSet.valueOf(vecnarray);
-			vecnbits.set(0);
+			if (vecN==0) {
+				vecnbits.set(0);
+			}
 			
 			int registerbaseregX = (int)registerbase+(int)(regX&(~registermask));
 			int registerbaseregY = (int)registerbase+(int)(regY&(~registermask));
