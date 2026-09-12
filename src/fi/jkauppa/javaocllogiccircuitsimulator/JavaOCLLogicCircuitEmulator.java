@@ -274,12 +274,13 @@ public class JavaOCLLogicCircuitEmulator {
 		private long instructionstep = 0L;
 		private long programcounter = 0xC000000000000000L;
 		private long threadroot = 0xF8;
-		private long threadbase = 0xCB;
+		private long threadbase = 0xCA;
 		private long[] threadcycle = {threadbase, threadbase, threadbase, threadbase, threadbase, threadbase, threadbase};
 		private long registerbase = threadbase+5;
 		private long memorybase = 0L;
 		private long registermask = 0L;
 		private long memorymask = 0L;
+		private long corerun = 0xffffffffffffffffL;
 		private ByteBuffer instbytes = ByteBuffer.allocate(8);
 		private ByteBuffer longbytes = ByteBuffer.allocate(8);
 		private boolean firsttime = true;
@@ -288,7 +289,7 @@ public class JavaOCLLogicCircuitEmulator {
 		public RiscCore(int corenumi) {
 			corenum = corenumi;
 			threadroot = 0xF8L - corenumi;
-			threadbase = 0xCBL - 0x30L * corenumi;
+			threadbase = 0xCAL - 0x30L * corenumi;
 			memorybase = 0x00L;
 			registermask = 0L;
 			memorymask = 0L;
@@ -304,6 +305,12 @@ public class JavaOCLLogicCircuitEmulator {
 				riscchip.newmemoryram[(int)threadroot+5] = threadcycle[5];
 				riscchip.newmemoryram[(int)threadroot+6] = threadcycle[6];
 				riscchip.newmemoryram[(int)threadroot+7] = threadbase;
+				riscchip.newmemoryram[(int)threadbase] = programcounter;
+				riscchip.newmemoryram[(int)threadbase+1] = instructionstep;
+				riscchip.newmemoryram[(int)threadbase+2] = memorybase;
+				riscchip.newmemoryram[(int)threadbase+3] = registermask;
+				riscchip.newmemoryram[(int)threadbase+4] = memorymask;
+				riscchip.newmemoryram[(int)threadbase+5] = corerun;
 				riscchip.oldmemoryram[(int)threadroot] = threadcycle[0];
 				riscchip.oldmemoryram[(int)threadroot+1] = threadcycle[1];
 				riscchip.oldmemoryram[(int)threadroot+2] = threadcycle[2];
@@ -317,8 +324,9 @@ public class JavaOCLLogicCircuitEmulator {
 				riscchip.oldmemoryram[(int)threadbase+2] = memorybase;
 				riscchip.oldmemoryram[(int)threadbase+3] = registermask;
 				riscchip.oldmemoryram[(int)threadbase+4] = memorymask;
-				counter = 9;
-				threadcycleind = 3;
+				riscchip.oldmemoryram[(int)threadbase+5] = corerun;
+				counter = 10;
+				threadcycleind = 4;
 				firsttime = false;
 			}
 
@@ -338,7 +346,8 @@ public class JavaOCLLogicCircuitEmulator {
 			memorybase = riscchip.oldmemoryram[(int)threadbase+2];
 			registermask = riscchip.oldmemoryram[(int)threadbase+3];
 			memorymask = riscchip.oldmemoryram[(int)threadbase+4];
-			registerbase = threadbase + 5;
+			corerun = riscchip.oldmemoryram[(int)threadbase+5];
+			registerbase = threadbase + 6;
 			
 			long[] progarray = {programcounter};
 			BitSet progbits = BitSet.valueOf(progarray);
@@ -397,7 +406,7 @@ public class JavaOCLLogicCircuitEmulator {
 						instructionstep++;
 					} else {
 						instructionstep = 0;
-						programcounter++;
+						if (corerun!=0) { programcounter++; }
 						riscchip.newmemoryram[(int)threadbase] = programcounter;
 					}
 					riscchip.newmemoryram[(int)threadbase+1] = instructionstep;
@@ -415,7 +424,7 @@ public class JavaOCLLogicCircuitEmulator {
 					if (jumpflag!=0) {
 						programcounter = oldregistersregX;
 					} else {
-						programcounter++;
+						if (corerun!=0) { programcounter++; }
 					}
 					riscchip.newmemoryram[(int)threadbase] = programcounter;
 				} break;
@@ -423,11 +432,11 @@ public class JavaOCLLogicCircuitEmulator {
 					riscchip.fpgaramoy[memorybaseregY] = memorybaseregX;
 					riscchip.fpgaramop[memorybaseregY] = vecN;
 					riscchip.fpgaramoz[memorybaseregY] = memorybaseregZ;
-					programcounter++;
+					if (corerun!=0) { programcounter++; }
 					riscchip.newmemoryram[(int)threadbase] = programcounter;
 				} break;
 				default: if (true) {
-					programcounter++;
+					if (corerun!=0) { programcounter++; }
 					riscchip.newmemoryram[(int)threadbase] = programcounter;
 
 					for (int i=0;i<8;i++) {
