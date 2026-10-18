@@ -10,20 +10,19 @@ insT parameter is formed from 8-4-4-bit [vecN insV insO] parameters.
 Estimated logic transistors per core is 1million making 64k cores about 64 billion.
 Estimated compute 64-bit teraops at 5GHz x 8-vector per core is 40gops and 2560tops total.
 
-Logisim evolution v4.1.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
+Logisim evolution v5.0.0 used for circuit illustrations and functional models: https://github.com/logisim-evolution/logisim-evolution
 
-GNU Octave 11.1.0 used for generic math and generating circuit constants: https://octave.org
+GNU Octave 11.3.0 used for generic math and generating circuit constants: https://octave.org
 
 HxD - Hex Editor and Disk Editor: https://mh-nexus.de/en/hxd/
 
-<img width="3840" height="2112" alt="muxrisccore192" src="https://github.com/user-attachments/assets/1675a269-7cbd-4b58-9f84-c6d0c53b4951" />
-<img width="3840" height="2112" alt="muxrisccore192a" src="https://github.com/user-attachments/assets/fc0250e1-8e33-4655-b892-982585cfaef2" />
-<img width="3840" height="2112" alt="muxrisccore192b" src="https://github.com/user-attachments/assets/7f440dac-bda0-4b1d-a4ef-419a987aa8b3" />
-<img width="3840" height="2112" alt="muxrisccore192c" src="https://github.com/user-attachments/assets/698e7286-b41d-499d-b7fc-e279cca28613" />
-<img width="3840" height="2112" alt="muxrisccore192d" src="https://github.com/user-attachments/assets/34320a47-c7fd-421f-906c-492e13211956" />
-<img width="3840" height="2112" alt="muxrisccore192e" src="https://github.com/user-attachments/assets/c5c8aa2d-fa38-4f4a-a868-2d42866d2c7b" />
-<img width="3840" height="2112" alt="muxrisccore192f" src="https://github.com/user-attachments/assets/869f53fb-26d9-454f-b08d-1836ffcc6b7b" />
-<img width="3840" height="2112" alt="muxrisccore192g" src="https://github.com/user-attachments/assets/6ffb63a5-f0d0-45ee-a10a-b8bc6736840d" />
+<img width="3840" height="2112" alt="muxrisccore193" src="https://github.com/user-attachments/assets/bddfe027-27d4-45c5-82f4-e3f4f8c746a1" />
+<img width="3840" height="2112" alt="muxrisccore193a" src="https://github.com/user-attachments/assets/5dbfe0da-7d1e-4846-8b6b-05f6c26b8ac6" />
+<img width="3840" height="2112" alt="muxrisccore193b" src="https://github.com/user-attachments/assets/10e84d31-0e3c-4656-918c-d2e407cd7ef1" />
+<img width="3840" height="2112" alt="muxrisccore193c" src="https://github.com/user-attachments/assets/912115ad-81d5-4bb8-963e-5f3bb55af69f" />
+<img width="3840" height="2112" alt="muxrisccore193d" src="https://github.com/user-attachments/assets/1f2dbf48-1337-4723-ad8f-89297efef157" />
+<img width="3840" height="2112" alt="muxrisccore193e" src="https://github.com/user-attachments/assets/e07c294a-c1c3-4d82-b9aa-6e67460a04d1" />
+<img width="3840" height="2112" alt="muxrisccore193f" src="https://github.com/user-attachments/assets/0ca8b617-2569-4edc-9736-b806fe930980" />
 
 ---
 
